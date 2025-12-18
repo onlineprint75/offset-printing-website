@@ -418,14 +418,53 @@
                 btn.textContent = 'Sending...';
                 btn.disabled = true;
 
-                // Simulate API call
+                // Gather data
+                const contactData = new FormData(modalForm);
+                const orderDetails = {
+                    Product: document.getElementById('summary-product').textContent,
+                    PrintType: document.getElementById('summary-print-type').textContent,
+                    Format: document.getElementById('summary-format').textContent,
+                    Paper: document.getElementById('summary-paper').textContent,
+                    Coating: document.getElementById('summary-coating').textContent,
+                    Quantity: document.getElementById('summary-quantity').textContent,
+                    Notes: document.querySelector('[name="notes"]').value
+                };
+
+                // Construct Email Body
+                const subject = `New Order: ${orderDetails.Product} - ${contactData.get('contact_name')}`;
+                const body = `
+New Order Request
+------------------
+Name: ${contactData.get('contact_name')}
+Email: ${contactData.get('contact_email')}
+Phone: ${contactData.get('contact_phone')}
+Company: ${contactData.get('contact_company') || 'N/A'}
+Delivery: ${contactData.get('delivery_method') === 'pickup' ? 'Pick up from office' : 'Delivery'}
+
+Order Details:
+------------------
+Product: ${orderDetails.Product}
+Print Type: ${orderDetails.PrintType}
+Format: ${orderDetails.Format}
+Paper: ${orderDetails.Paper}
+Coating: ${orderDetails.Coating}
+Quantity: ${orderDetails.Quantity}
+
+Notes:
+${orderDetails.Notes || 'None'}
+                `.trim();
+
+                // Open Mail Client
+                window.location.href = `mailto:ppmwork32@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                // Reset UI
                 setTimeout(() => {
-                    alert('Order sent successfully!');
+                    alert('Order email generated! Please check your email client to send.');
                     modal.classList.remove('active');
                     btn.textContent = originalText;
                     btn.disabled = false;
                     modalForm.reset();
-                }, 1500);
+                }, 1000);
             });
         });
     </script>
