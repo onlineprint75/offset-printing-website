@@ -335,6 +335,14 @@ footer {
     text-decoration: none;
 }
 
+.about-content p {
+    margin-bottom: 1.5rem;
+}
+
+.about-content p:last-child {
+    margin-bottom: 0;
+}
+
 .menu-overlay {
     display: none;
     position: fixed;
