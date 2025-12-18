@@ -430,19 +430,20 @@
                     Notes: document.querySelector('[name="notes"]').value
                 };
 
-                // Construct Email Body
-                const subject = `New Order: ${orderDetails.Product} - ${contactData.get('contact_name')}`;
-                const body = `
-New Order Request
-------------------
+                // GATHER WHATSAPP DATA
+                const PHONE_NUMBER = '97699906069'; // Updated to user's number
+
+                const messageText = `
+*New Order Received!*
+
+*Customer Info:*
 Name: ${contactData.get('contact_name')}
 Email: ${contactData.get('contact_email')}
 Phone: ${contactData.get('contact_phone')}
 Company: ${contactData.get('contact_company') || 'N/A'}
-Delivery: ${contactData.get('delivery_method') === 'pickup' ? 'Pick up from office' : 'Delivery'}
+Delivery: ${contactData.get('delivery_method') === 'pickup' ? 'Pick up' : 'Delivery'}
 
-Order Details:
-------------------
+*Order Details:*
 Product: ${orderDetails.Product}
 Print Type: ${orderDetails.PrintType}
 Format: ${orderDetails.Format}
@@ -450,16 +451,17 @@ Paper: ${orderDetails.Paper}
 Coating: ${orderDetails.Coating}
 Quantity: ${orderDetails.Quantity}
 
-Notes:
+*Notes:*
 ${orderDetails.Notes || 'None'}
                 `.trim();
 
-                // Open Mail Client
-                window.location.href = `mailto:ppmwork32@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                // Open WhatsApp
+                const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(messageText)}`;
+                window.open(whatsappUrl, '_blank');
 
                 // Reset UI
                 setTimeout(() => {
-                    alert('Order email generated! Please check your email client to send.');
+                    alert('WhatsApp нээгдлээ. Та "Send" товчийг дарж захиалгаа баталгаажуулна уу. (WhatsApp opened. Please click Send to confirm order).');
                     modal.classList.remove('active');
                     btn.textContent = originalText;
                     btn.disabled = false;
