@@ -11,28 +11,57 @@
 
 <body>
     <header>
-        <div class="header-container"
-            style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <div class="container" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
             <a href="index.html" class="logo">
                 <img src="assets/images/logo.png" alt="OFFSET PRINT Logo">
             </a>
-            <nav>
-                <ul style="display: flex; list-style: none; gap: 20px;">
-                    <li><a href="index.html" class="active" style="font-size: 0.9rem; font-weight: 500;">Нүүр</a></li>
-                    <li><a href="about.html" style="font-size: 0.9rem; font-weight: 500;">Бидний тухай</a></li>
-                    <li><a href="inventory.html" style="font-size: 0.9rem; font-weight: 500;">Бараа материал</a></li>
-                    <li><a href="quote.html" style="font-size: 0.9rem; font-weight: 500;">Үнийн санал авах</a></li>
-                    <li><a href="contact.html" style="font-size: 0.9rem; font-weight: 500;">Холбоо барих</a></li>
-                </ul>
-            </nav>
+
+            <div class="header-right">
+                <div class="nav-pill">
+                    <ul>
+                        <li><a href="index.html" class="active" data-i18n="nav-home">Нүүр</a></li>
+                        <li><a href="about.html" data-i18n="nav-about">Бидний тухай</a></li>
+                        <li><a href="inventory.html" data-i18n="nav-inventory">Бараа материал</a></li>
+                        <li><a href="contact.html" data-i18n="nav-contact">Холбоо барих</a></li>
+                    </ul>
+                    <a href="quote.html" class="btn-pill" data-i18n="nav-quote">Үнийн санал авах</a>
+                </div>
+
+                <div class="support-info">
+                    <span class="phone">7575-8575</span>
+                    <span class="label" data-i18n="support-text">Хэрэглэгчийн туслах</span>
+                </div>
+
+                <div class="lang-switcher" id="lang-switcher">
+                    <div class="lang-btn" id="lang-btn">
+                        <img src="https://flagcdn.com/w20/mn.png" id="current-lang-flag">
+                        <span id="current-lang-name">Монгол</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i>
+                    </div>
+                    <div class="lang-dropdown" id="lang-dropdown">
+                        <div class="lang-option active" data-lang="mn">
+                            <img src="https://flagcdn.com/w20/mn.png"> Монгол
+                        </div>
+                        <div class="lang-option" data-lang="en">
+                            <img src="https://flagcdn.com/w20/gb.png"> English
+                        </div>
+                        <div class="lang-option" data-lang="zh">
+                            <img src="https://flagcdn.com/w20/cn.png"> 中文
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <button class="menu-toggle" id="menu-toggle">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
         <div class="menu-overlay" id="menu-overlay"></div>
+        <script src="translations.js"></script>
         <script>
+            // Mobile Menu Toggle
             const menuToggle = document.getElementById('menu-toggle');
-            const navMenu = document.querySelector('nav');
+            const navMenu = document.querySelector('.header-right');
             const menuOverlay = document.getElementById('menu-overlay');
 
             menuToggle.addEventListener('click', () => {
@@ -44,23 +73,58 @@
                 navMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
             });
+
+            // Language Switcher Logic
+            const langBtn = document.getElementById('lang-btn');
+            const langDropdown = document.getElementById('lang-dropdown');
+            const langOptions = document.querySelectorAll('.lang-option');
+
+            langBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                langDropdown.classList.toggle('active');
+            });
+
+            document.addEventListener('click', () => {
+                langDropdown.classList.remove('active');
+            });
+
+            langOptions.forEach(opt => {
+                opt.addEventListener('click', () => {
+                    const lang = opt.getAttribute('data-lang');
+                    const flag = opt.querySelector('img').src;
+                    const name = opt.textContent.trim();
+
+                    document.getElementById('current-lang-flag').src = flag;
+                    document.getElementById('current-lang-name').textContent = name;
+
+                    setLanguage(lang);
+                    langDropdown.classList.remove('active');
+                });
+            });
+
+            // Initialize correct flag/name on load
+            window.addEventListener('load', () => {
+                const savedLang = localStorage.getItem('preferred-lang') || 'mn';
+                const activeOpt = document.querySelector(`.lang-option[data-lang="${savedLang}"]`);
+                if (activeOpt) {
+                    document.getElementById('current-lang-flag').src = activeOpt.querySelector('img').src;
+                    document.getElementById('current-lang-name').textContent = activeOpt.textContent.trim();
+                }
+            });
         </script>
-        </div>
     </header>
 
     <main style="padding-top: var(--header-height);">
         <section class="hero"
-            style="min-height: 80vh; background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('assets/images/hero.jpg') center/cover no-repeat; border-radius: 0 0 30px 30px; margin-bottom: 40px;">
+            style="min-height: 80vh; background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('assets/images/hero.jpg') center/cover no-repeat; border-radius: 0 0 30px 30px; margin-bottom: 40px; display: flex; align-items: center;">
             <div style="max-width: 800px; text-align: left; padding: 0 10%;">
-                <h1 style="font-size: 3rem; margin-bottom: 20px; font-weight: 800;">Үнийн санал</h1>
-                <p style="font-size: 1.1rem; margin-bottom: 30px; line-height: 1.6; opacity: 0.9;">Та асуумжийн дагуу
-                    үнийн санал авах хүсэлтээ бидэнд илгээнэ үү. Бид таны мэдээллийг хүлээн авч, хамгийн оновчтой санал
-                    боловсруулан богино хугацаанд эргэн холбогдох болно.</p>
+                <h1 style="font-size: 3rem; margin-bottom: 20px; font-weight: 800;" data-i18n="hero-title">Офсет
+                    Хэвлэлийн Төгс Шийдэл</h1>
+                <p style="font-size: 1.1rem; margin-bottom: 30px; line-height: 1.6; opacity: 0.9;"
+                    data-i18n="hero-subtitle">Бид таны санааг бодит болгож, чанартай хэвлэлээр үйлчилнэ.</p>
                 <div class="hero-btns" style="display: flex; gap: 15px;">
-                    <a href="inventory.html" class="btn btn-primary">Үнийн санал авах</a>
-                    <a href="quote.html" class="btn btn-secondary"
-                        style="background: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.3);">Бараа
-                        материал</a>
+                    <a href="quote.html" class="btn btn-primary" data-i18n="btn-quote">Үнийн санал авах</a>
+                    <a href="inventory.html" class="btn btn-outline" data-i18n="btn-inventory">Бараа материал</a>
                 </div>
             </div>
         </section>
@@ -89,15 +153,15 @@
     <footer>
         <div class="footer-content">
             <div>
-                <h4>Продакт Принтинг Монголиа ХХК</h4>
-                <p>Офсет хэвлэлийн үйлчилгээ</p>
+                <h4 data-i18n="footer-company">Продакт Принтинг Монголиа ХХК</h4>
+                <p data-i18n="footer-desc">Бид таны хэвлэлийн бүхий л хэрэгцээг чанарын өндөр түвшинд хангана.</p>
                 <div class="social-links">
                     <h5>Биднийг дагаарай</h5>
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
             <div>
-                <h4>Холбоо барих</h4>
+                <h4 data-i18n="footer-contact">Холбоо барих</h4>
                 <ul>
                     <li><i class="fas fa-phone"></i> 75758575</li>
                     <li><i class="fas fa-phone"></i> 80552222</li>
@@ -107,12 +171,12 @@
                 </ul>
             </div>
             <div>
-                <h4>Байршил</h4>
+                <h4 data-i18n="footer-location">Байршил</h4>
                 <p><i class="fas fa-map-marker-alt"></i> Улаанбаатар хот, Сүхбаатар дүүрэг, 12-р хороо, 32-ийн тойрог,
                     Номин супермаркетийн зүүн талд, Үйлдвэрийн байр</p>
             </div>
             <div>
-                <h4>Ажлын цаг</h4>
+                <h4 data-i18n="footer-hours">Ажлын цаг</h4>
                 <ul>
                     <li><i class="fas fa-clock"></i> Даваа-Баасан: 08:00 - 17:00</li>
                     <li><i class="fas fa-clock"></i> Бямба: 10:00 - 15:00</li>
@@ -121,7 +185,8 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Product Printing. Зохиогчийн эрх хуулиар хамгаалагдсан.</p>
+            <p>&copy; 2025 Product Printing. <span data-i18n="footer-rights">Зохиогчийн эрх хуулиар
+                    хамгаалагдсан.</span></p>
             <a href="#">Нууцлалын бодлого</a>
         </div>
     </footer>
