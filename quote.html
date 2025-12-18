@@ -126,35 +126,40 @@
                 <!-- 12 Products will be here -->
                 <script>
                     const products = [
-                        { name: "Нэрийн хуудас", img: "assets/images/business_card.jpg" },
-                        { name: "Брошур", img: "assets/images/brochure.jpg" },
-                        { name: "Сэтгүүл", img: "assets/images/magazine.jpg" },
-                        { name: "Ном", img: "assets/images/book.jpg" },
-                        { name: "Шошго", img: "assets/images/label.jpg" },
-                        { name: "Хайрцаг", img: "assets/images/box.jpg" },
-                        { name: "Цаасан тор", img: "assets/images/bag.jpg" },
-                        { name: "Урилга", img: "assets/images/invitation.jpg" },
-                        { name: "Плакат", img: "assets/images/poster.jpg" },
-                        { name: "Дэвтэр", img: "assets/images/notebook.jpg" },
-                        { name: "Дугтуй", img: "assets/images/envelope.jpg" },
-                        { name: "Хортой цаастай баримт", img: "assets/images/invoice.jpg" }
+                        { nameKey: "product-name-card", descKey: "product-desc-card", img: "assets/images/business_card.jpg" },
+                        { nameKey: "product-name-brochure", descKey: "product-desc-brochure", img: "assets/images/brochure.jpg" },
+                        { nameKey: "product-name-magazine", descKey: "product-desc-magazine", img: "assets/images/magazine.jpg" },
+                        { nameKey: "product-name-book", descKey: "product-desc-book", img: "assets/images/book.jpg" },
+                        { nameKey: "product-name-label", descKey: "product-desc-label", img: "assets/images/label.jpg" },
+                        { nameKey: "product-name-box", descKey: "product-desc-box", img: "assets/images/box.jpg" },
+                        { nameKey: "product-name-bag", descKey: "product-desc-bag", img: "assets/images/bag.jpg" },
+                        { nameKey: "product-name-invitation", descKey: "product-desc-invitation", img: "assets/images/invitation.jpg" },
+                        { nameKey: "product-name-poster", descKey: "product-desc-poster", img: "assets/images/poster.jpg" },
+                        { nameKey: "product-name-notebook", descKey: "product-desc-notebook", img: "assets/images/notebook.jpg" },
+                        { nameKey: "product-name-envelope", descKey: "product-desc-envelope", img: "assets/images/envelope.jpg" },
+                        { nameKey: "product-name-invoice", descKey: "product-desc-invoice", img: "assets/images/invoice.jpg" }
                     ];
                     const grid = document.currentScript.parentElement;
                     products.forEach(p => {
                         grid.innerHTML += `
                             <div class="product-card">
                                 <div class="product-img">
-                                    <img src="${p.img}" alt="${p.name}">
+                                    <img src="${p.img}" alt="Product">
                                 </div>
                                 <div class="product-info">
-                                    <h3>${p.name}</h3>
-                                    <p>Чанарын өндөр түвшинд, хүссэн хэмжээ загвараар хэвлэнэ.</p>
+                                    <h3 data-i18n="${p.nameKey}"></h3>
+                                    <p data-i18n="${p.descKey}"></p>
                                     <br>
-                                    <a href="#" class="btn btn-primary" style="display: block; text-align: center;">Үнийн санал</a>
+                                    <a href="contact.html" class="btn btn-primary" style="display: block; text-align: center;" data-i18n="btn-view-quote">Үнийн санал</a>
                                 </div>
                             </div>
                         `;
                     });
+                    // Re-apply translations for dynamically added elements
+                    if (typeof setLanguage === 'function') {
+                        const savedLang = localStorage.getItem('preferred-lang') || 'mn';
+                        setLanguage(savedLang);
+                    }
                 </script>
             </div>
         </section>
