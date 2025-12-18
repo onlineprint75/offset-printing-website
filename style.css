@@ -66,6 +66,21 @@ header {
     gap: 30px;
 }
 
+.menu-toggle {
+    display: none;
+    background: white;
+    border: 1px solid var(--pill-border);
+    border-radius: 10px;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: var(--text-main);
+    transition: var(--transition-fast);
+}
+
 .nav-pill {
     display: flex;
     align-items: center;
