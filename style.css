@@ -199,17 +199,7 @@ header {
 }
 
 /* Hero Section */
-.hero {
-    height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/images/hero.jpg') center/cover no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: var(--text-white);
-    padding: 0 5%;
-}
+/* Removed static hero background to resolve overlap with slider */
 
 .hero h1 {
     font-size: 3.5rem;
@@ -252,16 +242,19 @@ header {
     box-shadow: 0 12px 40px rgba(255, 140, 0, 0.4);
 }
 
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.2);
+.btn-secondary,
+.btn-outline {
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    color: var(--text-main);
+    color: white;
 }
 
-.btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.3);
+.btn-secondary:hover,
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.25);
     transform: translateY(-2px);
+    color: white;
 }
 
 /* Grids */
@@ -286,9 +279,9 @@ header {
 }
 
 .hero {
-    min-height: 80vh;
-    border-radius: 0 0 30px 30px;
-    margin-bottom: 40px;
+    height: 100vh;
+    margin-top: calc(-1 * var(--header-height));
+    margin-bottom: 0;
     display: flex;
     align-items: center;
     position: relative;
@@ -332,7 +325,7 @@ header {
 }
 
 .hero .container,
-.hero>div {
+.hero .hero-content {
     position: relative;
     z-index: 2;
     width: 100%;
