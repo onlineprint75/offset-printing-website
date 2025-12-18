@@ -93,7 +93,28 @@ const translations = {
         "form-foil": "Клиши даралттай ( металл өнгө )",
         "form-notes": "Тэмдэглэл",
         "form-quote-amount": "Үнийн дүн (₮)",
-        "form-send-order": "Захиалга илгээх"
+        "form-send-order": "Захиалга илгээх",
+
+        /* Modal Translations */
+        "modal-title": "Захиалга илгээх",
+        "modal-name": "Нэр *",
+        "modal-name-placeholder": "Таны нэр",
+        "modal-email": "Имэйл *",
+        "modal-email-placeholder": "example@email.com",
+        "modal-phone": "Утасны дугаар *",
+        "modal-phone-placeholder": "+976 9999 9999",
+        "modal-company": "Компани",
+        "modal-company-placeholder": "Компанийн нэр (сонголттой)",
+        "modal-delivery": "Хүргэлтийн арга",
+        "modal-delivery-pickup": "Оффисоос авах",
+        "modal-delivery-delivery": "Хүргүүлэх",
+        "modal-summary-title": "Захиалгын дэлгэрэнгүй:",
+        "modal-product": "Бүтээгдэхүүн:",
+        "modal-print-type": "Хэвлэлийн төрөл:",
+        "modal-format": "Хэмжээ:",
+        "modal-paper": "Цаасны төрөл:",
+        "modal-coating": "Бүрэлт:",
+        "modal-quantity": "Тоо ширхэг:"
     },
     en: {
         "nav-home": "Home",
@@ -187,7 +208,28 @@ const translations = {
         "form-foil": "Foil ( metallic color )",
         "form-notes": "Notes",
         "form-quote-amount": "Estimated Quote (₮)",
-        "form-send-order": "Send Order"
+        "form-send-order": "Send Order",
+
+        /* Modal Translations */
+        "modal-title": "Send Order",
+        "modal-name": "Name *",
+        "modal-name-placeholder": "Your Name",
+        "modal-email": "Email *",
+        "modal-email-placeholder": "example@email.com",
+        "modal-phone": "Phone Number *",
+        "modal-phone-placeholder": "+976 9999 9999",
+        "modal-company": "Company",
+        "modal-company-placeholder": "Company Name (Optional)",
+        "modal-delivery": "Delivery Method",
+        "modal-delivery-pickup": "Pick up from office",
+        "modal-delivery-delivery": "Delivery",
+        "modal-summary-title": "Order Summary:",
+        "modal-product": "Product:",
+        "modal-print-type": "Print Type:",
+        "modal-format": "Size:",
+        "modal-paper": "Paper Type:",
+        "modal-coating": "Coating:",
+        "modal-quantity": "Quantity:"
     },
     zh: {
         "nav-home": "首页",
@@ -281,7 +323,28 @@ const translations = {
         "form-foil": "烫金/烫银 ( 金属色 )",
         "form-notes": "备注",
         "form-quote-amount": "预估报价 (₮)",
-        "form-send-order": "提交订单"
+        "form-send-order": "提交订单",
+
+        /* Modal Translations */
+        "modal-title": "发送订单",
+        "modal-name": "姓名 *",
+        "modal-name-placeholder": "您的姓名",
+        "modal-email": "电子邮件 *",
+        "modal-email-placeholder": "example@email.com",
+        "modal-phone": "电话号码 *",
+        "modal-phone-placeholder": "+976 9999 9999",
+        "modal-company": "公司",
+        "modal-company-placeholder": "公司名称 (可选)",
+        "modal-delivery": "配送方式",
+        "modal-delivery-pickup": "到店自取",
+        "modal-delivery-delivery": "快递配送",
+        "modal-summary-title": "订单摘要:",
+        "modal-product": "产品:",
+        "modal-print-type": "印刷类型:",
+        "modal-format": "尺寸:",
+        "modal-paper": "纸张类型:",
+        "modal-coating": "覆膜:",
+        "modal-quantity": "数量:"
     }
 };
 

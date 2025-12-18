@@ -285,6 +285,72 @@
         </div>
     </footer>
 
+    <div id="order-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-i18n="modal-title">Захиалга илгээх</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="contact-form-modal">
+                    <div class="form-group">
+                        <label data-i18n="modal-name">Нэр *</label>
+                        <input type="text" name="contact_name" data-i18n-placeholder="modal-name-placeholder"
+                            placeholder="Таны нэр" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="modal-email">Имэйл *</label>
+                        <input type="email" name="contact_email" data-i18n-placeholder="modal-email-placeholder"
+                            placeholder="example@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="modal-phone">Утасны дугаар *</label>
+                        <input type="tel" name="contact_phone" data-i18n-placeholder="modal-phone-placeholder"
+                            placeholder="+976 9999 9999" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="modal-company">Компани</label>
+                        <input type="text" name="contact_company" data-i18n-placeholder="modal-company-placeholder"
+                            placeholder="Компанийн нэр (сонголттой)">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="modal-delivery">Хүргэлтийн арга</label>
+                        <select name="delivery_method">
+                            <option value="pickup" data-i18n="modal-delivery-pickup">Оффисоос авах</option>
+                            <option value="delivery" data-i18n="modal-delivery-delivery">Хүргүүлэх</option>
+                        </select>
+                    </div>
+
+                    <div class="order-summary-box">
+                        <h4 data-i18n="modal-summary-title">Захиалгын дэлгэрэнгүй:</h4>
+                        <div class="summary-item">
+                            <strong data-i18n="modal-product">Бүтээгдэхүүн:</strong> <span id="summary-product"></span>
+                        </div>
+                        <div class="summary-item">
+                            <strong data-i18n="modal-print-type">Хэвлэлийн төрөл:</strong> <span
+                                id="summary-print-type"></span>
+                        </div>
+                        <div class="summary-item">
+                            <strong data-i18n="modal-format">Хэмжээ:</strong> <span id="summary-format"></span>
+                        </div>
+                        <div class="summary-item">
+                            <strong data-i18n="modal-paper">Цаасны төрөл:</strong> <span id="summary-paper"></span>
+                        </div>
+                        <div class="summary-item">
+                            <strong data-i18n="modal-coating">Бүрэлт:</strong> <span id="summary-coating"></span>
+                        </div>
+                        <div class="summary-item">
+                            <strong data-i18n="modal-quantity">Тоо ширхэг:</strong> <span id="summary-quantity"></span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary submit-final-btn" data-i18n="form-send-order">Захиалга
+                        илгээх</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
         function changeImage(src, el) {
             document.getElementById('current-main-img').src = src;
@@ -298,6 +364,69 @@
             if (typeof setLanguage === 'function') {
                 setLanguage(savedLang);
             }
+
+            // Modal Logic
+            const modal = document.getElementById('order-modal');
+            const mainForm = document.getElementById('quote-form');
+            const closeModal = document.querySelector('.close-modal');
+            const modalForm = document.getElementById('contact-form-modal');
+
+            // Open Modal and Populate Data
+            mainForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Get form values
+                const formData = new FormData(mainForm);
+
+                // Helper to get text from select option
+                const getText = (name) => {
+                    const select = mainForm.querySelector(`[name="${name}"]`);
+                    if (select && select.tagName === 'SELECT') {
+                        return select.options[select.selectedIndex].text;
+                    }
+                    return formData.get(name);
+                };
+
+                // Populate Summary
+                document.getElementById('summary-product').textContent = document.querySelector('h2[data-i18n="product-name-card"]').textContent;
+                document.getElementById('summary-print-type').textContent = getText('print_type');
+                document.getElementById('summary-format').textContent = getText('format');
+                document.getElementById('summary-paper').textContent = getText('paper');
+                document.getElementById('summary-coating').textContent = getText('coating');
+                document.getElementById('summary-quantity').textContent = getText('quantity');
+
+                modal.classList.add('active');
+            });
+
+            // Close Modal
+            closeModal.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+
+            // Final Submit
+            modalForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = modalForm.querySelector('.submit-final-btn');
+                const originalText = btn.textContent;
+
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+
+                // Simulate API call
+                setTimeout(() => {
+                    alert('Order sent successfully!');
+                    modal.classList.remove('active');
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    modalForm.reset();
+                }, 1500);
+            });
         });
     </script>
 </body>
