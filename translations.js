@@ -250,7 +250,7 @@ const translations = {
         "quote-subtitle": "我们产品的价格样本",
         "contact-title": "联系我们",
         "contact-subtitle": "如有任何疑问，请联系我们",
-        "footer-company": "Product Printing Mongolia LLC",
+        "footer-company": "蒙古产品印刷有限公司",
         "footer-services": "胶印印刷服务",
         "footer-follow": "关注我们",
         "footer-contact": "联系方式",
