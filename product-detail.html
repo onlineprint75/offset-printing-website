@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Офсет Хэвлэл - Үнийн санал</title>
+    <title>Офсет Хэвлэл - Нэрийн хуудас</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -116,56 +116,123 @@
     </header>
 
     <main style="padding-top: var(--header-height);">
-        <section id="quotes">
-            <div class="section-title">
-                <h2 data-i18n="quote-title">Үнийн санал</h2>
-                <p data-i18n="quote-subtitle">Манай бүтээгдэхүүнүүдийн жишиг үнийн мэдээлэл</p>
-            </div>
+        <section class="product-detail-section">
+            <div class="container product-detail-container">
+                <!-- Left: Image Gallery -->
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img src="assets/images/business_card.jpg" id="current-main-img" alt="Business Card Detail">
+                    </div>
+                    <div class="thumbnail-grid">
+                        <div class="thumb active" onclick="changeImage('assets/images/business_card.jpg', this)">
+                            <img src="assets/images/business_card.jpg" alt="Thumbnail 1">
+                        </div>
+                        <div class="thumb" onclick="changeImage('assets/images/business_card.jpg', this)">
+                            <img src="assets/images/business_card.jpg" alt="Thumbnail 2">
+                        </div>
+                        <div class="thumb" onclick="changeImage('assets/images/business_card.jpg', this)">
+                            <img src="assets/images/business_card.jpg" alt="Thumbnail 3">
+                        </div>
+                    </div>
+                </div>
 
-            <div class="product-grid" id="quotes-grid">
-                <!-- 12 Products will be here -->
-                <script>
-                    const products = [
-                        { nameKey: "product-name-card", descKey: "product-desc-card", img: "assets/images/business_card.jpg", link: "product-detail.html" },
-                        { nameKey: "product-name-brochure", descKey: "product-desc-brochure", img: "assets/images/brochure.jpg", link: "contact.html" },
-                        { nameKey: "product-name-magazine", descKey: "product-desc-magazine", img: "assets/images/magazine.jpg", link: "contact.html" },
-                        { nameKey: "product-name-book", descKey: "product-desc-book", img: "assets/images/book.jpg", link: "contact.html" },
-                        { nameKey: "product-name-label", descKey: "product-desc-label", img: "assets/images/label.jpg", link: "contact.html" },
-                        { nameKey: "product-name-box", descKey: "product-desc-box", img: "assets/images/box.jpg", link: "contact.html" },
-                        { nameKey: "product-name-bag", descKey: "product-desc-bag", img: "assets/images/bag.jpg", link: "contact.html" },
-                        { nameKey: "product-name-invitation", descKey: "product-desc-invitation", img: "assets/images/invitation.jpg", link: "contact.html" },
-                        { nameKey: "product-name-poster", descKey: "product-desc-poster", img: "assets/images/poster.jpg", link: "contact.html" },
-                        { nameKey: "product-name-notebook", descKey: "product-desc-notebook", img: "assets/images/notebook.jpg", link: "contact.html" },
-                        { nameKey: "product-name-envelope", descKey: "product-desc-envelope", img: "assets/images/envelope.jpg", link: "contact.html" },
-                        { nameKey: "product-name-invoice", descKey: "product-desc-invoice", img: "assets/images/invoice.jpg", link: "contact.html" }
-                    ];
-                    const grid = document.currentScript.parentElement;
-                    products.forEach(p => {
-                        grid.innerHTML += `
-                            <div class="product-card">
-                                <div class="product-img">
-                                    <img src="${p.img}" alt="Product">
-                                </div>
-                                <div class="product-info">
-                                    <h3 data-i18n="${p.nameKey}"></h3>
-                                    <p data-i18n="${p.descKey}"></p>
-                                    <br>
-                                    <a href="${p.link}" class="btn btn-primary" style="display: block; text-align: center;" data-i18n="btn-view-quote">Үнийн санал</a>
-                                </div>
-                            </div>
-                        `;
-                    });
-                    // Re-apply translations for dynamically added elements
-                    if (typeof setLanguage === 'function') {
-                        const savedLang = localStorage.getItem('preferred-lang') || 'mn';
-                        setLanguage(savedLang);
-                    }
-                </script>
+                <!-- Right: Product Quote Form -->
+                <div class="product-form-card">
+                    <h2 data-i18n="product-name-card">Нэрийн хуудас</h2>
+                    <form id="quote-form" class="detail-form">
+                        <div class="form-group">
+                            <label data-i18n="form-format">Хэмжээ</label>
+                            <select name="format">
+                                <option data-i18n="form-format-std1">Стандарт (90×55мм)</option>
+                                <option data-i18n="form-format-std2">Стандарт (85×55мм)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n="form-quantity">Тоо ширхэг</label>
+                            <select name="quantity">
+                                <option>300</option>
+                                <option>500</option>
+                                <option>1000</option>
+                                <option>5000</option>
+                                <option>10000</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n="form-paper">Цаасны төрөл</label>
+                            <select name="paper">
+                                <option>300 (гр)</option>
+                                <option>Арт 300 (гр)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n="form-prepress">Эх бэлтгэл байгаа эсэх</label>
+                            <select name="prepress">
+                                <option data-i18n="form-yes">Тийм</option>
+                                <option data-i18n="form-no">Үгүй</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n="form-coating">Бүрэлтний төрөл</label>
+                            <select name="coating">
+                                <option data-i18n="form-coating-none">Бүрэлтгүй</option>
+                                <option data-i18n="form-coating-matte">Матт бүрэлттэй</option>
+                                <option data-i18n="form-coating-glossy">Гялгар бүрэлттэй</option>
+                                <option data-i18n="form-coating-suede">Илгэн бүрэлттэй</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n="form-delivery-date">Хүлээн авах хугацаа</label>
+                            <input type="date" name="delivery_date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n="form-print-type">Хэвлэлийн төрөл</label>
+                            <select name="print_type">
+                                <option data-i18n="form-print-offset">Оффсет хэвлэл</option>
+                            </select>
+                        </div>
+
+                        <div class="form-checkbox-group">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="spot_uv">
+                                <span class="checkmark"></span>
+                                <span data-i18n="form-spot-uv">Хэсэгчилсэн лактай ( товгор, гялалзана )</span>
+                            </label>
+                        </div>
+
+                        <div class="form-checkbox-group">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="foil">
+                                <span class="checkmark"></span>
+                                <span data-i18n="form-foil">Клиши даралттай ( металл өнгө )</span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n="form-notes">Тэмдэглэл</label>
+                            <textarea name="notes" rows="3"></textarea>
+                        </div>
+
+                        <div class="quote-display">
+                            <span class="label" data-i18n="form-quote-amount">Үнийн дүн (₮)</span>
+                            <span class="amount">60,000₮</span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary submit-order-btn"
+                            data-i18n="form-send-order">Захиалга илгээх</button>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
+        <!-- Footer content integrated from index.html -->
         <div class="footer-content">
             <div class="footer-col">
                 <h4 data-i18n="footer-company">Продакт Принтинг Монголиа ХХК</h4>
@@ -212,6 +279,22 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        function changeImage(src, el) {
+            document.getElementById('current-main-img').src = src;
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        // Initialize translations
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-lang') || 'mn';
+            if (typeof setLanguage === 'function') {
+                setLanguage(savedLang);
+            }
+        });
+    </script>
 </body>
 
 </html>
