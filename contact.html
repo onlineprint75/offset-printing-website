@@ -124,28 +124,32 @@
 
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3>Хаяг байршил</h3>
-                    <p>Улаанбаатар хот, Сүхбаатар дүүрэг, 12-р хороо, 32-ийн тойрог, Номин супермаркетийн зүүн талд,
-                        Үйлдвэрийн байр</p>
+                    <h3 data-i18n="contact-address-title">Хаяг байршил</h3>
+                    <p data-i18n="footer-address">Улаанбаатар хот, Сүхбаатар дүүрэг, 12-р хороо, 32-ийн тойрог, Номин
+                        супермаркетийн зүүн талд, Үйлдвэрийн байр</p>
                     <br>
-                    <h3>Утас</h3>
+                    <h3 data-i18n="contact-phone-title">Утас</h3>
                     <p>+976 75758575, +976 80552222</p>
                     <br>
-                    <h3>Имэйл</h3>
+                    <h3 data-i18n="contact-email-title">Имэйл</h3>
                     <p>info@ppm32.mn, ppmwork32@gmail.com</p>
                     <br>
-                    <h3>Ажиллах цаг</h3>
-                    <p>Даваа - Баасан: 08:00 - 17:00</p>
-                    <p>Бямба: 10:00 - 15:00</p>
+                    <h3 data-i18n="contact-hours-title">Ажиллах цаг</h3>
+                    <p data-i18n="footer-mon-fri">Даваа - Баасан: 08:00 - 17:00</p>
+                    <p data-i18n="footer-sat">Бямба: 10:00 - 15:00</p>
                 </div>
 
                 <div class="contact-form">
                     <form id="contact-form">
-                        <input type="text" name="name" placeholder="Таны нэр" required>
-                        <input type="email" name="email" placeholder="Имэйл хаяг" required>
-                        <input type="text" name="phone" placeholder="Утасны дугаар" required>
-                        <textarea name="message" placeholder="Таны мессеж" rows="5" required></textarea>
-                        <button type="submit" id="submit-btn" class="btn btn-primary"
+                        <input type="text" name="name" data-i18n-placeholder="contact-name-placeholder"
+                            placeholder="Таны нэр" required>
+                        <input type="email" name="email" data-i18n-placeholder="contact-email-placeholder"
+                            placeholder="Имэйл хаяг" required>
+                        <input type="text" name="phone" data-i18n-placeholder="contact-phone-placeholder"
+                            placeholder="Утасны дугаар" required>
+                        <textarea name="message" data-i18n-placeholder="contact-message-placeholder"
+                            placeholder="Таны мессеж" rows="5" required></textarea>
+                        <button type="submit" id="submit-btn" class="btn btn-primary" data-i18n="contact-send-btn"
                             style="border: none; width: 100%; cursor: pointer;">Илгээх</button>
                     </form>
                     <div id="form-status" style="margin-top: 1rem; display: none; padding: 1rem; border-radius: 5px;">
@@ -165,37 +169,39 @@
                 const status = document.querySelector('#form-status');
 
                 form.addEventListener('submit', e => {
+                    const currentLang = localStorage.getItem('preferred-lang') || 'mn';
                     e.preventDefault();
                     btn.disabled = true;
-                    btn.innerText = 'Илгээж байна...';
+                    btn.innerText = translations[currentLang]['contact-sending'] || 'Илгээж байна...';
 
                     status.style.display = 'block';
                     status.style.backgroundColor = '#f0f0f0';
-                    status.innerText = 'Мэдээллийг илгээж байна, түр хүлээнэ үү...';
+                    status.innerText = translations[currentLang]['contact-sending-status'] || 'Мэдээллийг илгээж байна, түр хүлээнэ үү...';
 
                     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                         .then(response => response.json())
                         .then(data => {
                             btn.disabled = false;
-                            btn.innerText = 'Илгээх';
+                            btn.innerText = translations[currentLang]['contact-send-btn'] || 'Илгээх';
                             if (data.result === 'success') {
                                 status.style.backgroundColor = '#d4edda';
                                 status.style.color = '#155724';
-                                status.innerText = 'Таны мэдээллийг хүлээн авлаа. Баярлалаа!';
+                                status.innerText = translations[currentLang]['contact-success'] || 'Таны мэдээллийг хүлээн авлаа. Баярлалаа!';
                                 form.reset();
                             } else {
                                 status.style.backgroundColor = '#f8d7da';
                                 status.style.color = '#721c24';
-                                status.innerText = 'Алдаа гарлаа: ' + (data.error || 'Мэдэгдэхгүй алдаа');
+                                const errorPrefix = translations[currentLang]['contact-error'] || 'Алдаа гарлаа: ';
+                                status.innerText = errorPrefix + (data.error || 'Мэдэгдэхгүй алдаа');
                                 console.error('Script Error!', data.error);
                             }
                         })
                         .catch(error => {
                             btn.disabled = false;
-                            btn.innerText = 'Илгээх';
+                            btn.innerText = translations[currentLang]['contact-send-btn'] || 'Илгээх';
                             status.style.backgroundColor = '#f8d7da';
                             status.style.color = '#721c24';
-                            status.innerText = 'Холболтын алдаа гарлаа. Та интернэт холболтоо шалгаад дахин оролдоно уу.';
+                            status.innerText = translations[currentLang]['contact-conn-error'] || 'Холболтын алдаа гарлаа. Та интернэт холболтоо шалгаад дахин оролдоно уу.';
                             console.error('Fetch Error!', error.message);
                         });
                 });

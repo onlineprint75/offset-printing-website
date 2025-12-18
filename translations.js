@@ -34,7 +34,21 @@ const translations = {
         "btn-view-quote": "Үнийн санал",
         "about-p1": "Манай байгууллага нь 2012 онд өргөн хэвлэлийн салбарт үйл ажиллагаагаа эхлүүлж, чанартай хэвлэл үйлдвэрлэл, найдвартай үйлчилгээний жишгийг тогтоон ажиллахыг эрхэм зорилгоо болгон хөгжиж ирсэн. Үйл ажиллагаагаа тэлж, офсет хэвлэл болон хэвлэлийн бараа материалын худалдааны чиглэлээр тогтвортой, тасралтгүй ажиллаж байна.",
         "about-p2": "2021 онд үйлдвэрийн шинэ байр ашиглалтад орсноор техник технологийн иж бүрэн шинэчлэл хийж, тоног төхөөрөмжийн паркаа шинэ түвшинд хүргэсэн. Мөн хүний нөөцийн чадавхыг тасралтгүй нэмэгдүүлж, мэргэшсэн ажилтнуудаар багаа бүрдүүлэн хэрэглэгчдэдээ илүү чанартай, шуурхай, найдвартай үйлчилгээг хүргэх боломжийг бүрдүүллээ.",
-        "about-p3": "Үйлчлүүлэгчийн сэтгэл ханамжийг бидний хамгийн чухал үнэт зүйл хэмээн үзэж, харилцагч бүрийн хэрэгцээнд нийцсэн, үнэ цэнэ шингэсэн бүтээгдэхүүн үйлчилгээ үзүүлэх замаар тэдний бизнесийн амжилтад бодитой хувь нэмэр оруулахыг үйл ажиллагааныхаа үндсэн чиглэл болгон ажиллаж байна."
+        "about-p3": "Үйлчлүүлэгчийн сэтгэл ханамжийг бидний хамгийн чухал үнэт зүйл хэмээн үзэж, харилцагч бүрийн хэрэгцээнд нийцсэн, үнэ цэнэ шингэсэн бүтээгдэхүүн үйлчилгээ үзүүлэх замаар тэдний бизнесийн амжилтад бодитой хувь нэмэр оруулахыг үйл ажиллагааныхаа үндсэн чиглэл болгон ажиллаж байна.",
+        "contact-address-title": "Хаяг байршил",
+        "contact-phone-title": "Утас",
+        "contact-email-title": "Имэйл",
+        "contact-hours-title": "Ажиллах цаг",
+        "contact-name-placeholder": "Таны нэр",
+        "contact-email-placeholder": "Имэйл хаяг",
+        "contact-phone-placeholder": "Утасны дугаар",
+        "contact-message-placeholder": "Таны мессеж",
+        "contact-send-btn": "Илгээх",
+        "contact-sending": "Илгээж байна...",
+        "contact-sending-status": "Мэдээллийг илгээж байна, түр хүлээнэ үү...",
+        "contact-success": "Таны мэдээллийг хүлээн авлаа. Баярлалаа!",
+        "contact-error": "Алдаа гарлаа: ",
+        "contact-conn-error": "Холболтын алдаа гарлаа. Та интернэт холболтоо шалгаад дахин оролдоно уу."
     },
     en: {
         "nav-home": "Home",
@@ -69,7 +83,21 @@ const translations = {
         "btn-view-quote": "Get a Quote",
         "about-p1": "Our organization began its operations in the wide printing sector in 2012, developing with the noble goal of setting the standard for quality printing production and reliable service. We have expanded our activities and are operating steadily and continuously in the fields of offset printing and printing supplies trade.",
         "about-p2": "With the commissioning of our new factory building in 2021, we have implemented a complete technical and technological renovation, bringing our equipment park to a new level. We have also continuously increased human resource potential, forming a team of specialized staff to provide customers with better quality, faster, and more reliable services.",
-        "about-p3": "We consider customer satisfaction as our most important value and aim to make a real contribution to the business success of our clients by providing products and services that meet their needs and offer great value, making this the core direction of our activities."
+        "about-p3": "We consider customer satisfaction as our most important value and aim to make a real contribution to the business success of our clients by providing products and services that meet their needs and offer great value, making this the core direction of our activities.",
+        "contact-address-title": "Address",
+        "contact-phone-title": "Phone",
+        "contact-email-title": "Email",
+        "contact-hours-title": "Working Hours",
+        "contact-name-placeholder": "Your Name",
+        "contact-email-placeholder": "Email Address",
+        "contact-phone-placeholder": "Phone Number",
+        "contact-message-placeholder": "Your Message",
+        "contact-send-btn": "Send Message",
+        "contact-sending": "Sending...",
+        "contact-sending-status": "Sending message, please wait...",
+        "contact-success": "Message sent successfully. Thank you!",
+        "contact-error": "Error: ",
+        "contact-conn-error": "Connection error. Please check your internet connection and try again."
     },
     zh: {
         "nav-home": "首页",
@@ -104,18 +132,43 @@ const translations = {
         "btn-view-quote": "查看报价",
         "about-p1": "我们的组织于2012年开始在广泛的印刷领域开展业务，其崇高目标是建立高质量印刷生产和可靠服务的标准。我们扩大了活动范围，并在胶版印刷和印刷用品贸易领域稳定持续地运营。",
         "about-p2": "随着2021年新厂房的投产，我们实现了全面的技术和工艺革新，将我们的设备园区提升到了一个新的水平。我们还不断提高人力资源潜力，形成了一支专业的员工队伍，为客户提供更高质量、更快速、更可靠的服务。",
-        "about-p3": "我们认为客户满意度是我们最重要的价值，旨在通过提供满足客户需求并具有具有价值的产品和服务，为客户的业务成功做出真正的贡献，将其作为我们活动的核心方向。"
+        "about-p3": "我们认为客户满意度是我们最重要的价值，旨在通过提供满足客户需求并具有具有价值的产品和服务，为客户的业务成功做出真正的贡献，将其作为我们活动的核心方向。",
+        "contact-address-title": "地址位置",
+        "contact-phone-title": "电话",
+        "contact-email-title": "电子邮件",
+        "contact-hours-title": "营业时间",
+        "contact-name-placeholder": "您的姓名",
+        "contact-email-placeholder": "电子邮件地址",
+        "contact-phone-placeholder": "电话号码",
+        "contact-message-placeholder": "您的留言",
+        "contact-send-btn": "发送",
+        "contact-sending": "发送中...",
+        "contact-sending-status": "信息发送中，请稍候...",
+        "contact-success": "消息发送成功。谢谢！",
+        "contact-error": "出错了：",
+        "contact-conn-error": "连接错误。请检查您的互联网连接并重试。"
     }
 };
 
 function setLanguage(lang) {
     localStorage.setItem('preferred-lang', lang);
+
+    // Update text content
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
             el.textContent = translations[lang][key];
         }
     });
+
+    // Update placeholder content
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+            el.setAttribute('placeholder', translations[lang][key]);
+        }
+    });
+
     // Update active state in dropdown
     document.querySelectorAll('.lang-option').forEach(opt => {
         opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
