@@ -115,8 +115,11 @@
     </header>
 
     <main style="padding-top: var(--header-height);">
-        <section class="hero"
-            style="min-height: 80vh; background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('assets/images/hero.jpg') center/cover no-repeat; border-radius: 0 0 30px 30px; margin-bottom: 40px; display: flex; align-items: center;">
+        <section class="hero">
+            <div class="hero-slider">
+                <div class="hero-slide active" style="background-image: url('assets/images/Hero1.jpg');"></div>
+                <div class="hero-slide" style="background-image: url('assets/images/Hero2.jpg');"></div>
+            </div>
             <div style="max-width: 800px; text-align: left; padding: 0 10%;">
                 <h1 style="font-size: 3rem; margin-bottom: 20px; font-weight: 800;" data-i18n="hero-title">Офсет
                     Хэвлэлийн Төгс Шийдэл</h1>
@@ -127,6 +130,18 @@
                     <a href="inventory.html" class="btn btn-outline" data-i18n="btn-inventory">Бараа материал</a>
                 </div>
             </div>
+            <script>
+                const slides = document.querySelectorAll('.hero-slide');
+                let currentSlide = 0;
+
+                function nextSlide() {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }
+
+                setInterval(nextSlide, 5000);
+            </script>
         </section>
 
         <section id="materials-cta" style="padding: 40px 10%;">
