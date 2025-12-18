@@ -49,14 +49,16 @@
                 </div>
 
                 <div class="contact-form">
-                    <form>
-                        <input type="text" placeholder="Таны нэр" required>
-                        <input type="email" placeholder="Имэйл хаяг" required>
-                        <input type="text" placeholder="Утасны дугаар" required>
-                        <textarea placeholder="Таны мессеж" rows="5" required></textarea>
-                        <button type="submit" class="btn btn-primary"
+                    <form id="contact-form">
+                        <input type="text" name="name" placeholder="Таны нэр" required>
+                        <input type="email" name="email" placeholder="Имэйл хаяг" required>
+                        <input type="text" name="phone" placeholder="Утасны дугаар" required>
+                        <textarea name="message" placeholder="Таны мессеж" rows="5" required></textarea>
+                        <button type="submit" id="submit-btn" class="btn btn-primary"
                             style="border: none; width: 100%; cursor: pointer;">Илгээх</button>
                     </form>
+                    <div id="form-status" style="margin-top: 1rem; display: none; padding: 1rem; border-radius: 5px;">
+                    </div>
                 </div>
             </div>
 
@@ -65,6 +67,40 @@
                     width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
                 </iframe>
             </div>
+            <script>
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbyb1f7fnPZnZjb3zmR8N0eOwBrk57ixKwZq6nlYK4dnAtR6nqjrYX1bTCrNLi1Het7G4A/exec';
+                const form = document.querySelector('#contact-form');
+                const btn = document.querySelector('#submit-btn');
+                const status = document.querySelector('#form-status');
+
+                form.addEventListener('submit', e => {
+                    e.preventDefault();
+                    btn.disabled = true;
+                    btn.innerText = 'Илгээж байна...';
+
+                    status.style.display = 'block';
+                    status.style.backgroundColor = '#f0f0f0';
+                    status.innerText = 'Мэдээллийг илгээж байна, түр хүлээнэ үү...';
+
+                    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                        .then(response => {
+                            btn.disabled = false;
+                            btn.innerText = 'Илгээх';
+                            status.style.backgroundColor = '#d4edda';
+                            status.style.color = '#155724';
+                            status.innerText = 'Таны мэдээллийг хүлээн авлаа. Баярлалаа!';
+                            form.reset();
+                        })
+                        .catch(error => {
+                            btn.disabled = false;
+                            btn.innerText = 'Илгээх';
+                            status.style.backgroundColor = '#f8d7da';
+                            status.style.color = '#721c24';
+                            status.innerText = 'Алдаа гарлаа. Дахин оролдоно уу.';
+                            console.error('Error!', error.message);
+                        });
+                });
+            </script>
         </section>
     </main>
 
