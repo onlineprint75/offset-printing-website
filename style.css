@@ -852,43 +852,75 @@ footer {
         display: flex;
     }
 
-    nav {
+    .header-right {
+        display: flex !important;
         position: fixed;
         top: 0;
-        right: -280px;
-        width: 280px;
+        right: -300px;
+        width: 300px;
         height: 100vh;
         background: white;
         z-index: 1000;
-        display: flex !important;
         flex-direction: column;
         padding: 80px 30px;
         transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+        align-items: flex-start;
+        gap: 30px;
     }
 
-    nav.active {
+    .header-right.active {
         right: 0;
     }
 
-    nav ul {
+    .nav-pill {
+        background: none;
+        border: none;
+        padding: 0;
+        border-radius: 0;
         flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
         gap: 20px;
     }
 
-    nav a {
+    .nav-pill ul {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .nav-pill a {
         font-size: 1.1rem;
         display: block;
-        padding: 10px 0;
+        padding: 5px 0;
+        width: 100%;
         border-bottom: 1px solid #f0f0f0;
     }
 
-    .header-right,
-    .support-info {
-        display: none;
+    .nav-pill .btn-pill {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
     }
 
-    /* Mobile nav should be hamburger, for simplicity skipping for now */
+    .support-info {
+        display: block;
+        text-align: left;
+        width: 100%;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+
+    .lang-switcher {
+        width: 100%;
+    }
+
+    .lang-btn {
+        width: 100%;
+        justify-content: space-between;
+    }
+
     .hero h1 {
         font-size: 2.5rem;
     }
