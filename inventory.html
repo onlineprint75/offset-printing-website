@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="mn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Офсет Хэвлэл - Бараа материал</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="assets/images/logo.png" alt="OFFSET PRINT Logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Нүүр</a></li>
+                <li><a href="about.html">Бидний тухай</a></li>
+                <li><a href="quote.html">Үнийн санал</a></li>
+                <li><a href="inventory.html" class="active">Бараа материал</a></li>
+                <li><a href="contact.html">Холбоо барих</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="padding-top: var(--header-height);">
+        <section id="inventory">
+            <div class="section-title">
+                <h2>Бараа материал</h2>
+                <p>Хэвлэлийн түүхий эд, материалын нөөц</p>
+            </div>
+
+            <div class="product-grid">
+                <!-- 12 Inventory Items -->
+                <script>
+                    const materials = [
+                        { name: "Шохойтой цаас (150гр)", img: "assets/images/product.png" },
+                        { name: "Шохойтой цаас (300гр)", img: "assets/images/product.png" },
+                        { name: "Офсет цаас (80гр)", img: "assets/images/product.png" },
+                        { name: "Картон цаас", img: "assets/images/product.png" },
+                        { name: "Мөнгөлөг цаас", img: "assets/images/product.png" },
+                        { name: "Алтан шаргал цаас", img: "assets/images/product.png" },
+                        { name: "Наалддаг цаас", img: "assets/images/product.png" },
+                        { name: "Крафт цаас", img: "assets/images/product.png" },
+                        { name: "Хээтэй цаас", img: "assets/images/product.png" },
+                        { name: "Матт бүрэлттэй цаас", img: "assets/images/product.png" },
+                        { name: "Гялалзсан бүрэлт", img: "assets/images/product.png" },
+                        { name: "Тусгай цаас", img: "assets/images/product.png" }
+                    ];
+                    const grid = document.currentScript.parentElement;
+                    materials.forEach(m => {
+                        grid.innerHTML += `
+                            <div class="product-card">
+                                <div class="product-img">
+                                    <img src="${m.img}" alt="${m.name}">
+                                </div>
+                                <div class="product-info">
+                                    <h3>${m.name}</h3>
+                                    <p>Нөөц боломжтой. Хэмжээ: 64x90 см, 70x100 см г.м</p>
+                                    <br>
+                                    <div style="color: var(--primary-color); font-weight: 700;">Боломжтой</div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                </script>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <a href="index.html" class="logo">
+                    <img src="assets/images/logo.png" alt="OFFSET PRINT Logo">
+                </a>
+                <p>Танд хамгийн шилдэг хэвлэлийн үйлчилгээг үзүүлнэ.</p>
+            </div>
+            <div>
+                <h4>Холбоос</h4>
+                <ul>
+                    <li><a href="index.html" style="color: white; text-decoration: none;">Нүүр</a></li>
+                    <li><a href="about.html" style="color: white; text-decoration: none;">Бидний тухай</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Холбоо барих</h4>
+                <p>Утас: +976 99001122</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Offset Printing Company.
+        </div>
+    </footer>
+</body>
+
+</html>

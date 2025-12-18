@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="mn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Офсет Хэвлэл - Үнийн санал</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="assets/images/logo.png" alt="OFFSET PRINT Logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Нүүр</a></li>
+                <li><a href="about.html">Бидний тухай</a></li>
+                <li><a href="quote.html" class="active">Үнийн санал</a></li>
+                <li><a href="inventory.html">Бараа материал</a></li>
+                <li><a href="contact.html">Холбоо барих</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="padding-top: var(--header-height);">
+        <section id="quotes">
+            <div class="section-title">
+                <h2>Үнийн санал</h2>
+                <p>Манай бүтээгдэхүүнүүдийн жишиг үнийн мэдээлэл</p>
+            </div>
+
+            <div class="product-grid" id="quotes-grid">
+                <!-- 12 Products will be here -->
+                <script>
+                    const products = [
+                        { name: "Нэрийн хуудас", img: "assets/images/product.png" },
+                        { name: "Брошур", img: "assets/images/product.png" },
+                        { name: "Сэтгүүл", img: "assets/images/product.png" },
+                        { name: "Ном", img: "assets/images/product.png" },
+                        { name: "Шошго", img: "assets/images/product.png" },
+                        { name: "Хайрцаг", img: "assets/images/product.png" },
+                        { name: "Цаасан тор", img: "assets/images/product.png" },
+                        { name: "Урилга", img: "assets/images/product.png" },
+                        { name: "Плакат", img: "assets/images/product.png" },
+                        { name: "Дэвтэр", img: "assets/images/product.png" },
+                        { name: "Дугтуй", img: "assets/images/product.png" },
+                        { name: "Хортой цаастай баримт", img: "assets/images/product.png" }
+                    ];
+                    const grid = document.currentScript.parentElement;
+                    products.forEach(p => {
+                        grid.innerHTML += `
+                            <div class="product-card">
+                                <div class="product-img">
+                                    <img src="${p.img}" alt="${p.name}">
+                                </div>
+                                <div class="product-info">
+                                    <h3>${p.name}</h3>
+                                    <p>Чанарын өндөр түвшинд, хүссэн хэмжээ загвараар хэвлэнэ.</p>
+                                    <br>
+                                    <a href="#" class="btn btn-primary" style="display: block; text-align: center;">Үнэ харах</a>
+                                </div>
+                            </div>
+                        `;
+                    });
+                </script>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <a href="index.html" class="logo">
+                    <img src="assets/images/logo.png" alt="OFFSET PRINT Logo">
+                </a>
+                <p>Танд хамгийн шилдэг хэвлэлийн үйлчилгээг үзүүлнэ.</p>
+            </div>
+            <div>
+                <h4>Холбоос</h4>
+                <ul>
+                    <li><a href="index.html" style="color: white; text-decoration: none;">Нүүр</a></li>
+                    <li><a href="about.html" style="color: white; text-decoration: none;">Бидний тухай</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Холбоо барих</h4>
+                <p>Утас: +976 99001122</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Offset Printing Company.
+        </div>
+    </footer>
+</body>
+
+</html>
