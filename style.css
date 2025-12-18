@@ -58,6 +58,21 @@ header {
     display: block;
 }
 
+.menu-toggle {
+    display: none;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #333;
+    transition: var(--transition-fast);
+}
+
 nav ul {
     display: flex;
     list-style: none;
@@ -320,6 +335,22 @@ footer {
     text-decoration: none;
 }
 
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    backdrop-filter: blur(3px);
+}
+
+.menu-overlay.active {
+    display: block;
+}
+
 /* Contact Page */
 .contact-container {
     display: grid;
@@ -361,11 +392,42 @@ footer {
 
 @media (max-width: 768px) {
     header {
-        padding: 0 3%;
+        padding: 0 5%;
+    }
+
+    .menu-toggle {
+        display: flex;
     }
 
     nav {
-        display: none;
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 280px;
+        height: 100vh;
+        background: white;
+        z-index: 1000;
+        display: flex !important;
+        flex-direction: column;
+        padding: 80px 30px;
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+    }
+
+    nav.active {
+        right: 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav a {
+        font-size: 1.1rem;
+        display: block;
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
     }
 
     /* Mobile nav should be hamburger, for simplicity skipping for now */
