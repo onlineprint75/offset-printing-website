@@ -402,47 +402,30 @@ section {
 
 /* Footer */
 footer {
-    background: var(--primary-color);
-    color: var(--text-white);
-    padding: 30px 10% 20px;
-    /* Reduced vertical padding, increased side padding */
+    background: rgb(249, 115, 22);
+    color: white;
+    padding: 60px 10% 20px;
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 40px;
-    /* Generous gap for 'white space' */
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.footer-content h4 {
-    font-size: 0.95rem;
-    /* ~20% smaller than previous 1.2rem */
+.footer-col h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
     margin-bottom: 20px;
-    font-weight: 700;
-    /* Bold heading */
-    color: var(--text-white);
     text-transform: none;
+    color: white;
 }
 
-.footer-content p,
-.footer-content li {
-    font-size: 0.8rem;
-    /* ~15-20% smaller than previous 0.95rem */
-    margin-bottom: 8px;
-    /* Balanced spacing */
-    line-height: 1.8;
-    /* Increased line-height for readability */
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    color: rgba(255, 255, 255, 1);
-    /* Regular font weight */
-    font-weight: 400;
-}
-
-.footer-content ul {
+.footer-col ul {
     list-style: none;
 }
 

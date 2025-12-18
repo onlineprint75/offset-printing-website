@@ -162,41 +162,55 @@
 
     <footer>
         <div class="footer-content">
-            <div>
-                <h4>Продакт Принтинг Монголиа ХХК</h4>
-                <p>Офсет хэвлэлийн үйлчилгээ</p>
+            <div class="footer-col">
+                <h4 data-i18n="footer-services">Офсет хэвлэлийн үйлчилгээ</h4>
+                <ul>
+                    <li><a href="inventory.html" data-i18n="nav-inventory">Бараа материал</a></li>
+                    <li><a href="quote.html" data-i18n="nav-quote">Үнийн санал авах</a></li>
+                </ul>
                 <div class="social-links">
-                    <h5>Биднийг дагаарай</h5>
+                    <h5 data-i18n="footer-follow">Биднийг дагаарай</h5>
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
-            <div>
-                <h4>Холбоо барих</h4>
+            <div class="footer-col" id="footer-contact-info">
+                <h4 data-i18n="footer-contact">Холбоо барих</h4>
                 <ul>
                     <li><i class="fas fa-phone"></i> 75758575</li>
                     <li><i class="fas fa-phone"></i> 80552222</li>
                     <li><i class="fas fa-phone"></i> 99906069</li>
                     <li><i class="fas fa-phone"></i> 80038228</li>
-                    <li><i class="fas fa-envelope"></i> info@ppm32.mn</li>
+                    <li><i class="fas fa-envelope"></i> <span data-i18n="footer-email">info@ppm32.mn</span></li>
                 </ul>
             </div>
-            <div>
-                <h4>Байршил</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Улаанбаатар хот, Сүхбаатар дүүрэг, 12-р хороо, 32-ийн тойрог,
-                    Номин супермаркетийн зүүн талд, Үйлдвэрийн байр</p>
-            </div>
-            <div>
-                <h4>Ажлын цаг</h4>
+            <div class="footer-col">
+                <h4 data-i18n="footer-location">Байршил</h4>
                 <ul>
-                    <li><i class="fas fa-clock"></i> Даваа-Баасан: 08:00 - 17:00</li>
-                    <li><i class="fas fa-clock"></i> Бямба: 10:00 - 15:00</li>
-                    <li><i class="fas fa-clock"></i> Ням: Амарна</li>
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span data-i18n="footer-address">Улаанбаатар хот, Сүхбаатар дүүрэг, 12-р хороо, 32-ын тойрог,
+                            Номин супермаркетийн зүүн талд, Үйлдвэрийн байр</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer-hours">Ажлын цаг</h4>
+                <ul>
+                    <li><i class="fas fa-clock"></i> <span data-i18n="footer-mon-fri">Даваа-Баасан: 08:00 - 17:00</span>
+                    </li>
+                    <li><i class="fas fa-clock"></i> <span data-i18n="footer-sat">Бямба: 10:00 - 15:00</span></li>
+                    <li><i class="fas fa-clock"></i> <span data-i18n="footer-sun">Ням: Амрана</span></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Product Printing. Зохиогчийн эрх хуулиар хамгаалагдсан.</p>
-            <a href="#">Нууцлалын бодлого</a>
+            <div class="container"
+                style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <p data-i18n="footer-rights">© 2025 Product Printing. Бүх эрх хуулиар хамгаалагдсан.</p>
+                <div class="footer-bottom-links">
+                    <a href="#" data-i18n="footer-privacy">Нууцлалын бодлого</a>
+                </div>
+            </div>
         </div>
     </footer>
 </body>
