@@ -492,6 +492,8 @@ footer {
 
 .product-detail-container {
     max-width: 1152px;
+    margin: 0 auto;
+    /* Center alignment fix */
     padding: 0 24px;
     display: grid;
     grid-template-columns: 7fr 5fr;
@@ -528,17 +530,21 @@ footer {
 .thumbnail-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 12px;
+    margin-top: 12px;
+    width: 60%;
+    /* Make thumbnails significantly smaller */
 }
 
 .thumb {
     background: #fff;
-    border-radius: 8px;
+    border-radius: 6px;
     overflow: hidden;
     cursor: pointer;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     transition: all 0.3s ease;
-    aspect-ratio: 1/1;
+    aspect-ratio: 16/9;
+    /* Match user reference shape roughly */
 }
 
 .thumb img {
