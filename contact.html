@@ -83,21 +83,29 @@
                     status.innerText = 'Мэдээллийг илгээж байна, түр хүлээнэ үү...';
 
                     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                        .then(response => {
+                        .then(response => response.json())
+                        .then(data => {
                             btn.disabled = false;
                             btn.innerText = 'Илгээх';
-                            status.style.backgroundColor = '#d4edda';
-                            status.style.color = '#155724';
-                            status.innerText = 'Таны мэдээллийг хүлээн авлаа. Баярлалаа!';
-                            form.reset();
+                            if (data.result === 'success') {
+                                status.style.backgroundColor = '#d4edda';
+                                status.style.color = '#155724';
+                                status.innerText = 'Таны мэдээллийг хүлээн авлаа. Баярлалаа!';
+                                form.reset();
+                            } else {
+                                status.style.backgroundColor = '#f8d7da';
+                                status.style.color = '#721c24';
+                                status.innerText = 'Алдаа гарлаа: ' + (data.error || 'Мэдэгдэхгүй алдаа');
+                                console.error('Script Error!', data.error);
+                            }
                         })
                         .catch(error => {
                             btn.disabled = false;
                             btn.innerText = 'Илгээх';
                             status.style.backgroundColor = '#f8d7da';
                             status.style.color = '#721c24';
-                            status.innerText = 'Алдаа гарлаа. Дахин оролдоно уу.';
-                            console.error('Error!', error.message);
+                            status.innerText = 'Холболтын алдаа гарлаа. Та интернэт холболтоо шалгаад дахин оролдоно уу.';
+                            console.error('Fetch Error!', error.message);
                         });
                 });
             </script>
