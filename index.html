@@ -11,39 +11,56 @@
 
 <body>
     <header>
-        <a href="index.html" class="logo">
-            <img src="assets/images/logo.png" alt="OFFSET PRINT Logo">
-        </a>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Нүүр</a></li>
-                <li><a href="about.html">Бидний тухай</a></li>
-                <li><a href="quote.html">Үнийн санал</a></li>
-                <li><a href="inventory.html">Бараа материал</a></li>
-                <li><a href="contact.html">Холбоо барих</a></li>
-            </ul>
-        </nav>
+        <div class="header-container"
+            style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="OFFSET PRINT Logo" style="height: 40px;">
+            </a>
+            <nav>
+                <ul style="display: flex; list-style: none; gap: 20px;">
+                    <li><a href="index.html" class="active" style="font-size: 0.9rem; font-weight: 500;">Нүүр</a></li>
+                    <li><a href="quote.html" style="font-size: 0.9rem; font-weight: 500;">Бараа материал</a></li>
+                    <li><a href="inventory.html" style="font-size: 0.9rem; font-weight: 500;">Үнийн санал авах</a></li>
+                    <li><a href="contact.html" style="font-size: 0.9rem; font-weight: 500;">Холбоо барих</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <h1>Мэргэжлийн Офсет Хэвлэлийн Үйлчилгээ</h1>
-            <p>Бид таны санааг бодит болгож, өндөр чанартай хэвлэлийн шийдлүүдийг санал болгож байна.</p>
-            <div class="hero-btns">
-                <a href="quote.html" class="btn btn-primary">Үнийн санал</a>
-                <a href="inventory.html" class="btn btn-secondary">Бараа материал</a>
+    <main style="padding-top: var(--header-height);">
+        <section class="hero"
+            style="min-height: 80vh; background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('assets/images/hero.jpg') center/cover no-repeat; border-radius: 0 0 30px 30px; margin-bottom: 40px;">
+            <div style="max-width: 800px; text-align: left; padding: 0 10%;">
+                <h1 style="font-size: 3rem; margin-bottom: 20px; font-weight: 800;">Үнийн санал</h1>
+                <p style="font-size: 1.1rem; margin-bottom: 30px; line-height: 1.6; opacity: 0.9;">Та асуумжийн дагуу
+                    үнийн санал авах хүсэлтээ бидэнд илгээнэ үү. Бид таны мэдээллийг хүлээн авч, хамгийн оновчтой санал
+                    боловсруулан богино хугацаанд эргэн холбогдох болно.</p>
+                <div class="hero-btns" style="display: flex; gap: 15px;">
+                    <a href="inventory.html" class="btn btn-primary">Үнийн санал авах</a>
+                    <a href="quote.html" class="btn btn-secondary"
+                        style="background: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.3);">Бараа
+                        материал</a>
+                </div>
             </div>
         </section>
 
-        <section id="about-intro">
-            <div class="section-title">
-                <h2>Бидний тухай</h2>
-            </div>
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <p>Манай компани нь олон жилийн туршлагатай, орчин үеийн техник технологиор тоноглогдсон офсет хэвлэлийн
-                    үйлдвэр юм. Бид чанар, хурд, найдвартай байдлыг эрхэмлэн ажилладаг.</p>
-                <br>
-                <a href="about.html" class="btn btn-primary">Дэлгэрэнгүй</a>
+        <section id="materials-cta" style="padding: 40px 10%;">
+            <div
+                style="background: white; padding: 50px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 40px;">
+                <div style="flex: 1;">
+                    <h2 style="font-size: 2rem; margin-bottom: 20px;">Бараа материал</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 25px;">Офсет, дижитал хэвлэлд зориулсан чанартай
+                        цаас, бэх, хавтас, тууз, наалт болон бусад хэрэглээний материалууд. Бид таны хэвлэлийн бүтээлийг
+                        мэргэжлийн түвшинд гүйцэтгэхэд шаардлагатай бүхнийг нэг дороос санал болгож байна.</p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="inventory.html" class="btn btn-primary">Үнийн санал авах</a>
+                        <a href="quote.html" class="btn btn-secondary">Бараа материал</a>
+                    </div>
+                </div>
+                <div style="flex: 1; height: 300px; background: #eee; border-radius: 15px; overflow: hidden;">
+                    <img src="assets/images/product.png" alt="Materials"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
             </div>
         </section>
     </main>
