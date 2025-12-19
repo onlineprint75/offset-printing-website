@@ -33,6 +33,13 @@ body {
     min-height: 100vh;
 }
 
+.page-container {
+    width: 100%;
+    padding: 0 5%;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
 /* Header & Nav */
 header {
     height: var(--header-height);
