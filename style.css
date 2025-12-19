@@ -35,7 +35,7 @@ body {
 
 .page-container {
     width: 100%;
-    padding: 0 5%;
+    padding: 0 20%;
     box-sizing: border-box;
     margin: 0 auto;
 }
@@ -48,7 +48,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 5%;
+    padding: 0 20%;
     position: fixed;
     top: 0;
     width: 100%;
@@ -972,6 +972,10 @@ footer {
 
 @media (max-width: 768px) {
     header {
+        padding: 0 5%;
+    }
+
+    .page-container {
         padding: 0 5%;
     }
 
