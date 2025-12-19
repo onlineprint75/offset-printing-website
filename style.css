@@ -958,6 +958,11 @@ footer {
     }
 }
 
+/* Hide close button on desktop */
+.menu-close-btn {
+    display: none;
+}
+
 @media (max-width: 768px) {
     header {
         padding: 0 5%;
@@ -1110,23 +1115,33 @@ footer {
     }
 
     .menu-close-btn {
+        display: block;
+        /* Show on mobile */
         position: absolute;
-        top: 25px;
-        right: 25px;
+        top: 20px;
+        right: 20px;
         background: none;
         border: none;
         font-size: 2rem;
-        color: var(--text-main);
+        color: #333;
         cursor: pointer;
-        z-index: 1005;
+        z-index: 1003;
+        transition: transform 0.3s ease;
         width: 40px;
+        /* Re-added from original */
         height: 40px;
-        display: flex;
+        /* Re-added from original */
         align-items: center;
+        /* Re-added from original */
         justify-content: center;
         border-radius: 50%;
         background: rgba(0, 0, 0, 0.05);
         transition: background 0.2s;
+    }
+
+    .menu-close-btn:hover {
+        transform: rotate(90deg) scale(1.1);
+        color: var(--primary-color);
     }
 
     .hero h1 {
