@@ -353,15 +353,78 @@
     </div>
 
     <script>
+        // Product ID to Translation Key Mapping
+        const productKeys = {
+            'business_card': 'product-name-card',
+            'brochure': 'product-name-brochure',
+            'magazine': 'product-name-magazine',
+            'book': 'product-name-book',
+            'label': 'product-name-label',
+            'box': 'product-name-box',
+            'bag': 'product-name-bag',
+            'invitation': 'product-name-invitation',
+            'poster': 'product-name-poster',
+            'notebook': 'product-name-notebook',
+            'envelope': 'product-name-envelope',
+            'invoice': 'product-name-invoice'
+        };
+
         function changeImage(src, el) {
             document.getElementById('current-main-img').src = src;
             document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
             el.classList.add('active');
         }
 
-        // Initialize translations
+        // Initialize translations and product data
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferred-lang') || 'mn';
+
+            // 1. Get Product ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id') || 'business_card'; // Default to card
+
+            // 2. Validate ID and get Name Key
+            const nameKey = productKeys[productId] || 'product-name-card';
+
+            // 3. Construct Image Paths (Assuming standard naming: id.jpg, id_2.jpg, id_3.jpg)
+            const imgPath1 = `assets/images/${productId}.jpg`;
+            const imgPath2 = `assets/images/${productId}_2.jpg`;
+            const imgPath3 = `assets/images/${productId}_3.jpg`;
+
+            // 4. Update DOM Elements
+            // Breadcrumb
+            const breadcrumbSpan = document.querySelector('.breadcrumb span[data-i18n]');
+            if (breadcrumbSpan) breadcrumbSpan.setAttribute('data-i18n', nameKey);
+
+            // Form Title
+            const formTitle = document.querySelector('.product-form-card h2[data-i18n]');
+            if (formTitle) formTitle.setAttribute('data-i18n', nameKey);
+
+            // Images
+            const mainImg = document.getElementById('current-main-img');
+            mainImg.src = imgPath1;
+            mainImg.alt = productId;
+
+            const thumbs = document.querySelectorAll('.thumb img');
+            const thumbDivs = document.querySelectorAll('.thumb');
+
+            if (thumbs.length >= 3) {
+                thumbs[0].src = imgPath1;
+                thumbs[0].parentElement.onclick = function () { changeImage(imgPath1, this); };
+
+                thumbs[1].src = imgPath2;
+                thumbs[1].parentElement.onclick = function () { changeImage(imgPath2, this); };
+
+                thumbs[2].src = imgPath3;
+                thumbs[2].parentElement.onclick = function () { changeImage(imgPath3, this); };
+            }
+
+            // Activate first thumb
+            thumbDivs.forEach(t => t.classList.remove('active'));
+            if (thumbDivs[0]) thumbDivs[0].classList.add('active');
+
+
+            // 5. Run Translations
             if (typeof setLanguage === 'function') {
                 setLanguage(savedLang);
             }
@@ -389,7 +452,9 @@
                 };
 
                 // Populate Summary
-                document.getElementById('summary-product').textContent = document.querySelector('h2[data-i18n="product-name-card"]').textContent;
+                // Update product name in summary dynamically based on current title
+                document.getElementById('summary-product').textContent = document.querySelector('.product-form-card h2').textContent;
+
                 document.getElementById('summary-print-type').textContent = getText('print_type');
                 document.getElementById('summary-format').textContent = getText('format');
                 document.getElementById('summary-paper').textContent = getText('paper');
