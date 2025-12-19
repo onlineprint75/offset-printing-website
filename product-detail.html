@@ -18,6 +18,9 @@
             </a>
 
             <div class="header-right">
+                <button class="menu-close-btn" id="menu-close">
+                    <i class="fas fa-times"></i>
+                </button>
                 <div class="nav-pill">
                     <ul>
                         <li><a href="index.html" data-i18n="nav-home">Нүүр</a></li>
@@ -63,18 +66,23 @@
         <script>
             // Mobile Menu Toggle
             const menuToggle = document.getElementById('menu-toggle');
+            const menuClose = document.getElementById('menu-close');
             const navMenu = document.querySelector('.header-right');
             const menuOverlay = document.getElementById('menu-overlay');
 
-            menuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                menuOverlay.classList.toggle('active');
-            });
+            function openMenu() {
+                navMenu.classList.add('active');
+                menuOverlay.classList.add('active');
+            }
 
-            menuOverlay.addEventListener('click', () => {
+            function closeMenu() {
                 navMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
-            });
+            }
+
+            menuToggle.addEventListener('click', openMenu);
+            menuClose.addEventListener('click', closeMenu);
+            menuOverlay.addEventListener('click', closeMenu);
 
             // Language Switcher Logic
             const langBtn = document.getElementById('lang-btn');
