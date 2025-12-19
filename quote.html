@@ -64,7 +64,7 @@
         <div class="menu-overlay" id="menu-overlay"></div>
         <script src="translations.js"></script>
         <script>
-            // Mobile Menu Toggle
+            // Mobile Menu Logic
             const menuToggle = document.getElementById('menu-toggle');
             const menuClose = document.getElementById('menu-close');
             const navMenu = document.querySelector('.header-right');
@@ -73,54 +73,86 @@
             function openMenu() {
                 navMenu.classList.add('active');
                 menuOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
 
             function closeMenu() {
                 navMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
             }
 
-            menuToggle.addEventListener('click', openMenu);
+            function toggleMenu() {
+                if (navMenu.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            }
+
+            menuToggle.addEventListener('click', toggleMenu);
             menuClose.addEventListener('click', closeMenu);
             menuOverlay.addEventListener('click', closeMenu);
 
-            // Language Switcher Logic
-            const langBtn = document.getElementById('lang-btn');
-            const langDropdown = document.getElementById('lang-dropdown');
-            const langOptions = document.querySelectorAll('.lang-option');
+            // Swipe to Close Logic (Left to Right)
+            let touchStartX = 0;
+            let touchEndX = 0;
 
-            langBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                langDropdown.classList.toggle('active');
-            });
+            document.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
 
-            document.addEventListener('click', () => {
-                langDropdown.classList.remove('active');
-            });
+            document.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
 
-            langOptions.forEach(opt => {
-                opt.addEventListener('click', () => {
-                    const lang = opt.getAttribute('data-lang');
-                    const flag = opt.querySelector('img').src;
-                    const name = opt.textContent.trim();
-
-                    document.getElementById('current-lang-flag').src = flag;
-                    document.getElementById('current-lang-name').textContent = name;
-
-                    setLanguage(lang);
-                    langDropdown.classList.remove('active');
-                });
-            });
-
-            // Initialize correct flag/name on load
-            window.addEventListener('load', () => {
-                const savedLang = localStorage.getItem('preferred-lang') || 'mn';
-                const activeOpt = document.querySelector(`.lang-option[data-lang="${savedLang}"]`);
-                if (activeOpt) {
-                    document.getElementById('current-lang-flag').src = activeOpt.querySelector('img').src;
-                    document.getElementById('current-lang-name').textContent = activeOpt.textContent.trim();
+            function handleSwipe() {
+                const SWIPE_THRESHOLD = 50;
+                const swipeDistance = touchEndX - touchStartX;
+                if (navMenu.classList.contains('active') && swipeDistance > SWIPE_THRESHOLD) {
+                    closeMenu();
                 }
-            });
+            }
+        </script>
+
+        // Language Switcher Logic
+        const langBtn = document.getElementById('lang-btn');
+        const langDropdown = document.getElementById('lang-dropdown');
+        const langOptions = document.querySelectorAll('.lang-option');
+
+        langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        langDropdown.classList.toggle('active');
+        });
+
+        document.addEventListener('click', () => {
+        langDropdown.classList.remove('active');
+        });
+
+        langOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+        const lang = opt.getAttribute('data-lang');
+        const flag = opt.querySelector('img').src;
+        const name = opt.textContent.trim();
+
+        document.getElementById('current-lang-flag').src = flag;
+        document.getElementById('current-lang-name').textContent = name;
+
+        setLanguage(lang);
+        langDropdown.classList.remove('active');
+        });
+        });
+
+        // Initialize correct flag/name on load
+        window.addEventListener('load', () => {
+        const savedLang = localStorage.getItem('preferred-lang') || 'mn';
+        const activeOpt = document.querySelector(`.lang-option[data-lang="${savedLang}"]`);
+        if (activeOpt) {
+        document.getElementById('current-lang-flag').src = activeOpt.querySelector('img').src;
+        document.getElementById('current-lang-name').textContent = activeOpt.textContent.trim();
+        }
+        });
         </script>
     </header>
 
