@@ -97,10 +97,10 @@ const translations = {
         "form-foil": "Клиши даралттай ( металл өнгө )",
         "form-notes": "Тэмдэглэл",
         "form-quote-amount": "Үнийн дүн (₮)",
-        "form-send-order": "Захиалга илгээх",
+        "form-send-order": "Хүсэлт илгээх",
 
         /* Modal Translations */
-        "modal-title": "Захиалга илгээх",
+        "modal-title": "Хүсэлт илгээх",
         "modal-name": "Нэр *",
         "modal-name-placeholder": "Таны нэр",
         "modal-email": "Имэйл *",
@@ -217,10 +217,10 @@ const translations = {
         "form-foil": "Foil ( metallic color )",
         "form-notes": "Notes",
         "form-quote-amount": "Estimated Quote (₮)",
-        "form-send-order": "Send Order",
+        "form-send-order": "Submit Request",
 
         /* Modal Translations */
-        "modal-title": "Send Order",
+        "modal-title": "Submit Request",
         "modal-name": "Name *",
         "modal-name-placeholder": "Your Name",
         "modal-email": "Email *",
@@ -337,10 +337,10 @@ const translations = {
         "form-foil": "烫金/烫银 ( 金属色 )",
         "form-notes": "备注",
         "form-quote-amount": "预估报价 (₮)",
-        "form-send-order": "提交订单",
+        "form-send-order": "提交请求",
 
         /* Modal Translations */
-        "modal-title": "发送订单",
+        "modal-title": "提交请求",
         "modal-name": "姓名 *",
         "modal-name-placeholder": "您的姓名",
         "modal-email": "电子邮件 *",
