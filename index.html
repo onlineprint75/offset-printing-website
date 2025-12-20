@@ -231,11 +231,22 @@
                         currentSlide = (currentSlide + 1) % slides.length;
                         slides[currentSlide].classList.add('active');
 
-                        // Update text content
-                        heroTitle.textContent = slideContent[currentSlide].title;
-                        heroSubtitle.textContent = slideContent[currentSlide].subtitle;
-                        heroTitle.setAttribute('data-i18n', slideContent[currentSlide].i18nTitle);
-                        heroSubtitle.setAttribute('data-i18n', slideContent[currentSlide].i18nSubtitle);
+                        // Get current language
+                        const currentLang = localStorage.getItem('preferred-lang') || 'mn';
+                        const titleKey = slideContent[currentSlide].i18nTitle;
+                        const subtitleKey = slideContent[currentSlide].i18nSubtitle;
+
+                        // Update text content with translation
+                        if (typeof translations !== 'undefined' && translations[currentLang]) {
+                            heroTitle.textContent = translations[currentLang][titleKey] || slideContent[currentSlide].title;
+                            heroSubtitle.textContent = translations[currentLang][subtitleKey] || slideContent[currentSlide].subtitle;
+                        } else {
+                            heroTitle.textContent = slideContent[currentSlide].title;
+                            heroSubtitle.textContent = slideContent[currentSlide].subtitle;
+                        }
+
+                        heroTitle.setAttribute('data-i18n', titleKey);
+                        heroSubtitle.setAttribute('data-i18n', subtitleKey);
 
                         // Update button styles
                         updateButtonStyles(currentSlide);
