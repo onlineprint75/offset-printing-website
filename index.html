@@ -175,14 +175,18 @@
                     илгээнэ үү. Бид таны мэдээллийг хүлээн авч, хамгийн оновчтой санал боловсруулан богино хугацаанд
                     эргэн холбогдох болно.</p>
                 <div class="hero-btns" style="display: flex; gap: 15px;">
-                    <a href="quote.html" class="btn btn-primary" data-i18n="btn-quote">Үнийн санал авах</a>
-                    <a href="inventory.html" class="btn btn-outline" data-i18n="btn-inventory">Бараа материал</a>
+                    <a href="quote.html" id="btn-quote" class="btn btn-primary" data-i18n="btn-quote">Үнийн санал
+                        авах</a>
+                    <a href="inventory.html" id="btn-inventory" class="btn btn-outline" data-i18n="btn-inventory">Бараа
+                        материал</a>
                 </div>
             </div>
             <script>
                 const slides = document.querySelectorAll('.hero-slide');
                 const heroTitle = document.getElementById('hero-title');
                 const heroSubtitle = document.getElementById('hero-subtitle');
+                const btnQuote = document.getElementById('btn-quote');
+                const btnInventory = document.getElementById('btn-inventory');
                 let currentSlide = 0;
 
                 const slideContent = [
@@ -199,6 +203,22 @@
                         i18nSubtitle: 'hero-subtitle-2'
                     }
                 ];
+
+                function updateButtonStyles(slideIndex) {
+                    if (slideIndex === 0) {
+                        // Slide 1: Үнийн санал - quote button primary, inventory outline
+                        btnQuote.classList.remove('btn-outline');
+                        btnQuote.classList.add('btn-primary');
+                        btnInventory.classList.remove('btn-primary');
+                        btnInventory.classList.add('btn-outline');
+                    } else {
+                        // Slide 2: Бараа материал - inventory button primary, quote outline
+                        btnInventory.classList.remove('btn-outline');
+                        btnInventory.classList.add('btn-primary');
+                        btnQuote.classList.remove('btn-primary');
+                        btnQuote.classList.add('btn-outline');
+                    }
+                }
 
                 function nextSlide() {
                     // Fade out text
@@ -217,13 +237,16 @@
                         heroTitle.setAttribute('data-i18n', slideContent[currentSlide].i18nTitle);
                         heroSubtitle.setAttribute('data-i18n', slideContent[currentSlide].i18nSubtitle);
 
+                        // Update button styles
+                        updateButtonStyles(currentSlide);
+
                         // Fade in text
                         heroTitle.classList.remove('fade-out');
                         heroSubtitle.classList.remove('fade-out');
                     }, 500);
                 }
 
-                setInterval(nextSlide, 5000);
+                setInterval(nextSlide, 8000);
             </script>
         </section>
 
@@ -236,7 +259,8 @@
                 <p data-i18n="footer-services">Офсет хэвлэлийн үйлчилгээ</p>
                 <div class="social-links">
                     <h5 data-i18n="footer-follow">Биднийг дагаарай</h5>
-                    <a href="https://www.facebook.com/productprinting/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/productprinting/" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
             <div class="footer-col" id="footer-contact-info">
