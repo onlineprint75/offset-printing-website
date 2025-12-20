@@ -170,9 +170,10 @@
                 <div class="hero-slide" style="background-image: url('assets/images/Hero2.jpg');"></div>
             </div>
             <div class="hero-content">
-                <h1 data-i18n="hero-title">Офсет
-                    Хэвлэлийн Төгс Шийдэл</h1>
-                <p data-i18n="hero-subtitle">Бид таны санааг бодит болгож, чанартай хэвлэлээр үйлчилнэ.</p>
+                <h1 id="hero-title" data-i18n="hero-title-1">Үнийн санал</h1>
+                <p id="hero-subtitle" data-i18n="hero-subtitle-1">Та асуумжийн дагуу үнийн санал авах хүсэлтээ бидэнд
+                    илгээнэ үү. Бид таны мэдээллийг хүлээн авч, хамгийн оновчтой санал боловсруулан богино хугацаанд
+                    эргэн холбогдох болно.</p>
                 <div class="hero-btns" style="display: flex; gap: 15px;">
                     <a href="quote.html" class="btn btn-primary" data-i18n="btn-quote">Үнийн санал авах</a>
                     <a href="inventory.html" class="btn btn-outline" data-i18n="btn-inventory">Бараа материал</a>
@@ -180,12 +181,46 @@
             </div>
             <script>
                 const slides = document.querySelectorAll('.hero-slide');
+                const heroTitle = document.getElementById('hero-title');
+                const heroSubtitle = document.getElementById('hero-subtitle');
                 let currentSlide = 0;
 
+                const slideContent = [
+                    {
+                        title: 'Үнийн санал',
+                        subtitle: 'Та асуумжийн дагуу үнийн санал авах хүсэлтээ бидэнд илгээнэ үү. Бид таны мэдээллийг хүлээн авч, хамгийн оновчтой санал боловсруулан богино хугацаанд эргэн холбогдох болно.',
+                        i18nTitle: 'hero-title-1',
+                        i18nSubtitle: 'hero-subtitle-1'
+                    },
+                    {
+                        title: 'Бараа материал',
+                        subtitle: 'Офсет, дижитал хэвлэлд зориулсан чанартай цаас, бэх, хавтас, тууз, наалт болон бусад хэрэглээний материалууд. Бид таны хэвлэлийн бүтээлийг мэргэжлийн түвшинд гүйцэтгэхэд шаардлагатай бүхнийг нэг дороос санал болгож байна.',
+                        i18nTitle: 'hero-title-2',
+                        i18nSubtitle: 'hero-subtitle-2'
+                    }
+                ];
+
                 function nextSlide() {
-                    slides[currentSlide].classList.remove('active');
-                    currentSlide = (currentSlide + 1) % slides.length;
-                    slides[currentSlide].classList.add('active');
+                    // Fade out text
+                    heroTitle.classList.add('fade-out');
+                    heroSubtitle.classList.add('fade-out');
+
+                    setTimeout(() => {
+                        // Change slide
+                        slides[currentSlide].classList.remove('active');
+                        currentSlide = (currentSlide + 1) % slides.length;
+                        slides[currentSlide].classList.add('active');
+
+                        // Update text content
+                        heroTitle.textContent = slideContent[currentSlide].title;
+                        heroSubtitle.textContent = slideContent[currentSlide].subtitle;
+                        heroTitle.setAttribute('data-i18n', slideContent[currentSlide].i18nTitle);
+                        heroSubtitle.setAttribute('data-i18n', slideContent[currentSlide].i18nSubtitle);
+
+                        // Fade in text
+                        heroTitle.classList.remove('fade-out');
+                        heroSubtitle.classList.remove('fade-out');
+                    }, 500);
                 }
 
                 setInterval(nextSlide, 5000);
