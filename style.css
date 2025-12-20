@@ -868,6 +868,25 @@ footer {
         position: relative;
         top: 0;
     }
+
+    .product-form-card {
+        max-width: 100%;
+    }
+
+    .detail-form select,
+    .detail-form input[type="date"],
+    .detail-form textarea {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    .detail-form input[type="date"] {
+        min-height: 36px;
+    }
 }
 
 .social-links h5 {
