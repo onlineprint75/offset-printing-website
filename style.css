@@ -636,6 +636,7 @@ footer {
     color: #1e293b;
     background-color: #f8fafc;
     transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 .detail-form textarea {
