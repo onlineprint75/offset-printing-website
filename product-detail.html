@@ -251,12 +251,13 @@
                         <div class="form-group" id="folding-group" style="display: none;">
                             <label data-i18n="form-folding">Нугалааны сонголт</label>
                             <select name="folding">
+                                <option data-i18n="form-folding-select">Сонгох</option>
                                 <option data-i18n="form-folding-none">Нугалаагүй</option>
-                                <option data-i18n="form-folding-1">1 нугалаа</option>
-                                <option data-i18n="form-folding-2">2 нугалаа</option>
-                                <option data-i18n="form-folding-3">3 нугалаа</option>
-                                <option data-i18n="form-folding-4">4 нугалаа</option>
-                                <option data-i18n="form-folding-5">5 нугалаа</option>
+                                <option data-i18n="form-folding-1">Нэг нугалаатай</option>
+                                <option data-i18n="form-folding-2">2 нугалаатай - Ихэвчлэн 3 нугалбар гэж нэрлэгддэг
+                                </option>
+                                <option data-i18n="form-folding-3">3 нугалаатай</option>
+                                <option data-i18n="form-folding-4">4 нугалаатай</option>
                             </select>
                         </div>
 
@@ -285,7 +286,8 @@
 
                         <div class="form-group">
                             <label data-i18n="form-notes">Тэмдэглэл</label>
-                            <textarea name="notes" rows="3"></textarea>
+                            <textarea name="notes" rows="3" data-i18n-placeholder="form-notes-placeholder"
+                                placeholder="Тухайлбар, онцгой хүсэлт..."></textarea>
                         </div>
 
 
@@ -495,23 +497,23 @@
             const productConfigs = {
                 'brochure': {
                     formats: [
-                        { key: 'form-format-a4-v', val: 'A4 (210×297мм) Босоо' },
-                        { key: 'form-format-a4-h', val: 'A4 (297×210мм) Хэвтээ' },
-                        { key: 'form-format-a5-v', val: 'A5 (145×210мм) Босоо' },
-                        { key: 'form-format-a5-h', val: 'A5 (210×145мм) Хэвтээ' },
-                        { key: 'form-format-a6-v', val: 'A6 (105×145мм) Босоо' },
-                        { key: 'form-format-a6-h', val: 'A6 (145×105мм) Хэвтээ' }
+                        { key: 'form-format-a5', val: 'A5 (145×210мм)' },
+                        { key: 'form-format-a4', val: 'A4 (210×297мм)' },
+                        { key: 'form-format-a3', val: 'A3 (420×297мм)' },
+                        { key: 'form-format-b5', val: 'B5 (176×250мм)' },
+                        { key: 'form-format-b4', val: 'B4 (250×353мм)' },
+                        { key: 'form-format-b3', val: 'B3 (353×500мм)' }
                     ],
-                    quantities: [300, 500, 1000, 2000, 3000, 4000, 5000, 10000, 20000],
+                    quantities: [300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000, 4000, 5000, 10000],
                     papers: [
                         { key: 'form-paper-80', val: '80гр (гр)' },
-                        { key: 'form-paper-115', val: '115гр (гр)' },
-                        { key: 'form-paper-130', val: '130гр (гр)' },
-                        { key: 'form-paper-150', val: '150гр (гр)' },
-                        { key: 'form-paper-170', val: '170гр (гр)' },
+                        { key: 'form-paper-90', val: '90гр (гр)' },
+                        { key: 'form-paper-105', val: '105гр (гр)' },
+                        { key: 'form-paper-128', val: '128гр (гр)' },
+                        { key: 'form-paper-157', val: '157гр (гр)' },
                         { key: 'form-paper-200', val: '200гр (гр)' },
                         { key: 'form-paper-250', val: '250гр (гр)' },
-                        { key: 'form-paper-300', val: '300гр (гр)' }
+                        { key: 'form-paper-300-coated', val: '300гр шохойтой цаас (гр)' }
                     ],
                     showFolding: true,
                     showVarnish: true,
