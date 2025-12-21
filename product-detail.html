@@ -190,17 +190,17 @@
                 <div class="product-form-card">
                     <h2 data-i18n="product-name-card">Нэрийн хуудас</h2>
                     <form id="quote-form" class="detail-form">
-                        <div class="form-group">
+                        <div class="form-group" id="format-group">
                             <label data-i18n="form-format">Хэмжээ</label>
-                            <select name="format">
+                            <select name="format" id="format-select">
                                 <option data-i18n="form-format-std1">Стандарт (90×55мм)</option>
                                 <option data-i18n="form-format-std2">Стандарт (85×55мм)</option>
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="quantity-group">
                             <label data-i18n="form-quantity">Тоо ширхэг</label>
-                            <select name="quantity">
+                            <select name="quantity" id="quantity-select">
                                 <option>300</option>
                                 <option>500</option>
                                 <option>1000</option>
@@ -209,15 +209,15 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="paper-group">
                             <label data-i18n="form-paper">Цаасны төрөл</label>
-                            <select name="paper">
+                            <select name="paper" id="paper-select">
                                 <option>300 (гр)</option>
                                 <option>Арт 300 (гр)</option>
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="prepress-group">
                             <label data-i18n="form-prepress">Эх бэлтгэл байгаа эсэх</label>
                             <select name="prepress">
                                 <option data-i18n="form-yes">Тийм</option>
@@ -225,7 +225,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="coating-group">
                             <label data-i18n="form-coating">Бүрэлтний төрөл</label>
                             <select name="coating">
                                 <option data-i18n="form-coating-none">Бүрэлтгүй</option>
@@ -235,19 +235,39 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-checkbox-group" id="varnish-group" style="display: none;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="varnish">
+                                <span class="checkmark"></span>
+                                <span data-i18n="form-varnish">Лак бүрэлт хийх</span>
+                            </label>
+                        </div>
+
+                        <div class="form-group" id="delivery-date-group">
                             <label data-i18n="form-delivery-date">Хүлээн авах хугацаа</label>
                             <input type="date" name="delivery_date" required>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="folding-group" style="display: none;">
+                            <label data-i18n="form-folding">Нугалааны сонголт</label>
+                            <select name="folding">
+                                <option data-i18n="form-folding-none">Нугалаагүй</option>
+                                <option data-i18n="form-folding-1">1 нугалаа</option>
+                                <option data-i18n="form-folding-2">2 нугалаа</option>
+                                <option data-i18n="form-folding-3">3 нугалаа</option>
+                                <option data-i18n="form-folding-4">4 нугалаа</option>
+                                <option data-i18n="form-folding-5">5 нугалаа</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="print-type-group">
                             <label data-i18n="form-print-type">Хэвлэлийн төрөл</label>
                             <select name="print_type">
                                 <option data-i18n="form-print-offset">Оффсет хэвлэл</option>
                             </select>
                         </div>
 
-                        <div class="form-checkbox-group">
+                        <div class="form-checkbox-group" id="spot-uv-group">
                             <label class="checkbox-container">
                                 <input type="checkbox" name="spot_uv">
                                 <span class="checkmark"></span>
@@ -255,7 +275,7 @@
                             </label>
                         </div>
 
-                        <div class="form-checkbox-group">
+                        <div class="form-checkbox-group" id="foil-group">
                             <label class="checkbox-container">
                                 <input type="checkbox" name="foil">
                                 <span class="checkmark"></span>
@@ -285,7 +305,8 @@
                 <p data-i18n="footer-services">Офсет хэвлэлийн үйлчилгээ</p>
                 <div class="social-links">
                     <h5 data-i18n="footer-follow">Биднийг дагаарай</h5>
-                    <a href="https://www.facebook.com/productprinting/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/productprinting/" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
             <div class="footer-col" id="footer-contact-info">
@@ -377,8 +398,11 @@
                         <div class="summary-item">
                             <strong data-i18n="modal-paper">Цаасны төрөл:</strong> <span id="summary-paper"></span>
                         </div>
-                        <div class="summary-item">
-                            <strong data-i18n="modal-coating">Бүрэлт:</strong> <span id="summary-coating"></span>
+                        <div class="summary-item" id="summary-folding-item" style="display: none;">
+                            <strong data-i18n="form-folding">Нугалаа:</strong> <span id="summary-folding"></span>
+                        </div>
+                        <div class="summary-item" id="summary-varnish-item" style="display: none;">
+                            <strong data-i18n="form-varnish">Лак:</strong> <span id="summary-varnish"></span>
                         </div>
                         <div class="summary-item">
                             <strong data-i18n="modal-quantity">Тоо ширхэг:</strong> <span id="summary-quantity"></span>
@@ -464,7 +488,96 @@
             if (thumbDivs[0]) thumbDivs[0].classList.add('active');
 
 
-            // 5. Run Translations
+            // 5. Product Specific Form Configurations
+            const productConfigs = {
+                'brochure': {
+                    formats: [
+                        { key: 'form-format-a4-v', val: 'A4 (210×297мм) Босоо' },
+                        { key: 'form-format-a4-h', val: 'A4 (297×210мм) Хэвтээ' },
+                        { key: 'form-format-a5-v', val: 'A5 (145×210мм) Босоо' },
+                        { key: 'form-format-a5-h', val: 'A5 (210×145мм) Хэвтээ' },
+                        { key: 'form-format-a6-v', val: 'A6 (105×145мм) Босоо' },
+                        { key: 'form-format-a6-h', val: 'A6 (145×105мм) Хэвтээ' }
+                    ],
+                    quantities: [300, 500, 1000, 2000, 3000, 4000, 5000, 10000, 20000],
+                    papers: [
+                        { key: 'form-paper-80', val: '80гр (гр)' },
+                        { key: 'form-paper-115', val: '115гр (гр)' },
+                        { key: 'form-paper-130', val: '130гр (гр)' },
+                        { key: 'form-paper-150', val: '150гр (гр)' },
+                        { key: 'form-paper-170', val: '170гр (гр)' },
+                        { key: 'form-paper-200', val: '200гр (гр)' },
+                        { key: 'form-paper-250', val: '250гр (гр)' },
+                        { key: 'form-paper-300', val: '300гр (гр)' }
+                    ],
+                    showFolding: true,
+                    showVarnish: true,
+                    showFoil: false,
+                    showSpotUV: false,
+                    showPrintType: false
+                },
+                'default': {
+                    formats: [
+                        { key: 'form-format-std1', val: 'Стандарт (90×55мм)' },
+                        { key: 'form-format-std2', val: 'Стандарт (85×55мм)' }
+                    ],
+                    quantities: [300, 500, 1000, 5000, 10000],
+                    papers: [
+                        { key: '', val: '300 (гр)' },
+                        { key: '', val: 'Арт 300 (гр)' }
+                    ],
+                    showFolding: false,
+                    showVarnish: false,
+                    showFoil: true,
+                    showSpotUV: true,
+                    showPrintType: true
+                }
+            };
+
+            const config = productConfigs[productId] || productConfigs['default'];
+            if (config) {
+                // Update Format options
+                if (config.formats) {
+                    const formatSelect = document.getElementById('format-select');
+                    formatSelect.innerHTML = '';
+                    config.formats.forEach(f => {
+                        const opt = document.createElement('option');
+                        opt.setAttribute('data-i18n', f.key);
+                        opt.textContent = f.val;
+                        formatSelect.appendChild(opt);
+                    });
+                }
+                // Update Quantity options
+                if (config.quantities) {
+                    const qtySelect = document.getElementById('quantity-select');
+                    qtySelect.innerHTML = '';
+                    config.quantities.forEach(q => {
+                        const opt = document.createElement('option');
+                        opt.textContent = q;
+                        qtySelect.appendChild(opt);
+                    });
+                }
+                // Update Paper options
+                if (config.papers) {
+                    const paperSelect = document.getElementById('paper-select');
+                    paperSelect.innerHTML = '';
+                    config.papers.forEach(p => {
+                        const opt = document.createElement('option');
+                        opt.setAttribute('data-i18n', p.key);
+                        opt.textContent = p.val;
+                        paperSelect.appendChild(opt);
+                    });
+                }
+
+                // Show/Hide Fields
+                document.getElementById('folding-group').style.display = config.showFolding ? 'block' : 'none';
+                document.getElementById('varnish-group').style.display = config.showVarnish ? 'block' : 'none';
+                document.getElementById('foil-group').style.display = config.showFoil !== false ? 'block' : 'none';
+                document.getElementById('spot-uv-group').style.display = config.showSpotUV !== false ? 'block' : 'none';
+                document.getElementById('print-type-group').style.display = config.showPrintType !== false ? 'block' : 'none';
+            }
+
+            // 6. Run Translations
             if (typeof setLanguage === 'function') {
                 setLanguage(savedLang);
             }
@@ -495,11 +608,32 @@
                 // Update product name in summary dynamically based on current title
                 document.getElementById('summary-product').textContent = document.querySelector('.product-form-card h2').textContent;
 
+                // Populate Summary
+                // Update product name in summary dynamically based on current title
+                document.getElementById('summary-product').textContent = document.querySelector('.product-form-card h2').textContent;
+
                 document.getElementById('summary-print-type').textContent = getText('print_type');
                 document.getElementById('summary-format').textContent = getText('format');
                 document.getElementById('summary-paper').textContent = getText('paper');
                 document.getElementById('summary-coating').textContent = getText('coating');
                 document.getElementById('summary-quantity').textContent = getText('quantity');
+
+                // Additional Brochure Fields
+                const folding = getText('folding');
+                if (folding && document.getElementById('folding-group').style.display !== 'none') {
+                    document.getElementById('summary-folding-item').style.display = 'block';
+                    document.getElementById('summary-folding').textContent = folding;
+                } else {
+                    document.getElementById('summary-folding-item').style.display = 'none';
+                }
+
+                const varnish = mainForm.querySelector('[name="varnish"]');
+                if (varnish && document.getElementById('varnish-group').style.display !== 'none') {
+                    document.getElementById('summary-varnish-item').style.display = 'block';
+                    document.getElementById('summary-varnish').textContent = varnish.checked ? (savedLang === 'mn' ? 'Тийм' : 'Yes') : (savedLang === 'mn' ? 'Үгүй' : 'No');
+                } else {
+                    document.getElementById('summary-varnish-item').style.display = 'none';
+                }
 
                 modal.classList.add('active');
             });
@@ -533,13 +667,15 @@
                     Paper: document.getElementById('summary-paper').textContent,
                     Coating: document.getElementById('summary-coating').textContent,
                     Quantity: document.getElementById('summary-quantity').textContent,
+                    Folding: document.getElementById('summary-folding').textContent || 'N/A',
+                    Varnish: document.getElementById('summary-varnish').textContent || 'N/A',
                     Notes: document.querySelector('[name="notes"]').value
                 };
 
                 // GATHER WHATSAPP DATA
                 const PHONE_NUMBER = '97699906069'; // Updated to user's number
 
-                const messageText = `
+                let messageText = `
 *New Order Received!*
 
 *Customer Info:*
@@ -551,18 +687,26 @@ Delivery: ${contactData.get('delivery_method') === 'pickup' ? 'Pick up' : 'Deliv
 
 *Order Details:*
 Product: ${orderDetails.Product}
-Print Type: ${orderDetails.PrintType}
 Format: ${orderDetails.Format}
 Paper: ${orderDetails.Paper}
 Coating: ${orderDetails.Coating}
 Quantity: ${orderDetails.Quantity}
+`;
 
-*Notes:*
-${orderDetails.Notes || 'None'}
-                `.trim();
+                if (document.getElementById('summary-folding-item').style.display !== 'none') {
+                    messageText += `Folding: ${orderDetails.Folding}\n`;
+                }
+                if (document.getElementById('summary-varnish-item').style.display !== 'none') {
+                    messageText += `Varnish: ${orderDetails.Varnish}\n`;
+                }
+                if (document.getElementById('print-type-group').style.display !== 'none') {
+                    messageText += `Print Type: ${orderDetails.PrintType}\n`;
+                }
+
+                messageText += `\n*Notes:*\n${orderDetails.Notes || 'None'}`;
 
                 // Open WhatsApp
-                const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(messageText)}`;
+                const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(messageText.trim())}`;
                 window.open(whatsappUrl, '_blank');
 
                 // Reset UI
