@@ -291,6 +291,16 @@
                         </div>
 
 
+                        <div class="form-group" id="delivery-info-group" style="display: none;">
+                            <label data-i18n="form-delivery-date">Хүргэлт</label>
+                            <div class="delivery-badge" data-i18n="form-delivery-1-2">Ажлын 1-2 хоногт</div>
+                        </div>
+
+                        <div class="quote-display" id="lamination-price-display" style="display: none;">
+                            <div class="label" data-i18n="form-quote-amount">Үнийн дүн (₮)</div>
+                            <div class="amount" id="lamination-price">0₮</div>
+                        </div>
+
                         <button type="submit" class="btn btn-primary submit-order-btn"
                             data-i18n="form-send-order">Хүсэлт илгээх</button>
                     </form>
@@ -424,18 +434,8 @@
     <script>
         // Product ID to Translation Key Mapping
         const productKeys = {
-            'business_card': 'product-name-card',
-            'brochure': 'product-name-brochure',
-            'magazine': 'product-name-magazine',
-            'book': 'product-name-book',
-            'label': 'product-name-label',
-            'box': 'product-name-box',
-            'bag': 'product-name-bag',
-            'invitation': 'product-name-invitation',
-            'poster': 'product-name-poster',
-            'notebook': 'product-name-notebook',
-            'envelope': 'product-name-envelope',
-            'invoice': 'product-name-invoice'
+            'invoice': 'product-name-invoice',
+            'lamination': 'product-name-lamination'
         };
 
         function changeImage(src, el) {
@@ -515,11 +515,33 @@
                         { key: 'form-paper-250', val: '250гр (гр)' },
                         { key: 'form-paper-300-coated', val: '300гр шохойтой цаас (гр)' }
                     ],
-                    showFolding: true,
-                    showVarnish: true,
                     showFoil: false,
                     showSpotUV: false,
-                    showPrintType: false
+                    showPrintType: false,
+                    showDeliveryDate: true
+                },
+                'lamination': {
+                    formats: [
+                        { key: 'form-lamination-size-44', val: '44 см ( 22 микрон, 4000м )' },
+                        { key: 'form-lamination-size-54', val: '54 см ( 22 микрон, 4000м )' }
+                    ],
+                    quantities: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                    papers: [], // No paper choice
+                    coatings: [
+                        { key: 'form-lamination-type-matte', val: 'Матт' },
+                        { key: 'form-lamination-type-glossy', val: 'Гялгар' }
+                    ],
+                    showFolding: false,
+                    showVarnish: false,
+                    showFoil: false,
+                    showSpotUV: false,
+                    showPrintType: false,
+                    showDeliveryDate: false,
+                    showDeliveryInfo: true,
+                    showCoating: true,
+                    customPrice: 390000,
+                    labelFormat: 'Хэмжээ',
+                    labelCoating: 'Төрөл'
                 },
                 'default': {
                     formats: [
@@ -580,6 +602,46 @@
                 document.getElementById('foil-group').style.display = config.showFoil !== false ? 'block' : 'none';
                 document.getElementById('spot-uv-group').style.display = config.showSpotUV !== false ? 'block' : 'none';
                 document.getElementById('print-type-group').style.display = config.showPrintType !== false ? 'block' : 'none';
+
+                // Lamination specific visibility
+                document.getElementById('paper-group').style.display = config.papers && config.papers.length > 0 ? 'block' : 'none';
+                document.getElementById('delivery-date-group').style.display = config.showDeliveryDate !== false ? 'block' : 'none';
+                document.getElementById('delivery-info-group').style.display = config.showDeliveryInfo ? 'block' : 'none';
+                document.getElementById('lamination-price-display').style.display = config.customPrice ? 'flex' : 'none';
+
+                if (config.labelFormat) {
+                    document.querySelector('#format-group label').textContent = config.labelFormat;
+                }
+                if (config.labelCoating) {
+                    document.querySelector('#coating-group label').textContent = config.labelCoating;
+                }
+
+                // Update Coating options for Lamination
+                if (config.coatings) {
+                    const coatingSelect = document.querySelector('select[name="coating"]');
+                    coatingSelect.innerHTML = '';
+                    config.coatings.forEach(c => {
+                        const opt = document.createElement('option');
+                        opt.setAttribute('data-i18n', c.key);
+                        opt.textContent = c.val;
+                        coatingSelect.appendChild(opt);
+                    });
+                }
+
+                // Dynamic Price Calculation for Lamination
+                if (config.customPrice) {
+                    const qtySelect = document.getElementById('quantity-select');
+                    const priceDisplay = document.getElementById('lamination-price');
+
+                    const updatePrice = () => {
+                        const qty = parseInt(qtySelect.value) || 0;
+                        const total = qty * config.customPrice;
+                        priceDisplay.textContent = total.toLocaleString() + '₮';
+                    };
+
+                    qtySelect.addEventListener('change', updatePrice);
+                    updatePrice(); // Initial call
+                }
             }
 
             // 6. Run Translations

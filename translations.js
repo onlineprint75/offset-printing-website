@@ -142,7 +142,14 @@ const translations = {
         "modal-format": "Хэмжээ:",
         "modal-paper": "Цаасны төрөл:",
         "modal-coating": "Бүрэлт:",
-        "modal-quantity": "Тоо ширхэг:"
+        "modal-quantity": "Тоо ширхэг:",
+        "product-name-lamination": "Бүрэлт (Lamination BOPP)",
+        "product-desc-lamination": "Халуун бүрэлтний материал, матт, гялгар, илгэн",
+        "form-lamination-size-44": "44 см ( 22 микрон, 4000м )",
+        "form-lamination-size-54": "54 см ( 22 микрон, 4000м )",
+        "form-lamination-type-matte": "Матт",
+        "form-lamination-type-glossy": "Гялгар",
+        "form-delivery-1-2": "Ажлын 1-2 хоногт"
     },
     en: {
         "nav-home": "Home",
@@ -286,7 +293,14 @@ const translations = {
         "modal-format": "Size:",
         "modal-paper": "Paper Type:",
         "modal-coating": "Coating:",
-        "modal-quantity": "Quantity:"
+        "modal-quantity": "Quantity:",
+        "product-name-lamination": "Lamination BOPP",
+        "product-desc-lamination": "Hot lamination material, matte, glossy, suede",
+        "form-lamination-size-44": "44 cm ( 22 micron, 4000m )",
+        "form-lamination-size-54": "54 cm ( 22 micron, 4000m )",
+        "form-lamination-type-matte": "Matte",
+        "form-lamination-type-glossy": "Glossy",
+        "form-delivery-1-2": "1-2 business days"
     },
     zh: {
         "nav-home": "首页",
@@ -430,7 +444,14 @@ const translations = {
         "modal-format": "尺寸:",
         "modal-paper": "纸张类型:",
         "modal-coating": "覆膜:",
-        "modal-quantity": "数量:"
+        "modal-quantity": "数量:",
+        "product-name-lamination": "BOPP 覆膜",
+        "product-desc-lamination": "热覆膜材料，哑光，亮光，触感",
+        "form-lamination-size-44": "44 厘米 ( 22 微米, 4000米 )",
+        "form-lamination-size-54": "54 厘米 ( 22 微米, 4000米 )",
+        "form-lamination-type-matte": "哑光",
+        "form-lamination-type-glossy": "亮光",
+        "form-delivery-1-2": "1-2 个工作日"
     }
 };
 

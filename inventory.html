@@ -166,31 +166,36 @@
                 <!-- 12 Inventory Items -->
                 <script>
                     const materials = [
-                        { name: "Шохойтой цаас (150гр)", img: "assets/images/product.png" },
-                        { name: "Шохойтой цаас (300гр)", img: "assets/images/product.png" },
-                        { name: "Офсет цаас (80гр)", img: "assets/images/product.png" },
-                        { name: "Картон цаас", img: "assets/images/product.png" },
-                        { name: "Мөнгөлөг цаас", img: "assets/images/product.png" },
-                        { name: "Алтан шаргал цаас", img: "assets/images/product.png" },
-                        { name: "Наалддаг цаас", img: "assets/images/product.png" },
-                        { name: "Крафт цаас", img: "assets/images/product.png" },
-                        { name: "Хээтэй цаас", img: "assets/images/product.png" },
-                        { name: "Матт бүрэлттэй цаас", img: "assets/images/product.png" },
-                        { name: "Гялалзсан бүрэлт", img: "assets/images/product.png" },
-                        { name: "Тусгай цаас", img: "assets/images/product.png" }
+                        { id: "lamination", name: "Бүрэлт (Lamination BOPP)", desc: "Халуун бүрэлтний материал, матт, гялгар, илгэн", img: "assets/images/lamination bopp1.jpg", price: "390,000₮", stock: "20 ширхэг" },
+                        { id: "paper-150", name: "Шохойтой цаас (150гр)", desc: "Нөөц боломжтой. Хэмжээ: 64x90 см, 70x100 см г.м", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
+                        { id: "paper-300", name: "Шохойтой цаас (300гр)", desc: "Нөөц боломжтой. Хэмжээ: 64x90 см, 70x100 см г.м", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
+                        { id: "paper-80", name: "Офсет цаас (80гр)", desc: "Бичгийн цаас, офсет хэвлэлийн цаас", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
+                        { id: "cardboard", name: "Картон цаас", desc: "Сав баглаа боодол, хайрцагт зориулсан", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
+                        { id: "silver-paper", name: "Мөнгөлөг цаас", desc: "Тусгай хэвлэл, чимэглэлийн цаас", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
+                        { id: "gold-paper", name: "Алтан шаргал цаас", desc: "Тусгай хэвлэл, чимэглэлийн цаас", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
+                        { id: "sticker-paper", name: "Наалддаг цаас", desc: "Шошго, стикерт зориулсан", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
+                        { id: "kraft-paper", name: "Крафт цаас", desc: "Цаасан тор, эко савлагаанд зориулсан", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
+                        { id: "patterned-paper", name: "Хээтэй цаас", desc: "Урилга, мэндчилгээнд зориулсан", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
+                        { id: "matte-paper", name: "Матт бүрэлттэй цаас", desc: "Төрөл бүрийн хэвлэлд зориулсан", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
+                        { id: "special-paper", name: "Тусгай цаас", desc: "Дизайны тусгай шийдэлтэй цаас", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" }
                     ];
                     const grid = document.currentScript.parentElement;
                     materials.forEach(m => {
                         grid.innerHTML += `
                             <div class="product-card">
-                                <div class="product-img">
+                                <a href="product-detail.html?id=${m.id}" class="product-img">
                                     <img src="${m.img}" alt="${m.name}">
-                                </div>
+                                </a>
                                 <div class="product-info">
                                     <h3>${m.name}</h3>
-                                    <p>Нөөц боломжтой. Хэмжээ: 64x90 см, 70x100 см г.м</p>
-                                    <br>
-                                    <div style="color: var(--primary-color); font-weight: 700;">Боломжтой</div>
+                                    <div class="stock-status">Нөөц: ${m.stock}</div>
+                                    <p>${m.desc}</p>
+                                    <div class="product-footer">
+                                        <div class="product-price">${m.price}</div>
+                                        <a href="product-detail.html?id=${m.id}" class="order-btn-link">
+                                            Захиалах <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         `;
@@ -207,7 +212,8 @@
                 <p data-i18n="footer-services">Офсет хэвлэлийн үйлчилгээ</p>
                 <div class="social-links">
                     <h5 data-i18n="footer-follow">Биднийг дагаарай</h5>
-                    <a href="https://www.facebook.com/productprinting/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/productprinting/" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
             <div class="footer-col" id="footer-contact-info">
