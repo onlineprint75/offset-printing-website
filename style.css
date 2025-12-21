@@ -459,6 +459,19 @@ footer {
     padding: 0 24px;
 }
 
+/* Footer columns adjustments per screenshot */
+.footer-col:nth-child(2) {
+    position: relative;
+    left: 5px;
+    /* Move 5px right */
+}
+
+.footer-col:nth-child(3) {
+    position: relative;
+    left: -10px;
+    /* Move 10px left */
+}
+
 .footer-col h4 {
     font-size: 18px;
     line-height: 28px;
