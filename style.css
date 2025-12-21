@@ -431,6 +431,15 @@ section {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+.video-spacer {
+    width: 80px;
+    height: 3px;
+    background: var(--primary-color);
+    margin: 60px auto;
+    border-radius: 2px;
+    opacity: 0.8;
+}
+
 /* Footer */
 footer {
     background: rgb(249, 115, 22);
