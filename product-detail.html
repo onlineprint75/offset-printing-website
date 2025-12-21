@@ -934,18 +934,8 @@ Product: ${orderDetails.Product}
                 if (config.showDeliveryDate !== false) messageText += `Delivery Date: ${formData.get('delivery_date')}\n`;
                 if (formData.get('notes')) messageText += `\nNotes: ${formData.get('notes')}\n`;
 
-
-                if (document.getElementById('summary-folding-item').style.display !== 'none') {
-                    messageText += `Folding: ${orderDetails.Folding}\n`;
-                }
-                if (document.getElementById('summary-varnish-item').style.display !== 'none') {
-                    messageText += `Varnish: ${orderDetails.Varnish}\n`;
-                }
-                if (document.getElementById('print-type-group').style.display !== 'none') {
-                    messageText += `Print Type: ${orderDetails.PrintType}\n`;
-                }
-
-                messageText += `\n*Notes:*\n${orderDetails.Notes || 'None'}`;
+                // Open WhatsApp
+                const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(messageText.trim())}`;
 
                 // Open WhatsApp
                 const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(messageText.trim())}`;
