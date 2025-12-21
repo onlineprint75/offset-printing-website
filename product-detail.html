@@ -209,6 +209,23 @@
                             </select>
                         </div>
 
+                        <div class="form-group" id="pages-group" style="display: none;">
+                            <label data-i18n="form-pages">Нүүрний тоо</label>
+                            <select name="pages" id="pages-select">
+                                <option data-i18n="form-pages-8">8 нүүр</option>
+                                <option data-i18n="form-pages-12">12 нүүр</option>
+                                <option data-i18n="form-pages-16">16 нүүр</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="cover-group" style="display: none;">
+                            <label data-i18n="form-cover">Хавтаслалт</label>
+                            <select name="cover" id="cover-select">
+                                <option data-i18n="form-cover-200">200гр</option>
+                                <option data-i18n="form-cover-250">250гр</option>
+                            </select>
+                        </div>
+
                         <div class="form-group" id="paper-group">
                             <label data-i18n="form-paper">Цаасны төрөл</label>
                             <select name="paper" id="paper-select">
@@ -258,6 +275,15 @@
                                 </option>
                                 <option data-i18n="form-folding-3">3 нугалаатай</option>
                                 <option data-i18n="form-folding-4">4 нугалаатай</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="binding-group" style="display: none;">
+                            <label data-i18n="form-binding">Нуруулалт</label>
+                            <select name="binding">
+                                <option data-i18n="form-folding-select">Сонгох</option>
+                                <option data-i18n="form-binding-staple">Нуруу үдээтэй</option>
+                                <option data-i18n="form-binding-glue">Нуруу наалттай</option>
                             </select>
                         </div>
 
@@ -413,6 +439,15 @@
                         <div class="summary-item">
                             <strong data-i18n="modal-coating">Бүрэлт:</strong> <span id="summary-coating"></span>
                         </div>
+                        <div class="summary-item" id="summary-pages-item" style="display: none;">
+                            <strong data-i18n="form-pages">Нүүрний тоо:</strong> <span id="summary-pages"></span>
+                        </div>
+                        <div class="summary-item" id="summary-cover-item" style="display: none;">
+                            <strong data-i18n="form-cover">Хавтаслалт:</strong> <span id="summary-cover"></span>
+                        </div>
+                        <div class="summary-item" id="summary-binding-item" style="display: none;">
+                            <strong data-i18n="form-binding">Нуруулалт:</strong> <span id="summary-binding"></span>
+                        </div>
                         <div class="summary-item" id="summary-folding-item" style="display: none;">
                             <strong data-i18n="form-folding">Нугалаа:</strong> <span id="summary-folding"></span>
                         </div>
@@ -495,6 +530,51 @@
                     ],
                     showFoil: false,
                     showSpotUV: false,
+                    showPrintType: false,
+                    showDeliveryDate: true,
+                    showPrepress: true
+                },
+                'magazine': {
+                    formats: [
+                        { key: 'form-format-a5', val: 'A5 (мм)' },
+                        { key: 'form-format-a4', val: 'A4 (мм)' },
+                        { key: 'form-format-b5', val: 'B5 (мм)' },
+                        { key: 'form-format-b4', val: 'B4 (мм)' }
+                    ],
+                    images: [
+                        'assets/images/magazine_1.png',
+                        'assets/images/magazine_2.png',
+                        'assets/images/magazine_3.png',
+                        'assets/images/magazine_4.png',
+                        'assets/images/magazine_5.png'
+                    ],
+                    quantities: [300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000, 4000, 5000, 10000],
+                    papers: [
+                        { key: 'form-paper-80', val: '80 (гр)' },
+                        { key: 'form-paper-90', val: '90 (гр)' },
+                        { key: 'form-paper-105', val: '105 (гр)' },
+                        { key: 'form-paper-128', val: '128 (гр)' },
+                        { key: 'form-paper-157', val: '157 (гр)' }
+                    ],
+                    pages: [
+                        { key: 'form-pages-8', val: '8 нүүр' },
+                        { key: 'form-pages-12', val: '12 нүүр' },
+                        { key: 'form-pages-16', val: '16 нүүр' }
+                    ],
+                    covers: [
+                        { key: 'form-cover-200', val: '200гр' },
+                        { key: 'form-cover-250', val: '250гр' }
+                    ],
+                    coatings: [
+                        { key: 'form-coating-magazine-none', val: 'Хавтас бүрэлтгүй' },
+                        { key: 'form-coating-magazine-matte', val: 'Хавтас матт бүрэлттэй' },
+                        { key: 'form-coating-magazine-glossy', val: 'Хавтас гялгар бүрэлттэй' }
+                    ],
+                    showPages: true,
+                    showCover: true,
+                    showBinding: true,
+                    showFoil: true,
+                    showSpotUV: true,
                     showPrintType: false,
                     showDeliveryDate: true,
                     showPrepress: true
@@ -622,6 +702,9 @@
                 }
 
                 // Show/Hide Fields
+                document.getElementById('pages-group').style.display = config.showPages ? 'block' : 'none';
+                document.getElementById('cover-group').style.display = config.showCover ? 'block' : 'none';
+                document.getElementById('binding-group').style.display = config.showBinding ? 'block' : 'none';
                 document.getElementById('folding-group').style.display = config.showFolding ? 'block' : 'none';
                 document.getElementById('varnish-group').style.display = config.showVarnish ? 'block' : 'none';
                 document.getElementById('foil-group').style.display = config.showFoil !== false ? 'block' : 'none';
@@ -640,6 +723,30 @@
                 }
                 if (config.labelCoating) {
                     document.querySelector('#coating-group label').textContent = config.labelCoating;
+                }
+
+                // Update Pages options
+                if (config.pages) {
+                    const pagesSelect = document.getElementById('pages-select');
+                    pagesSelect.innerHTML = '';
+                    config.pages.forEach(p => {
+                        const opt = document.createElement('option');
+                        opt.setAttribute('data-i18n', p.key);
+                        opt.textContent = p.val;
+                        pagesSelect.appendChild(opt);
+                    });
+                }
+
+                // Update Cover options
+                if (config.covers) {
+                    const coverSelect = document.getElementById('cover-select');
+                    coverSelect.innerHTML = '';
+                    config.covers.forEach(c => {
+                        const opt = document.createElement('option');
+                        opt.setAttribute('data-i18n', c.key);
+                        opt.textContent = c.val;
+                        coverSelect.appendChild(opt);
+                    });
                 }
 
                 // Update Coating options for Lamination
@@ -714,6 +821,33 @@
                 document.getElementById('summary-coating').textContent = getText('coating');
                 document.getElementById('summary-quantity').textContent = getText('quantity');
 
+                // Page Count
+                const pages = getText('pages');
+                if (pages && document.getElementById('pages-group').style.display !== 'none') {
+                    document.getElementById('summary-pages-item').style.display = 'block';
+                    document.getElementById('summary-pages').textContent = pages;
+                } else {
+                    document.getElementById('summary-pages-item').style.display = 'none';
+                }
+
+                // Cover
+                const cover = getText('cover');
+                if (cover && document.getElementById('cover-group').style.display !== 'none') {
+                    document.getElementById('summary-cover-item').style.display = 'block';
+                    document.getElementById('summary-cover').textContent = cover;
+                } else {
+                    document.getElementById('summary-cover-item').style.display = 'none';
+                }
+
+                // Binding
+                const binding = getText('binding');
+                if (binding && document.getElementById('binding-group').style.display !== 'none') {
+                    document.getElementById('summary-binding-item').style.display = 'block';
+                    document.getElementById('summary-binding').textContent = binding;
+                } else {
+                    document.getElementById('summary-binding-item').style.display = 'none';
+                }
+
                 // Additional Brochure Fields
                 const folding = getText('folding');
                 if (folding && document.getElementById('folding-group').style.display !== 'none') {
@@ -783,11 +917,23 @@ Delivery: ${contactData.get('delivery_method') === 'pickup' ? 'Pick up' : 'Deliv
 
 *Order Details:*
 Product: ${orderDetails.Product}
-Format: ${orderDetails.Format}
-Paper: ${orderDetails.Paper}
-Coating: ${orderDetails.Coating}
-Quantity: ${orderDetails.Quantity}
 `;
+                if (config.showPrintType !== false) messageText += `Print Type: ${orderDetails.PrintType}\n`;
+                messageText += `Format: ${orderDetails.Format}\n`;
+                if (config.showPages) messageText += `Page Count: ${getText('pages')}\n`;
+                if (config.showCover) messageText += `Cover: ${getText('cover')}\n`;
+                if (config.showBinding) messageText += `Binding: ${getText('binding')}\n`;
+                if (config.papers && config.papers.length > 0) messageText += `Paper: ${orderDetails.Paper}\n`;
+                if (config.showCoating !== false) messageText += `Coating: ${orderDetails.Coating}\n`;
+                if (config.showFolding) messageText += `Folding: ${orderDetails.Folding}\n`;
+                if (config.showVarnish) messageText += `Varnish: ${orderDetails.Varnish}\n`;
+                if (formData.get('spot_uv')) messageText += `Spot UV: Yes\n`;
+                if (formData.get('foil')) messageText += `Foil: Yes\n`;
+                messageText += `Quantity: ${orderDetails.Quantity}\n`;
+                if (config.showPrepress !== false) messageText += `Prepress: ${getText('prepress')}\n`;
+                if (config.showDeliveryDate !== false) messageText += `Delivery Date: ${formData.get('delivery_date')}\n`;
+                if (formData.get('notes')) messageText += `\nNotes: ${formData.get('notes')}\n`;
+
 
                 if (document.getElementById('summary-folding-item').style.display !== 'none') {
                     messageText += `Folding: ${orderDetails.Folding}\n`;
