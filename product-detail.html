@@ -455,10 +455,11 @@
             // 2. Validate ID and get Name Key
             const nameKey = productKeys[productId] || 'product-name-card';
 
-            // 3. Construct Image Paths (Assuming standard naming: id.jpg, id_2.jpg, id_3.jpg)
-            const imgPath1 = `assets/images/${productId}.jpg`;
-            const imgPath2 = `assets/images/${productId}_2.jpg`;
-            const imgPath3 = `assets/images/${productId}_3.jpg`;
+            // 3. Construct Image Paths
+            const config = productConfigs[productId] || productConfigs['default'];
+            let imgPath1 = config.images ? config.images[0] : `assets/images/${productId}.jpg`;
+            let imgPath2 = config.images ? config.images[1] : `assets/images/${productId}_2.jpg`;
+            let imgPath3 = config.images ? config.images[2] : `assets/images/${productId}_3.jpg`;
 
             // 4. Update DOM Elements
             // Breadcrumb
@@ -518,12 +519,18 @@
                     showFoil: false,
                     showSpotUV: false,
                     showPrintType: false,
-                    showDeliveryDate: true
+                    showDeliveryDate: true,
+                    showPrepress: true
                 },
                 'lamination': {
                     formats: [
                         { key: 'form-lamination-size-44', val: '44 см ( 22 микрон, 4000м )' },
                         { key: 'form-lamination-size-54', val: '54 см ( 22 микрон, 4000м )' }
+                    ],
+                    images: [
+                        'assets/images/lamination bopp1.jpg',
+                        'assets/images/lamination bopp2.jpg',
+                        'assets/images/lamination bopp3.jpg'
                     ],
                     quantities: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
                     papers: [], // No paper choice
@@ -539,6 +546,7 @@
                     showDeliveryDate: false,
                     showDeliveryInfo: true,
                     showCoating: true,
+                    showPrepress: false,
                     customPrice: 390000,
                     labelFormat: 'Хэмжээ',
                     labelCoating: 'Төрөл'
@@ -557,7 +565,8 @@
                     showVarnish: false,
                     showFoil: true,
                     showSpotUV: true,
-                    showPrintType: true
+                    showPrintType: true,
+                    showPrepress: true
                 }
             };
 
@@ -602,6 +611,7 @@
                 document.getElementById('foil-group').style.display = config.showFoil !== false ? 'block' : 'none';
                 document.getElementById('spot-uv-group').style.display = config.showSpotUV !== false ? 'block' : 'none';
                 document.getElementById('print-type-group').style.display = config.showPrintType !== false ? 'block' : 'none';
+                document.getElementById('prepress-group').style.display = config.showPrepress !== false ? 'block' : 'none';
 
                 // Lamination specific visibility
                 document.getElementById('paper-group').style.display = config.papers && config.papers.length > 0 ? 'block' : 'none';
@@ -632,6 +642,13 @@
                 if (config.customPrice) {
                     const qtySelect = document.getElementById('quantity-select');
                     const priceDisplay = document.getElementById('lamination-price');
+                    const submitBtn = document.querySelector('.submit-order-btn');
+
+                    // Change button text for inventory
+                    submitBtn.setAttribute('data-i18n', 'form-send-order-inventory');
+                    if (typeof setLanguage === 'function') {
+                        setLanguage(savedLang);
+                    }
 
                     const updatePrice = () => {
                         const qty = parseInt(qtySelect.value) || 0;

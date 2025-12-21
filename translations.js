@@ -122,6 +122,7 @@ const translations = {
         "form-format-b3": "B3 (353×500мм)",
         "form-quote-amount": "Үнийн дүн (₮)",
         "form-send-order": "Хүсэлт илгээх",
+        "form-send-order-inventory": "Захиалга илгээх",
 
         /* Modal Translations */
         "modal-title": "Хүсэлт илгээх",
@@ -273,6 +274,7 @@ const translations = {
         "form-format-b3": "B3 (353×500mm)",
         "form-quote-amount": "Estimated Quote (₮)",
         "form-send-order": "Submit Request",
+        "form-send-order-inventory": "Send Order",
 
         /* Modal Translations */
         "modal-title": "Submit Request",
@@ -424,6 +426,7 @@ const translations = {
         "form-format-b3": "B3 (353×500mm)",
         "form-quote-amount": "预估报价 (₮)",
         "form-send-order": "提交请求",
+        "form-send-order-inventory": "发送订单",
 
         /* Modal Translations */
         "modal-title": "提交请求",
