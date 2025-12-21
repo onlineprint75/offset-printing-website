@@ -468,8 +468,8 @@ footer {
 
 .footer-col:nth-child(3) {
     position: relative;
-    left: -10px;
-    /* Move 10px left */
+    left: -20px;
+    /* Moved 10px more left (total 20px) */
 }
 
 .footer-col h4 {
