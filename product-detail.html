@@ -398,6 +398,9 @@
                         <div class="summary-item">
                             <strong data-i18n="modal-paper">Цаасны төрөл:</strong> <span id="summary-paper"></span>
                         </div>
+                        <div class="summary-item">
+                            <strong data-i18n="modal-coating">Бүрэлт:</strong> <span id="summary-coating"></span>
+                        </div>
                         <div class="summary-item" id="summary-folding-item" style="display: none;">
                             <strong data-i18n="form-folding">Нугалаа:</strong> <span id="summary-folding"></span>
                         </div>
@@ -603,10 +606,6 @@
                     }
                     return formData.get(name);
                 };
-
-                // Populate Summary
-                // Update product name in summary dynamically based on current title
-                document.getElementById('summary-product').textContent = document.querySelector('.product-form-card h2').textContent;
 
                 // Populate Summary
                 // Update product name in summary dynamically based on current title
