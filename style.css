@@ -114,6 +114,24 @@ header {
     gap: 30px;
 }
 
+.mobile-menu-header,
+.menu-divider {
+    display: none;
+}
+
+/* On desktop, the card container should be neutral */
+.mobile-menu-card {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+    width: auto;
+    max-width: none;
+}
+
 .menu-toggle {
     display: none;
     background: white;
