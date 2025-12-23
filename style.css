@@ -11,7 +11,7 @@
     /* Replicated from ppm32.mn */
     --text-white: #FFFFFF;
     --text-muted: #666666;
-    --header-height: 70px;
+    --header-height: 58px;
     --transition-fast: 0.3s ease;
     --pill-bg: #f8f9fa;
     --pill-border: #eeeeee;
@@ -63,7 +63,7 @@ header {
 }
 
 .logo img {
-    height: 50px;
+    height: 42px;
     width: auto;
     display: block;
 }
@@ -112,9 +112,9 @@ header {
     align-items: center;
     background: var(--pill-bg);
     border: 1px solid var(--pill-border);
-    padding: 4px 4px 4px 15px;
+    padding: 3px 3px 3px 12px;
     border-radius: 50px;
-    gap: 15px;
+    gap: 12px;
 }
 
 .nav-pill ul {
@@ -126,7 +126,7 @@ header {
 }
 
 .nav-pill a {
-    font-size: 0.85rem;
+    font-size: 0.72rem;
     font-weight: 500;
     color: var(--text-main);
     text-decoration: none;
@@ -141,10 +141,10 @@ header {
 .nav-pill .btn-pill {
     background: var(--primary-color);
     color: white !important;
-    padding: 8px 18px;
+    padding: 6px 15px;
     border-radius: 50px;
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 0.68rem;
 }
 
 .support-info {
@@ -153,13 +153,13 @@ header {
 
 .support-info .phone {
     display: block;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--text-main);
 }
 
 .support-info .label {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     color: var(--text-muted);
 }
 
@@ -171,12 +171,12 @@ header {
 .lang-btn {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 8px 15px;
+    gap: 8px;
+    padding: 6px 12px;
     background: white;
     border: 1px solid var(--pill-border);
     border-radius: 50px;
-    font-size: 0.9rem;
+    font-size: 0.75rem;
     font-weight: 500;
 }
 
