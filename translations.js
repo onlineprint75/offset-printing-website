@@ -222,7 +222,19 @@ const translations = {
         "form-lamination-size-54": "54 см ( 22 микрон, 4000м )",
         "form-lamination-type-matte": "Матт",
         "form-lamination-type-glossy": "Гялгар",
-        "form-delivery-1-2": "Ажлын 1-2 хоногт"
+        "form-lamination-type-matte": "Матт",
+        "form-lamination-type-glossy": "Гялгар",
+        "form-delivery-1-2": "Ажлын 1-2 хоногт",
+
+        /* Invoice Specific */
+        "form-paper-selection": "Цаасны сонголт",
+        "form-paper-2-copy": "2 хувь",
+        "form-paper-3-copy": "3 хувь",
+        "form-paper-4-copy": "4 хувь",
+        "form-target-price": "Үнийн санал (₮)",
+        "form-target-price-placeholder": "Таны санал болгож буй үнэ (сонголттой)",
+        "form-target-price-hint": "Таны санал болгож буй үнэ. Хоосон орхиж болно.",
+        "form-delivery-3-days": "Хүргэлтийн хугацаа: 3 хоног"
     },
     en: {
         "nav-home": "Home",
@@ -446,7 +458,19 @@ const translations = {
         "form-lamination-size-54": "54 cm ( 22 micron, 4000m )",
         "form-lamination-type-matte": "Matte",
         "form-lamination-type-glossy": "Glossy",
-        "form-delivery-1-2": "1-2 business days"
+        "form-lamination-type-matte": "Matte",
+        "form-lamination-type-glossy": "Glossy",
+        "form-delivery-1-2": "1-2 business days",
+
+        /* Invoice Specific */
+        "form-paper-selection": "Paper Selection",
+        "form-paper-2-copy": "2 copies",
+        "form-paper-3-copy": "3 copies",
+        "form-paper-4-copy": "4 copies",
+        "form-target-price": "Target Price (₮)",
+        "form-target-price-placeholder": "Your estimated price (optional)",
+        "form-target-price-hint": "Your estimated price. Can be left blank.",
+        "form-delivery-3-days": "Delivery time: 3 days"
     },
     zh: {
         "nav-home": "首页",

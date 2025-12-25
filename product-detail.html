@@ -359,6 +359,15 @@
                             <div class="amount" id="lamination-price">0₮</div>
                         </div>
 
+                        <div class="form-group" id="target-price-group" style="display: none;">
+                            <label data-i18n="form-target-price">Үнийн санал (₮)</label>
+                            <input type="text" name="target_price" data-i18n-placeholder="form-target-price-placeholder"
+                                placeholder="Таны санал болгож буй үнэ (сонголттой)">
+                            <small data-i18n="form-target-price-hint"
+                                style="display: block; margin-top: 5px; color: #666; font-size: 0.85em;">Таны санал
+                                болгож буй үнэ. Хоосон орхиж болно.</small>
+                        </div>
+
                         <button type="submit" class="btn btn-primary submit-order-btn"
                             data-i18n="form-send-order">Хүсэлт илгээх</button>
                     </form>
@@ -901,9 +910,16 @@
                     ],
                     quantities: [500, 1000, 3000, 5000, 10000, 20000],
                     papers: [
-                        { key: 'form-paper-carbonless', val: 'Хортой цаас' }
+                        { key: 'form-folding-select', val: 'Сонгох' },
+                        { key: 'form-paper-2-copy', val: '2 хувь' },
+                        { key: 'form-paper-3-copy', val: '3 хувь' },
+                        { key: 'form-paper-4-copy', val: '4 хувь' }
                     ],
+                    labelPaper: 'form-paper-selection',
                     showNumbered: true,
+                    showTargetPrice: true,
+                    showDeliveryInfo: true,
+                    deliveryText: 'form-delivery-3-days',
                     showPrepress: true,
                     showPrintType: false
                 }
@@ -999,6 +1015,14 @@
                     foilGroup.querySelector('span[data-i18n]').setAttribute('data-i18n', 'form-foil');
                 }
 
+                // Logic for Paper Label
+                const paperLabel = document.querySelector('#paper-group label');
+                if (config.labelPaper) {
+                    paperLabel.setAttribute('data-i18n', config.labelPaper);
+                } else {
+                    paperLabel.setAttribute('data-i18n', 'form-paper');
+                }
+
                 // Logic for Spot UV (Checkbox)
                 const spotUVGroup = document.getElementById('spot-uv-group');
                 spotUVGroup.style.display = config.showSpotUV !== false ? 'block' : 'none';
@@ -1015,11 +1039,20 @@
                 document.getElementById('cut-select-group').style.display = config.showCutSelect ? 'block' : 'none';
                 document.getElementById('cut-checkbox-group').style.display = config.showCutCheckbox ? 'block' : 'none';
                 document.getElementById('numbered-group').style.display = config.showNumbered ? 'block' : 'none';
+                document.getElementById('target-price-group').style.display = config.showTargetPrice ? 'block' : 'none';
 
                 // Lamination specific visibility
                 document.getElementById('paper-group').style.display = config.papers && config.papers.length > 0 ? 'block' : 'none';
                 document.getElementById('delivery-date-group').style.display = config.showDeliveryDate !== false ? 'block' : 'none';
                 document.getElementById('delivery-info-group').style.display = config.showDeliveryInfo ? 'block' : 'none';
+
+                // Delivery Info Text Update
+                if (config.showDeliveryInfo && config.deliveryText) {
+                    document.querySelector('.delivery-badge').setAttribute('data-i18n', config.deliveryText);
+                } else {
+                    document.querySelector('.delivery-badge').setAttribute('data-i18n', 'form-delivery-1-2');
+                }
+
                 document.getElementById('lamination-price-display').style.display = config.customPrice ? 'flex' : 'none';
 
                 if (config.labelFormat) {
