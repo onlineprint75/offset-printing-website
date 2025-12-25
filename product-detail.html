@@ -1372,10 +1372,38 @@
                             titleEl.removeAttribute('data-i18n');
                         }
 
-                        // Update Image
+                        // Update Image Gallery
+                        const galleryGrid = document.querySelector('.thumbnail-grid');
                         const mainImg = document.getElementById('current-main-img');
-                        if (mainImg && data.img) {
+
+                        if (data.images && data.images.length > 0) {
+                            // Set Main Image
+                            mainImg.src = data.images[0];
+
+                            // Build Thumbnails
+                            if (galleryGrid) {
+                                galleryGrid.innerHTML = '';
+                                data.images.forEach((url, index) => {
+                                    const thumbDiv = document.createElement('div');
+                                    thumbDiv.className = `thumb ${index === 0 ? 'active' : ''}`;
+                                    thumbDiv.style.cursor = 'pointer';
+
+                                    // Custom click handler to switch image
+                                    thumbDiv.onclick = function () {
+                                        mainImg.src = url;
+                                        // Update active class
+                                        document.querySelectorAll('.thumbnail-grid .thumb').forEach(t => t.classList.remove('active'));
+                                        this.classList.add('active');
+                                    };
+
+                                    thumbDiv.innerHTML = `<img src="${url}" alt="Product Image ${index + 1}" style="width:100px; height:auto;">`;
+                                    galleryGrid.appendChild(thumbDiv);
+                                });
+                            }
+                        } else if (data.img) {
+                            // Fallback for single image products
                             mainImg.src = data.img;
+                            if (galleryGrid) galleryGrid.innerHTML = ''; // Hide thumbs if only 1 image
                         }
 
                         // Update Breadcrumb

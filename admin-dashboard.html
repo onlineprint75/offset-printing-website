@@ -51,12 +51,12 @@
             opacity: 0.9;
         }
 
-        #preview-container {
+        .preview-container {
             margin-top: 10px;
             max-width: 200px;
         }
 
-        #preview-img {
+        .preview-img {
             width: 100%;
             display: none;
             border-radius: 6px;
@@ -95,10 +95,26 @@
             </div>
 
             <div class="form-group">
-                <label>Зураг оруулах</label>
-                <input type="file" id="p-image" accept="image/*" required>
-                <div id="preview-container">
-                    <img id="preview-img" src="" alt="Preview">
+                <label>Зураг 1 (Үндсэн - Заавал)</label>
+                <input type="file" id="p-image-1" accept="image/*" required>
+                <div class="preview-container">
+                    <img id="preview-img-1" class="preview-img" src="" alt="Preview 1">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Зураг 2 (Нэмэлт - Сонгох)</label>
+                <input type="file" id="p-image-2" accept="image/*">
+                <div class="preview-container">
+                    <img id="preview-img-2" class="preview-img" src="" alt="Preview 2">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Зураг 3 (Нэмэлт - Сонгох)</label>
+                <input type="file" id="p-image-3" accept="image/*">
+                <div class="preview-container">
+                    <img id="preview-img-3" class="preview-img" src="" alt="Preview 3">
                 </div>
             </div>
 
@@ -113,41 +129,57 @@
         import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
         const form = document.getElementById('add-product-form');
-        const fileInput = document.getElementById('p-image');
-        const previewImg = document.getElementById('preview-img');
         const statusMsg = document.getElementById('status-msg');
         const submitBtn = document.getElementById('submit-btn');
 
-        // Image Preview
-        fileInput.addEventListener('change', function (e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    previewImg.src = e.target.result;
-                    previewImg.style.display = 'block';
+        // Setup previews
+        [1, 2, 3].forEach(num => {
+            const input = document.getElementById(`p-image-${num}`);
+            const img = document.getElementById(`preview-img-${num}`);
+            input.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        img.src = e.target.result;
+                        img.style.display = 'block';
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    img.style.display = 'none';
                 }
-                reader.readAsDataURL(file);
-            }
+            });
         });
 
         // Upload Logic
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const file = fileInput.files[0];
-            if (!file) return;
+            const file1 = document.getElementById('p-image-1').files[0];
+            const file2 = document.getElementById('p-image-2').files[0];
+            const file3 = document.getElementById('p-image-3').files[0];
+
+            if (!file1) {
+                alert("Үндсэн зураг заавал оруулна уу.");
+                return;
+            }
 
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Уншиж байна...';
+            submitBtn.textContent = 'Уншиж байна (Uploading)...';
             statusMsg.textContent = '';
             statusMsg.style.color = '#333';
 
             try {
-                // 1. Upload Image to Storage
-                const storageRef = ref(storage, 'products/' + new Date().getTime() + '_' + file.name);
-                const snapshot = await uploadBytes(storageRef, file);
-                const downloadURL = await getDownloadURL(snapshot.ref);
+                const imageUrls = [];
+                const files = [file1, file2, file3].filter(f => f); // Only existing files
+
+                // Upload all files
+                for (const file of files) {
+                    const storageRef = ref(storage, 'products/' + new Date().getTime() + '_' + file.name);
+                    const snapshot = await uploadBytes(storageRef, file);
+                    const url = await getDownloadURL(snapshot.ref);
+                    imageUrls.push(url);
+                }
 
                 // 2. Save Data to Firestore
                 await addDoc(collection(db, "products"), {
@@ -155,14 +187,15 @@
                     desc: document.getElementById('p-desc').value,
                     price: document.getElementById('p-price').value,
                     stock: document.getElementById('p-stock').value,
-                    img: downloadURL,
+                    img: imageUrls[0], // Main image for thumbnail backward compatibility
+                    images: imageUrls, // Array of all images
                     createdAt: serverTimestamp()
                 });
 
                 statusMsg.textContent = 'Амжилттай нэмэгдлээ!';
                 statusMsg.style.color = 'green';
                 form.reset();
-                previewImg.style.display = 'none';
+                [1, 2, 3].forEach(n => document.getElementById(`preview-img-${n}`).style.display = 'none');
 
             } catch (error) {
                 console.error("Error: ", error);
