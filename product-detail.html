@@ -1241,6 +1241,7 @@
             });
 
             // Final Submit
+            // Final Submit
             modalForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const btn = modalForm.querySelector('.submit-final-btn');
@@ -1263,22 +1264,29 @@
                     Notes: document.querySelector('[name="notes"]').value
                 };
 
-                // GATHER WHATSAPP DATA
-                const PHONE_NUMBER = '97699906069'; // Updated to user's number
+                // Prepare Data for Google Sheet
+                const sheetData = {
+                    Product: orderDetails.Product,
+                    Name: contactData.get('contact_name'),
+                    Phone: contactData.get('contact_phone'),
+                    Email: contactData.get('contact_email'),
+                    Company: contactData.get('contact_company') || '',
+                    Details: `Format: ${orderDetails.Format}, Qty: ${orderDetails.Quantity}, Paper: ${orderDetails.Paper}, Coating: ${orderDetails.Coating}, Notes: ${orderDetails.Notes}`
+                };
 
-                let messageText = `
-*New Order Received!*
+                // Helper to get text from select option
+                const getText = (name) => {
+                    const select = mainForm.querySelector(`[name="${name}"]`);
+                    if (select && select.tagName === 'SELECT') {
+                        return select.options[select.selectedIndex].text;
+                    }
+                    return formData.get(name);
+                };
 
-*Customer Info:*
-Name: ${contactData.get('contact_name')}
-Email: ${contactData.get('contact_email')}
-Phone: ${contactData.get('contact_phone')}
-Company: ${contactData.get('contact_company') || 'N/A'}
-Delivery: ${contactData.get('delivery_method') === 'pickup' ? 'Pick up' : 'Delivery'}
+                // GATHER WHATSAPP DATA (formatted message)
+                const PHONE_NUMBER = '97699906069';
+                let messageText = `*New Order Received!*\n\n*Customer Info:*\nName: ${contactData.get('contact_name')}\nEmail: ${contactData.get('contact_email')}\nPhone: ${contactData.get('contact_phone')}\nCompany: ${contactData.get('contact_company') || 'N/A'}\nDelivery: ${contactData.get('delivery_method') === 'pickup' ? 'Pick up' : 'Delivery'}\n\n*Order Details:*\nProduct: ${orderDetails.Product}\n`;
 
-*Order Details:*
-Product: ${orderDetails.Product}
-`;
                 if (config.showPrintType !== false) messageText += `Print Type: ${orderDetails.PrintType}\n`;
                 messageText += `Format: ${orderDetails.Format}\n`;
                 if (config.showPages) messageText += `Page Count: ${getText('pages')}\n`;
@@ -1288,25 +1296,50 @@ Product: ${orderDetails.Product}
                 if (config.showCoating !== false) messageText += `Coating: ${orderDetails.Coating}\n`;
                 if (config.showFolding) messageText += `Folding: ${orderDetails.Folding}\n`;
                 if (config.showVarnish) messageText += `Varnish: ${orderDetails.Varnish}\n`;
-                if (formData.get('spot_uv')) messageText += `Spot UV: Yes\n`;
-                if (formData.get('foil')) messageText += `Foil: Yes\n`;
+                if (new FormData(mainForm).get('spot_uv')) messageText += `Spot UV: Yes\n`;
+                if (new FormData(mainForm).get('foil')) messageText += `Foil: Yes\n`;
                 messageText += `Quantity: ${orderDetails.Quantity}\n`;
                 if (config.showPrepress !== false) messageText += `Prepress: ${getText('prepress')}\n`;
-                if (config.showDeliveryDate !== false) messageText += `Delivery Date: ${formData.get('delivery_date')}\n`;
-                if (formData.get('notes')) messageText += `\nNotes: ${formData.get('notes')}\n`;
+                if (config.showDeliveryDate !== false) messageText += `Delivery Date: ${new FormData(mainForm).get('delivery_date')}\n`;
+                if (config.showTargetPrice) messageText += `Target Price: ${new FormData(mainForm).get('target_price')}\n`;
+                if (new FormData(mainForm).get('notes')) messageText += `\nNotes: ${new FormData(mainForm).get('notes')}\n`;
 
-                // Open WhatsApp
-                const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(messageText.trim())}`;
-                window.open(whatsappUrl, '_blank');
+                // Update sheetData Details with full message for clearer log
+                sheetData.Details = messageText;
 
-                // Reset UI
-                setTimeout(() => {
-                    alert('WhatsApp нээгдлээ. Та "Send" товчийг дарж захиалгаа баталгаажуулна уу. (WhatsApp opened. Please click Send to confirm order).');
-                    modal.classList.remove('active');
-                    btn.textContent = originalText;
-                    btn.disabled = false;
-                    modalForm.reset();
-                }, 1000);
+                // Send to Google Sheet
+                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwvvVfS0avc0BRCH4Z1EdTNtvNBSZ99u8Vyyha3wTHO0g-dyURfd71m6DDBLGZanoj2zA/exec';
+
+                fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Important for Google Apps Script simple triggers
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(sheetData)
+                })
+                    .then(response => {
+                        // Success handling
+                        alert('Захиалга амжилттай илгээгдлээ! (Order sent successfully!)');
+
+                        // Optional: Still open WhatsApp as a convenience?
+                        // User asked to "collect in google sheet". I will keep WhatsApp as a fallback/secondary contact method but only alert success for now.
+                        // Or I can offer the button "Open WhatsApp" in a success message?
+                        // For now, I'll Open WhatsApp as well, as it's a "Quote Request" often needing discussion.
+                        const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(messageText.trim())}`;
+                        window.open(whatsappUrl, '_blank');
+
+                        modal.classList.remove('active');
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                        modalForm.reset();
+                    })
+                    .catch(error => {
+                        console.error('Error!', error.message);
+                        alert('Something went wrong. Please call us directly.');
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                    });
             });
         });
     </script>
