@@ -922,9 +922,11 @@
                     deliveryText: 'form-delivery-3-days',
                     showPrepress: true,
                     showPrintType: false,
+                    showPrintType: false,
                     showVarnish: false,
                     showFoil: false,
-                    showSpotUV: false
+                    showSpotUV: false,
+                    showCoating: false
                 }
             };
 
@@ -1037,6 +1039,7 @@
 
                 document.getElementById('print-type-group').style.display = config.showPrintType !== false ? 'block' : 'none';
                 document.getElementById('prepress-group').style.display = config.showPrepress !== false ? 'block' : 'none';
+                document.getElementById('coating-group').style.display = config.showCoating !== false ? 'block' : 'none';
 
                 // New Groups
                 document.getElementById('cut-select-group').style.display = config.showCutSelect ? 'block' : 'none';
