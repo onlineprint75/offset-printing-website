@@ -1343,6 +1343,63 @@
             });
         });
     </script>
+
+    <!-- Firebase Dynamic Product Loader -->
+    <script type="module">
+        import { db } from './firebase-config.js';
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        const source = urlParams.get('source');
+
+        if (source === 'firebase' && productId) {
+
+            async function loadFirebaseProduct() {
+                try {
+                    const docRef = doc(db, "products", productId);
+                    const docSnap = await getDoc(docRef);
+
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+
+                        // Update Page Title and Header
+                        document.title = `PPM | ${data.name}`;
+                        const titleEl = document.querySelector('.product-form-card h2');
+                        if (titleEl) {
+                            titleEl.textContent = data.name;
+                            // Remove i18n attribute to prevent overwrite by translation script
+                            titleEl.removeAttribute('data-i18n');
+                        }
+
+                        // Update Image
+                        const mainImg = document.getElementById('current-main-img');
+                        if (mainImg && data.img) {
+                            mainImg.src = data.img;
+                        }
+
+                        // Update Breadcrumb
+                        const breadcrumbSpan = document.querySelector('.breadcrumb span[data-i18n]');
+                        if (breadcrumbSpan) {
+                            breadcrumbSpan.textContent = data.name;
+                            breadcrumbSpan.removeAttribute('data-i18n');
+                        }
+
+                        // Optional: If you want to show description, you might need to find a place for it.
+                        // Currently product-detail.html doesn't seem to have a dedicated description area in the form, 
+                        // but we can inject it if needed. For now, matching the form title and image is sufficient for the Order flow.
+
+                    } else {
+                        console.log("No such product!");
+                    }
+                } catch (error) {
+                    console.error("Error getting product:", error);
+                }
+            }
+
+            loadFirebaseProduct();
+        }
+    </script>
 </body>
 
 </html>

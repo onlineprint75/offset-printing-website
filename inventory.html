@@ -177,42 +177,61 @@
 
             <div class="product-grid">
                 <!-- 12 Inventory Items -->
-                <script>
-                    const materials = [
-                        { id: "lamination", name: "Бүрэлт (Lamination BOPP)", desc: "Халуун бүрэлтний материал, матт, гялгар, илгэн", img: "assets/images/lamination bopp1.jpg", price: "390,000₮", stock: "20 ширхэг" },
-                        { id: "paper-150", name: "Шохойтой цаас (150гр)", desc: "Нөөц боломжтой. Хэмжээ: 64x90 см, 70x100 см г.м", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
-                        { id: "paper-300", name: "Шохойтой цаас (300гр)", desc: "Нөөц боломжтой. Хэмжээ: 64x90 см, 70x100 см г.м", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
-                        { id: "paper-80", name: "Офсет цаас (80гр)", desc: "Бичгийн цаас, офсет хэвлэлийн цаас", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
-                        { id: "cardboard", name: "Картон цаас", desc: "Сав баглаа боодол, хайрцагт зориулсан", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
-                        { id: "silver-paper", name: "Мөнгөлөг цаас", desc: "Тусгай хэвлэл, чимэглэлийн цаас", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
-                        { id: "gold-paper", name: "Алтан шаргал цаас", desc: "Тусгай хэвлэл, чимэглэлийн цаас", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
-                        { id: "sticker-paper", name: "Наалддаг цаас", desc: "Шошго, стикерт зориулсан", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
-                        { id: "kraft-paper", name: "Крафт цаас", desc: "Цаасан тор, эко савлагаанд зориулсан", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
-                        { id: "patterned-paper", name: "Хээтэй цаас", desc: "Урилга, мэндчилгээнд зориулсан", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
-                        { id: "matte-paper", name: "Матт бүрэлттэй цаас", desc: "Төрөл бүрийн хэвлэлд зориулсан", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" },
-                        { id: "special-paper", name: "Тусгай цаас", desc: "Дизайны тусгай шийдэлтэй цаас", img: "assets/images/product.png", price: "Холбогдож авах", stock: "Байгаа" }
-                    ];
-                    const grid = document.currentScript.parentElement;
-                    materials.forEach(m => {
-                        grid.innerHTML += `
-                            <div class="product-card">
-                                <a href="product-detail.html?id=${m.id}" class="product-img">
-                                    <img src="${m.img}" alt="${m.name}">
-                                </a>
-                                <div class="product-info">
-                                    <h3>${m.name}</h3>
-                                    <div class="stock-status">Нөөц: ${m.stock}</div>
-                                    <p>${m.desc}</p>
-                                    <div class="product-footer">
-                                        <div class="product-price">${m.price}</div>
-                                        <a href="product-detail.html?id=${m.id}" class="order-btn-link">
-                                            Захиалах <i class="fas fa-chevron-right"></i>
+                <script type="module">
+                    import { db } from './firebase-config.js';
+                    import { collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+                    const grid = document.querySelector('.product-grid');
+                    // Clear initial loading state or static content if any (keeping the script tag inside the grid in original code was a bit odd, but we'll append to grid)
+                    // The original code had the script INSIDE the grid div. We should probably target the grid explicitly.
+                    // Let's assume the script is replacing the content generation.
+
+                    async function loadProducts() {
+                        try {
+                            const q = query(collection(db, "products"), orderBy("createdAt", "desc"));
+                            const querySnapshot = await getDocs(q);
+
+                            if (querySnapshot.empty) {
+                                grid.innerHTML = '<p style="text-align:center; width:100%;">Одоогоор бараа байхгүй байна.</p>';
+                                return;
+                            }
+
+                            // Clear existing static content if we want to replace it entirely
+                            // For now, let's Append or Replace? 
+                            // User said: "Fetch from Firestore". Usually implies replacing static data.
+                            // I will clear the grid first.
+                            grid.innerHTML = '';
+
+                            querySnapshot.forEach((doc) => {
+                                const m = doc.data();
+                                const id = doc.id; // Firestore ID
+
+                                grid.innerHTML += `
+                                    <div class="product-card">
+                                        <a href="product-detail.html?id=${id}&source=firebase" class="product-img">
+                                            <img src="${m.img}" alt="${m.name}" style="object-fit: cover;">
                                         </a>
+                                        <div class="product-info">
+                                            <h3>${m.name}</h3>
+                                            <div class="stock-status">Нөөц: ${m.stock}</div>
+                                            <p>${m.desc}</p>
+                                            <div class="product-footer">
+                                                <div class="product-price">${m.price}</div>
+                                                <a href="product-detail.html?id=${id}&source=firebase" class="order-btn-link">
+                                                    Захиалах <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        `;
-                    });
+                                `;
+                            });
+                        } catch (error) {
+                            console.error("Error loading products:", error);
+                            grid.innerHTML = '<p>Барааг ачааллахад алдаа гарлаа.</p>';
+                        }
+                    }
+
+                    loadProducts();
                 </script>
             </div>
         </section>

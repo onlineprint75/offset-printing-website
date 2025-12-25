@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="mn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPM Admin | Бараа нэмэх</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/Logo--ani-02.svg" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .admin-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .btn-upload {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .btn-upload:hover {
+            opacity: 0.9;
+        }
+
+        #preview-container {
+            margin-top: 10px;
+            max-width: 200px;
+        }
+
+        #preview-img {
+            width: 100%;
+            display: none;
+            border-radius: 6px;
+        }
+
+        .status-msg {
+            margin-top: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="admin-container">
+        <h2>Шинэ бараа нэмэх</h2>
+        <form id="add-product-form">
+            <div class="form-group">
+                <label>Барааны нэр</label>
+                <input type="text" id="p-name" required placeholder="Жишээ: Шохойтой цаас">
+            </div>
+
+            <div class="form-group">
+                <label>Тайлбар</label>
+                <textarea id="p-desc" rows="3" required placeholder="Товч тайлбар..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Үнэ</label>
+                <input type="text" id="p-price" required placeholder="Жишээ: 15,000₮">
+            </div>
+
+            <div class="form-group">
+                <label>Нөөц</label>
+                <input type="text" id="p-stock" required placeholder="Жишээ: 50 ширхэг / Байгаа">
+            </div>
+
+            <div class="form-group">
+                <label>Зураг оруулах</label>
+                <input type="file" id="p-image" accept="image/*" required>
+                <div id="preview-container">
+                    <img id="preview-img" src="" alt="Preview">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-upload" id="submit-btn">Бараа нэмэх</button>
+            <div id="status-msg" class="status-msg"></div>
+        </form>
+    </div>
+
+    <script type="module">
+        import { db, storage } from './firebase-config.js';
+        import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+        const form = document.getElementById('add-product-form');
+        const fileInput = document.getElementById('p-image');
+        const previewImg = document.getElementById('preview-img');
+        const statusMsg = document.getElementById('status-msg');
+        const submitBtn = document.getElementById('submit-btn');
+
+        // Image Preview
+        fileInput.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    previewImg.src = e.target.result;
+                    previewImg.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Upload Logic
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Уншиж байна...';
+            statusMsg.textContent = '';
+            statusMsg.style.color = '#333';
+
+            try {
+                // 1. Upload Image to Storage
+                const storageRef = ref(storage, 'products/' + new Date().getTime() + '_' + file.name);
+                const snapshot = await uploadBytes(storageRef, file);
+                const downloadURL = await getDownloadURL(snapshot.ref);
+
+                // 2. Save Data to Firestore
+                await addDoc(collection(db, "products"), {
+                    name: document.getElementById('p-name').value,
+                    desc: document.getElementById('p-desc').value,
+                    price: document.getElementById('p-price').value,
+                    stock: document.getElementById('p-stock').value,
+                    img: downloadURL,
+                    createdAt: serverTimestamp()
+                });
+
+                statusMsg.textContent = 'Амжилттай нэмэгдлээ!';
+                statusMsg.style.color = 'green';
+                form.reset();
+                previewImg.style.display = 'none';
+
+            } catch (error) {
+                console.error("Error: ", error);
+                statusMsg.textContent = 'Алдаа гарлаа: ' + error.message;
+                statusMsg.style.color = 'red';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Бараа нэмэх';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
