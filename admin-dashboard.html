@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .admin-container {
-            max-width: 600px;
-            margin: 100px auto;
+            max-width: 800px;
+            margin: 50px auto;
             padding: 30px;
             background: #fff;
             border-radius: 12px;
@@ -91,6 +91,52 @@
             width: 30px;
             border-radius: 4px;
             cursor: pointer;
+        }
+
+        /* Product List Styles */
+        .product-list-section {
+            margin-top: 50px;
+            border-top: 2px solid #eee;
+            padding-top: 30px;
+        }
+
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .product-table th,
+        .product-table td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-table th {
+            background-color: #f9f9f9;
+            font-weight: 600;
+        }
+
+        .product-thumb-small {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .btn-delete {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-delete:hover {
+            background: #cc0000;
         }
     </style>
 </head>
@@ -173,16 +219,35 @@
             <button type="submit" class="btn-upload" id="submit-btn">Бараа нэмэх</button>
             <div id="status-msg" class="status-msg"></div>
         </form>
+
+        <!-- Product List Section -->
+        <div class="product-list-section">
+            <h3>Удирдлага (Product List)</h3>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th width="80">Зураг</th>
+                        <th>Барааны нэр</th>
+                        <th>Үнэ / Тайлбар</th>
+                        <th width="100">Үйлдэл</th>
+                    </tr>
+                </thead>
+                <tbody id="product-list-body">
+                    <!-- Data will be loaded here -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script type="module">
         import { db, storage } from './firebase-config.js';
-        import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, orderBy, query } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
         import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
         const form = document.getElementById('add-product-form');
         const statusMsg = document.getElementById('status-msg');
         const submitBtn = document.getElementById('submit-btn');
+        const productListBody = document.getElementById('product-list-body');
 
         // Dynamic Field Logic
         window.addInput = (containerId, name, placeholder) => {
@@ -218,6 +283,61 @@
                 }
             });
         });
+
+        // Fetch and Render Products
+        async function fetchProducts() {
+            productListBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Уншиж байна...</td></tr>';
+            try {
+                const q = query(collection(db, "products"), orderBy("createdAt", "desc"));
+                const querySnapshot = await getDocs(q);
+                productListBody.innerHTML = '';
+
+                if (querySnapshot.empty) {
+                    productListBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Бараа олдсонгүй (No products found).</td></tr>';
+                    return;
+                }
+
+                querySnapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                    <td><img src="${data.img}" class="product-thumb-small" alt="img"></td>
+                    <td>${data.name}</td>
+                    <td>${data.price}</td>
+                    <td><button class="btn-delete" data-id="${docSnap.id}">Устгах</button></td>
+                `;
+                    productListBody.appendChild(tr);
+                });
+
+                // Add Delete Listeners
+                document.querySelectorAll('.btn-delete').forEach(btn => {
+                    btn.addEventListener('click', async (e) => {
+                        if (confirm('Та энэ барааг устгахдаа итгэлтэй байна уу? (Are you sure you want to delete this product?)')) {
+                            const id = e.target.getAttribute('data-id');
+                            await deleteProduct(id);
+                        }
+                    });
+                });
+
+            } catch (error) {
+                console.error("Error fetching products:", error);
+                productListBody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:red;">Алдаа гарлаа.</td></tr>';
+            }
+        }
+
+        async function deleteProduct(id) {
+            try {
+                await deleteDoc(doc(db, "products", id));
+                alert('Бараа амжилттай устгагдлаа!');
+                fetchProducts(); // Refresh list
+            } catch (error) {
+                console.error("Error deleting product:", error);
+                alert('Устгахад алдаа гарлаа: ' + error.message);
+            }
+        }
+
+        // Initial Load
+        fetchProducts();
 
         // Upload Logic
         form.addEventListener('submit', async (e) => {
@@ -274,6 +394,9 @@
                 document.getElementById('formats-container').innerHTML = '<div class="dynamic-input-row"><input type="text" name="p-formats[]" placeholder="Жишээ: A4 (210x297mm)"><button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button></div>';
                 document.getElementById('types-container').innerHTML = '<div class="dynamic-input-row"><input type="text" name="p-types[]" placeholder="Жишээ: 300гр шохойтой"><button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button></div>';
                 [1, 2, 3].forEach(n => document.getElementById(`preview-img-${n}`).style.display = 'none');
+
+                // Refresh List
+                fetchProducts();
 
             } catch (error) {
                 console.error("Error: ", error);
