@@ -319,6 +319,29 @@
                             </label>
                         </div>
 
+                        <div class="form-group" id="cut-select-group" style="display: none;">
+                            <label data-i18n="form-cut">Зүсэлт</label>
+                            <select name="cut_select">
+                                <option data-i18n="form-cut-select">Зүсэлт хийх</option>
+                            </select>
+                        </div>
+
+                        <div class="form-checkbox-group" id="cut-checkbox-group" style="display: none;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="cut_checkbox">
+                                <span class="checkmark"></span>
+                                <span data-i18n="form-cut-select">Зүсэлт хийх</span>
+                            </label>
+                        </div>
+
+                        <div class="form-checkbox-group" id="numbered-group" style="display: none;">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="numbered">
+                                <span class="checkmark"></span>
+                                <span data-i18n="form-numbered">Номерлогоотой эсэх</span>
+                            </label>
+                        </div>
+
                         <div class="form-group">
                             <label data-i18n="form-notes">Тэмдэглэл</label>
                             <textarea name="notes" rows="3" data-i18n-placeholder="form-notes-placeholder"
@@ -633,6 +656,256 @@
                     showSpotUV: true,
                     showPrintType: true,
                     showPrepress: true
+                },
+                'book': {
+                    formats: [
+                        { key: 'form-format-a5', val: 'A5 (мм)' },
+                        { key: 'form-format-a4', val: 'A4 (мм)' },
+                        { key: 'form-format-b5', val: 'B5 (мм)' },
+                        { key: 'form-format-b4', val: 'B4 (мм)' }
+                    ],
+                    quantities: [300, 500, 1000, 2000, 3000, 4000, 5000],
+                    pages: [
+                        { key: 'form-pages-80', val: '80 нүүр' },
+                        { key: 'form-pages-90', val: '90 нүүр' },
+                        { key: 'form-pages-100', val: '100 нүүр' },
+                        { key: 'form-pages-110', val: '110 нүүр' },
+                        { key: 'form-pages-120', val: '120 нүүр' },
+                        { key: 'form-pages-130', val: '130 нүүр' },
+                        { key: 'form-pages-140', val: '140 нүүр' },
+                        { key: 'form-pages-150', val: '150 нүүр' },
+                        { key: 'form-pages-160', val: '160 нүүр' },
+                        { key: 'form-pages-170', val: '170 нүүр' },
+                        { key: 'form-pages-180', val: '180 нүүр' },
+                        { key: 'form-pages-190', val: '190 нүүр' },
+                        { key: 'form-pages-200', val: '200 нүүр' },
+                        { key: 'form-pages-220', val: '220 нүүр' },
+                        { key: 'form-pages-240', val: '240 нүүр' },
+                        { key: 'form-pages-260', val: '260 нүүр' },
+                        { key: 'form-pages-280', val: '280 нүүр' },
+                        { key: 'form-pages-300', val: '300 нүүр' },
+                        { key: 'form-pages-400', val: '400 нүүр' },
+                        { key: 'form-pages-500', val: '500 нүүр' }
+                    ],
+                    covers: [
+                        { key: 'form-cover-200', val: '200гр' },
+                        { key: 'form-cover-250', val: '250гр' },
+                        { key: 'form-cover-300', val: '300гр' },
+                        { key: 'form-cover-hard', val: 'Хатуу хавтас' }
+                    ],
+                    papers: [
+                        { key: 'form-paper-70', val: '70 (гр)' },
+                        { key: 'form-paper-80', val: '80 (гр)' },
+                        { key: 'form-paper-90', val: '90 (гр)' },
+                        { key: 'form-paper-105', val: '105 (гр)' },
+                        { key: 'form-paper-128', val: '128 (гр)' }
+                    ],
+                    coatings: [
+                        { key: 'form-coating-cover-none', val: 'Хавтас бүрэлтгүй' },
+                        { key: 'form-coating-cover-matte', val: 'Хавтас матт бүрэлттэй' },
+                        { key: 'form-coating-cover-glossy', val: 'Хавтас гялгар бүрэлттэй' },
+                        { key: 'form-coating-cover-suede', val: 'Хавтас илгэн бүрэлттэй' }
+                    ],
+                    showPages: true,
+                    showCover: true,
+                    showSpotUV: true,
+                    labelSpotUV: 'form-checkbox-partial-uv-cover',
+                    showPrepress: true,
+                    showPrintType: false
+                },
+                'label': {
+                    formats: [
+                        { key: 'form-format-a7', val: 'A7 (×мм)' },
+                        { key: 'form-format-a6', val: 'A6 (×мм)' },
+                        { key: 'form-format-a5', val: 'A5 (×мм)' },
+                        { key: 'form-format-b7', val: 'B7 (×мм)' },
+                        { key: 'form-format-b6', val: 'B6 (×мм)' },
+                        { key: 'form-format-b5', val: 'B5 (×мм)' }
+                    ],
+                    quantities: [500, 1000, 5000, 10000, 20000, 50000, 100000],
+                    papers: [
+                        { key: 'form-paper-sticker', val: 'Стикер (гр)' },
+                        { key: 'form-paper-80', val: '80 (гр)' },
+                        { key: 'form-paper-90', val: '90 (гр)' },
+                        { key: 'form-paper-105', val: '105 (гр)' },
+                        { key: 'form-paper-128', val: '128 (гр)' },
+                        { key: 'form-paper-157', val: '157 (гр)' },
+                        { key: 'form-paper-200', val: '200 (гр)' },
+                        { key: 'form-paper-250', val: '250 (гр)' },
+                        { key: 'form-paper-300-coated', val: '300 (гр)' }
+                    ],
+                    showVarnish: true,
+                    labelFoil: 'form-cliche-required',
+                    showFoil: true,
+                    showCutSelect: true,
+                    showPrepress: true,
+                    showPrintType: false
+                },
+                'box': {
+                    formats: [
+                        { key: 'form-format-custom', val: 'Өөрийн хэмжээгээр (Тэмдэглэлд бичих)' }
+                    ],
+                    quantities: [500, 1000, 2000, 3000, 4000, 5000, 10000],
+                    papers: [
+                        { key: 'form-paper-250', val: '250 (гр)' },
+                        { key: 'form-paper-300-coated', val: '300 (гр)' },
+                        { key: 'form-paper-350', val: '350 (гр)' }
+                    ],
+                    showVarnish: true,
+                    labelFoil: 'form-cliche-required',
+                    showFoil: true,
+                    showPrepress: true,
+                    showPrintType: false
+                },
+                'bag': {
+                    formats: [
+                        { key: 'form-format-a5', val: 'A5 (×мм)' },
+                        { key: 'form-format-a4', val: 'A4 (×мм)' },
+                        { key: 'form-format-a3', val: 'A3 (×мм)' },
+                        { key: 'form-format-b5', val: 'B5 (×мм)' },
+                        { key: 'form-format-b4', val: 'B4 (×мм)' },
+                        { key: 'form-format-b3', val: 'B3 (×мм)' }
+                    ],
+                    quantities: [100, 200, 300, 400, 500, 1000, 5000, 10000],
+                    papers: [
+                        { key: 'form-paper-200', val: '200 (гр)' },
+                        { key: 'form-paper-250', val: '250 (гр)' },
+                        { key: 'form-paper-300-coated', val: '300 (гр)' }
+                    ],
+                    showVarnish: true,
+                    labelFoil: 'form-cliche-required',
+                    showFoil: true,
+                    showPrepress: true,
+                    showPrintType: false
+                },
+                'invitation': {
+                    formats: [
+                        { key: 'form-format-a6', val: 'A6 (×мм)' },
+                        { key: 'form-format-a5', val: 'A5 (×мм)' },
+                        { key: 'form-format-a4', val: 'A4 (×мм)' },
+                        { key: 'form-format-1/3-a4', val: '1/3 - A4 (×мм)' },
+                        { key: 'form-format-b6', val: 'B6 (×мм)' },
+                        { key: 'form-format-b5', val: 'B5 (×мм)' },
+                        { key: 'form-format-b4', val: 'B4 (×мм)' }
+                    ],
+                    quantities: [100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000],
+                    papers: [
+                        { key: 'form-paper-250', val: '250 (гр)' },
+                        { key: 'form-paper-300-coated', val: '300 (гр)' },
+                        { key: 'form-paper-209-art', val: 'Арт 209 (гр)' },
+                        { key: 'form-paper-250-art', val: 'Арт 250 (гр)' }
+                    ],
+                    showFolding: true,
+                    showPrepress: true,
+                    showPrintType: false
+                },
+                'poster': {
+                    formats: [
+                        { key: 'form-format-a4', val: 'A4 (×мм)' },
+                        { key: 'form-format-a3', val: 'A3 (×мм)' },
+                        { key: 'form-format-a2', val: 'A2 (×мм)' },
+                        { key: 'form-format-b4', val: 'B4 (×мм)' },
+                        { key: 'form-format-b3', val: 'B3 (×мм)' },
+                        { key: 'form-format-b2', val: 'B2 (×мм)' }
+                    ],
+                    quantities: [100, 300, 500, 1000, 3000, 5000, 10000],
+                    papers: [
+                        { key: 'form-paper-200', val: '200 (гр)' },
+                        { key: 'form-paper-250', val: '250 (гр)' },
+                        { key: 'form-paper-300-coated', val: '300 (гр)' }
+                    ],
+                    showSpotUV: true,
+                    showCutCheckbox: true,
+                    showPrepress: true,
+                    showPrintType: false
+                },
+                'notebook': {
+                    formats: [
+                        { key: 'form-format-a7', val: 'A7 (×мм)' },
+                        { key: 'form-format-a6', val: 'A6 (×мм)' },
+                        { key: 'form-format-a5', val: 'A5 (×мм)' },
+                        { key: 'form-format-a4', val: 'A4 (×мм)' }
+                    ],
+                    quantities: [100, 200, 300, 400, 500, 1000, 2000, 3000, 4000, 5000],
+                    pages: [
+                        { key: 'form-pages-100', val: '100 нүүр' },
+                        { key: 'form-pages-120', val: '120 нүүр' },
+                        { key: 'form-pages-140', val: '140 нүүр' },
+                        { key: 'form-pages-160', val: '160 нүүр' },
+                        { key: 'form-pages-180', val: '180 нүүр' },
+                        { key: 'form-pages-200', val: '200 нүүр' }
+                    ],
+                    covers: [
+                        { key: 'form-cover-300', val: '300гр' },
+                        { key: 'form-cover-hard-cardboard', val: 'Хатуу хавтас ( картон хатуулгатай )' },
+                        { key: 'form-cover-leather', val: 'Арьсан хавтас' }
+                    ],
+                    papers: [
+                        { key: 'form-paper-70', val: '70 (гр)' },
+                        { key: 'form-paper-80', val: '80 (гр)' },
+                        { key: 'form-paper-100', val: '100 (гр)' },
+                        { key: 'form-paper-120', val: '120 (гр)' }
+                    ],
+                    coatings: [], // Scraper didn't list covers? Usually "Coating" for cover exists. I'll leave empty if not specified
+                    showPages: true,
+                    showCover: true,
+                    showBinding: true,
+                    // Note: Binding options default to staple/glue. Notebook mentions Ring. I need to update binding options?
+                    // "Нуруулалт (Binding): Үдээтэй, Наалттай, Цагаригтай".
+                    // Existing options: Staple, Glue. Missing Ring.
+                    // I need to add 'bindingOptions' config or just logic to adding 'Ring'.
+                    // I will add a `bindings` array to config to override default.
+                    bindings: [
+                        { key: 'form-binding-staple', val: 'Нуруу үдээтэй' },
+                        { key: 'form-binding-glue', val: 'Нуруу наалттай' },
+                        { key: 'form-binding-ring', val: 'Цагаригтай' }
+                    ],
+                    showPrepress: true,
+                    showPrintType: false
+                },
+                'envelope': {
+                    formats: [
+                        { key: 'form-format-a6', val: 'A6 (×мм)' },
+                        { key: 'form-format-a5', val: 'A5 (×мм)' },
+                        { key: 'form-format-a4', val: 'A4 (×мм)' },
+                        { key: 'form-format-a3', val: 'A3 (×мм)' },
+                        { key: 'form-format-b5', val: 'B5 (×мм)' },
+                        { key: 'form-format-b4', val: 'B4 (×мм)' },
+                        { key: 'form-format-money', val: 'Мөнгөний дугтуй' }
+                    ],
+                    quantities: [300, 500, 1000, 2000, 3000, 4000, 5000, 10000],
+                    papers: [
+                        { key: 'form-paper-80', val: '80 (гр)' },
+                        { key: 'form-paper-90', val: '90 (гр)' },
+                        { key: 'form-paper-100', val: '100 (гр)' },
+                        { key: 'form-paper-120', val: '120 (гр)' },
+                        { key: 'form-paper-128', val: '128 (гр)' },
+                        { key: 'form-paper-157', val: '157 (гр)' },
+                        { key: 'form-paper-200', val: '200 (гр)' },
+                        { key: 'form-paper-250', val: '250 (гр)' },
+                        { key: 'form-paper-300-coated', val: '300 (гр)' }
+                    ],
+                    showSpotUV: true,
+                    labelSpotUV: 'form-decorative-varnish',
+                    showPrepress: true,
+                    showPrintType: false
+                },
+                'invoice': {
+                    formats: [
+                        { key: 'form-format-a6', val: 'A6 (×мм)' },
+                        { key: 'form-format-a5', val: 'A5 (×мм)' },
+                        { key: 'form-format-a4', val: 'A4 (×мм)' },
+                        { key: 'form-format-b6', val: 'B6 (×мм)' },
+                        { key: 'form-format-b5', val: 'B5 (×мм)' },
+                        { key: 'form-format-1/3-a4', val: '1/3 - A4 (×мм)' }
+                    ],
+                    quantities: [500, 1000, 3000, 5000, 10000, 20000],
+                    papers: [
+                        { key: 'form-paper-carbonless', val: 'Хортой цаас' }
+                    ],
+                    showNumbered: true,
+                    showPrepress: true,
+                    showPrintType: false
                 }
             };
 
@@ -716,10 +989,32 @@
                 document.getElementById('binding-group').style.display = config.showBinding ? 'block' : 'none';
                 document.getElementById('folding-group').style.display = config.showFolding ? 'block' : 'none';
                 document.getElementById('varnish-group').style.display = config.showVarnish ? 'block' : 'none';
-                document.getElementById('foil-group').style.display = config.showFoil !== false ? 'block' : 'none';
-                document.getElementById('spot-uv-group').style.display = config.showSpotUV !== false ? 'block' : 'none';
+
+                // Logic for Foil (Checkbox)
+                const foilGroup = document.getElementById('foil-group');
+                foilGroup.style.display = config.showFoil !== false ? 'block' : 'none'; // Default to true if undefined in some contexts? No, default should be careful. Actually 'default' config has showFoil: true.
+                if (config.labelFoil) {
+                    foilGroup.querySelector('span[data-i18n]').setAttribute('data-i18n', config.labelFoil);
+                } else {
+                    foilGroup.querySelector('span[data-i18n]').setAttribute('data-i18n', 'form-foil');
+                }
+
+                // Logic for Spot UV (Checkbox)
+                const spotUVGroup = document.getElementById('spot-uv-group');
+                spotUVGroup.style.display = config.showSpotUV !== false ? 'block' : 'none';
+                if (config.labelSpotUV) {
+                    spotUVGroup.querySelector('span[data-i18n]').setAttribute('data-i18n', config.labelSpotUV);
+                } else {
+                    spotUVGroup.querySelector('span[data-i18n]').setAttribute('data-i18n', 'form-spot-uv');
+                }
+
                 document.getElementById('print-type-group').style.display = config.showPrintType !== false ? 'block' : 'none';
                 document.getElementById('prepress-group').style.display = config.showPrepress !== false ? 'block' : 'none';
+
+                // New Groups
+                document.getElementById('cut-select-group').style.display = config.showCutSelect ? 'block' : 'none';
+                document.getElementById('cut-checkbox-group').style.display = config.showCutCheckbox ? 'block' : 'none';
+                document.getElementById('numbered-group').style.display = config.showNumbered ? 'block' : 'none';
 
                 // Lamination specific visibility
                 document.getElementById('paper-group').style.display = config.papers && config.papers.length > 0 ? 'block' : 'none';
@@ -767,6 +1062,24 @@
                         opt.setAttribute('data-i18n', c.key);
                         opt.textContent = c.val;
                         coatingSelect.appendChild(opt);
+                    });
+                }
+
+                // Update Binding options (New)
+                if (config.bindings) {
+                    const bindingSelect = document.querySelector('select[name="binding"]');
+                    bindingSelect.innerHTML = '';
+                    // Add Select placeholder
+                    const placeholder = document.createElement('option');
+                    placeholder.setAttribute('data-i18n', 'form-folding-select');
+                    placeholder.textContent = 'Сонгох';
+                    bindingSelect.appendChild(placeholder);
+
+                    config.bindings.forEach(b => {
+                        const opt = document.createElement('option');
+                        opt.setAttribute('data-i18n', b.key);
+                        opt.textContent = b.val;
+                        bindingSelect.appendChild(opt);
                     });
                 }
 
