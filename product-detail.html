@@ -1413,6 +1413,57 @@
                             breadcrumbSpan.removeAttribute('data-i18n');
                         }
 
+                        // Dynamic Options (Formats & Paper Types)
+                        // 1. Formats
+                        const formatSelect = document.getElementById('format-select');
+                        if (data.formats && data.formats.length > 0 && formatSelect) {
+                            formatSelect.innerHTML = '';
+                            data.formats.forEach(fmt => {
+                                const opt = document.createElement('option');
+                                opt.textContent = fmt;
+                                formatSelect.appendChild(opt);
+                            });
+                            // Remove data-i18n to prevent override
+                            const label = document.querySelector('label[data-i18n="form-format"]');
+                            if (label) label.removeAttribute('data-i18n');
+                        }
+
+                        // 2. Types (Paper/Material)
+                        // We will put this into 'paper-select' as that is the closest match for "Material/Type"
+                        const paperSelect = document.getElementById('paper-select');
+                        if (data.types && data.types.length > 0 && paperSelect) {
+                            paperSelect.innerHTML = '';
+                            data.types.forEach(type => {
+                                const opt = document.createElement('option');
+                                opt.textContent = type;
+                                paperSelect.appendChild(opt);
+                            });
+                            // Remove data-i18n
+                            const label = document.querySelector('label[data-i18n="form-paper"]');
+                            if (label) label.removeAttribute('data-i18n');
+                        }
+
+                        // 3. Price Description handling
+                        // If price is a string range, we might want to display it?
+                        // Currently the form doesn't show price. The user asked "Price: depends on selection - how to solve?". 
+                        // Since we are just taking a Quote Request, simply displaying this info somewhere or just letting the user submit the request is fine.
+                        // The user enters it in Admin, but the "Order" form is for the customer to *request* a quote. 
+                        // So we don't necessarily calculate price here yet.
+                        // We could adding a "Base Price" display if needed, but for now, just capturing the options is key.
+
+                        // Hide unconfigured fields if this is a generic dynamic product
+                        // If we have dynamic formats/types, we assume other complex fields (folding, varnish) might not be relevant 
+                        // unless we add toggles for them in Admin later. 
+                        // For now, let's keep it simple: generic fields are shown, specific ones hidden if not in data? 
+                        // Actually, better to leave default visibility or hide specific ones?
+                        // Let's hide specific complex groups to avoid confusion for simple uploaded products
+                        ['pages-group', 'cover-group', 'binding-group', 'folding-group', 'varnish-group', 'prepress-group'].forEach(id => {
+                            const el = document.getElementById(id);
+                            if (el) el.style.display = 'none';
+                        });
+                        // Show Quantity (always needed)
+                        document.getElementById('quantity-group').style.display = 'block';
+
                         // Optional: If you want to show description, you might need to find a place for it.
                         // Currently product-detail.html doesn't seem to have a dedicated description area in the form, 
                         // but we can inject it if needed. For now, matching the form title and image is sufficient for the Order flow.

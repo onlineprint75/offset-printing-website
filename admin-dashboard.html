@@ -66,6 +66,32 @@
             margin-top: 15px;
             text-align: center;
         }
+
+        /* Dynamic Input Styles */
+        .dynamic-input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .btn-small {
+            background: #eee;
+            border: 1px solid #ddd;
+            padding: 2px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        .btn-remove {
+            background: #ff4444;
+            color: white;
+            border: none;
+            width: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -85,8 +111,34 @@
             </div>
 
             <div class="form-group">
-                <label>Үнэ</label>
-                <input type="text" id="p-price" required placeholder="Жишээ: 15,000₮">
+                <label>Үнэ / Тайлбар (Price / Description)</label>
+                <input type="text" id="p-price" required
+                    placeholder="Жишээ: 15,000₮ - 50,000₮ эсвэл 'Хэмжээнээс хамаарна'">
+            </div>
+
+            <div class="form-group">
+                <label>Хэмжээ (Formats) <button type="button" id="add-format-btn" class="btn-small">+</button></label>
+                <div id="formats-container">
+                    <div class="dynamic-input-row">
+                        <input type="text" name="p-formats[]" placeholder="Жишээ: A4 (210x297mm)">
+                        <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
+                    </div>
+                </div>
+                <small style="color:#666; font-size: 0.85em;">Хэрэглэгч сонгох боломжтой хэмжээнүүдийг оруулна
+                    уу.</small>
+            </div>
+
+            <div class="form-group">
+                <label>Цаасны төрөл (Paper Types) <button type="button" id="add-type-btn"
+                        class="btn-small">+</button></label>
+                <div id="types-container">
+                    <div class="dynamic-input-row">
+                        <input type="text" name="p-types[]" placeholder="Жишээ: 300гр шохойтой">
+                        <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
+                    </div>
+                </div>
+                <small style="color:#666; font-size: 0.85em;">Хэрэглэгч сонгох боломжтой цаас/материалын төрлүүдийг
+                    оруулна уу.</small>
             </div>
 
             <div class="form-group">
@@ -132,6 +184,22 @@
         const statusMsg = document.getElementById('status-msg');
         const submitBtn = document.getElementById('submit-btn');
 
+        // Dynamic Field Logic
+        window.addInput = (containerId, name, placeholder) => {
+            const container = document.getElementById(containerId);
+            const div = document.createElement('div');
+            div.className = 'dynamic-input-row';
+            div.innerHTML = `
+            <input type="text" name="${name}" placeholder="${placeholder}">
+            <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
+        `;
+            container.appendChild(div);
+        }
+
+        document.getElementById('add-format-btn').onclick = () => addInput('formats-container', 'p-formats[]', 'Жишээ: A4 (210x297mm)');
+        document.getElementById('add-type-btn').onclick = () => addInput('types-container', 'p-types[]', 'Жишээ: 300гр шохойтой');
+
+
         // Setup previews
         [1, 2, 3].forEach(num => {
             const input = document.getElementById(`p-image-${num}`);
@@ -164,6 +232,11 @@
                 return;
             }
 
+            // Gather Dynamic Inputs
+            const formats = Array.from(document.querySelectorAll('input[name="p-formats[]"]')).map(i => i.value).filter(v => v.trim() !== '');
+            const types = Array.from(document.querySelectorAll('input[name="p-types[]"]')).map(i => i.value).filter(v => v.trim() !== '');
+
+
             submitBtn.disabled = true;
             submitBtn.textContent = 'Уншиж байна (Uploading)...';
             statusMsg.textContent = '';
@@ -187,6 +260,8 @@
                     desc: document.getElementById('p-desc').value,
                     price: document.getElementById('p-price').value,
                     stock: document.getElementById('p-stock').value,
+                    formats: formats, // Save Formats Array
+                    types: types,     // Save Types Array (Paper/Material)
                     img: imageUrls[0], // Main image for thumbnail backward compatibility
                     images: imageUrls, // Array of all images
                     createdAt: serverTimestamp()
@@ -195,6 +270,9 @@
                 statusMsg.textContent = 'Амжилттай нэмэгдлээ!';
                 statusMsg.style.color = 'green';
                 form.reset();
+                // Reset dynamic fields
+                document.getElementById('formats-container').innerHTML = '<div class="dynamic-input-row"><input type="text" name="p-formats[]" placeholder="Жишээ: A4 (210x297mm)"><button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button></div>';
+                document.getElementById('types-container').innerHTML = '<div class="dynamic-input-row"><input type="text" name="p-types[]" placeholder="Жишээ: 300гр шохойтой"><button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button></div>';
                 [1, 2, 3].forEach(n => document.getElementById(`preview-img-${n}`).style.display = 'none');
 
             } catch (error) {
