@@ -1777,11 +1777,14 @@
                     }
 
                     // Update Page Title and Header
-                    document.title = `PPM | ${data.name}`;
+                    const translatedName = data.nameKey ? (getTranslation(data.nameKey) || data.name) : data.name;
+                    document.title = `PPM | ${translatedName}`;
                     const titleEl = document.querySelector('.product-form-card h2');
                     if (titleEl) {
-                        titleEl.textContent = data.name;
-                        titleEl.removeAttribute('data-i18n');
+                        titleEl.textContent = translatedName;
+                        if (data.nameKey) {
+                            titleEl.setAttribute('data-i18n', data.nameKey);
+                        }
                     }
 
                     // Update Breadcrumb
@@ -1793,14 +1796,16 @@
                         const quoteLink = breadcrumbNav.querySelector('a[href="quote.html"]');
                         if (quoteLink) {
                             quoteLink.href = 'inventory.html';
-                            quoteLink.removeAttribute('data-i18n');
-                            quoteLink.textContent = 'Бараа материал';
+                            quoteLink.setAttribute('data-i18n', 'nav-inventory');
+                            quoteLink.textContent = getTranslation('nav-inventory') || 'Бараа материал';
                         }
                     }
 
                     if (breadcrumbSpan) {
-                        breadcrumbSpan.textContent = data.name;
-                        breadcrumbSpan.removeAttribute('data-i18n');
+                        breadcrumbSpan.textContent = translatedName;
+                        if (data.nameKey) {
+                            breadcrumbSpan.setAttribute('data-i18n', data.nameKey);
+                        }
                     }
 
                     // Update Image Gallery
