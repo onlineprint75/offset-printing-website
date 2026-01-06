@@ -249,6 +249,18 @@ const translations = {
         "form-lam-delivery-opt": "Хүргэлтээр авах",
         "form-lam-vat": "e-Barimt авах (VAT Receipt)",
 
+        /* Delivery Form Fields */
+        "form-delivery-select-district": "Дүүрэг сонгох",
+        "form-delivery-address": "Хүлээн авах хаяг",
+        "form-delivery-address-placeholder": "Хороо, байр, орц...",
+        "form-delivery-phone": "Утасны дугаар",
+
+        /* VAT/e-Barimt Form Fields */
+        "form-vat-type": "Төрөл",
+        "form-vat-organization": "Байгууллага",
+        "form-vat-individual": "Хувь хүн",
+        "form-vat-tin": "Регистрийн дугаар (TIN)",
+
         /* Sticker Product */
         "product-name-sticker": "Стикер",
         "product-desc-sticker": "Халуун бүрэлт",
@@ -524,6 +536,18 @@ const translations = {
         "form-lam-delivery-opt": "Delivery",
         "form-lam-vat": "VAT Receipt (e-Barimt)",
 
+        /* Delivery Form Fields */
+        "form-delivery-select-district": "Select District",
+        "form-delivery-address": "Delivery Address",
+        "form-delivery-address-placeholder": "Building, entrance, apartment...",
+        "form-delivery-phone": "Phone Number",
+
+        /* VAT/e-Barimt Form Fields */
+        "form-vat-type": "Type",
+        "form-vat-organization": "Organization",
+        "form-vat-individual": "Individual",
+        "form-vat-tin": "Registration Number (TIN)",
+
         /* Sticker Product */
         "product-name-sticker": "Sticker",
         "product-desc-sticker": "Hot lamination",
@@ -722,7 +746,19 @@ const translations = {
         "form-lam-delivery": "取货/配送",
         "form-lam-pickup": "自取",
         "form-lam-delivery-opt": "配送",
-        "form-lam-vat": "增值税发票"
+        "form-lam-vat": "增值税发票",
+
+        /* Delivery Form Fields */
+        "form-delivery-select-district": "选择区域",
+        "form-delivery-address": "收货地址",
+        "form-delivery-address-placeholder": "楼栋、单元、门牌号...",
+        "form-delivery-phone": "电话号码",
+
+        /* VAT/e-Barimt Form Fields */
+        "form-vat-type": "类型",
+        "form-vat-organization": "企业",
+        "form-vat-individual": "个人",
+        "form-vat-tin": "税号 (TIN)"
     },
     ko: {
         "nav-home": "홈",
@@ -915,7 +951,19 @@ const translations = {
         "form-lam-delivery": "수령/배송",
         "form-lam-pickup": "직접 수령",
         "form-lam-delivery-opt": "배송",
-        "form-lam-vat": "세금계산서"
+        "form-lam-vat": "세금계산서",
+
+        /* Delivery Form Fields */
+        "form-delivery-select-district": "지역 선택",
+        "form-delivery-address": "배송 주소",
+        "form-delivery-address-placeholder": "건물, 동, 호수...",
+        "form-delivery-phone": "전화번호",
+
+        /* VAT/e-Barimt Form Fields */
+        "form-vat-type": "유형",
+        "form-vat-organization": "법인",
+        "form-vat-individual": "개인",
+        "form-vat-tin": "사업자등록번호 (TIN)"
     }
 };
 

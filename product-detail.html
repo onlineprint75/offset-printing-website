@@ -424,7 +424,7 @@
                             <div id="delivery-details"
                                 style="display: none; padding: 15px; background: #f9f9f9; border-radius: 8px; margin-bottom: 15px;">
                                 <div class="form-group">
-                                    <label>Дүүрэг сонгох</label>
+                                    <label data-i18n="form-delivery-select-district">Дүүрэг сонгох</label>
                                     <select name="delivery_district">
                                         <option value="SBD">Сүхбаатар</option>
                                         <option value="BZD">Баянзүрх</option>
@@ -435,12 +435,13 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Хүлээн авах хаяг</label>
+                                    <label data-i18n="form-delivery-address">Хүлээн авах хаяг</label>
                                     <textarea name="delivery_address" rows="2"
+                                        data-i18n-placeholder="form-delivery-address-placeholder"
                                         placeholder="Хороо, байр, орц..."></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label>Утасны дугаар</label>
+                                    <label data-i18n="form-delivery-phone">Утасны дугаар</label>
                                     <input type="tel" name="recipient_phone" placeholder="8888-8888">
                                 </div>
                             </div>
@@ -458,22 +459,22 @@
                             <div id="vat-details"
                                 style="display: none; padding: 15px; background: #f9f9f9; border-radius: 8px; margin-bottom: 15px;">
                                 <div class="form-group">
-                                    <label>Төрөл</label>
+                                    <label data-i18n="form-vat-type">Төрөл</label>
                                     <div class="radio-group">
                                         <label class="radio-container">
                                             <input type="radio" name="vat_type" value="organization" checked>
                                             <span class="radio-checkmark"></span>
-                                            Байгууллага
+                                            <span data-i18n="form-vat-organization">Байгууллага</span>
                                         </label>
                                         <label class="radio-container">
                                             <input type="radio" name="vat_type" value="individual">
                                             <span class="radio-checkmark"></span>
-                                            Хувь хүн
+                                            <span data-i18n="form-vat-individual">Хувь хүн</span>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Регистрийн дугаар (TIN)</label>
+                                    <label data-i18n="form-vat-tin">Регистрийн дугаар (TIN)</label>
                                     <input type="text" name="vat_tin" placeholder="1234567890">
                                 </div>
                             </div>
