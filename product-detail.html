@@ -218,12 +218,7 @@
                             </select>
                         </div>
 
-                        <!-- Notes Group (Moved here for Lamination flow) -->
-                        <div class="form-group" id="notes-group">
-                            <label data-i18n="form-notes">Тэмдэглэл</label>
-                            <textarea name="notes" rows="3" data-i18n-placeholder="form-notes-placeholder"
-                                placeholder="Тухайлбар, онцгой хүсэлт..."></textarea>
-                        </div>
+
 
                         <div class="form-group" id="pages-group" style="display: none;">
                             <label data-i18n="form-pages">Нүүрний тоо</label>
@@ -482,25 +477,33 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="quote-display" id="lamination-price-display" style="display: none;">
-                            <div class="label" data-i18n="form-quote-amount">Үнийн дүн (₮)</div>
-                            <div class="amount" id="lamination-price">0₮</div>
-                        </div>
-
-                        <div class="form-group" id="target-price-group" style="display: none;">
-                            <label data-i18n="form-target-price">Үнийн санал (₮)</label>
-                            <input type="text" name="target_price" data-i18n-placeholder="form-target-price-placeholder"
-                                placeholder="Таны санал болгож буй үнэ (сонголттой)">
-                            <small data-i18n="form-target-price-hint"
-                                style="display: block; margin-top: 5px; color: #666; font-size: 0.85em;">Таны санал
-                                болгож буй үнэ. Хоосон орхиж болно.</small>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary submit-order-btn"
-                            data-i18n="form-send-order">Хүсэлт илгээх</button>
-                    </form>
                 </div>
+
+                <!-- Notes Group (Final Position) -->
+                <div class="form-group" id="notes-group">
+                    <label data-i18n="form-notes">Тэмдэглэл</label>
+                    <textarea name="notes" rows="3" data-i18n-placeholder="form-notes-placeholder"
+                        placeholder="Тухайлбар, онцгой хүсэлт..."></textarea>
+                </div>
+
+                <div class="quote-display" id="lamination-price-display" style="display: none;">
+                    <div class="label" data-i18n="form-quote-amount">Үнийн дүн (₮)</div>
+                    <div class="amount" id="lamination-price">0₮</div>
+                </div>
+
+                <div class="form-group" id="target-price-group" style="display: none;">
+                    <label data-i18n="form-target-price">Үнийн санал (₮)</label>
+                    <input type="text" name="target_price" data-i18n-placeholder="form-target-price-placeholder"
+                        placeholder="Таны санал болгож буй үнэ (сонголттой)">
+                    <small data-i18n="form-target-price-hint"
+                        style="display: block; margin-top: 5px; color: #666; font-size: 0.85em;">Таны санал
+                        болгож буй үнэ. Хоосон орхиж болно.</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary submit-order-btn" data-i18n="form-send-order">Хүсэлт
+                    илгээх</button>
+                </form>
+            </div>
             </div>
         </section>
     </main>
