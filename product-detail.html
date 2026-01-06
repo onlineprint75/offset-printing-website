@@ -354,6 +354,132 @@
                             <div class="delivery-badge" data-i18n="form-delivery-1-2">Ажлын 1-2 хоногт</div>
                         </div>
 
+                        <!-- Lamination Specific Fields (Hidden by default) -->
+                        <div id="lamination-fields" style="display: none;">
+                            <div class="form-group">
+                                <label>Өнгөлгөө (Finish)</label>
+                                <select name="lamination_finish" id="lamination-finish">
+                                    <option value="glossy">Glossy (Гялгар)</option>
+                                    <option value="matte">Matte (Матт)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Зузаан (Micron)</label>
+                                <select name="lamination_micron" id="lamination-micron">
+                                    <option value="20">20 micron</option>
+                                    <option value="25">25 micron</option>
+                                    <option value="30">30 micron</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Өргөн (Width)</label>
+                                <select name="lamination_width" id="lamination-width">
+                                    <option value="32">32 cm</option>
+                                    <option value="37">37 cm</option>
+                                    <option value="44">44 cm</option>
+                                    <option value="52">52 cm</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Голч (Core Size)</label>
+                                <div class="radio-group">
+                                    <label class="radio-container">
+                                        <input type="radio" name="lamination_core" value="1" checked>
+                                        <span class="radio-checkmark"></span>
+                                        1 inch
+                                    </label>
+                                    <label class="radio-container">
+                                        <input type="radio" name="lamination_core" value="3">
+                                        <span class="radio-checkmark"></span>
+                                        3 inch
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="stock-display" id="stock-display"
+                                style="margin-bottom: 15px; font-weight: bold; color: var(--primary-color);">
+                                Stock: <span id="current-stock">Checking...</span>
+                            </div>
+
+                            <!-- Delivery Toggle -->
+                            <div class="form-group">
+                                <label>Хүргэлт / Авах хэлбэр</label>
+                                <div class="radio-group">
+                                    <label class="radio-container">
+                                        <input type="radio" name="delivery_method_toggle" value="pickup" checked>
+                                        <span class="radio-checkmark"></span>
+                                        Өөрийн биеэр авах (Pickup)
+                                    </label>
+                                    <label class="radio-container">
+                                        <input type="radio" name="delivery_method_toggle" value="delivery">
+                                        <span class="radio-checkmark"></span>
+                                        Хүргэлтээр авах
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Conditional Delivery Fields -->
+                            <div id="delivery-details"
+                                style="display: none; padding: 15px; background: #f9f9f9; border-radius: 8px; margin-bottom: 15px;">
+                                <div class="form-group">
+                                    <label>Дүүрэг сонгох</label>
+                                    <select name="delivery_district">
+                                        <option value="SBD">Сүхбаатар</option>
+                                        <option value="BZD">Баянзүрх</option>
+                                        <option value="BGD">Баянгол</option>
+                                        <option value="HUD">Хан-Уул</option>
+                                        <option value="SHD">Сонгинохайрхан</option>
+                                        <option value="CHD">Чингэлтэй</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Хүлээн авах хаяг</label>
+                                    <textarea name="delivery_address" rows="2"
+                                        placeholder="Хороо, байр, орц..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Утасны дугаар</label>
+                                    <input type="tel" name="recipient_phone" placeholder="8888-8888">
+                                </div>
+                            </div>
+
+                            <!-- VAT Toggle -->
+                            <div class="form-checkbox-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="vat-toggle" name="vat_enabled">
+                                    <span class="checkmark"></span>
+                                    e-Barimt авах (VAT Receipt)
+                                </label>
+                            </div>
+
+                            <!-- Conditional VAT Fields -->
+                            <div id="vat-details"
+                                style="display: none; padding: 15px; background: #f9f9f9; border-radius: 8px; margin-bottom: 15px;">
+                                <div class="form-group">
+                                    <label>Төрөл</label>
+                                    <div class="radio-group">
+                                        <label class="radio-container">
+                                            <input type="radio" name="vat_type" value="organization" checked>
+                                            <span class="radio-checkmark"></span>
+                                            Байгууллага
+                                        </label>
+                                        <label class="radio-container">
+                                            <input type="radio" name="vat_type" value="individual">
+                                            <span class="radio-checkmark"></span>
+                                            Хувь хүн
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Регистрийн дугаар (TIN)</label>
+                                    <input type="text" name="vat_tin" placeholder="1234567890">
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="quote-display" id="lamination-price-display" style="display: none;">
                             <div class="label" data-i18n="form-quote-amount">Үнийн дүн (₮)</div>
                             <div class="amount" id="lamination-price">0₮</div>
@@ -621,33 +747,29 @@
                     showPrepress: true
                 },
                 'lamination': {
-                    formats: [
-                        { key: 'form-lamination-size-44', val: '44 см ( 22 микрон, 4000м )' },
-                        { key: 'form-lamination-size-54', val: '54 см ( 22 микрон, 4000м )' }
-                    ],
+                    showLaminationFields: true, // Master toggle for custom fields
+                    formats: [], // Handled by custom fields
                     images: [
                         'assets/images/lamination bopp1.jpg',
                         'assets/images/lamination bopp2.jpg',
                         'assets/images/lamination bopp3.jpg'
                     ],
-                    quantities: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                    papers: [], // No paper choice
-                    coatings: [
-                        { key: 'form-lamination-type-matte', val: 'Матт' },
-                        { key: 'form-lamination-type-glossy', val: 'Гялгар' }
-                    ],
+                    quantities: [1, 2, 3, 4, 5, 10, 20],
+                    papers: [],
+                    coatings: [],
+                    // Hide standard fields
                     showFolding: false,
                     showVarnish: false,
                     showFoil: false,
                     showSpotUV: false,
                     showPrintType: false,
                     showDeliveryDate: false,
-                    showDeliveryInfo: true,
-                    showCoating: true,
+                    showDeliveryInfo: false, // We use custom delivery toggle
+                    showCoating: false,
                     showPrepress: false,
-                    customPrice: 390000,
-                    labelFormat: 'Хэмжээ',
-                    labelCoating: 'Төрөл'
+                    showFormat: false, // Hide standard format selector
+                    showPaper: false,  // Hide standard paper selector
+                    customPrice: true // Trigger custom logic
                 },
                 'default': {
                     formats: [
@@ -1047,9 +1169,24 @@
                 document.getElementById('numbered-group').style.display = config.showNumbered ? 'block' : 'none';
                 document.getElementById('target-price-group').style.display = config.showTargetPrice ? 'block' : 'none';
 
+                // Standard fields hiding (Format, Paper) if requested
+                if (config.showFormat === false) document.getElementById('format-group').style.display = 'none';
+                if (config.showPaper === false) document.getElementById('paper-group').style.display = 'none';
+
                 // Lamination specific visibility
+                const laminationFields = document.getElementById('lamination-fields');
+                if (config.showLaminationFields) {
+                    laminationFields.style.display = 'block';
+                    initLaminationLogic(savedLang); // Initialize specific logic
+                } else {
+                    laminationFields.style.display = 'none';
+                }
+
+                // Legacy Lamination Logic replacement (cleared out to avoid conflict)
+
                 document.getElementById('paper-group').style.display = config.papers && config.papers.length > 0 ? 'block' : 'none';
                 document.getElementById('delivery-date-group').style.display = config.showDeliveryDate !== false ? 'block' : 'none';
+                // delivery-info-group is standard delivery badge, we might want to hide it if using custom delivery
                 document.getElementById('delivery-info-group').style.display = config.showDeliveryInfo ? 'block' : 'none';
 
                 // Delivery Info Text Update
@@ -1092,7 +1229,7 @@
                     });
                 }
 
-                // Update Coating options for Lamination
+                // Update Coating options for Lamination (standard coating select)
                 if (config.coatings) {
                     const coatingSelect = document.querySelector('select[name="coating"]');
                     coatingSelect.innerHTML = '';
@@ -1121,29 +1258,8 @@
                         bindingSelect.appendChild(opt);
                     });
                 }
+            } // End of Config Block
 
-                // Dynamic Price Calculation for Lamination
-                if (config.customPrice) {
-                    const qtySelect = document.getElementById('quantity-select');
-                    const priceDisplay = document.getElementById('lamination-price');
-                    const submitBtn = document.querySelector('.submit-order-btn');
-
-                    // Change button text for inventory
-                    submitBtn.setAttribute('data-i18n', 'form-send-order-inventory');
-                    if (typeof setLanguage === 'function') {
-                        setLanguage(savedLang);
-                    }
-
-                    const updatePrice = () => {
-                        const qty = parseInt(qtySelect.value) || 0;
-                        const total = qty * config.customPrice;
-                        priceDisplay.textContent = total.toLocaleString() + '₮';
-                    };
-
-                    qtySelect.addEventListener('change', updatePrice);
-                    updatePrice(); // Initial call
-                }
-            }
 
             // 6. Run Translations
             if (typeof setLanguage === 'function') {
@@ -1299,6 +1415,29 @@
                 if (new FormData(mainForm).get('spot_uv')) messageText += `Spot UV: Yes\n`;
                 if (new FormData(mainForm).get('foil')) messageText += `Foil: Yes\n`;
                 messageText += `Quantity: ${orderDetails.Quantity}\n`;
+
+                // Lamination Specifics
+                if (config.showLaminationFields) {
+                    messageText += `--- Lamination Details ---\n`;
+                    messageText += `Finish: ${new FormData(mainForm).get('lamination_finish')}\n`;
+                    messageText += `Micron: ${new FormData(mainForm).get('lamination_micron')}\n`;
+                    messageText += `Width: ${new FormData(mainForm).get('lamination_width')} cm\n`;
+                    messageText += `Core: ${new FormData(mainForm).get('lamination_core')} inch\n`;
+
+                    const deliveryMethod = new FormData(mainForm).get('delivery_method_toggle');
+                    messageText += `Delivery Method: ${deliveryMethod}\n`;
+                    if (deliveryMethod === 'delivery') {
+                        messageText += `District: ${new FormData(mainForm).get('delivery_district')}\n`;
+                        messageText += `Address: ${new FormData(mainForm).get('delivery_address')}\n`;
+                        messageText += `Recipient Phone: ${new FormData(mainForm).get('recipient_phone')}\n`;
+                    }
+
+                    if (new FormData(mainForm).get('vat_enabled')) {
+                        messageText += `VAT Type: ${new FormData(mainForm).get('vat_type')}\n`;
+                        messageText += `VAT TIN: ${new FormData(mainForm).get('vat_tin')}\n`;
+                    }
+                }
+
                 if (config.showPrepress !== false) messageText += `Prepress: ${getText('prepress')}\n`;
                 if (config.showDeliveryDate !== false) messageText += `Delivery Date: ${new FormData(mainForm).get('delivery_date')}\n`;
                 if (config.showTargetPrice) messageText += `Target Price: ${new FormData(mainForm).get('target_price')}\n`;
@@ -1342,6 +1481,130 @@
                     });
             });
         });
+
+        // --- Modular Stock Manager ---
+        class StockManager {
+            constructor() {
+                // Mock Stock Data (Can be easily swapped with Firestore)
+                this.stock = {
+                    'default': 20,
+                    'lamination_32_20_glossy': 15,
+                    'lamination_32_25_glossy': 10,
+                    'lamination_32_30_glossy': 5,
+                    'lamination_32_20_matte': 12,
+                    'lamination_32_25_matte': 8,
+                    'lamination_32_30_matte': 0, // Out of stock example
+                    'lamination_44_20_glossy': 15,
+                    'lamination_52_20_glossy': 20
+                };
+            }
+
+            async getStock(productId, specs) {
+                // Simulate API call with delay
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        const key = `lamination_${specs.width}_${specs.micron}_${specs.finish}`;
+                        // console.log("Checking Stock for:", key); 
+                        if (this.stock.hasOwnProperty(key)) {
+                            resolve(this.stock[key]);
+                        } else {
+                            // random fallback for demo
+                            resolve(Math.floor(Math.random() * 20));
+                        }
+                    }, 400);
+                });
+            }
+        }
+
+        // --- Lamination Specific Logic Initialization ---
+        function initLaminationLogic(lang) {
+            const stockManager = new StockManager();
+            const finishSelect = document.getElementById('lamination-finish');
+            const micronSelect = document.getElementById('lamination-micron');
+            const widthSelect = document.getElementById('lamination-width');
+            const coreRadios = document.querySelectorAll('input[name="lamination_core"]');
+            const stockDisplay = document.getElementById('current-stock');
+            const qtySelect = document.getElementById('quantity-select');
+            const priceDisplay = document.getElementById('lamination-price');
+            const submitBtn = document.querySelector('.submit-order-btn');
+
+            // Deliver & VAT Toggles
+            const deliveryToggle = document.querySelectorAll('input[name="delivery_method_toggle"]');
+            const deliveryDetails = document.getElementById('delivery-details');
+
+            const vatToggle = document.getElementById('vat-toggle');
+            const vatDetails = document.getElementById('vat-details');
+
+            // 1. Toggle Logic
+            deliveryToggle.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.value === 'delivery') {
+                        deliveryDetails.style.display = 'block';
+                    } else {
+                        deliveryDetails.style.display = 'none';
+                    }
+                });
+            });
+
+            if (vatToggle) {
+                vatToggle.addEventListener('change', (e) => {
+                    vatDetails.style.display = e.target.checked ? 'block' : 'none';
+                });
+            }
+
+            // 2. Price & Stock Interaction
+            const updateState = async () => {
+                stockDisplay.textContent = 'Checking...';
+                stockDisplay.style.color = '#e67e22'; // Orange
+
+                const finish = finishSelect.value;
+                const micron = parseInt(micronSelect.value);
+                const width = parseInt(widthSelect.value);
+
+                // Stock Check
+                const stock = await stockManager.getStock('lamination', { width, micron, finish });
+                stockDisplay.textContent = stock;
+                stockDisplay.style.color = stock > 0 ? '#27ae60' : '#c0392b'; // Green or Red
+
+                // Price Calculation
+                // Base Price Mock: 
+                // 32cm = 30000, 37cm = 35000, 44cm = 42000, 52cm = 50000
+                // Micron Multiplier: 20mic = 1.0, 25mic = 1.25, 30mic = 1.5
+                // Finish: Matte +2000
+
+                let basePrice = 30000;
+                if (width === 37) basePrice = 35000;
+                if (width === 44) basePrice = 42000;
+                if (width === 52) basePrice = 50000;
+
+                let micronMult = 1;
+                if (micron === 25) micronMult = 1.25;
+                if (micron === 30) micronMult = 1.5;
+
+                let finishFee = (finish === 'matte') ? 2000 : 0;
+
+                const unitPrice = (basePrice * micronMult) + finishFee;
+                const qty = parseInt(qtySelect.value);
+
+                const total = unitPrice * qty;
+                if (priceDisplay) priceDisplay.textContent = total.toLocaleString() + '₮';
+
+                // Update Button Text
+                if (submitBtn) {
+                    // We can manually set text or wait for translation
+                    // submitBtn.textContent = 'Order Now'; 
+                }
+            };
+
+            // Listeners
+            if (finishSelect) finishSelect.addEventListener('change', updateState);
+            if (micronSelect) micronSelect.addEventListener('change', updateState);
+            if (widthSelect) widthSelect.addEventListener('change', updateState);
+            if (qtySelect) qtySelect.addEventListener('change', updateState);
+
+            // Initial run
+            updateState();
+        }
     </script>
 
     <!-- Firebase Dynamic Product Loader -->
