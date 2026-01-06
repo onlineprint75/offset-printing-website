@@ -1663,6 +1663,18 @@
                             const coreTitle = Array.from(document.querySelectorAll('label')).find(l => l.innerText.includes('Core Size') || l.getAttribute('data-i18n') === 'form-lamination-core');
                             if (coreTitle && coreTitle.parentElement) coreTitle.parentElement.style.display = 'none';
 
+                            // FORCE UPDATE QUANTITIES for Lamination
+                            const qtySelect = document.getElementById('quantity-select');
+                            if (qtySelect) {
+                                qtySelect.innerHTML = '';
+                                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach(q => {
+                                    const opt = document.createElement('option');
+                                    opt.value = q;
+                                    opt.textContent = q;
+                                    qtySelect.appendChild(opt);
+                                });
+                            }
+
                             // Initialize specific logic if available
                             if (typeof window.initLaminationLogic === 'function') {
                                 setTimeout(() => window.initLaminationLogic('mn'), 50);
