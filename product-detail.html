@@ -218,6 +218,13 @@
                             </select>
                         </div>
 
+                        <!-- Notes Group (Moved here for Lamination flow) -->
+                        <div class="form-group" id="notes-group">
+                            <label data-i18n="form-notes">Тэмдэглэл</label>
+                            <textarea name="notes" rows="3" data-i18n-placeholder="form-notes-placeholder"
+                                placeholder="Тухайлбар, онцгой хүсэлт..."></textarea>
+                        </div>
+
                         <div class="form-group" id="pages-group" style="display: none;">
                             <label data-i18n="form-pages">Нүүрний тоо</label>
                             <select name="pages" id="pages-select">
@@ -342,11 +349,7 @@
                             </label>
                         </div>
 
-                        <div class="form-group">
-                            <label data-i18n="form-notes">Тэмдэглэл</label>
-                            <textarea name="notes" rows="3" data-i18n-placeholder="form-notes-placeholder"
-                                placeholder="Тухайлбар, онцгой хүсэлт..."></textarea>
-                        </div>
+
 
 
                         <div class="form-group" id="delivery-info-group" style="display: none;">
@@ -1644,7 +1647,12 @@
                         if (data.name && data.name.toLowerCase().includes('lamination')) {
                             const lamFields = document.getElementById('lamination-fields');
                             if (lamFields) lamFields.style.display = 'block';
-
+                            /* STRICTLY HIDE GENERIC FIELDS */
+                            const genericGroups = ["format-group", "paper-group", "print-type-group", "coating-group", "pages-group", "cover-group", "binding-group", "folding-group", "varnish-group", "prepress-group", "cut-select-group", "cut-checkbox-group", "numbered-group", "target-price-group", "foil-group", "spot-uv-group", "delivery-date-group", "delivery-info-group"];
+                            genericGroups.forEach(id => {
+                                const el = document.getElementById(id);
+                                if(el) el.style.display = "none";
+                            });
                             // Initialize specific logic if available
                             if (typeof window.initLaminationLogic === 'function') {
                                 // usage of timeout to ensure DOM is fully ready if needed, though here it should be fine
