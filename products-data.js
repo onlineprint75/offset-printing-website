@@ -9,7 +9,9 @@ const PRODUCTS_DATA = [
   {
     id: "sticker",
     name: "Стикер",
+    nameKey: "product-name-sticker",
     desc: "Халуун бүрэлт",
+    descKey: "product-desc-sticker",
     price: "320,000",
     stock: "15",
     img: "assets/images/Sticker.jpg",
@@ -44,7 +46,9 @@ const PRODUCTS_DATA = [
   {
     id: "lamination-bopp",
     name: "Бүралт / lamination Bopp",
+    nameKey: "product-name-lamination",
     desc: "Халуун бүрэлт",
+    descKey: "product-desc-lamination",
     price: "320,000",
     stock: "15",
     img: "assets/images/Lamination.jpg",

@@ -200,19 +200,25 @@
                                         <img src="${m.img}" alt="${m.name}" style="object-fit: cover;">
                                     </a>
                                     <div class="product-info">
-                                        <h3>${m.name}</h3>
-                                        <div class="stock-status">Нөөц: ${m.stock}</div>
-                                        <p>${m.desc}</p>
+                                        <h3 data-i18n="${m.nameKey || ''}">${m.name}</h3>
+                                        <div class="stock-status"><span data-i18n="form-stock">Нөөц</span>: ${m.stock}</div>
+                                        <p data-i18n="${m.descKey || ''}">${m.desc}</p>
                                         <div class="product-footer">
                                             <div class="product-price">${m.price}</div>
                                             <a href="product-detail.html?id=${id}" class="order-btn-link">
-                                                Захиалах <i class="fas fa-chevron-right"></i>
+                                                <span data-i18n="form-order-btn">Захиалах</span> <i class="fas fa-chevron-right"></i>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             `;
                         });
+
+                        // Re-apply translations after rendering products
+                        const lang = localStorage.getItem('language') || 'mn';
+                        if (typeof setLanguage === 'function') {
+                            setLanguage(lang);
+                        }
                     }
 
                     loadProducts();

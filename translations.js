@@ -249,6 +249,12 @@ const translations = {
         "form-lam-delivery-opt": "Хүргэлтээр авах",
         "form-lam-vat": "e-Barimt авах (VAT Receipt)",
 
+        /* Sticker Product */
+        "product-name-sticker": "Стикер",
+        "product-desc-sticker": "Халуун бүрэлт",
+        "form-stock": "Нөөц",
+        "form-order-btn": "Захиалах",
+
         /* Invoice Specific */
         "form-paper-selection": "Цаасны сонголт",
         "form-paper-2-copy": "2 хувь",
@@ -516,7 +522,13 @@ const translations = {
         "form-lam-delivery": "Delivery / Pickup",
         "form-lam-pickup": "Pickup",
         "form-lam-delivery-opt": "Delivery",
-        "form-lam-vat": "VAT Receipt (e-Barimt)"
+        "form-lam-vat": "VAT Receipt (e-Barimt)",
+
+        /* Sticker Product */
+        "product-name-sticker": "Sticker",
+        "product-desc-sticker": "Hot lamination",
+        "form-stock": "Stock",
+        "form-order-btn": "Order"
     },
     zh: {
         "nav-home": "首页",
@@ -681,7 +693,36 @@ const translations = {
         "form-lamination-size-54": "54 厘米 ( 22 微米, 4000米 )",
         "form-lamination-type-matte": "哑光",
         "form-lamination-type-glossy": "亮光",
-        "form-delivery-1-2": "1-2 个工作日"
+        "form-delivery-1-2": "1-2 个工作日",
+
+        /* Sticker Product */
+        "product-name-sticker": "贴纸",
+        "product-desc-sticker": "热覆膜",
+        "form-stock": "库存",
+        "form-order-btn": "订购",
+
+        /* Sticker Form Translations */
+        "form-sticker-kind": "类型",
+        "form-sticker-glossy": "亮光",
+        "form-sticker-matte-unavail": "哑光 (缺货)",
+        "form-sticker-thickness": "厚度",
+        "form-sticker-160-unavail": "160克 (缺货)",
+        "form-sticker-180": "180克 (有货)",
+        "form-sticker-200-unavail": "200克 (缺货)",
+        "form-sticker-size": "尺寸",
+        "form-sticker-440x300": "440x300毫米 (有货)",
+        "form-sticker-440x594-unavail": "440x594毫米 (缺货)",
+
+        /* Lamination Form Translations */
+        "form-lam-kind": "类型",
+        "form-lam-glossy": "亮光",
+        "form-lam-matte": "哑光",
+        "form-lam-micron": "微米",
+        "form-lam-width": "宽度",
+        "form-lam-delivery": "取货/配送",
+        "form-lam-pickup": "自取",
+        "form-lam-delivery-opt": "配送",
+        "form-lam-vat": "增值税发票"
     },
     ko: {
         "nav-home": "홈",
@@ -845,7 +886,36 @@ const translations = {
         "form-lamination-size-54": "54 cm ( 22 미크론, 4000m )",
         "form-lamination-type-matte": "무광",
         "form-lamination-type-glossy": "유광",
-        "form-delivery-1-2": "영업일 기준 1-2일 이내"
+        "form-delivery-1-2": "영업일 기준 1-2일 이내",
+
+        /* Sticker Product */
+        "product-name-sticker": "스티커",
+        "product-desc-sticker": "열 코팅",
+        "form-stock": "재고",
+        "form-order-btn": "주문하기",
+
+        /* Sticker Form Translations */
+        "form-sticker-kind": "종류",
+        "form-sticker-glossy": "유광",
+        "form-sticker-matte-unavail": "무광 (품절)",
+        "form-sticker-thickness": "두께",
+        "form-sticker-160-unavail": "160g (품절)",
+        "form-sticker-180": "180g (재고 있음)",
+        "form-sticker-200-unavail": "200g (품절)",
+        "form-sticker-size": "크기",
+        "form-sticker-440x300": "440x300mm (재고 있음)",
+        "form-sticker-440x594-unavail": "440x594mm (품절)",
+
+        /* Lamination Form Translations */
+        "form-lam-kind": "종류",
+        "form-lam-glossy": "유광",
+        "form-lam-matte": "무광",
+        "form-lam-micron": "미크론",
+        "form-lam-width": "폭",
+        "form-lam-delivery": "수령/배송",
+        "form-lam-pickup": "직접 수령",
+        "form-lam-delivery-opt": "배송",
+        "form-lam-vat": "세금계산서"
     }
 };
 
