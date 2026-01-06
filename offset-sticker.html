@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="mn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPM | Offset Sticker Paper</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/Logo--ani-02.svg" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Modern Design Standard Matching Screenshot */
+
+        /* Page Background slightly off-white */
+        main {
+            background-color: #f8fbff;
+        }
+
+        .product-form-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0f0f0;
+        }
+
+        .product-form-card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 25px;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 600;
+            /* Slightly bolder for labels */
+        }
+
+        select,
+        input[type="text"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: #333;
+            background-color: #fff;
+            transition: border-color 0.2s;
+            appearance: none;
+            height: 42px;
+            /* Fixed height for inputs */
+        }
+
+        textarea {
+            height: auto;
+        }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 9l4 4 4-4'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            padding-right: 32px;
+        }
+
+        select:focus,
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+        }
+
+        /* Stock Info Box */
+        .stock-info-box {
+            background-color: #fff7ed;
+            /* Light orange bg */
+            color: #c2410c;
+            /* Dark orange text */
+            border: 1px solid #ffedd5;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .stock-info-box i {
+            color: #f97316;
+        }
+
+        .stock-number {
+            color: #16a34a;
+            /* Green for 'In Stock' number usually, or orange per user screenshot */
+            color: #f97316;
+            /* Screenshot uses orange number '2' */
+        }
+
+        /* Modern Radio Buttons */
+        .radio-group-modern {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #4b5563;
+            font-weight: 500;
+        }
+
+        .custom-radio {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #e5e7eb;
+            /* Default gray border */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        /* When radio is checked */
+        input[type="radio"]:checked+.custom-radio {
+            border-color: var(--primary-color);
+            /* Screenshot shows full orange circle? Or white inside? 
+                Usually orange border + white fill + orange dot 
+                OR full orange fill + white dot.
+                The screenshot looks like: Thick orange border, white center? Or full orange.
+                Let's go with Orange Border + Orange Dot.
+             */
+            border-width: 2px;
+        }
+
+        input[type="radio"]:checked+.custom-radio::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* Modern Checkbox */
+        .checkbox-modern-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #4b5563;
+        }
+
+        .custom-checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #e5e7eb;
+            border-radius: 4px;
+            /* Rounded square */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        input[type="checkbox"]:checked+.custom-checkbox {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        input[type="checkbox"]:checked+.custom-checkbox::after {
+            content: '\f00c';
+            /* FontAwesome Check */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: white;
+            font-size: 14px;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        /* Button */
+        .submit-order-btn {
+            background: linear-gradient(90deg, #f97316 0%, #fb923c 100%);
+            /* Orange Gradient */
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            width: 100%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, shadow 0.2s;
+            box-shadow: 0 4px 10px -2px rgba(249, 115, 22, 0.4);
+            margin-top: 10px;
+        }
+
+        .submit-order-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -2px rgba(249, 115, 22, 0.5);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .page-container {
+                padding: 0 16px;
+            }
+
+            .product-detail-container {
+                grid-template-columns: 1fr;
+            }
+
+            .radio-group-modern {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="OFFSET PRINT Logo">
+            </a>
+
+            <div class="header-right">
+                <div class="mobile-menu-header">
+                    <img src="assets/images/logo.png" alt="PPM Logo" class="mobile-logo">
+                    <button class="menu-close-btn" id="menu-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="mobile-menu-card">
+                    <div class="nav-pill">
+                        <ul>
+                            <li><a href="index.html" data-i18n="nav-home">Нүүр</a></li>
+                            <li><a href="about.html" data-i18n="nav-about">Бидний тухай</a></li>
+                            <li><a href="inventory.html" data-i18n="nav-inventory">Бараа материал</a></li>
+                            <li><a href="contact.html" data-i18n="nav-contact">Холбоо барих</a></li>
+                        </ul>
+                        <a href="quote.html" class="btn-pill" data-i18n="nav-quote">Үнийн санал авах</a>
+                    </div>
+                </div>
+                <div class="menu-divider" style="display:none;"></div> <!-- Spacer -->
+                <div class="lang-switcher" id="lang-switcher">
+                    <div class="lang-btn" id="lang-btn">
+                        <img src="https://flagcdn.com/w20/mn.png" id="current-lang-flag">
+                        <span id="current-lang-name">Монгол</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div class="menu-overlay" id="menu-overlay"></div>
+    </header>
+
+    <main style="padding-top: var(--header-height);">
+        <section class="product-detail-section" style="padding-top: 40px;">
+            <div class="page-container">
+                <nav class="breadcrumb">
+                    <a href="index.html">Нүүр</a>
+                    <span>/</span>
+                    <a href="inventory.html">Бараа материал</a>
+                    <span>/</span>
+                    <span>Offset Sticker Paper</span>
+                </nav>
+            </div>
+
+            <div class="page-container product-detail-container">
+                <!-- Left: Image Gallery -->
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img src="assets/images/Sticker.jpg" id="current-main-img" alt="Offset Sticker Paper">
+                    </div>
+                    <div class="thumbnail-grid">
+                        <div class="thumb active" onclick="changeImage('assets/images/Sticker.jpg', this)">
+                            <img src="assets/images/Sticker.jpg" alt="Sticker 1">
+                        </div>
+                        <div class="thumb" onclick="changeImage('assets/images/Sticker2.jpg', this)">
+                            <img src="assets/images/Sticker2.jpg" alt="Sticker 2">
+                        </div>
+                        <div class="thumb" onclick="changeImage('assets/images/Sticker3.jpg', this)">
+                            <img src="assets/images/Sticker3.jpg" alt="Sticker 3">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Product Config Form -->
+                <div class="product-form-card">
+                    <h2>Offset Sticker Paper</h2>
+
+                    <form id="sticker-form" class="detail-form">
+
+                        <!-- Quantity -->
+                        <div class="form-group">
+                            <label>Тоо ширхэг</label>
+                            <select name="quantity" id="quantity-select">
+                                <!-- Generated by JS -->
+                            </select>
+                        </div>
+
+                        <!-- Face Stock -->
+                        <div class="form-group">
+                            <label>Face Stock (Гадаргуу)</label>
+                            <select name="face_stock" id="face_stock">
+                                <option value="glossy">Glossy (Гялгар)</option>
+                                <option value="matte" disabled>Matte (Матт) - Out of Stock</option>
+                            </select>
+                        </div>
+
+                        <!-- Size -->
+                        <div class="form-group">
+                            <label>Хэмжээ (Size)</label>
+                            <select name="size" id="size">
+                                <option value="44x40">44x40cm</option>
+                                <option value="a2" disabled>A2 - Sold Out</option>
+                            </select>
+                        </div>
+
+                        <!-- Stock Indicator -->
+                        <div class="stock-info-box">
+                            <i class="fas fa-box-open"></i> Stock: &nbsp;<span class="stock-number">In Stock</span>
+                        </div>
+
+                        <!-- Delivery Toggle -->
+                        <div class="form-group">
+                            <label>Хүргэлт / Авах хэлбэр</label>
+                            <div class="radio-group-modern">
+                                <label class="radio-label">
+                                    <input type="radio" name="delivery_method" value="pickup" checked>
+                                    <span class="custom-radio"></span>
+                                    Өөрийн биеэр авах (Pickup)
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="delivery_method" value="delivery">
+                                    <span class="custom-radio"></span>
+                                    Хүргэлтээр авах
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- VAT Toggle -->
+                        <div class="form-group">
+                            <label class="checkbox-modern-label">
+                                <input type="checkbox" id="vat-toggle" name="vat_enabled">
+                                <span class="custom-checkbox"></span>
+                                e-Barimt авах (VAT Receipt)
+                            </label>
+                        </div>
+
+                        <!-- Conditional Delivery Fields -->
+                        <div id="delivery-details" style="display: none; margin-top: 15px;">
+                            <div class="form-group">
+                                <label style="font-weight: normal;">Хаяг</label>
+                                <textarea name="address" rows="2" placeholder="Дүүрэг, хороо, байр..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight: normal;">Утас</label>
+                                <input type="tel" name="phone" placeholder="8888-8888">
+                            </div>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="form-group" style="margin-top: 15px;">
+                            <label>Тэмдэглэл</label>
+                            <textarea name="notes" rows="3" placeholder="Тухайлбар, онцгой хүсэлт..."></textarea>
+                        </div>
+
+                        <div
+                            style="text-align: right; margin-bottom: 15px; font-weight: 700; color: #333; font-size: 1.1rem;">
+                            Үнэ: <span id="total-price-display" style="color: var(--primary-color);">0₮</span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary submit-order-btn">Захиалах</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Продакт Принтинг Монголиа ХХК</h4>
+                <p>Офсет хэвлэлийн үйлчилгээ</p>
+            </div>
+            <div class="footer-col">
+                <h4>Холбоо барих</h4>
+                <ul>
+                    <li><i class="fas fa-phone"></i> 75758575</li>
+                    <li><i class="fas fa-envelope"></i> info@ppm32.mn</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Product Printing. Бүх эрх хуулиар хамгаалагдсан.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Gallery Logic
+        function changeImage(src, el) {
+            document.getElementById('current-main-img').src = src;
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            if (el) el.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const quantitySelect = document.getElementById('quantity-select');
+            const vatToggle = document.getElementById('vat-toggle');
+            const deliveryRadios = document.querySelectorAll('input[name="delivery_method"]');
+            const deliveryDetails = document.getElementById('delivery-details');
+            const totalPriceDisplay = document.getElementById('total-price-display');
+
+            // Constants
+            const BASE_PRICE = 250; // Base price per sheet
+            const DELIVERY_FEE = 5000;
+
+            // 1. Populate Quantity Dropdown
+            // User requested: Start from 500, +500 increments
+            for (let i = 500; i <= 20000; i += 500) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i.toLocaleString();
+                quantitySelect.appendChild(option);
+            }
+            // Add a "1" option if specifically testing? No, user said 500+.
+
+            // 2. Logic Checker
+            function calculateTotal() {
+                const qty = parseInt(quantitySelect.value);
+                let subtotal = qty * BASE_PRICE;
+
+                // VAT
+                let vat = 0;
+                if (vatToggle.checked) {
+                    vat = subtotal * 0.1;
+                }
+
+                // Delivery
+                let delivery = 0;
+                const isDelivery = document.querySelector('input[name="delivery_method"]:checked').value === 'delivery';
+                if (isDelivery) {
+                    delivery = DELIVERY_FEE;
+                    deliveryDetails.style.display = 'block';
+                } else {
+                    deliveryDetails.style.display = 'none';
+                }
+
+                const total = subtotal + vat + delivery;
+
+                // Update UI
+                if (totalPriceDisplay) {
+                    totalPriceDisplay.textContent = total.toLocaleString() + '₮';
+                }
+            }
+
+            // Event Listeners
+            quantitySelect.addEventListener('change', calculateTotal);
+            vatToggle.addEventListener('change', calculateTotal);
+            deliveryRadios.forEach(radio => radio.addEventListener('change', calculateTotal));
+
+            // Initial Calc
+            calculateTotal();
+
+            // Mobile Menu Simple Logic (replicated)
+            const menuToggle = document.getElementById('menu-toggle');
+            const navMenu = document.querySelector('.header-right');
+            const menuOverlay = document.getElementById('menu-overlay');
+            const menuClose = document.getElementById('menu-close');
+
+            function toggleMenu() {
+                navMenu.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+            }
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', toggleMenu);
+                menuClose.addEventListener('click', toggleMenu);
+                menuOverlay.addEventListener('click', toggleMenu);
+            }
+        });
+    </script>
+</body>
+
+</html>
