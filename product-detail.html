@@ -355,15 +355,15 @@
                         <!-- Lamination Specific Fields (Hidden by default) -->
                         <div id="lamination-fields" style="display: none;">
                             <div class="form-group">
-                                <label>Төрөл (Kind)</label>
+                                <label data-i18n="form-lam-kind">Төрөл (Kind)</label>
                                 <select name="lamination_finish" id="lamination-finish">
-                                    <option value="glossy">Glossy (Гялгар)</option>
-                                    <option value="matte">Matte (Матт)</option>
+                                    <option value="glossy" data-i18n="form-lam-glossy">Glossy (Гялгар)</option>
+                                    <option value="matte" data-i18n="form-lam-matte">Matte (Матт)</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label>Зузаан (Micron)</label>
+                                <label data-i18n="form-lam-micron">Зузаан (Micron)</label>
                                 <select name="lamination_micron" id="lamination-micron">
                                     <option value="20" disabled style="color: #ccc;">20 micron (Дууссан)</option>
                                     <option value="22" selected>22 micron</option>
@@ -372,7 +372,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Өргөн (Width)</label>
+                                <label data-i18n="form-lam-width">Өргөн (Width)</label>
                                 <select name="lamination_width" id="lamination-width">
                                     <option value="32" disabled style="color: #ccc;">32 cm (Дууссан)</option>
                                     <option value="37" disabled style="color: #ccc;">37 cm (Дууссан)</option>
@@ -400,22 +400,22 @@
 
                             <div class="stock-display" id="stock-display"
                                 style="margin-bottom: 15px; font-weight: bold; color: var(--primary-color);">
-                                Stock: <span id="current-stock">Checking...</span>
+                                <span data-i18n="form-stock">Stock</span>: <span id="current-stock">Checking...</span>
                             </div>
 
                             <!-- Delivery Toggle -->
                             <div class="form-group">
-                                <label>Хүргэлт / Авах хэлбэр</label>
+                                <label data-i18n="form-lam-delivery">Хүргэлт / Авах хэлбэр</label>
                                 <div class="radio-group">
                                     <label class="radio-container">
                                         <input type="radio" name="delivery_method_toggle" value="pickup" checked>
                                         <span class="radio-checkmark"></span>
-                                        Өөрийн биеэр авах (Pickup)
+                                        <span data-i18n="form-lam-pickup">Өөрийн биеэр авах (Pickup)</span>
                                     </label>
                                     <label class="radio-container">
                                         <input type="radio" name="delivery_method_toggle" value="delivery">
                                         <span class="radio-checkmark"></span>
-                                        Хүргэлтээр авах
+                                        <span data-i18n="form-lam-delivery-opt">Хүргэлтээр авах</span>
                                     </label>
                                 </div>
                             </div>
@@ -450,7 +450,7 @@
                                 <label class="checkbox-container">
                                     <input type="checkbox" id="vat-toggle" name="vat_enabled">
                                     <span class="checkmark"></span>
-                                    e-Barimt авах (VAT Receipt)
+                                    <span data-i18n="form-lam-vat">e-Barimt авах (VAT Receipt)</span>
                                 </label>
                             </div>
 
@@ -1862,6 +1862,12 @@
                     });
                     const qtyGroup = document.getElementById('quantity-group');
                     if (qtyGroup) qtyGroup.style.display = 'block';
+
+                    // Apply translations after form setup
+                    const savedLang = localStorage.getItem('language') || 'mn';
+                    if (typeof setLanguage === 'function') {
+                        setTimeout(() => setLanguage(savedLang), 150);
+                    }
                 }
             }, 100); // Small delay to ensure other scripts have run
         });
