@@ -8,239 +8,6 @@
     <link rel="icon" type="image/svg+xml" href="assets/images/Logo--ani-02.svg" />
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        /* Modern Design Standard Matching Screenshot */
-
-        /* Page Background slightly off-white */
-        main {
-            background-color: #f8fbff;
-        }
-
-        .product-form-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid #f0f0f0;
-        }
-
-        .product-form-card h2 {
-            font-size: 1.25rem;
-            margin-bottom: 25px;
-            color: #1a1a1a;
-            font-weight: 700;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: #6b7280;
-            font-weight: 600;
-            /* Slightly bolder for labels */
-        }
-
-        select,
-        input[type="text"],
-        input[type="tel"],
-        textarea {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            color: #333;
-            background-color: #fff;
-            transition: border-color 0.2s;
-            appearance: none;
-            height: 42px;
-            /* Fixed height for inputs */
-        }
-
-        textarea {
-            height: auto;
-        }
-
-        select {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 9l4 4 4-4'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            background-size: 16px;
-            padding-right: 32px;
-        }
-
-        select:focus,
-        input:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
-        }
-
-        /* Stock Info Box */
-        .stock-info-box {
-            background-color: #fff7ed;
-            /* Light orange bg */
-            color: #c2410c;
-            /* Dark orange text */
-            border: 1px solid #ffedd5;
-            padding: 12px 16px;
-            border-radius: 6px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            font-size: 1rem;
-        }
-
-        .stock-info-box i {
-            color: #f97316;
-        }
-
-        .stock-number {
-            color: #16a34a;
-            /* Green for 'In Stock' number usually, or orange per user screenshot */
-            color: #f97316;
-            /* Screenshot uses orange number '2' */
-        }
-
-        /* Modern Radio Buttons */
-        .radio-group-modern {
-            display: flex;
-            gap: 24px;
-            align-items: center;
-        }
-
-        .radio-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            color: #4b5563;
-            font-weight: 500;
-        }
-
-        .custom-radio {
-            width: 22px;
-            height: 22px;
-            border: 2px solid #e5e7eb;
-            /* Default gray border */
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        /* When radio is checked */
-        input[type="radio"]:checked+.custom-radio {
-            border-color: var(--primary-color);
-            /* Screenshot shows full orange circle? Or white inside? 
-                Usually orange border + white fill + orange dot 
-                OR full orange fill + white dot.
-                The screenshot looks like: Thick orange border, white center? Or full orange.
-                Let's go with Orange Border + Orange Dot.
-             */
-            border-width: 2px;
-        }
-
-        input[type="radio"]:checked+.custom-radio::after {
-            content: '';
-            width: 12px;
-            height: 12px;
-            background: var(--primary-color);
-            border-radius: 50%;
-        }
-
-        input[type="radio"] {
-            display: none;
-        }
-
-        /* Modern Checkbox */
-        .checkbox-modern-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            color: #4b5563;
-        }
-
-        .custom-checkbox {
-            width: 22px;
-            height: 22px;
-            border: 2px solid #e5e7eb;
-            border-radius: 4px;
-            /* Rounded square */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        input[type="checkbox"]:checked+.custom-checkbox {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        input[type="checkbox"]:checked+.custom-checkbox::after {
-            content: '\f00c';
-            /* FontAwesome Check */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: white;
-            font-size: 14px;
-        }
-
-        input[type="checkbox"] {
-            display: none;
-        }
-
-        /* Button */
-        .submit-order-btn {
-            background: linear-gradient(90deg, #f97316 0%, #fb923c 100%);
-            /* Orange Gradient */
-            color: white;
-            padding: 16px;
-            border-radius: 8px;
-            width: 100%;
-            font-weight: 700;
-            font-size: 1.1rem;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s, shadow 0.2s;
-            box-shadow: 0 4px 10px -2px rgba(249, 115, 22, 0.4);
-            margin-top: 10px;
-        }
-
-        .submit-order-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px -2px rgba(249, 115, 22, 0.5);
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .page-container {
-                padding: 0 16px;
-            }
-
-            .product-detail-container {
-                grid-template-columns: 1fr;
-            }
-
-            .radio-group-modern {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -267,13 +34,17 @@
                         </ul>
                         <a href="quote.html" class="btn-pill" data-i18n="nav-quote">Үнийн санал авах</a>
                     </div>
-                </div>
-                <div class="menu-divider" style="display:none;"></div> <!-- Spacer -->
-                <div class="lang-switcher" id="lang-switcher">
-                    <div class="lang-btn" id="lang-btn">
-                        <img src="https://flagcdn.com/w20/mn.png" id="current-lang-flag">
-                        <span id="current-lang-name">Монгол</span>
-                        <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i>
+                    <div class="menu-divider"></div>
+                    <div class="support-info">
+                        <span class="phone">7575-8575</span>
+                        <span class="label">Хэрэглэгчийн туслах</span>
+                    </div>
+                    <div class="lang-switcher" id="lang-switcher">
+                        <div class="lang-btn" id="lang-btn">
+                            <img src="https://flagcdn.com/w20/mn.png" id="current-lang-flag">
+                            <span id="current-lang-name">Монгол</span>
+                            <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -286,7 +57,7 @@
     </header>
 
     <main style="padding-top: var(--header-height);">
-        <section class="product-detail-section" style="padding-top: 40px;">
+        <section class="product-detail-section">
             <div class="page-container">
                 <nav class="breadcrumb">
                     <a href="index.html">Нүүр</a>
@@ -330,12 +101,12 @@
                             </select>
                         </div>
 
-                        <!-- Face Stock -->
+                        <!-- Face Stock (Type) -->
                         <div class="form-group">
-                            <label>Face Stock (Гадаргуу)</label>
+                            <label>Төрөл (Kind)</label>
                             <select name="face_stock" id="face_stock">
                                 <option value="glossy">Glossy (Гялгар)</option>
-                                <option value="matte" disabled>Matte (Матт) - Out of Stock</option>
+                                <option value="matte" disabled style="color: #ccc;">Matte (Матт) - Дууссан</option>
                             </select>
                         </div>
 
@@ -344,62 +115,59 @@
                             <label>Хэмжээ (Size)</label>
                             <select name="size" id="size">
                                 <option value="44x40">44x40cm</option>
-                                <option value="a2" disabled>A2 - Sold Out</option>
+                                <option value="a2" disabled style="color: #ccc;">A2 - Дууссан</option>
                             </select>
                         </div>
 
-                        <!-- Stock Indicator -->
-                        <div class="stock-info-box">
-                            <i class="fas fa-box-open"></i> Stock: &nbsp;<span class="stock-number">In Stock</span>
+                        <!-- Stock Display - Using standard class from style.css -->
+                        <div class="stock-display" style="margin-bottom: 15px;">
+                            Stock: <span id="stock-count" style="font-weight: bold; color: var(--primary-color);">In
+                                Stock</span>
                         </div>
 
-                        <!-- Delivery Toggle -->
+                        <!-- Delivery Toggle - Using standard classes -->
                         <div class="form-group">
                             <label>Хүргэлт / Авах хэлбэр</label>
-                            <div class="radio-group-modern">
-                                <label class="radio-label">
+                            <div class="radio-group">
+                                <label class="radio-container">
                                     <input type="radio" name="delivery_method" value="pickup" checked>
-                                    <span class="custom-radio"></span>
+                                    <span class="radio-checkmark"></span>
                                     Өөрийн биеэр авах (Pickup)
                                 </label>
-                                <label class="radio-label">
+                                <label class="radio-container">
                                     <input type="radio" name="delivery_method" value="delivery">
-                                    <span class="custom-radio"></span>
+                                    <span class="radio-checkmark"></span>
                                     Хүргэлтээр авах
                                 </label>
                             </div>
                         </div>
 
-                        <!-- VAT Toggle -->
-                        <div class="form-group">
-                            <label class="checkbox-modern-label">
+                        <!-- VAT Toggle - Using standard classes -->
+                        <div class="form-checkbox-group">
+                            <label class="checkbox-container">
                                 <input type="checkbox" id="vat-toggle" name="vat_enabled">
-                                <span class="custom-checkbox"></span>
+                                <span class="checkmark"></span>
                                 e-Barimt авах (VAT Receipt)
                             </label>
                         </div>
 
                         <!-- Conditional Delivery Fields -->
-                        <div id="delivery-details" style="display: none; margin-top: 15px;">
+                        <div id="delivery-details"
+                            style="display: none; padding: 15px; background: #f9f9f9; border-radius: 8px; margin-bottom: 15px;">
                             <div class="form-group">
-                                <label style="font-weight: normal;">Хаяг</label>
+                                <label>Хаяг</label>
                                 <textarea name="address" rows="2" placeholder="Дүүрэг, хороо, байр..."></textarea>
                             </div>
                             <div class="form-group">
-                                <label style="font-weight: normal;">Утас</label>
+                                <label>Утас</label>
                                 <input type="tel" name="phone" placeholder="8888-8888">
                             </div>
                         </div>
 
                         <!-- Notes -->
-                        <div class="form-group" style="margin-top: 15px;">
+                        <div class="form-group">
                             <label>Тэмдэглэл</label>
                             <textarea name="notes" rows="3" placeholder="Тухайлбар, онцгой хүсэлт..."></textarea>
-                        </div>
-
-                        <div
-                            style="text-align: right; margin-bottom: 15px; font-weight: 700; color: #333; font-size: 1.1rem;">
-                            Үнэ: <span id="total-price-display" style="color: var(--primary-color);">0₮</span>
                         </div>
 
                         <button type="submit" class="btn btn-primary submit-order-btn">Захиалах</button>
@@ -441,60 +209,44 @@
             const vatToggle = document.getElementById('vat-toggle');
             const deliveryRadios = document.querySelectorAll('input[name="delivery_method"]');
             const deliveryDetails = document.getElementById('delivery-details');
-            const totalPriceDisplay = document.getElementById('total-price-display');
 
             // Constants
-            const BASE_PRICE = 250; // Base price per sheet
+            const BASE_PRICE = 250;
             const DELIVERY_FEE = 5000;
 
-            // 1. Populate Quantity Dropdown
-            // User requested: Start from 500, +500 increments
+            // Populate Quantity Dropdown (500 to 20000 in increments of 500)
             for (let i = 500; i <= 20000; i += 500) {
                 const option = document.createElement('option');
                 option.value = i;
                 option.textContent = i.toLocaleString();
                 quantitySelect.appendChild(option);
             }
-            // Add a "1" option if specifically testing? No, user said 500+.
 
-            // 2. Logic Checker
+            // Calculate Total (optional - can be shown or hidden)
             function calculateTotal() {
                 const qty = parseInt(quantitySelect.value);
                 let subtotal = qty * BASE_PRICE;
-
-                // VAT
-                let vat = 0;
-                if (vatToggle.checked) {
-                    vat = subtotal * 0.1;
-                }
-
-                // Delivery
-                let delivery = 0;
+                let vat = vatToggle.checked ? subtotal * 0.1 : 0;
                 const isDelivery = document.querySelector('input[name="delivery_method"]:checked').value === 'delivery';
+                let delivery = isDelivery ? DELIVERY_FEE : 0;
+
                 if (isDelivery) {
-                    delivery = DELIVERY_FEE;
                     deliveryDetails.style.display = 'block';
                 } else {
                     deliveryDetails.style.display = 'none';
                 }
 
-                const total = subtotal + vat + delivery;
-
-                // Update UI
-                if (totalPriceDisplay) {
-                    totalPriceDisplay.textContent = total.toLocaleString() + '₮';
-                }
+                // const total = subtotal + vat + delivery;
+                // console.log('Total:', total);
             }
 
-            // Event Listeners
             quantitySelect.addEventListener('change', calculateTotal);
             vatToggle.addEventListener('change', calculateTotal);
             deliveryRadios.forEach(radio => radio.addEventListener('change', calculateTotal));
 
-            // Initial Calc
-            calculateTotal();
+            calculateTotal(); // Initial
 
-            // Mobile Menu Simple Logic (replicated)
+            // Mobile Menu
             const menuToggle = document.getElementById('menu-toggle');
             const navMenu = document.querySelector('.header-right');
             const menuOverlay = document.getElementById('menu-overlay');

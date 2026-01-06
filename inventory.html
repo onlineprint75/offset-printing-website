@@ -176,59 +176,43 @@
             </div>
 
             <div class="product-grid">
-                <!-- 12 Inventory Items -->
-                <script type="module">
-                    import { db } from './firebase-config.js';
-                    import { collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
+                <!-- Load from Static Data -->
+                <script src="products-data.js"></script>
+                <script>
                     const grid = document.querySelector('.product-grid');
-                    // Clear initial loading state or static content if any (keeping the script tag inside the grid in original code was a bit odd, but we'll append to grid)
-                    // The original code had the script INSIDE the grid div. We should probably target the grid explicitly.
-                    // Let's assume the script is replacing the content generation.
 
-                    async function loadProducts() {
-                        try {
-                            const q = query(collection(db, "products"), orderBy("createdAt", "desc"));
-                            const querySnapshot = await getDocs(q);
+                    function loadProducts() {
+                        const products = getAllProducts();
 
-                            if (querySnapshot.empty) {
-                                grid.innerHTML = '<p style="text-align:center; width:100%;">Одоогоор бараа байхгүй байна.</p>';
-                                return;
-                            }
+                        if (products.length === 0) {
+                            grid.innerHTML = '<p style="text-align:center; width:100%;">Одоогоор бараа байхгүй байна.</p>';
+                            return;
+                        }
 
-                            // Clear existing static content if we want to replace it entirely
-                            // For now, let's Append or Replace? 
-                            // User said: "Fetch from Firestore". Usually implies replacing static data.
-                            // I will clear the grid first.
-                            grid.innerHTML = '';
+                        grid.innerHTML = '';
 
-                            querySnapshot.forEach((doc) => {
-                                const m = doc.data();
-                                const id = doc.id; // Firestore ID
+                        products.forEach((m) => {
+                            const id = m.id;
 
-                                grid.innerHTML += `
-                                    <div class="product-card">
-                                        <a href="product-detail.html?id=${id}&source=firebase" class="product-img">
-                                            <img src="${m.img}" alt="${m.name}" style="object-fit: cover;">
-                                        </a>
-                                        <div class="product-info">
-                                            <h3>${m.name}</h3>
-                                            <div class="stock-status">Нөөц: ${m.stock}</div>
-                                            <p>${m.desc}</p>
-                                            <div class="product-footer">
-                                                <div class="product-price">${m.price}</div>
-                                                <a href="product-detail.html?id=${id}&source=firebase" class="order-btn-link">
-                                                    Захиалах <i class="fas fa-chevron-right"></i>
-                                                </a>
-                                            </div>
+                            grid.innerHTML += `
+                                <div class="product-card">
+                                    <a href="product-detail.html?id=${id}" class="product-img">
+                                        <img src="${m.img}" alt="${m.name}" style="object-fit: cover;">
+                                    </a>
+                                    <div class="product-info">
+                                        <h3>${m.name}</h3>
+                                        <div class="stock-status">Нөөц: ${m.stock}</div>
+                                        <p>${m.desc}</p>
+                                        <div class="product-footer">
+                                            <div class="product-price">${m.price}</div>
+                                            <a href="product-detail.html?id=${id}" class="order-btn-link">
+                                                Захиалах <i class="fas fa-chevron-right"></i>
+                                            </a>
                                         </div>
                                     </div>
-                                `;
-                            });
-                        } catch (error) {
-                            console.error("Error loading products:", error);
-                            grid.innerHTML = '<p>Барааг ачааллахад алдаа гарлаа.</p>';
-                        }
+                                </div>
+                            `;
+                        });
                     }
 
                     loadProducts();
