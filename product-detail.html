@@ -1524,9 +1524,21 @@
             const widthSelect = document.getElementById('lamination-width');
             const coreRadios = document.querySelectorAll('input[name="lamination_core"]');
             const stockDisplay = document.getElementById('current-stock');
-            const qtySelect = document.getElementById('quantity-select');
+            // FIX: Ensure we have a quantity selector for lamination if standard one is hidden
+            let qtySelect = document.getElementById('quantity-select');
+
+            // If standard qty is hidden or missing, we might need to inject one or ensure it's visible. 
+            // In config we set quantities: [...], so standard select should be there. 
+            // But let's make sure we find it.
+
             const priceDisplay = document.getElementById('lamination-price');
             const submitBtn = document.querySelector('.submit-order-btn');
+
+            // Set Button Text explicitly for Inventory/Order
+            if (submitBtn) {
+                submitBtn.textContent = 'Захиалах'; // Order Now
+                submitBtn.removeAttribute('data-i18n');
+            }
 
             // Deliver & VAT Toggles
             const deliveryToggle = document.querySelectorAll('input[name="delivery_method_toggle"]');
@@ -1554,24 +1566,27 @@
 
             // 2. Price & Stock Interaction
             const updateState = async () => {
-                stockDisplay.textContent = 'Checking...';
-                stockDisplay.style.color = '#e67e22'; // Orange
+                // Determine Price Element - it might be class .total-price-value or id lamination-price
+                let priceEl = document.querySelector('.total-price-value');
+                if (!priceEl) priceEl = document.getElementById('lamination-price');
 
-                const finish = finishSelect.value;
-                const micron = parseInt(micronSelect.value);
-                const width = parseInt(widthSelect.value);
+                if (stockDisplay) {
+                    stockDisplay.textContent = 'Checking...';
+                    stockDisplay.style.color = '#e67e22';
+                }
+
+                const finish = finishSelect ? finishSelect.value : 'glossy';
+                const micron = micronSelect ? parseInt(micronSelect.value) : 20;
+                const width = widthSelect ? parseInt(widthSelect.value) : 32;
 
                 // Stock Check
                 const stock = await stockManager.getStock('lamination', { width, micron, finish });
-                stockDisplay.textContent = stock;
-                stockDisplay.style.color = stock > 0 ? '#27ae60' : '#c0392b'; // Green or Red
+                if (stockDisplay) {
+                    stockDisplay.textContent = stock;
+                    stockDisplay.style.color = stock > 0 ? '#27ae60' : '#c0392b';
+                }
 
                 // Price Calculation
-                // Base Price Mock: 
-                // 32cm = 30000, 37cm = 35000, 44cm = 42000, 52cm = 50000
-                // Micron Multiplier: 20mic = 1.0, 25mic = 1.25, 30mic = 1.5
-                // Finish: Matte +2000
-
                 let basePrice = 30000;
                 if (width === 37) basePrice = 35000;
                 if (width === 44) basePrice = 42000;
@@ -1584,26 +1599,25 @@
                 let finishFee = (finish === 'matte') ? 2000 : 0;
 
                 const unitPrice = (basePrice * micronMult) + finishFee;
-                const qty = parseInt(qtySelect.value);
+                const qty = qtySelect ? (parseInt(qtySelect.value) || 1) : 1;
 
                 const total = unitPrice * qty;
-                if (priceDisplay) priceDisplay.textContent = total.toLocaleString() + '₮';
 
-                // Update Button Text
-                if (submitBtn) {
-                    // We can manually set text or wait for translation
-                    // submitBtn.textContent = 'Order Now'; 
+                if (priceEl) {
+                    priceEl.textContent = total.toLocaleString() + '₮';
                 }
             };
 
-            // Listeners
-            if (finishSelect) finishSelect.addEventListener('change', updateState);
-            if (micronSelect) micronSelect.addEventListener('change', updateState);
-            if (widthSelect) widthSelect.addEventListener('change', updateState);
-            if (qtySelect) qtySelect.addEventListener('change', updateState);
+            // Re-attach listeners just in case
+            if (finishSelect) finishSelect.onclick = updateState; // Use click/change for select
+            if (finishSelect) finishSelect.onchange = updateState;
 
-            // Initial run
-            updateState();
+            if (micronSelect) micronSelect.onchange = updateState;
+            if (widthSelect) widthSelect.onchange = updateState;
+            if (qtySelect) qtySelect.onchange = updateState;
+
+            // Initial run with delay to ensure DOM is ready
+            setTimeout(updateState, 500);
         }
     </script>
 
@@ -1637,16 +1651,16 @@
 
                         // Update Breadcrumb
                         const breadcrumbNav = document.querySelector('.breadcrumb');
-                        const breadcrumbSpan = breadcrumbNav.querySelector('span[data-i18n]');
+                        // Use a more specific selector
+                        const breadcrumbSpan = breadcrumbNav.querySelector('span:last-child'); // Usually the name is last
 
                         // Fix Breadcrumb for Lamination/Inventory
-                        // If it's lamination or source is firebase (inventory), link to Inventory instead of Quote
                         if (productId === 'lamination' || source === 'firebase') {
                             const quoteLink = breadcrumbNav.querySelector('a[href="quote.html"]');
                             if (quoteLink) {
                                 quoteLink.href = 'inventory.html';
-                                quoteLink.setAttribute('data-i18n', 'nav-inventory');
-                                quoteLink.textContent = 'Бараа материал'; // Fallback text
+                                quoteLink.removeAttribute('data-i18n'); // Remove i18n to ensure text sticks
+                                quoteLink.textContent = 'Бараа материал';
                             }
                         }
 
