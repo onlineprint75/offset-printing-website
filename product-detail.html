@@ -1657,16 +1657,99 @@
                             if (el) el.style.display = "none";
                         });
 
-                        // FORCE UPDATE QUANTITIES for Lamination
-                        const qtySelect = document.getElementById('quantity-select');
-                        if (qtySelect) {
-                            qtySelect.innerHTML = '';
-                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach(q => {
-                                const opt = document.createElement('option');
-                                opt.value = q;
-                                opt.textContent = q;
-                                qtySelect.appendChild(opt);
-                            });
+                        // Apply custom form config if available
+                        if (data.formConfig) {
+                            const cfg = data.formConfig;
+
+                            // Custom Quantities
+                            if (cfg.quantities) {
+                                const qtySelect = document.getElementById('quantity-select');
+                                if (qtySelect) {
+                                    qtySelect.innerHTML = '';
+                                    cfg.quantities.forEach(q => {
+                                        const opt = document.createElement('option');
+                                        opt.value = q;
+                                        opt.textContent = q;
+                                        qtySelect.appendChild(opt);
+                                    });
+                                }
+                            }
+
+                            // Custom Finish Options (Kind / Төрөл)
+                            if (cfg.finishOptions) {
+                                const finishSelect = document.getElementById('lamination-finish');
+                                if (finishSelect) {
+                                    finishSelect.innerHTML = '';
+                                    cfg.finishOptions.forEach(opt => {
+                                        const option = document.createElement('option');
+                                        option.value = opt.value;
+                                        option.textContent = opt.label;
+                                        if (!opt.enabled) {
+                                            option.disabled = true;
+                                            option.style.color = '#ccc';
+                                        }
+                                        finishSelect.appendChild(option);
+                                    });
+                                }
+                            }
+
+                            // Custom Thickness Options (replaces Micron)
+                            if (cfg.thicknessOptions) {
+                                const micronSelect = document.getElementById('lamination-micron');
+                                const micronLabel = micronSelect ? micronSelect.parentElement.querySelector('label') : null;
+                                if (micronLabel && cfg.thicknessLabel) {
+                                    micronLabel.textContent = cfg.thicknessLabel;
+                                }
+                                if (micronSelect) {
+                                    micronSelect.innerHTML = '';
+                                    cfg.thicknessOptions.forEach(opt => {
+                                        const option = document.createElement('option');
+                                        option.value = opt.value;
+                                        option.textContent = opt.label;
+                                        if (!opt.enabled) {
+                                            option.disabled = true;
+                                            option.style.color = '#ccc';
+                                        }
+                                        if (opt.selected) option.selected = true;
+                                        micronSelect.appendChild(option);
+                                    });
+                                }
+                            }
+
+                            // Custom Size Options (replaces Width)
+                            if (cfg.sizeOptions) {
+                                const widthSelect = document.getElementById('lamination-width');
+                                const widthLabel = widthSelect ? widthSelect.parentElement.querySelector('label') : null;
+                                if (widthLabel && cfg.sizeLabel) {
+                                    widthLabel.textContent = cfg.sizeLabel;
+                                }
+                                if (widthSelect) {
+                                    widthSelect.innerHTML = '';
+                                    cfg.sizeOptions.forEach(opt => {
+                                        const option = document.createElement('option');
+                                        option.value = opt.value;
+                                        option.textContent = opt.label;
+                                        if (!opt.enabled) {
+                                            option.disabled = true;
+                                            option.style.color = '#ccc';
+                                        }
+                                        if (opt.selected) option.selected = true;
+                                        widthSelect.appendChild(option);
+                                    });
+                                }
+                            }
+                        } else {
+                            // Default lamination quantities
+                            const qtySelect = document.getElementById('quantity-select');
+                            if (qtySelect) {
+                                qtySelect.innerHTML = '';
+                                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach(q => {
+                                    const opt = document.createElement('option');
+                                    opt.value = q;
+                                    opt.textContent = q;
+                                    qtySelect.appendChild(opt);
+                                });
+                            }
                         }
 
                         // Initialize specific logic if available

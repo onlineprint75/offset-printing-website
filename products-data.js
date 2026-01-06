@@ -20,7 +20,26 @@ const PRODUCTS_DATA = [
     ],
     formats: [],
     types: [],
-    isLamination: true  // Use lamination-style form (Kind, Micron, Width, Core Size, etc.)
+    isLamination: true,
+    // Custom form config for Sticker
+    formConfig: {
+      quantities: [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 9000, 10000],
+      finishOptions: [
+        { value: "glossy", label: "Glossy (Гялгар)", enabled: true },
+        { value: "matte", label: "Matte (Матт) - Байхгүй", enabled: false }
+      ],
+      thicknessLabel: "Зузаан",
+      thicknessOptions: [
+        { value: "160", label: "160гр", enabled: true },
+        { value: "180", label: "180гр (Бэлэн)", enabled: true, selected: true },
+        { value: "200", label: "200гр", enabled: true }
+      ],
+      sizeLabel: "Хэмжээ",
+      sizeOptions: [
+        { value: "440x300", label: "440x300мм (Бэлэн)", enabled: true, selected: true },
+        { value: "440x594", label: "440x594мм", enabled: true }
+      ]
+    }
   },
   {
     id: "lamination-bopp",
