@@ -1636,6 +1636,14 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Use setTimeout to ensure this runs AFTER the main product config script
             setTimeout(function () {
+                // Helper function to get translation by key
+                function getTranslation(key) {
+                    const lang = localStorage.getItem('language') || 'mn';
+                    if (typeof translations !== 'undefined' && translations[lang] && translations[lang][key]) {
+                        return translations[lang][key];
+                    }
+                    return null;
+                }
                 const urlParams = new URLSearchParams(window.location.search);
                 const productId = urlParams.get('id');
 
@@ -1683,7 +1691,9 @@
                                     cfg.finishOptions.forEach(opt => {
                                         const option = document.createElement('option');
                                         option.value = opt.value;
-                                        option.textContent = opt.label;
+                                        // Use i18nKey if available, otherwise fallback to label
+                                        option.textContent = opt.i18nKey ? (getTranslation(opt.i18nKey) || opt.label || opt.value) : (opt.label || opt.value);
+                                        option.setAttribute('data-i18n', opt.i18nKey || '');
                                         if (!opt.enabled) {
                                             option.disabled = true;
                                             option.style.color = '#ccc';
@@ -1697,7 +1707,10 @@
                             if (cfg.thicknessOptions) {
                                 const micronSelect = document.getElementById('lamination-micron');
                                 const micronLabel = micronSelect ? micronSelect.parentElement.querySelector('label') : null;
-                                if (micronLabel && cfg.thicknessLabel) {
+                                if (micronLabel && cfg.thicknessLabelKey) {
+                                    micronLabel.textContent = getTranslation(cfg.thicknessLabelKey) || cfg.thicknessLabel || 'Thickness';
+                                    micronLabel.setAttribute('data-i18n', cfg.thicknessLabelKey);
+                                } else if (micronLabel && cfg.thicknessLabel) {
                                     micronLabel.textContent = cfg.thicknessLabel;
                                 }
                                 if (micronSelect) {
@@ -1705,7 +1718,8 @@
                                     cfg.thicknessOptions.forEach(opt => {
                                         const option = document.createElement('option');
                                         option.value = opt.value;
-                                        option.textContent = opt.label;
+                                        option.textContent = opt.i18nKey ? (getTranslation(opt.i18nKey) || opt.label || opt.value) : (opt.label || opt.value);
+                                        option.setAttribute('data-i18n', opt.i18nKey || '');
                                         if (!opt.enabled) {
                                             option.disabled = true;
                                             option.style.color = '#ccc';
@@ -1720,7 +1734,10 @@
                             if (cfg.sizeOptions) {
                                 const widthSelect = document.getElementById('lamination-width');
                                 const widthLabel = widthSelect ? widthSelect.parentElement.querySelector('label') : null;
-                                if (widthLabel && cfg.sizeLabel) {
+                                if (widthLabel && cfg.sizeLabelKey) {
+                                    widthLabel.textContent = getTranslation(cfg.sizeLabelKey) || cfg.sizeLabel || 'Size';
+                                    widthLabel.setAttribute('data-i18n', cfg.sizeLabelKey);
+                                } else if (widthLabel && cfg.sizeLabel) {
                                     widthLabel.textContent = cfg.sizeLabel;
                                 }
                                 if (widthSelect) {
@@ -1728,7 +1745,8 @@
                                     cfg.sizeOptions.forEach(opt => {
                                         const option = document.createElement('option');
                                         option.value = opt.value;
-                                        option.textContent = opt.label;
+                                        option.textContent = opt.i18nKey ? (getTranslation(opt.i18nKey) || opt.label || opt.value) : (opt.label || opt.value);
+                                        option.setAttribute('data-i18n', opt.i18nKey || '');
                                         if (!opt.enabled) {
                                             option.disabled = true;
                                             option.style.color = '#ccc';

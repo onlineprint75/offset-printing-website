@@ -25,19 +25,19 @@ const PRODUCTS_DATA = [
     formConfig: {
       quantities: [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 9000, 10000],
       finishOptions: [
-        { value: "glossy", label: "Glossy (Гялгар)", enabled: true },
-        { value: "matte", label: "Matte (Матт) (Дууссан)", enabled: false }
+        { value: "glossy", i18nKey: "form-sticker-glossy", enabled: true },
+        { value: "matte", i18nKey: "form-sticker-matte-unavail", enabled: false }
       ],
-      thicknessLabel: "Зузаан",
+      thicknessLabelKey: "form-sticker-thickness",
       thicknessOptions: [
-        { value: "160", label: "160гр (Дууссан)", enabled: false },
-        { value: "180", label: "180гр (Бэлэн)", enabled: true, selected: true },
-        { value: "200", label: "200гр (Дууссан)", enabled: false }
+        { value: "160", i18nKey: "form-sticker-160-unavail", enabled: false },
+        { value: "180", i18nKey: "form-sticker-180", enabled: true, selected: true },
+        { value: "200", i18nKey: "form-sticker-200-unavail", enabled: false }
       ],
-      sizeLabel: "Хэмжээ",
+      sizeLabelKey: "form-sticker-size",
       sizeOptions: [
-        { value: "440x300", label: "440x300мм (Бэлэн)", enabled: true, selected: true },
-        { value: "440x594", label: "440x594мм (Дууссан)", enabled: false }
+        { value: "440x300", i18nKey: "form-sticker-440x300", enabled: true, selected: true },
+        { value: "440x594", i18nKey: "form-sticker-440x594-unavail", enabled: false }
       ]
     }
   },

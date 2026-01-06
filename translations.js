@@ -226,6 +226,29 @@ const translations = {
         "form-lamination-type-glossy": "Гялгар",
         "form-delivery-1-2": "Ажлын 1-2 хоногт",
 
+        /* Sticker Form Translations */
+        "form-sticker-kind": "Төрөл",
+        "form-sticker-glossy": "Glossy (Гялгар)",
+        "form-sticker-matte-unavail": "Matte (Матт) (Дууссан)",
+        "form-sticker-thickness": "Зузаан",
+        "form-sticker-160-unavail": "160гр (Дууссан)",
+        "form-sticker-180": "180гр (Бэлэн)",
+        "form-sticker-200-unavail": "200гр (Дууссан)",
+        "form-sticker-size": "Хэмжээ",
+        "form-sticker-440x300": "440x300мм (Бэлэн)",
+        "form-sticker-440x594-unavail": "440x594мм (Дууссан)",
+
+        /* Lamination Form Translations */
+        "form-lam-kind": "Төрөл (Kind)",
+        "form-lam-glossy": "Glossy (Гялгар)",
+        "form-lam-matte": "Matte (Матт)",
+        "form-lam-micron": "Зузаан (Micron)",
+        "form-lam-width": "Өргөн (Width)",
+        "form-lam-delivery": "Хүргэлт / Авах хэлбэр",
+        "form-lam-pickup": "Өөрийн биеэр авах (Pickup)",
+        "form-lam-delivery-opt": "Хүргэлтээр авах",
+        "form-lam-vat": "e-Barimt авах (VAT Receipt)",
+
         /* Invoice Specific */
         "form-paper-selection": "Цаасны сонголт",
         "form-paper-2-copy": "2 хувь",
@@ -470,7 +493,30 @@ const translations = {
         "form-target-price": "Target Price (₮)",
         "form-target-price-placeholder": "Your estimated price (optional)",
         "form-target-price-hint": "Your estimated price. Can be left blank.",
-        "form-delivery-3-days": "Delivery time: 3 days"
+        "form-delivery-3-days": "Delivery time: 3 days",
+
+        /* Sticker Form Translations */
+        "form-sticker-kind": "Kind",
+        "form-sticker-glossy": "Glossy",
+        "form-sticker-matte-unavail": "Matte (Out of Stock)",
+        "form-sticker-thickness": "Thickness",
+        "form-sticker-160-unavail": "160g (Out of Stock)",
+        "form-sticker-180": "180g (In Stock)",
+        "form-sticker-200-unavail": "200g (Out of Stock)",
+        "form-sticker-size": "Size",
+        "form-sticker-440x300": "440x300mm (In Stock)",
+        "form-sticker-440x594-unavail": "440x594mm (Out of Stock)",
+
+        /* Lamination Form Translations */
+        "form-lam-kind": "Kind",
+        "form-lam-glossy": "Glossy",
+        "form-lam-matte": "Matte",
+        "form-lam-micron": "Micron",
+        "form-lam-width": "Width",
+        "form-lam-delivery": "Delivery / Pickup",
+        "form-lam-pickup": "Pickup",
+        "form-lam-delivery-opt": "Delivery",
+        "form-lam-vat": "VAT Receipt (e-Barimt)"
     },
     zh: {
         "nav-home": "首页",
