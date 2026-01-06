@@ -1544,8 +1544,10 @@
 
             // Set Button Text explicitly for Inventory/Order
             if (submitBtn) {
-                submitBtn.textContent = 'Захиалах'; // Order Now
-                submitBtn.removeAttribute('data-i18n');
+                const lang = localStorage.getItem('language') || 'mn';
+                const orderText = (typeof getTranslation === 'function' && getTranslation('form-order-btn')) || 'Захиалах';
+                submitBtn.textContent = orderText;
+                submitBtn.setAttribute('data-i18n', 'form-order-btn');
             }
 
             // Deliver & VAT Toggles
