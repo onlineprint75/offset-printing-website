@@ -1631,127 +1631,138 @@
     <!-- Static Product Loader (Replaced Firebase) -->
     <script src="products-data.js"></script>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const productId = urlParams.get('id');
+        // Wait for DOM and other scripts to be ready
+        document.addEventListener('DOMContentLoaded', function () {
+            // Use setTimeout to ensure this runs AFTER the main product config script
+            setTimeout(function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                const productId = urlParams.get('id');
 
-        // Check if this is a static product ID (not a predefined one like business_card)
-        const staticProduct = getProductById(productId);
+                // Check if this is a static product ID (not a predefined one like business_card)
+                const staticProduct = typeof getProductById === 'function' ? getProductById(productId) : null;
 
-        if (staticProduct) {
-            const data = staticProduct;
+                if (staticProduct) {
+                    const data = staticProduct;
 
-            // Detect Lamination Product by flag or name
-            if (data.isLamination || (data.name && data.name.toLowerCase().includes('lamination'))) {
-                const lamFields = document.getElementById('lamination-fields');
-                if (lamFields) lamFields.style.display = 'block';
+                    // Detect Lamination Product by flag or name
+                    if (data.isLamination || (data.name && data.name.toLowerCase().includes('lamination'))) {
+                        const lamFields = document.getElementById('lamination-fields');
+                        if (lamFields) lamFields.style.display = 'block';
 
-                /* STRICTLY HIDE GENERIC FIELDS */
-                const genericGroups = ["format-group", "paper-group", "print-type-group", "coating-group", "pages-group", "cover-group", "binding-group", "folding-group", "varnish-group", "prepress-group", "cut-select-group", "cut-checkbox-group", "numbered-group", "target-price-group", "foil-group", "spot-uv-group", "delivery-date-group", "delivery-info-group"];
-                genericGroups.forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el) el.style.display = "none";
-                });
+                        /* STRICTLY HIDE GENERIC FIELDS */
+                        const genericGroups = ["format-group", "paper-group", "print-type-group", "coating-group", "pages-group", "cover-group", "binding-group", "folding-group", "varnish-group", "prepress-group", "cut-select-group", "cut-checkbox-group", "numbered-group", "target-price-group", "foil-group", "spot-uv-group", "delivery-date-group", "delivery-info-group"];
+                        genericGroups.forEach(id => {
+                            const el = document.getElementById(id);
+                            if (el) el.style.display = "none";
+                        });
 
-                // FORCE UPDATE QUANTITIES for Lamination
-                const qtySelect = document.getElementById('quantity-select');
-                if (qtySelect) {
-                    qtySelect.innerHTML = '';
-                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach(q => {
-                        const opt = document.createElement('option');
-                        opt.value = q;
-                        opt.textContent = q;
-                        qtySelect.appendChild(opt);
+                        // FORCE UPDATE QUANTITIES for Lamination
+                        const qtySelect = document.getElementById('quantity-select');
+                        if (qtySelect) {
+                            qtySelect.innerHTML = '';
+                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].forEach(q => {
+                                const opt = document.createElement('option');
+                                opt.value = q;
+                                opt.textContent = q;
+                                qtySelect.appendChild(opt);
+                            });
+                        }
+
+                        // Initialize specific logic if available
+                        if (typeof window.initLaminationLogic === 'function') {
+                            setTimeout(() => window.initLaminationLogic('mn'), 50);
+                        }
+                    }
+
+                    // Update Page Title and Header
+                    document.title = `PPM | ${data.name}`;
+                    const titleEl = document.querySelector('.product-form-card h2');
+                    if (titleEl) {
+                        titleEl.textContent = data.name;
+                        titleEl.removeAttribute('data-i18n');
+                    }
+
+                    // Update Breadcrumb
+                    const breadcrumbNav = document.querySelector('.breadcrumb');
+                    const breadcrumbSpan = breadcrumbNav ? breadcrumbNav.querySelector('span:last-child') : null;
+
+                    // Fix Breadcrumb for Inventory products
+                    if (breadcrumbNav) {
+                        const quoteLink = breadcrumbNav.querySelector('a[href="quote.html"]');
+                        if (quoteLink) {
+                            quoteLink.href = 'inventory.html';
+                            quoteLink.removeAttribute('data-i18n');
+                            quoteLink.textContent = 'Бараа материал';
+                        }
+                    }
+
+                    if (breadcrumbSpan) {
+                        breadcrumbSpan.textContent = data.name;
+                        breadcrumbSpan.removeAttribute('data-i18n');
+                    }
+
+                    // Update Image Gallery
+                    const galleryGrid = document.querySelector('.thumbnail-grid');
+                    const mainImg = document.getElementById('current-main-img');
+
+                    if (data.images && data.images.length > 0 && mainImg) {
+                        mainImg.src = data.images[0];
+                        mainImg.alt = data.name;
+
+                        if (galleryGrid) {
+                            galleryGrid.innerHTML = '';
+                            data.images.forEach((url, index) => {
+                                const thumbDiv = document.createElement('div');
+                                thumbDiv.className = `thumb ${index === 0 ? 'active' : ''}`;
+                                thumbDiv.style.cursor = 'pointer';
+
+                                thumbDiv.onclick = function () {
+                                    mainImg.src = url;
+                                    document.querySelectorAll('.thumbnail-grid .thumb').forEach(t => t.classList.remove('active'));
+                                    this.classList.add('active');
+                                };
+
+                                thumbDiv.innerHTML = `<img src="${url}" alt="Product Image ${index + 1}" style="width:100px; height:auto;">`;
+                                galleryGrid.appendChild(thumbDiv);
+                            });
+                        }
+                    } else if (data.img && mainImg) {
+                        mainImg.src = data.img;
+                        mainImg.alt = data.name;
+                        if (galleryGrid) galleryGrid.innerHTML = '';
+                    }
+
+                    // Dynamic Options (Formats & Paper Types)
+                    const formatSelect = document.getElementById('format-select');
+                    if (data.formats && data.formats.length > 0 && formatSelect) {
+                        formatSelect.innerHTML = '';
+                        data.formats.forEach(fmt => {
+                            const opt = document.createElement('option');
+                            opt.textContent = fmt;
+                            formatSelect.appendChild(opt);
+                        });
+                    }
+
+                    const paperSelect = document.getElementById('paper-select');
+                    if (data.types && data.types.length > 0 && paperSelect) {
+                        paperSelect.innerHTML = '';
+                        data.types.forEach(type => {
+                            const opt = document.createElement('option');
+                            opt.textContent = type;
+                            paperSelect.appendChild(opt);
+                        });
+                    }
+
+                    // Hide complex groups for simple products
+                    ['pages-group', 'cover-group', 'binding-group', 'folding-group', 'varnish-group', 'prepress-group'].forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el) el.style.display = 'none';
                     });
+                    const qtyGroup = document.getElementById('quantity-group');
+                    if (qtyGroup) qtyGroup.style.display = 'block';
                 }
-
-                // Initialize specific logic if available
-                if (typeof window.initLaminationLogic === 'function') {
-                    setTimeout(() => window.initLaminationLogic('mn'), 50);
-                }
-            }
-
-            // Update Page Title and Header
-            document.title = `PPM | ${data.name}`;
-            const titleEl = document.querySelector('.product-form-card h2');
-            if (titleEl) {
-                titleEl.textContent = data.name;
-                titleEl.removeAttribute('data-i18n');
-            }
-
-            // Update Breadcrumb
-            const breadcrumbNav = document.querySelector('.breadcrumb');
-            const breadcrumbSpan = breadcrumbNav.querySelector('span:last-child');
-
-            // Fix Breadcrumb for Inventory products
-            const quoteLink = breadcrumbNav.querySelector('a[href="quote.html"]');
-            if (quoteLink) {
-                quoteLink.href = 'inventory.html';
-                quoteLink.removeAttribute('data-i18n');
-                quoteLink.textContent = 'Бараа материал';
-            }
-
-            if (breadcrumbSpan) {
-                breadcrumbSpan.textContent = data.name;
-                breadcrumbSpan.removeAttribute('data-i18n');
-            }
-
-            // Update Image Gallery
-            const galleryGrid = document.querySelector('.thumbnail-grid');
-            const mainImg = document.getElementById('current-main-img');
-
-            if (data.images && data.images.length > 0) {
-                mainImg.src = data.images[0];
-
-                if (galleryGrid) {
-                    galleryGrid.innerHTML = '';
-                    data.images.forEach((url, index) => {
-                        const thumbDiv = document.createElement('div');
-                        thumbDiv.className = `thumb ${index === 0 ? 'active' : ''}`;
-                        thumbDiv.style.cursor = 'pointer';
-
-                        thumbDiv.onclick = function () {
-                            mainImg.src = url;
-                            document.querySelectorAll('.thumbnail-grid .thumb').forEach(t => t.classList.remove('active'));
-                            this.classList.add('active');
-                        };
-
-                        thumbDiv.innerHTML = `<img src="${url}" alt="Product Image ${index + 1}" style="width:100px; height:auto;">`;
-                        galleryGrid.appendChild(thumbDiv);
-                    });
-                }
-            } else if (data.img) {
-                mainImg.src = data.img;
-                if (galleryGrid) galleryGrid.innerHTML = '';
-            }
-
-            // Dynamic Options (Formats & Paper Types)
-            const formatSelect = document.getElementById('format-select');
-            if (data.formats && data.formats.length > 0 && formatSelect) {
-                formatSelect.innerHTML = '';
-                data.formats.forEach(fmt => {
-                    const opt = document.createElement('option');
-                    opt.textContent = fmt;
-                    formatSelect.appendChild(opt);
-                });
-            }
-
-            const paperSelect = document.getElementById('paper-select');
-            if (data.types && data.types.length > 0 && paperSelect) {
-                paperSelect.innerHTML = '';
-                data.types.forEach(type => {
-                    const opt = document.createElement('option');
-                    opt.textContent = type;
-                    paperSelect.appendChild(opt);
-                });
-            }
-
-            // Hide complex groups for simple products
-            ['pages-group', 'cover-group', 'binding-group', 'folding-group', 'varnish-group', 'prepress-group'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.style.display = 'none';
-            });
-            document.getElementById('quantity-group').style.display = 'block';
-        }
+            }, 100); // Small delay to ensure other scripts have run
+        });
     </script>
 </body>
 
