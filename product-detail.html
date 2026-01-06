@@ -1635,6 +1635,25 @@
                             titleEl.removeAttribute('data-i18n');
                         }
 
+                        // Update Breadcrumb
+                        const breadcrumbNav = document.querySelector('.breadcrumb');
+                        const breadcrumbSpan = breadcrumbNav.querySelector('span[data-i18n]');
+
+                        // Fix Breadcrumb for Lamination/Inventory
+                        // If it's lamination or source is firebase (inventory), link to Inventory instead of Quote
+                        if (productId === 'lamination' || source === 'firebase') {
+                            const quoteLink = breadcrumbNav.querySelector('a[href="quote.html"]');
+                            if (quoteLink) {
+                                quoteLink.href = 'inventory.html';
+                                quoteLink.setAttribute('data-i18n', 'nav-inventory');
+                                quoteLink.textContent = 'Бараа материал'; // Fallback text
+                            }
+                        }
+
+                        if (breadcrumbSpan) {
+                            breadcrumbSpan.textContent = data.name;
+                            breadcrumbSpan.removeAttribute('data-i18n');
+                        }
                         // Update Image Gallery
                         const galleryGrid = document.querySelector('.thumbnail-grid');
                         const mainImg = document.getElementById('current-main-img');
@@ -1669,8 +1688,7 @@
                             if (galleryGrid) galleryGrid.innerHTML = ''; // Hide thumbs if only 1 image
                         }
 
-                        // Update Breadcrumb
-                        const breadcrumbSpan = document.querySelector('.breadcrumb span[data-i18n]');
+                        // Update Breadcrumb - Reusing logic, avoid redeclare
                         if (breadcrumbSpan) {
                             breadcrumbSpan.textContent = data.name;
                             breadcrumbSpan.removeAttribute('data-i18n');
