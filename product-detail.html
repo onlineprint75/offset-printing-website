@@ -1640,6 +1640,18 @@
                     if (docSnap.exists()) {
                         const data = docSnap.data();
 
+                        // Detect Lamination Product by Name and Trigger Logic
+                        if (data.name && data.name.toLowerCase().includes('lamination')) {
+                            const lamFields = document.getElementById('lamination-fields');
+                            if (lamFields) lamFields.style.display = 'block';
+
+                            // Initialize specific logic if available
+                            if (typeof window.initLaminationLogic === 'function') {
+                                // usage of timeout to ensure DOM is fully ready if needed, though here it should be fine
+                                setTimeout(() => window.initLaminationLogic('mn'), 50);
+                            }
+                        }
+
                         // Update Page Title and Header
                         document.title = `PPM | ${data.name}`;
                         const titleEl = document.querySelector('.product-form-card h2');
