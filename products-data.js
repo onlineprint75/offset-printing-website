@@ -19,7 +19,8 @@ const PRODUCTS_DATA = [
       "assets/images/Sticker3.jpg"
     ],
     formats: [],
-    types: []
+    types: [],
+    isLamination: true  // Use lamination-style form (Kind, Micron, Width, Core Size, etc.)
   },
   {
     id: "lamination-bopp",
