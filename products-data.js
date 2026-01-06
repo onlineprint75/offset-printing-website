@@ -12,9 +12,11 @@ const PRODUCTS_DATA = [
     desc: "Халуун бүрэлт",
     price: "320,000",
     stock: "15",
-    img: "assets/images/sticker.jpg",
+    img: "assets/images/Sticker.jpg",
     images: [
-      "assets/images/sticker.jpg"
+      "assets/images/Sticker.jpg",
+      "assets/images/Sticker2.jpg",
+      "assets/images/Sticker3.jpg"
     ],
     formats: [],
     types: []
@@ -25,11 +27,11 @@ const PRODUCTS_DATA = [
     desc: "Халуун бүрэлт",
     price: "320,000",
     stock: "15",
-    img: "assets/images/lamination bopp1.jpg",
+    img: "assets/images/Lamination.jpg",
     images: [
-      "assets/images/lamination bopp1.jpg",
-      "assets/images/lamination bopp2.jpg",
-      "assets/images/lamination bopp3.jpg"
+      "assets/images/Lamination.jpg",
+      "assets/images/Lamination2.jpg",
+      "assets/images/Lamination3.jpg"
     ],
     formats: [],
     types: [],
@@ -61,7 +63,7 @@ function getProductById(id) {
  */
 function searchProducts(query) {
   const lowerQuery = query.toLowerCase();
-  return PRODUCTS_DATA.filter(p => 
+  return PRODUCTS_DATA.filter(p =>
     p.name.toLowerCase().includes(lowerQuery) ||
     p.desc.toLowerCase().includes(lowerQuery)
   );
