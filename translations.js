@@ -222,8 +222,13 @@ const translations = {
         "form-lamination-size-54": "54 см ( 22 микрон, 4000м )",
         "form-lamination-type-matte": "Матт",
         "form-lamination-type-glossy": "Гялгар",
-        "form-lamination-type-matte": "Матт",
-        "form-lamination-type-glossy": "Гялгар",
+        "form-lam-micron-20-unavail": "20 micron (Дууссан)",
+        "form-lam-micron-22": "22 micron",
+        "form-lam-micron-24-unavail": "24 micron (Дууссан)",
+        "form-lam-width-32-unavail": "32 cm (Дууссан)",
+        "form-lam-width-37-unavail": "37 cm (Дууссан)",
+        "form-lam-width-44": "44 cm",
+        "form-lam-width-52": "52 cm",
         "form-delivery-1-2": "Ажлын 1-2 хоногт",
 
         /* Sticker Form Translations */
@@ -499,8 +504,13 @@ const translations = {
         "form-lamination-size-54": "54 cm ( 22 micron, 4000m )",
         "form-lamination-type-matte": "Matte",
         "form-lamination-type-glossy": "Glossy",
-        "form-lamination-type-matte": "Matte",
-        "form-lamination-type-glossy": "Glossy",
+        "form-lam-micron-20-unavail": "20 micron (Out of Stock)",
+        "form-lam-micron-22": "22 micron",
+        "form-lam-micron-24-unavail": "24 micron (Out of Stock)",
+        "form-lam-width-32-unavail": "32 cm (Out of Stock)",
+        "form-lam-width-37-unavail": "37 cm (Out of Stock)",
+        "form-lam-width-44": "44 cm",
+        "form-lam-width-52": "52 cm",
         "form-delivery-1-2": "1-2 business days",
 
         /* Invoice Specific */
@@ -717,6 +727,13 @@ const translations = {
         "form-lamination-size-54": "54 厘米 ( 22 微米, 4000米 )",
         "form-lamination-type-matte": "哑光",
         "form-lamination-type-glossy": "亮光",
+        "form-lam-micron-20-unavail": "20 微米 (缺货)",
+        "form-lam-micron-22": "22 微米",
+        "form-lam-micron-24-unavail": "24 微米 (缺货)",
+        "form-lam-width-32-unavail": "32 厘米 (缺货)",
+        "form-lam-width-37-unavail": "37 厘米 (缺货)",
+        "form-lam-width-44": "44 厘米",
+        "form-lam-width-52": "52 厘米",
         "form-delivery-1-2": "1-2 个工作日",
 
         /* Sticker Product */
@@ -922,6 +939,13 @@ const translations = {
         "form-lamination-size-54": "54 cm ( 22 미크론, 4000m )",
         "form-lamination-type-matte": "무광",
         "form-lamination-type-glossy": "유광",
+        "form-lam-micron-20-unavail": "20 미크론 (품절)",
+        "form-lam-micron-22": "22 미크론",
+        "form-lam-micron-24-unavail": "24 미크론 (품절)",
+        "form-lam-width-32-unavail": "32 cm (품절)",
+        "form-lam-width-37-unavail": "37 cm (품절)",
+        "form-lam-width-44": "44 cm",
+        "form-lam-width-52": "52 cm",
         "form-delivery-1-2": "영업일 기준 1-2일 이내",
 
         /* Sticker Product */
