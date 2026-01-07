@@ -215,7 +215,7 @@
                         });
 
                         // Re-apply translations after rendering products
-                        const lang = localStorage.getItem('language') || 'mn';
+                        const lang = localStorage.getItem('preferred-lang') || 'mn';
                         if (typeof setLanguage === 'function') {
                             setLanguage(lang);
                         }
