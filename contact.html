@@ -246,6 +246,75 @@
                 </div>
             </div>
 
+            <div class="faq-container">
+                <div class="section-title">
+                    <h2 data-i18n="faq-title">Түгээмэл асуултууд</h2>
+                </div>
+                <div class="faq-list">
+                    <!-- Q1 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3 data-i18n="faq-q1">Захиалга өгснөөс хойш хэр удаан хугацаанд хэвлэгдэж гарах вэ?</h3>
+                            <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p data-i18n="faq-a1">Дижитал хэвлэлээс ялгаатай нь...</p>
+                        </div>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3 data-i18n="faq-q2">Хэвлэх тоо ширхэг ихсэх тусам нэгжийн үнэ хямдрах уу?</h3>
+                            <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p data-i18n="faq-a2">Тийм ээ...</p>
+                        </div>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3 data-i18n="faq-q3">Дэлгэц дээр харагдаж байгаа өнгө цаасан дээр яг ижилхэн гарах уу?
+                            </h3>
+                            <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p data-i18n="faq-a3">Компьютер...</p>
+                        </div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3 data-i18n="faq-q4">Хэвлэлийн эх файлаа ямар форматаар, хэрхэн бэлдэж илгээх ёстой вэ?
+                            </h3>
+                            <i class="fas fa-chevron-down faq-toggle-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p data-i18n="faq-a4">Офсет хэвлэлд...</p>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const faqItems = document.querySelectorAll('.faq-item');
+
+                        faqItems.forEach(item => {
+                            const question = item.querySelector('.faq-question');
+                            question.addEventListener('click', () => {
+                                // Close others
+                                faqItems.forEach(otherItem => {
+                                    if (otherItem !== item) {
+                                        otherItem.classList.remove('active');
+                                    }
+                                });
+                                // Toggle current
+                                item.classList.toggle('active');
+                            });
+                        });
+                    });
+                </script>
+            </div>
+
             <div class="map-container">
                 <iframe src="https://maps.google.com/maps?q=47.94128,106.91626&t=&z=15&ie=UTF8&iwloc=&output=embed"
                     width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">

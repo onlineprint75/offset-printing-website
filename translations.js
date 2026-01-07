@@ -239,6 +239,17 @@ const translations = {
         "form-sticker-160-unavail": "160гр (Дууссан)",
         "form-sticker-180": "180гр (Бэлэн)",
         "form-sticker-200-unavail": "200гр (Дууссан)",
+
+        /* FAQ Section */
+        "faq-title": "Түгээмэл асуултууд",
+        "faq-q1": "Захиалга өгснөөс хойш хэр удаан хугацаанд хэвлэгдэж гарах вэ?",
+        "faq-a1": "Дижитал хэвлэлээс ялгаатай нь офсет хэвлэл нь хэвлэлийн хавтан бэлтгэх, тохиргоо хийх, хатаах, нугалах, хавтаслах зэрэг технологийн олон дамжлагатай байдаг. Иймд таны захиалгын тоо хэмжээ, ажлын онцлогоос хамааран ихэвчлэн ажлын 3-7 хоногт бэлэн болдог. Яаралтай захиалга бол менежертэй урьдчилан зөвшилцөх хэрэгтэй.",
+        "faq-q2": "Хэвлэх тоо ширхэг ихсэх тусам нэгжийн үнэ хямдрах уу?",
+        "faq-a2": "Тийм ээ, энэ бол офсет хэвлэлийн гол давуу тал юм. Офсет хэвлэл нь эхний бэлтгэл ажил (хэвлэлийн хавтан, цаас тохируулга) хийхэд тогтмол зардал гардаг ч, нэгэнт машин явж эхэлбэл хэвлэх тусам нэгжийн өртөг эрс буурдаг. Тиймээс 500-1000 ширхгээс дээш тоогоор хэвлүүлэхэд офсет хэвлэл нь хамгийн хэмнэлттэй сонголт болдог.",
+        "faq-q3": "Дэлгэц дээр харагдаж байгаа өнгө цаасан дээр яг ижилхэн гарах уу?",
+        "faq-a3": "Компьютер, гар утасны дэлгэц нь гэрлээр дүрс үүсгэдэг RGB горимтой байдаг бол хэвлэл нь будгаар дүрс бүтээдэг CMYK горимоор явдаг. Тиймээс дэлгэц дээрх өнгө болон хэвлэгдсэн өнгөний хооронд бага зэргийн (5-10%) зөрүү гарах боломжтой. Мөн таны сонгосон цаасны төрөл (шохойтой, матт, барзгартай гэх мэт) өнгөний уусалтад нөлөөлдөг. Бид хэвлэхээс өмнө өнгөний дээж (proof print) гаргаж баталгаажуулах боломжийг олгодог.",
+        "faq-q4": "Хэвлэлийн эх файлаа ямар форматаар, хэрхэн бэлдэж илгээх ёстой вэ?",
+        "faq-a4": "Офсет хэвлэлд чанарын шаардлага өндөр байдаг тул эх файлаа PDF, AI, CDR (Adobe Illustrator, CorelDraw) зэрэг вектор форматаар ирүүлэхийг зөвлөдөг. Файлын өнгөний горим заавал CMYK байх ёстой (дэлгэцийн RGB горим биш), зургийн нягтаршил 300dpi-аас багагүй, мөн зүсэлтийн хэмжээг (bleed) тооцож бэлтгэсэн байх шаардлагатай.",
         "form-sticker-size": "Хэмжээ",
         "form-sticker-440x300": "440x300мм (Бэлэн)",
         "form-sticker-440x594-unavail": "440x594мм (Дууссан)",
@@ -552,6 +563,17 @@ const translations = {
         "form-delivery-address-placeholder": "Building, entrance, apartment...",
         "form-delivery-phone": "Phone Number",
 
+        /* FAQ Section */
+        "faq-title": "Frequently Asked Questions",
+        "faq-q1": "How long will it take for my order to be printed?",
+        "faq-a1": "Unlike digital printing, offset printing involves multiple technological steps such as plate preparation, setup, drying, folding, and binding. Therefore, depending on the volume and specifics of your order, it is usually ready in 3-7 working days. If you have an urgent order, please consult with our manager in advance.",
+        "faq-q2": "Does the unit price decrease as the print quantity increases?",
+        "faq-a2": "Yes, this is the main advantage of offset printing. Offset printing has fixed costs for initial preparation (plates, paper setup), but once the machine starts running, the unit cost drops significantly as you print more. Therefore, offset printing becomes the most economical choice for quantities over 500-1000 pieces.",
+        "faq-q3": "Will the colors on the screen look exactly the same on paper?",
+        "faq-a3": "Computer and phone screens use RGB mode (light-based), while printing uses CMYK mode (ink-based). Therefore, a slight difference (5-10%) may occur between screen colors and printed colors. Also, the type of paper you choose (glossy, matte, textured, etc.) affects color absorption. We offer a proof print service to verify colors before mass printing.",
+        "faq-q4": "In what format should I prepare and send my design file?",
+        "faq-a4": "Since offset printing requires high quality, we recommend sending your source file in vector formats like PDF, AI, or CDR (Adobe Illustrator, CorelDraw). The color mode must be CMYK (not RGB), image resolution should be at least 300dpi, and bleed margins must be included.",
+
         /* VAT/e-Barimt Form Fields */
         "form-vat-type": "Type",
         "form-vat-organization": "Organization",
@@ -771,6 +793,17 @@ const translations = {
         "form-delivery-address-placeholder": "楼栋、单元、门牌号...",
         "form-delivery-phone": "电话号码",
 
+        /* FAQ Section */
+        "faq-title": "常见问题 (FAQ)",
+        "faq-q1": "下单后多久可以印好？",
+        "faq-a1": "与数字印刷不同，胶印涉及制版、设置、干燥、折页、装订等多个工艺环节。因此，根据您的订单数量和具体要求，通常在3-7个工作日内完成。如果您有紧急订单，请提前咨询我们的经理。",
+        "faq-q2": "印刷数量越多，单价会越便宜吗？",
+        "faq-a2": "是的，这是胶印的主要优势。胶印的初始准备工作（制版、纸张调试）有固定成本，但机器一旦运行，印得越多，单价就越低。因此，对于500-1000份以上的印量，胶印是最经济的选择。",
+        "faq-q3": "屏幕上看到的颜色和纸上的颜色会完全一样吗？",
+        "faq-a3": "电脑和手机屏幕使用RGB模式（光成像），而印刷使用CMYK模式（油墨成像）。因此，屏幕颜色和印刷颜色之间可能会有轻微（5-10%）的差异。此外，您选择的纸张类型（铜版纸、哑粉纸、特种纸等）也会影响色彩效果。我们提供打样服务，以便在大货印刷前确认颜色。",
+        "faq-q4": "我应该用什么格式准备和发送设计文件？",
+        "faq-a4": "由于胶印对质量要求很高，建议您发送PDF、AI、CDR（Adobe Illustrator, CorelDraw）等矢量格式的源文件。文件颜色模式必须是CMYK（不是屏幕的RGB模式），图片分辨率不低于300dpi，并且必须包含出血位（bleed）。",
+
         /* VAT/e-Barimt Form Fields */
         "form-vat-type": "类型",
         "form-vat-organization": "企业",
@@ -982,6 +1015,17 @@ const translations = {
         "form-delivery-address": "배송 주소",
         "form-delivery-address-placeholder": "건물, 동, 호수...",
         "form-delivery-phone": "전화번호",
+
+        /* FAQ Section */
+        "faq-title": "자주 묻는 질문 (FAQ)",
+        "faq-q1": "주문 후 인쇄가 완료되기까지 얼마나 걸리나요?",
+        "faq-a1": "디지털 인쇄와 달리 오프셋 인쇄는 제판, 설정, 건조, 접지, 제본 등 여러 공정을 거칩니다. 따라서 주문 수량과 작업 특성에 따라 보통 영업일 기준 3-7일이 소요됩니다. 급한 주문인 경우 매니저와 미리 상의해 주시기 바랍니다.",
+        "faq-q2": "인쇄 수량이 많을수록 단가가 저렴해지나요?",
+        "faq-a2": "네, 이것이 오프셋 인쇄의 가장 큰 장점입니다. 오프셋 인쇄는 초기 준비 작업(제판, 종이 세팅)에 고정 비용이 들지만, 기계가 돌아가기 시작하면 많이 찍을수록 단가가 급격히 떨어집니다. 따라서 500-1000장 이상 인쇄할 때 오프셋 인쇄가 가장 경제적인 선택입니다.",
+        "faq-q3": "화면에 보이는 색상과 종이에 인쇄된 색상이 똑같이 나오나요?",
+        "faq-a3": "컴퓨터와 스마트폰 화면은 빛으로 색을 표현하는 RGB 모드인 반면, 인쇄는 잉크를 사용하는 CMYK 모드입니다. 따라서 화면 색상과 인쇄 색상 간에 약간의 차이(5-10%)가 발생할 수 있습니다. 또한 선택하신 종이 종류(아트지, 모조지, 특수지 등)도 발색에 영향을 줍니다. 대량 인쇄 전에 색상을 확인할 수 있는 샘플 인쇄(가인쇄) 서비스를 제공합니다.",
+        "faq-q4": "디자인 파일은 어떤 형식으로, 어떻게 준비해서 보내야 하나요?",
+        "faq-a4": "오프셋 인쇄는 높은 품질을 요구하므로 PDF, AI, CDR(Adobe Illustrator, CorelDraw)과 같은 벡터 형식의 원본 파일을 보내주시는 것이 좋습니다. 파일 색상 모드는 반드시 CMYK여야 하며(화면용 RGB 아님), 이미지 해상도는 300dpi 이상이어야 하고, 재단 여백(도련)을 포함해야 합니다.",
 
         /* VAT/e-Barimt Form Fields */
         "form-vat-type": "유형",
