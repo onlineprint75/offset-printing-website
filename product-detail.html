@@ -385,7 +385,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" id="lamination-length-group">
                                 <label data-i18n="form-lam-length">Ороолтын урт</label>
                                 <select name="lamination_length" id="lamination-length">
                                     <option value="3000" disabled style="color: #ccc;"
@@ -1731,6 +1731,12 @@
                                         qtySelect.appendChild(opt);
                                     });
                                 }
+                            }
+
+                            // Custom Roll Length Visibility
+                            if (cfg.showRollLength === false) {
+                                const rollLengthGroup = document.getElementById('lamination-length-group');
+                                if (rollLengthGroup) rollLengthGroup.style.display = 'none';
                             }
 
                             // Custom Finish Options (Kind / Төрөл)
