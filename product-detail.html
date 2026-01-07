@@ -1530,7 +1530,7 @@
         }
 
         // --- Lamination Specific Logic Initialization ---
-        function initLaminationLogic(lang) {
+        function initLaminationLogic(lang, productData) {
             const stockManager = new StockManager();
             const finishSelect = document.getElementById('lamination-finish');
             const micronSelect = document.getElementById('lamination-micron');
@@ -1602,21 +1602,34 @@
                 }
 
                 // Price Calculation
-                let basePrice = 30000;
-                if (width === 37) basePrice = 35000;
-                if (width === 44) basePrice = 42000;
-                if (width === 52) basePrice = 50000;
+                let total = 0;
 
-                let micronMult = 1;
-                if (micron === 25) micronMult = 1.25;
-                if (micron === 30) micronMult = 1.5;
+                if (productData && productData.unitPrice) {
+                    // Simple Unit Price Calculation (e.g. Sticker)
+                    const qty = qtySelect ? (parseInt(qtySelect.value) || 1) : 1;
+                    total = productData.unitPrice * qty;
 
-                let finishFee = (finish === 'matte') ? 2000 : 0;
+                    // Ensure price display is visible
+                    const priceDisplayContainer = document.getElementById('lamination-price-display');
+                    if (priceDisplayContainer) priceDisplayContainer.style.display = 'block';
+                } else {
+                    // Legacy Lamination BOPP Logic
+                    let basePrice = 30000;
+                    if (width === 37) basePrice = 35000;
+                    if (width === 44) basePrice = 42000;
+                    if (width === 52) basePrice = 50000;
 
-                const unitPrice = (basePrice * micronMult) + finishFee;
-                const qty = qtySelect ? (parseInt(qtySelect.value) || 1) : 1;
+                    let micronMult = 1;
+                    if (micron === 25) micronMult = 1.25;
+                    if (micron === 30) micronMult = 1.5;
 
-                const total = unitPrice * qty;
+                    let finishFee = (finish === 'matte') ? 2000 : 0;
+
+                    const unitPrice = (basePrice * micronMult) + finishFee;
+                    const qty = qtySelect ? (parseInt(qtySelect.value) || 1) : 1;
+
+                    total = unitPrice * qty;
+                }
 
                 if (priceEl) {
                     priceEl.textContent = total.toLocaleString() + '₮';
@@ -1780,7 +1793,7 @@
                         // Initialize specific logic if available
                         if (typeof window.initLaminationLogic === 'function') {
                             const savedLang = localStorage.getItem('preferred-lang') || 'mn';
-                            setTimeout(() => window.initLaminationLogic(savedLang), 50);
+                            setTimeout(() => window.initLaminationLogic(savedLang, data), 50);
                         }
                     }
 

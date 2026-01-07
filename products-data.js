@@ -12,6 +12,7 @@ const PRODUCTS_DATA = [
     nameKey: "product-name-sticker",
     desc: "Халуун бүрэлт",
     descKey: "product-desc-sticker",
+    unitPrice: 180,
     price: "320,000",
     stock: "15",
     img: "assets/images/Sticker.jpg",
