@@ -385,6 +385,17 @@
                                 </select>
                             </div>
 
+                            <div class="form-group">
+                                <label data-i18n="form-lam-length">Ороолтын урт</label>
+                                <select name="lamination_length" id="lamination-length">
+                                    <option value="3000" disabled style="color: #ccc;"
+                                        data-i18n="form-lam-length-3000-unavail">3000 метр (Дууссан)</option>
+                                    <option value="4000" selected data-i18n="form-lam-length-4000">4000 метр</option>
+                                    <option value="4500" disabled style="color: #ccc;"
+                                        data-i18n="form-lam-length-4500-unavail">4500 метр (Дууссан)</option>
+                                </select>
+                            </div>
+
                             <!-- Core Size field hidden per user request -->
                             <div class="form-group" style="display: none;">
                                 <label>Голч (Core Size)</label>
@@ -1534,7 +1545,9 @@
             const stockManager = new StockManager();
             const finishSelect = document.getElementById('lamination-finish');
             const micronSelect = document.getElementById('lamination-micron');
+
             const widthSelect = document.getElementById('lamination-width');
+            const lengthSelect = document.getElementById('lamination-length');
             const coreRadios = document.querySelectorAll('input[name="lamination_core"]');
             const stockDisplay = document.getElementById('current-stock');
             // FIX: Ensure we have a quantity selector for lamination if standard one is hidden
@@ -1613,19 +1626,35 @@
                     const priceDisplayContainer = document.getElementById('lamination-price-display');
                     if (priceDisplayContainer) priceDisplayContainer.style.display = 'block';
                 } else {
-                    // Legacy Lamination BOPP Logic
-                    let basePrice = 30000;
-                    if (width === 37) basePrice = 35000;
-                    if (width === 44) basePrice = 42000;
-                    if (width === 52) basePrice = 50000;
+                    // Ensure price display is visible for Lamination too
+                    const priceDisplayContainer = document.getElementById('lamination-price-display');
+                    if (priceDisplayContainer) priceDisplayContainer.style.display = 'block';
+                    // Lamination BOPP Logic (Updated for Roll Length)
+                    const tempLen = lengthSelect ? parseInt(lengthSelect.value) : 4000;
 
-                    let micronMult = 1;
-                    if (micron === 25) micronMult = 1.25;
-                    if (micron === 30) micronMult = 1.5;
+                    // Base reference: 44cm, 4000m = 400,000 (Matte/Glossy assumed base)
+                    // We interpret the user's request "400,000" as the unit price for that specific config.
 
-                    let finishFee = (finish === 'matte') ? 2000 : 0;
+                    // Calculate Ratio based on Width (Reference 44cm)
+                    const widthRatio = width / 44;
 
-                    const unitPrice = (basePrice * micronMult) + finishFee;
+                    // Calculate Ratio based on Length (Reference 4000m)
+                    const lengthRatio = tempLen / 4000;
+
+                    // Base Unit Price for 44cm/4000m
+                    let baseRefPrice = 400000;
+
+                    // Adjust for Finish? (User didn't specify difference, but matte is usually standard or +fee)
+                    // If we assume 400k is for Matte as requested.
+                    // If user selects Glossy, we can keep it same or slightly less. 
+                    // For now, we'll keep it simple: Same price for Finish unless specified.
+                    // Or reuse old logic (matte +2000)? 2000 is negligible on 400k. 
+
+                    let unitPrice = baseRefPrice * widthRatio * lengthRatio;
+
+                    // Round to nice number (e.g. nearest 100)
+                    unitPrice = Math.round(unitPrice / 100) * 100;
+
                     const qty = qtySelect ? (parseInt(qtySelect.value) || 1) : 1;
 
                     total = unitPrice * qty;
@@ -1642,6 +1671,7 @@
 
             if (micronSelect) micronSelect.onchange = updateState;
             if (widthSelect) widthSelect.onchange = updateState;
+            if (lengthSelect) lengthSelect.onchange = updateState;
             if (qtySelect) qtySelect.onchange = updateState;
 
             // Initial run with delay to ensure DOM is ready
