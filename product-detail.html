@@ -874,9 +874,17 @@
             sheetData.Details = messageText;
 
             // Send to Google Sheet
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwvvVfS0avc0BRCH4Z1EdTNtvNBSZ99u8Vyyha3wTHO0g-dyURfd71m6DDBLGZanoj2zA/exec';
+            // Send to Google Sheet
+            const QUOTE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwvvVfS0avc0BRCH4Z1EdTNtvNBSZ99u8Vyyha3wTHO0g-dyURfd71m6DDBLGZanoj2zA/exec';
+            const INVENTORY_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwLqH-1X169b1xjbDsCWhjCn9BChtFup7qw7SzX8XsZzFs_qr2rfYF-KQHtt1vUDvJjpQ/exec';
 
-            fetch(SCRIPT_URL, {
+            // Determine which URL to use
+            // We need a way to know if it's inventory.
+            // Since we can't easily access 'data' here without making it global,
+            // let's rely on a global flag we will set in the loader.
+            const scriptUrl = window.isInventoryProduct ? INVENTORY_SCRIPT_URL : QUOTE_SCRIPT_URL;
+
+            fetch(scriptUrl, {
                 method: 'POST',
                 mode: 'no-cors', // Important for Google Apps Script simple triggers
                 headers: {
@@ -1112,6 +1120,9 @@
 
                 if (staticProduct) {
                     const data = staticProduct;
+
+                    // Set global flag for form submission routing
+                    window.isInventoryProduct = !!data.isLamination;
 
                     // Detect Lamination Product by flag or name
                     if (data.isLamination || (data.name && data.name.toLowerCase().includes('lamination'))) {
