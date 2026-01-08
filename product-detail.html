@@ -760,7 +760,8 @@
             const varnish = mainForm.querySelector('[name="varnish"]');
             if (varnish && document.getElementById('varnish-group').style.display !== 'none') {
                 document.getElementById('summary-varnish-item').style.display = 'block';
-                document.getElementById('summary-varnish').textContent = varnish.checked ? (savedLang === 'mn' ? 'Тийм' : 'Yes') : (savedLang === 'mn' ? 'Үгүй' : 'No');
+                const currentLang = localStorage.getItem('preferred-lang') || 'mn';
+                document.getElementById('summary-varnish').textContent = varnish.checked ? (currentLang === 'mn' ? 'Тийм' : 'Yes') : (currentLang === 'mn' ? 'Үгүй' : 'No');
             } else {
                 document.getElementById('summary-varnish-item').style.display = 'none';
             }
@@ -780,11 +781,13 @@
         });
 
         // Final Submit
-        // Final Submit
         modalForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const btn = modalForm.querySelector('.submit-final-btn');
             const originalText = btn.textContent;
+
+            // Re-capture main form data in this scope
+            const mainFormData = new FormData(mainForm);
 
             btn.textContent = 'Sending...';
             btn.disabled = true;
@@ -819,7 +822,7 @@
                 if (select && select.tagName === 'SELECT') {
                     return select.options[select.selectedIndex].text;
                 }
-                return formData.get(name);
+                return mainFormData.get(name);
             };
 
             // GATHER WHATSAPP DATA (formatted message)
