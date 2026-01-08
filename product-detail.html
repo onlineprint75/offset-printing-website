@@ -1133,7 +1133,12 @@
                         const genericGroups = ["format-group", "paper-group", "print-type-group", "coating-group", "pages-group", "cover-group", "binding-group", "folding-group", "varnish-group", "prepress-group", "cut-select-group", "cut-checkbox-group", "numbered-group", "target-price-group", "foil-group", "spot-uv-group", "delivery-date-group", "delivery-info-group"];
                         genericGroups.forEach(id => {
                             const el = document.getElementById(id);
-                            if (el) el.style.display = "none";
+                            if (el) {
+                                el.style.display = "none";
+                                // Disable all inputs inside hidden groups to prevent "required" validation blocking
+                                const inputs = el.querySelectorAll('input, select, textarea');
+                                inputs.forEach(input => input.disabled = true);
+                            }
                         });
 
                         // Apply custom form config if available
