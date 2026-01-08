@@ -46,6 +46,36 @@ const PRODUCTS_DATA = [
     }
   },
   {
+    id: "glue-remover",
+    name: "Цавуу арилгагч",
+    nameKey: "product-name-glue-remover",
+    desc: "Цавууны үлдэгдэл арилгагч",
+    descKey: "product-desc-glue-remover",
+    unitPrice: 8500,
+    price: "8,500",
+    stock: "Бэлэн",
+    img: "assets/images/Glue remover.jpg",
+    images: [
+      "assets/images/Glue remover.jpg",
+      "assets/images/Glue remover2.jpg",
+      "assets/images/Glue remover3.jpg"
+    ],
+    formats: [],
+    types: [],
+    isLamination: true,
+    // Custom form config for Glue Remover
+    formConfig: {
+      showRollLength: false,
+      quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
+      finishOptions: [], // Remove Type/Kind
+      thicknessOptions: [], // Remove Thickness
+      sizeLabelKey: "form-sticker-size", // Reuse Size label
+      sizeOptions: [
+        { value: "300gr", i18nKey: "form-glue-size-300gr", enabled: true, selected: true }
+      ]
+    }
+  },
+  {
     id: "lamination-bopp",
     name: "Бүралт / lamination Bopp",
     nameKey: "product-name-lamination",

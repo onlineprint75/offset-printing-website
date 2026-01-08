@@ -286,6 +286,9 @@ const translations = {
         "product-desc-sticker": "Халуун бүрэлт",
         "form-stock": "Нөөц",
         "form-order-btn": "Захиалах",
+        "product-name-glue-remover": "Цавуу арилгагч",
+        "product-desc-glue-remover": "Цавууны үлдэгдэл арилгагч",
+        "form-glue-size-300gr": "300 гр (Бэлэн)",
 
         /* Invoice Specific */
         "form-paper-selection": "Цаасны сонголт",
@@ -591,8 +594,11 @@ const translations = {
         /* Sticker Product */
         "product-name-sticker": "Sticker",
         "product-desc-sticker": "Hot lamination",
+        "product-name-glue-remover": "Glue Remover",
+        "product-desc-glue-remover": "Removes adhesive residue",
         "form-stock": "Stock",
-        "form-order-btn": "Order"
+        "form-order-btn": "Order",
+        "form-glue-size-300gr": "300 gr (In Stock)"
     },
     zh: {
         "nav-home": "首页",
@@ -769,8 +775,13 @@ const translations = {
         /* Sticker Product */
         "product-name-sticker": "贴纸",
         "product-desc-sticker": "热覆膜",
+        "product-name-sticker": "贴纸",
+        "product-desc-sticker": "热覆膜",
+        "product-name-glue-remover": "除胶剂",
+        "product-desc-glue-remover": "去除胶粘剂残留",
         "form-stock": "库存",
         "form-order-btn": "订购",
+        "form-glue-size-300gr": "300 克 (有货)",
 
         /* Sticker Form Translations */
         "form-sticker-kind": "类型",
@@ -996,8 +1007,13 @@ const translations = {
         /* Sticker Product */
         "product-name-sticker": "스티커",
         "product-desc-sticker": "열 코팅",
+        "product-name-sticker": "스티커",
+        "product-desc-sticker": "열 코팅",
+        "product-name-glue-remover": "접착제 제거제",
+        "product-desc-glue-remover": "접착제 잔여물 제거",
         "form-stock": "재고",
         "form-order-btn": "주문하기",
+        "form-glue-size-300gr": "300g (재고 있음)",
 
         /* Sticker Form Translations */
         "form-sticker-kind": "종류",
