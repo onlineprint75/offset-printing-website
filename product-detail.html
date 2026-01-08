@@ -680,6 +680,7 @@
 
         // 5. Build Configuration
         // Configuration logic moved to Static Product Loader.
+        let config = {}; // Global config for form submission handlers
 
         // 6. Run Translations
         // Moved to main loader script to ensure savedLang is defined via localStorage checking
@@ -1106,7 +1107,9 @@
 
                         // Apply custom form config if available
                         if (data.formConfig) {
-                            const cfg = data.formConfig;
+                            // Assign to GLOBAL config for use in submit handler
+                            config = data.formConfig;
+                            const cfg = config;       // keep local alias for readability below
 
                             // Custom Quantities
                             if (cfg.quantities) {
