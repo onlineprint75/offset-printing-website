@@ -182,7 +182,7 @@
                     const grid = document.querySelector('.product-grid');
 
                     function loadProducts() {
-                        const products = getAllProducts();
+                        const products = getAllProducts().filter(p => p.stock !== 'Захиалгаар');
 
                         if (products.length === 0) {
                             grid.innerHTML = '<p style="text-align:center; width:100%;">Одоогоор бараа байхгүй байна.</p>';

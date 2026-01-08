@@ -669,851 +669,239 @@
     </div>
 
     <script>
-        // Product ID to Translation Key Mapping
-        const productKeys = {
-            'business_card': 'product-name-card',
-            'brochure': 'product-name-brochure',
-            'magazine': 'product-name-magazine',
-            'book': 'product-name-book',
-            'label': 'product-name-label',
-            'box': 'product-name-box',
-            'bag': 'product-name-bag',
-            'invitation': 'product-name-invitation',
-            'poster': 'product-name-poster',
-            'notebook': 'product-name-notebook',
-            'envelope': 'product-name-envelope',
-            'invoice': 'product-name-invoice',
-            'lamination': 'product-name-lamination'
-        };
+        // 3. Construct Image Paths
+        // Legacy logic removed. All data now comes from products-data.js.
 
-        function changeImage(src, el) {
-            document.getElementById('current-main-img').src = src;
-            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
+        // 4. Update DOM Elements
+        // Breadcrumb and Form Title will be updated by the Static Product Loader script below.
+
+        // Images
+        // Initial image setup will be handled by Static Product Loader.
+
+        // 5. Build Configuration
+        // Configuration logic moved to Static Product Loader.
+
+        // 6. Run Translations
+        if (typeof setLanguage === 'function') {
+            setLanguage(savedLang);
         }
 
-        // Initialize translations and product data
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('preferred-lang') || 'mn';
+        // Modal Logic
 
-            // 1. Get Product ID from URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const productId = urlParams.get('id') || 'business_card'; // Default to card
+        const modal = document.getElementById('order-modal');
+        const mainForm = document.getElementById('quote-form');
+        const closeModal = document.querySelector('.close-modal');
+        const modalForm = document.getElementById('contact-form-modal');
 
-            // 2. Validate ID and get Name Key
-            const nameKey = productKeys[productId] || 'product-name-card';
+        // Open Modal and Populate Data
+        mainForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-            // 5. Product Specific Form Configurations (Moved up for use in images)
-            const productConfigs = {
-                'brochure': {
-                    formats: [
-                        { key: 'form-format-a5', val: 'A5 (145×210мм)' },
-                        { key: 'form-format-a4', val: 'A4 (210×297мм)' },
-                        { key: 'form-format-a3', val: 'A3 (420×297мм)' },
-                        { key: 'form-format-b5', val: 'B5 (176×250мм)' },
-                        { key: 'form-format-b4', val: 'B4 (250×353мм)' },
-                        { key: 'form-format-b3', val: 'B3 (353×500мм)' }
-                    ],
-                    images: [
-                        'assets/images/brochure.jpg',
-                        'assets/images/brochure_2.jpg',
-                        'assets/images/brochure_3.jpg'
-                    ],
-                    quantities: [300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000, 4000, 5000, 10000],
-                    papers: [
-                        { key: 'form-paper-80', val: '80гр (гр)' },
-                        { key: 'form-paper-90', val: '90гр (гр)' },
-                        { key: 'form-paper-105', val: '105гр (гр)' },
-                        { key: 'form-paper-128', val: '128гр (гр)' },
-                        { key: 'form-paper-157', val: '157гр (гр)' },
-                        { key: 'form-paper-200', val: '200гр (гр)' },
-                        { key: 'form-paper-250', val: '250гр (гр)' },
-                        { key: 'form-paper-300-coated', val: '300гр шохойтой цаас (гр)' }
-                    ],
-                    showFoil: false,
-                    showSpotUV: false,
-                    showPrintType: false,
-                    showDeliveryDate: true,
-                    showPrepress: true
-                },
-                'magazine': {
-                    formats: [
-                        { key: 'form-format-a5', val: 'A5 (мм)' },
-                        { key: 'form-format-a4', val: 'A4 (мм)' },
-                        { key: 'form-format-b5', val: 'B5 (мм)' },
-                        { key: 'form-format-b4', val: 'B4 (мм)' }
-                    ],
-                    images: [
-                        'assets/images/magazine.jpg',
-                        'assets/images/magazine_2.jpg',
-                        'assets/images/magazine_3.jpg'
-                    ],
-                    quantities: [300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000, 4000, 5000, 10000],
-                    papers: [
-                        { key: 'form-paper-80', val: '80 (гр)' },
-                        { key: 'form-paper-90', val: '90 (гр)' },
-                        { key: 'form-paper-105', val: '105 (гр)' },
-                        { key: 'form-paper-128', val: '128 (гр)' },
-                        { key: 'form-paper-157', val: '157 (гр)' }
-                    ],
-                    pages: [
-                        { key: 'form-pages-8', val: '8 нүүр' },
-                        { key: 'form-pages-12', val: '12 нүүр' },
-                        { key: 'form-pages-16', val: '16 нүүр' }
-                    ],
-                    covers: [
-                        { key: 'form-cover-200', val: '200гр' },
-                        { key: 'form-cover-250', val: '250гр' }
-                    ],
-                    coatings: [
-                        { key: 'form-coating-magazine-none', val: 'Хавтас бүрэлтгүй' },
-                        { key: 'form-coating-magazine-matte', val: 'Хавтас матт бүрэлттэй' },
-                        { key: 'form-coating-magazine-glossy', val: 'Хавтас гялгар бүрэлттэй' }
-                    ],
-                    showPages: true,
-                    showCover: true,
-                    showBinding: true,
-                    showFoil: true,
-                    showSpotUV: true,
-                    showPrintType: false,
-                    showDeliveryDate: true,
-                    showPrepress: true
-                },
-                'lamination': {
-                    showLaminationFields: true, // Master toggle for custom fields
-                    formats: [], // Handled by custom fields
-                    images: [
-                        'assets/images/lamination bopp1.jpg',
-                        'assets/images/lamination bopp2.jpg',
-                        'assets/images/lamination bopp3.jpg'
-                    ],
-                    quantities: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                    papers: [],
-                    coatings: [],
-                    // Hide standard fields
-                    showFolding: false,
-                    showVarnish: false,
-                    showFoil: false,
-                    showSpotUV: false,
-                    showPrintType: false,
-                    showDeliveryDate: false,
-                    showDeliveryInfo: false, // We use custom delivery toggle
-                    showCoating: false,
-                    showPrepress: false,
-                    showFormat: false, // Hide standard format selector
-                    showPaper: false,  // Hide standard paper selector
-                    customPrice: true // Trigger custom logic
-                },
-                'default': {
-                    formats: [
-                        { key: 'form-format-std1', val: 'Стандарт (90×55мм)' },
-                        { key: 'form-format-std2', val: 'Стандарт (85×55мм)' }
-                    ],
-                    quantities: [300, 500, 1000, 5000, 10000],
-                    papers: [
-                        { key: '', val: '300 (гр)' },
-                        { key: '', val: 'Арт 300 (гр)' }
-                    ],
-                    showFolding: false,
-                    showVarnish: false,
-                    showFoil: true,
-                    showSpotUV: true,
-                    showPrintType: true,
-                    showPrepress: true
-                },
-                'book': {
-                    formats: [
-                        { key: 'form-format-a5', val: 'A5 (мм)' },
-                        { key: 'form-format-a4', val: 'A4 (мм)' },
-                        { key: 'form-format-b5', val: 'B5 (мм)' },
-                        { key: 'form-format-b4', val: 'B4 (мм)' }
-                    ],
-                    quantities: [300, 500, 1000, 2000, 3000, 4000, 5000],
-                    pages: [
-                        { key: 'form-pages-80', val: '80 нүүр' },
-                        { key: 'form-pages-90', val: '90 нүүр' },
-                        { key: 'form-pages-100', val: '100 нүүр' },
-                        { key: 'form-pages-110', val: '110 нүүр' },
-                        { key: 'form-pages-120', val: '120 нүүр' },
-                        { key: 'form-pages-130', val: '130 нүүр' },
-                        { key: 'form-pages-140', val: '140 нүүр' },
-                        { key: 'form-pages-150', val: '150 нүүр' },
-                        { key: 'form-pages-160', val: '160 нүүр' },
-                        { key: 'form-pages-170', val: '170 нүүр' },
-                        { key: 'form-pages-180', val: '180 нүүр' },
-                        { key: 'form-pages-190', val: '190 нүүр' },
-                        { key: 'form-pages-200', val: '200 нүүр' },
-                        { key: 'form-pages-220', val: '220 нүүр' },
-                        { key: 'form-pages-240', val: '240 нүүр' },
-                        { key: 'form-pages-260', val: '260 нүүр' },
-                        { key: 'form-pages-280', val: '280 нүүр' },
-                        { key: 'form-pages-300', val: '300 нүүр' },
-                        { key: 'form-pages-400', val: '400 нүүр' },
-                        { key: 'form-pages-500', val: '500 нүүр' }
-                    ],
-                    covers: [
-                        { key: 'form-cover-200', val: '200гр' },
-                        { key: 'form-cover-250', val: '250гр' },
-                        { key: 'form-cover-300', val: '300гр' },
-                        { key: 'form-cover-hard', val: 'Хатуу хавтас' }
-                    ],
-                    papers: [
-                        { key: 'form-paper-70', val: '70 (гр)' },
-                        { key: 'form-paper-80', val: '80 (гр)' },
-                        { key: 'form-paper-90', val: '90 (гр)' },
-                        { key: 'form-paper-105', val: '105 (гр)' },
-                        { key: 'form-paper-128', val: '128 (гр)' }
-                    ],
-                    coatings: [
-                        { key: 'form-coating-cover-none', val: 'Хавтас бүрэлтгүй' },
-                        { key: 'form-coating-cover-matte', val: 'Хавтас матт бүрэлттэй' },
-                        { key: 'form-coating-cover-glossy', val: 'Хавтас гялгар бүрэлттэй' },
-                        { key: 'form-coating-cover-suede', val: 'Хавтас илгэн бүрэлттэй' }
-                    ],
-                    showPages: true,
-                    showCover: true,
-                    showSpotUV: true,
-                    labelSpotUV: 'form-checkbox-partial-uv-cover',
-                    showPrepress: true,
-                    showPrintType: false
-                },
-                'label': {
-                    formats: [
-                        { key: 'form-format-a7', val: 'A7 (×мм)' },
-                        { key: 'form-format-a6', val: 'A6 (×мм)' },
-                        { key: 'form-format-a5', val: 'A5 (×мм)' },
-                        { key: 'form-format-b7', val: 'B7 (×мм)' },
-                        { key: 'form-format-b6', val: 'B6 (×мм)' },
-                        { key: 'form-format-b5', val: 'B5 (×мм)' }
-                    ],
-                    quantities: [500, 1000, 5000, 10000, 20000, 50000, 100000],
-                    papers: [
-                        { key: 'form-paper-sticker', val: 'Стикер (гр)' },
-                        { key: 'form-paper-80', val: '80 (гр)' },
-                        { key: 'form-paper-90', val: '90 (гр)' },
-                        { key: 'form-paper-105', val: '105 (гр)' },
-                        { key: 'form-paper-128', val: '128 (гр)' },
-                        { key: 'form-paper-157', val: '157 (гр)' },
-                        { key: 'form-paper-200', val: '200 (гр)' },
-                        { key: 'form-paper-250', val: '250 (гр)' },
-                        { key: 'form-paper-300-coated', val: '300 (гр)' }
-                    ],
-                    showVarnish: true,
-                    labelFoil: 'form-cliche-required',
-                    showFoil: true,
-                    showCutSelect: true,
-                    showPrepress: true,
-                    showPrintType: false
-                },
-                'box': {
-                    formats: [
-                        { key: 'form-format-custom', val: 'Өөрийн хэмжээгээр (Тэмдэглэлд бичих)' }
-                    ],
-                    quantities: [500, 1000, 2000, 3000, 4000, 5000, 10000],
-                    papers: [
-                        { key: 'form-paper-250', val: '250 (гр)' },
-                        { key: 'form-paper-300-coated', val: '300 (гр)' },
-                        { key: 'form-paper-350', val: '350 (гр)' }
-                    ],
-                    showVarnish: true,
-                    labelFoil: 'form-cliche-required',
-                    showFoil: true,
-                    showPrepress: true,
-                    showPrintType: false
-                },
-                'bag': {
-                    formats: [
-                        { key: 'form-format-a5', val: 'A5 (×мм)' },
-                        { key: 'form-format-a4', val: 'A4 (×мм)' },
-                        { key: 'form-format-a3', val: 'A3 (×мм)' },
-                        { key: 'form-format-b5', val: 'B5 (×мм)' },
-                        { key: 'form-format-b4', val: 'B4 (×мм)' },
-                        { key: 'form-format-b3', val: 'B3 (×мм)' }
-                    ],
-                    quantities: [100, 200, 300, 400, 500, 1000, 5000, 10000],
-                    papers: [
-                        { key: 'form-paper-200', val: '200 (гр)' },
-                        { key: 'form-paper-250', val: '250 (гр)' },
-                        { key: 'form-paper-300-coated', val: '300 (гр)' }
-                    ],
-                    showVarnish: true,
-                    labelFoil: 'form-cliche-required',
-                    showFoil: true,
-                    showPrepress: true,
-                    showPrintType: false
-                },
-                'invitation': {
-                    formats: [
-                        { key: 'form-format-a6', val: 'A6 (×мм)' },
-                        { key: 'form-format-a5', val: 'A5 (×мм)' },
-                        { key: 'form-format-a4', val: 'A4 (×мм)' },
-                        { key: 'form-format-1/3-a4', val: '1/3 - A4 (×мм)' },
-                        { key: 'form-format-b6', val: 'B6 (×мм)' },
-                        { key: 'form-format-b5', val: 'B5 (×мм)' },
-                        { key: 'form-format-b4', val: 'B4 (×мм)' }
-                    ],
-                    quantities: [100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000],
-                    papers: [
-                        { key: 'form-paper-250', val: '250 (гр)' },
-                        { key: 'form-paper-300-coated', val: '300 (гр)' },
-                        { key: 'form-paper-209-art', val: 'Арт 209 (гр)' },
-                        { key: 'form-paper-250-art', val: 'Арт 250 (гр)' }
-                    ],
-                    showFolding: true,
-                    showPrepress: true,
-                    showPrintType: false
-                },
-                'poster': {
-                    formats: [
-                        { key: 'form-format-a4', val: 'A4 (×мм)' },
-                        { key: 'form-format-a3', val: 'A3 (×мм)' },
-                        { key: 'form-format-a2', val: 'A2 (×мм)' },
-                        { key: 'form-format-b4', val: 'B4 (×мм)' },
-                        { key: 'form-format-b3', val: 'B3 (×мм)' },
-                        { key: 'form-format-b2', val: 'B2 (×мм)' }
-                    ],
-                    quantities: [100, 300, 500, 1000, 3000, 5000, 10000],
-                    papers: [
-                        { key: 'form-paper-200', val: '200 (гр)' },
-                        { key: 'form-paper-250', val: '250 (гр)' },
-                        { key: 'form-paper-300-coated', val: '300 (гр)' }
-                    ],
-                    showSpotUV: true,
-                    showCutCheckbox: true,
-                    showPrepress: true,
-                    showPrintType: false
-                },
-                'notebook': {
-                    formats: [
-                        { key: 'form-format-a7', val: 'A7 (×мм)' },
-                        { key: 'form-format-a6', val: 'A6 (×мм)' },
-                        { key: 'form-format-a5', val: 'A5 (×мм)' },
-                        { key: 'form-format-a4', val: 'A4 (×мм)' }
-                    ],
-                    quantities: [100, 200, 300, 400, 500, 1000, 2000, 3000, 4000, 5000],
-                    pages: [
-                        { key: 'form-pages-100', val: '100 нүүр' },
-                        { key: 'form-pages-120', val: '120 нүүр' },
-                        { key: 'form-pages-140', val: '140 нүүр' },
-                        { key: 'form-pages-160', val: '160 нүүр' },
-                        { key: 'form-pages-180', val: '180 нүүр' },
-                        { key: 'form-pages-200', val: '200 нүүр' }
-                    ],
-                    covers: [
-                        { key: 'form-cover-300', val: '300гр' },
-                        { key: 'form-cover-hard-cardboard', val: 'Хатуу хавтас ( картон хатуулгатай )' },
-                        { key: 'form-cover-leather', val: 'Арьсан хавтас' }
-                    ],
-                    papers: [
-                        { key: 'form-paper-70', val: '70 (гр)' },
-                        { key: 'form-paper-80', val: '80 (гр)' },
-                        { key: 'form-paper-100', val: '100 (гр)' },
-                        { key: 'form-paper-120', val: '120 (гр)' }
-                    ],
-                    coatings: [], // Scraper didn't list covers? Usually "Coating" for cover exists. I'll leave empty if not specified
-                    showPages: true,
-                    showCover: true,
-                    showBinding: true,
-                    // Note: Binding options default to staple/glue. Notebook mentions Ring. I need to update binding options?
-                    // "Нуруулалт (Binding): Үдээтэй, Наалттай, Цагаригтай".
-                    // Existing options: Staple, Glue. Missing Ring.
-                    // I need to add 'bindingOptions' config or just logic to adding 'Ring'.
-                    // I will add a `bindings` array to config to override default.
-                    bindings: [
-                        { key: 'form-binding-staple', val: 'Нуруу үдээтэй' },
-                        { key: 'form-binding-glue', val: 'Нуруу наалттай' },
-                        { key: 'form-binding-ring', val: 'Цагаригтай' }
-                    ],
-                    showPrepress: true,
-                    showPrintType: false
-                },
-                'envelope': {
-                    formats: [
-                        { key: 'form-format-a6', val: 'A6 (×мм)' },
-                        { key: 'form-format-a5', val: 'A5 (×мм)' },
-                        { key: 'form-format-a4', val: 'A4 (×мм)' },
-                        { key: 'form-format-a3', val: 'A3 (×мм)' },
-                        { key: 'form-format-b5', val: 'B5 (×мм)' },
-                        { key: 'form-format-b4', val: 'B4 (×мм)' },
-                        { key: 'form-format-money', val: 'Мөнгөний дугтуй' }
-                    ],
-                    quantities: [300, 500, 1000, 2000, 3000, 4000, 5000, 10000],
-                    papers: [
-                        { key: 'form-paper-80', val: '80 (гр)' },
-                        { key: 'form-paper-90', val: '90 (гр)' },
-                        { key: 'form-paper-100', val: '100 (гр)' },
-                        { key: 'form-paper-120', val: '120 (гр)' },
-                        { key: 'form-paper-128', val: '128 (гр)' },
-                        { key: 'form-paper-157', val: '157 (гр)' },
-                        { key: 'form-paper-200', val: '200 (гр)' },
-                        { key: 'form-paper-250', val: '250 (гр)' },
-                        { key: 'form-paper-300-coated', val: '300 (гр)' }
-                    ],
-                    showSpotUV: true,
-                    labelSpotUV: 'form-decorative-varnish',
-                    showPrepress: true,
-                    showPrintType: false
-                },
-                'invoice': {
-                    formats: [
-                        { key: 'form-format-a6', val: 'A6 (×мм)' },
-                        { key: 'form-format-a5', val: 'A5 (×мм)' },
-                        { key: 'form-format-a4', val: 'A4 (×мм)' },
-                        { key: 'form-format-b6', val: 'B6 (×мм)' },
-                        { key: 'form-format-b5', val: 'B5 (×мм)' },
-                        { key: 'form-format-1/3-a4', val: '1/3 - A4 (×мм)' }
-                    ],
-                    quantities: [500, 1000, 3000, 5000, 10000, 20000],
-                    papers: [
-                        { key: 'form-folding-select', val: 'Сонгох' },
-                        { key: 'form-paper-2-copy', val: '2 хувь' },
-                        { key: 'form-paper-3-copy', val: '3 хувь' },
-                        { key: 'form-paper-4-copy', val: '4 хувь' }
-                    ],
-                    labelPaper: 'form-paper-selection',
-                    showNumbered: true,
-                    showTargetPrice: true,
-                    showDeliveryInfo: true,
-                    deliveryText: 'form-delivery-3-days',
-                    showPrepress: true,
-                    showPrintType: false,
-                    showPrintType: false,
-                    showVarnish: false,
-                    showFoil: false,
-                    showSpotUV: false,
-                    showCoating: false
+            // Get form values
+            const formData = new FormData(mainForm);
+
+            // Helper to get text from select option
+            const getText = (name) => {
+                const select = mainForm.querySelector(`[name="${name}"]`);
+                if (select && select.tagName === 'SELECT') {
+                    return select.options[select.selectedIndex].text;
                 }
+                return formData.get(name);
             };
 
-            // 3. Construct Image Paths
-            const config = productConfigs[productId] || productConfigs['default'];
-            let imgPath1 = config.images ? config.images[0] : `assets/images/${productId}.jpg`;
-            let imgPath2 = config.images ? config.images[1] : `assets/images/${productId}_2.jpg`;
-            let imgPath3 = config.images ? config.images[2] : `assets/images/${productId}_3.jpg`;
+            // Populate Summary
+            // Update product name in summary dynamically based on current title
+            document.getElementById('summary-product').textContent = document.querySelector('.product-form-card h2').textContent;
 
-            // 4. Update DOM Elements
-            // Breadcrumb
-            const breadcrumbSpan = document.querySelector('.breadcrumb span[data-i18n]');
-            if (breadcrumbSpan) breadcrumbSpan.setAttribute('data-i18n', nameKey);
+            document.getElementById('summary-print-type').textContent = getText('print_type');
+            document.getElementById('summary-format').textContent = getText('format');
+            document.getElementById('summary-paper').textContent = getText('paper');
+            document.getElementById('summary-coating').textContent = getText('coating');
+            document.getElementById('summary-quantity').textContent = getText('quantity');
 
-            // Form Title
-            const formTitle = document.querySelector('.product-form-card h2[data-i18n]');
-            if (formTitle) formTitle.setAttribute('data-i18n', nameKey);
-
-            // Images
-            const mainImg = document.getElementById('current-main-img');
-            mainImg.src = imgPath1;
-            mainImg.alt = productId;
-
-            const thumbs = document.querySelectorAll('.thumb img');
-            const thumbDivs = document.querySelectorAll('.thumb');
-
-            if (thumbs.length >= 3) {
-                thumbs[0].src = imgPath1;
-                thumbs[0].parentElement.onclick = function () { changeImage(imgPath1, this); };
-
-                thumbs[1].src = imgPath2;
-                thumbs[1].parentElement.onclick = function () { changeImage(imgPath2, this); };
-
-                thumbs[2].src = imgPath3;
-                thumbs[2].parentElement.onclick = function () { changeImage(imgPath3, this); };
+            // Page Count
+            const pages = getText('pages');
+            if (pages && document.getElementById('pages-group').style.display !== 'none') {
+                document.getElementById('summary-pages-item').style.display = 'block';
+                document.getElementById('summary-pages').textContent = pages;
+            } else {
+                document.getElementById('summary-pages-item').style.display = 'none';
             }
 
-            // Activate first thumb
-            thumbDivs.forEach(t => t.classList.remove('active'));
-            if (thumbDivs[0]) thumbDivs[0].classList.add('active');
-
-
-            // 5. Build Configuration
-            if (config) {
-                // Update Format options
-                if (config.formats) {
-                    const formatSelect = document.getElementById('format-select');
-                    formatSelect.innerHTML = '';
-                    config.formats.forEach(f => {
-                        const opt = document.createElement('option');
-                        opt.setAttribute('data-i18n', f.key);
-                        opt.textContent = f.val;
-                        formatSelect.appendChild(opt);
-                    });
-                }
-                // Update Quantity options
-                if (config.quantities) {
-                    const qtySelect = document.getElementById('quantity-select');
-                    qtySelect.innerHTML = '';
-                    config.quantities.forEach(q => {
-                        const opt = document.createElement('option');
-                        opt.textContent = q;
-                        qtySelect.appendChild(opt);
-                    });
-                }
-                // Update Paper options
-                if (config.papers) {
-                    const paperSelect = document.getElementById('paper-select');
-                    paperSelect.innerHTML = '';
-                    config.papers.forEach(p => {
-                        const opt = document.createElement('option');
-                        opt.setAttribute('data-i18n', p.key);
-                        opt.textContent = p.val;
-                        paperSelect.appendChild(opt);
-                    });
-                }
-
-                // Show/Hide Fields
-                document.getElementById('pages-group').style.display = config.showPages ? 'block' : 'none';
-                document.getElementById('cover-group').style.display = config.showCover ? 'block' : 'none';
-                document.getElementById('binding-group').style.display = config.showBinding ? 'block' : 'none';
-                document.getElementById('folding-group').style.display = config.showFolding ? 'block' : 'none';
-                document.getElementById('varnish-group').style.display = config.showVarnish ? 'block' : 'none';
-
-                // Logic for Foil (Checkbox)
-                const foilGroup = document.getElementById('foil-group');
-                foilGroup.style.display = config.showFoil !== false ? 'block' : 'none'; // Default to true if undefined in some contexts? No, default should be careful. Actually 'default' config has showFoil: true.
-                if (config.labelFoil) {
-                    foilGroup.querySelector('span[data-i18n]').setAttribute('data-i18n', config.labelFoil);
-                } else {
-                    foilGroup.querySelector('span[data-i18n]').setAttribute('data-i18n', 'form-foil');
-                }
-
-                // Logic for Paper Label
-                const paperLabel = document.querySelector('#paper-group label');
-                if (config.labelPaper) {
-                    paperLabel.setAttribute('data-i18n', config.labelPaper);
-                } else {
-                    paperLabel.setAttribute('data-i18n', 'form-paper');
-                }
-
-                // Logic for Spot UV (Checkbox)
-                const spotUVGroup = document.getElementById('spot-uv-group');
-                spotUVGroup.style.display = config.showSpotUV !== false ? 'block' : 'none';
-                if (config.labelSpotUV) {
-                    spotUVGroup.querySelector('span[data-i18n]').setAttribute('data-i18n', config.labelSpotUV);
-                } else {
-                    spotUVGroup.querySelector('span[data-i18n]').setAttribute('data-i18n', 'form-spot-uv');
-                }
-
-                document.getElementById('print-type-group').style.display = config.showPrintType !== false ? 'block' : 'none';
-                document.getElementById('prepress-group').style.display = config.showPrepress !== false ? 'block' : 'none';
-                document.getElementById('coating-group').style.display = config.showCoating !== false ? 'block' : 'none';
-
-                // New Groups
-                document.getElementById('cut-select-group').style.display = config.showCutSelect ? 'block' : 'none';
-                document.getElementById('cut-checkbox-group').style.display = config.showCutCheckbox ? 'block' : 'none';
-                document.getElementById('numbered-group').style.display = config.showNumbered ? 'block' : 'none';
-                document.getElementById('target-price-group').style.display = config.showTargetPrice ? 'block' : 'none';
-
-                // Standard fields hiding (Format, Paper) if requested
-                if (config.showFormat === false) document.getElementById('format-group').style.display = 'none';
-                if (config.showPaper === false) document.getElementById('paper-group').style.display = 'none';
-
-                // Lamination specific visibility
-                const laminationFields = document.getElementById('lamination-fields');
-                if (config.showLaminationFields) {
-                    laminationFields.style.display = 'block';
-                    initLaminationLogic(savedLang); // Initialize specific logic
-                } else {
-                    laminationFields.style.display = 'none';
-                }
-
-                // Legacy Lamination Logic replacement (cleared out to avoid conflict)
-
-                document.getElementById('paper-group').style.display = config.papers && config.papers.length > 0 ? 'block' : 'none';
-                document.getElementById('delivery-date-group').style.display = config.showDeliveryDate !== false ? 'block' : 'none';
-                // delivery-info-group is standard delivery badge, we might want to hide it if using custom delivery
-                document.getElementById('delivery-info-group').style.display = config.showDeliveryInfo ? 'block' : 'none';
-
-                // Delivery Info Text Update
-                if (config.showDeliveryInfo && config.deliveryText) {
-                    document.querySelector('.delivery-badge').setAttribute('data-i18n', config.deliveryText);
-                } else {
-                    document.querySelector('.delivery-badge').setAttribute('data-i18n', 'form-delivery-1-2');
-                }
-
-                document.getElementById('lamination-price-display').style.display = config.customPrice ? 'flex' : 'none';
-
-                if (config.labelFormat) {
-                    document.querySelector('#format-group label').textContent = config.labelFormat;
-                }
-                if (config.labelCoating) {
-                    document.querySelector('#coating-group label').textContent = config.labelCoating;
-                }
-
-                // Update Pages options
-                if (config.pages) {
-                    const pagesSelect = document.getElementById('pages-select');
-                    pagesSelect.innerHTML = '';
-                    config.pages.forEach(p => {
-                        const opt = document.createElement('option');
-                        opt.setAttribute('data-i18n', p.key);
-                        opt.textContent = p.val;
-                        pagesSelect.appendChild(opt);
-                    });
-                }
-
-                // Update Cover options
-                if (config.covers) {
-                    const coverSelect = document.getElementById('cover-select');
-                    coverSelect.innerHTML = '';
-                    config.covers.forEach(c => {
-                        const opt = document.createElement('option');
-                        opt.setAttribute('data-i18n', c.key);
-                        opt.textContent = c.val;
-                        coverSelect.appendChild(opt);
-                    });
-                }
-
-                // Update Coating options for Lamination (standard coating select)
-                if (config.coatings) {
-                    const coatingSelect = document.querySelector('select[name="coating"]');
-                    coatingSelect.innerHTML = '';
-                    config.coatings.forEach(c => {
-                        const opt = document.createElement('option');
-                        opt.setAttribute('data-i18n', c.key);
-                        opt.textContent = c.val;
-                        coatingSelect.appendChild(opt);
-                    });
-                }
-
-                // Update Binding options (New)
-                if (config.bindings) {
-                    const bindingSelect = document.querySelector('select[name="binding"]');
-                    bindingSelect.innerHTML = '';
-                    // Add Select placeholder
-                    const placeholder = document.createElement('option');
-                    placeholder.setAttribute('data-i18n', 'form-folding-select');
-                    placeholder.textContent = 'Сонгох';
-                    bindingSelect.appendChild(placeholder);
-
-                    config.bindings.forEach(b => {
-                        const opt = document.createElement('option');
-                        opt.setAttribute('data-i18n', b.key);
-                        opt.textContent = b.val;
-                        bindingSelect.appendChild(opt);
-                    });
-                }
-            } // End of Config Block
-
-
-            // 6. Run Translations
-            if (typeof setLanguage === 'function') {
-                setLanguage(savedLang);
+            // Cover
+            const cover = getText('cover');
+            if (cover && document.getElementById('cover-group').style.display !== 'none') {
+                document.getElementById('summary-cover-item').style.display = 'block';
+                document.getElementById('summary-cover').textContent = cover;
+            } else {
+                document.getElementById('summary-cover-item').style.display = 'none';
             }
 
-            // Modal Logic
-            const modal = document.getElementById('order-modal');
-            const mainForm = document.getElementById('quote-form');
-            const closeModal = document.querySelector('.close-modal');
-            const modalForm = document.getElementById('contact-form-modal');
+            // Binding
+            const binding = getText('binding');
+            if (binding && document.getElementById('binding-group').style.display !== 'none') {
+                document.getElementById('summary-binding-item').style.display = 'block';
+                document.getElementById('summary-binding').textContent = binding;
+            } else {
+                document.getElementById('summary-binding-item').style.display = 'none';
+            }
 
-            // Open Modal and Populate Data
-            mainForm.addEventListener('submit', (e) => {
-                e.preventDefault();
+            // Additional Brochure Fields
+            const folding = getText('folding');
+            if (folding && document.getElementById('folding-group').style.display !== 'none') {
+                document.getElementById('summary-folding-item').style.display = 'block';
+                document.getElementById('summary-folding').textContent = folding;
+            } else {
+                document.getElementById('summary-folding-item').style.display = 'none';
+            }
 
-                // Get form values
-                const formData = new FormData(mainForm);
+            const varnish = mainForm.querySelector('[name="varnish"]');
+            if (varnish && document.getElementById('varnish-group').style.display !== 'none') {
+                document.getElementById('summary-varnish-item').style.display = 'block';
+                document.getElementById('summary-varnish').textContent = varnish.checked ? (savedLang === 'mn' ? 'Тийм' : 'Yes') : (savedLang === 'mn' ? 'Үгүй' : 'No');
+            } else {
+                document.getElementById('summary-varnish-item').style.display = 'none';
+            }
 
-                // Helper to get text from select option
-                const getText = (name) => {
-                    const select = mainForm.querySelector(`[name="${name}"]`);
-                    if (select && select.tagName === 'SELECT') {
-                        return select.options[select.selectedIndex].text;
-                    }
-                    return formData.get(name);
-                };
-
-                // Populate Summary
-                // Update product name in summary dynamically based on current title
-                document.getElementById('summary-product').textContent = document.querySelector('.product-form-card h2').textContent;
-
-                document.getElementById('summary-print-type').textContent = getText('print_type');
-                document.getElementById('summary-format').textContent = getText('format');
-                document.getElementById('summary-paper').textContent = getText('paper');
-                document.getElementById('summary-coating').textContent = getText('coating');
-                document.getElementById('summary-quantity').textContent = getText('quantity');
-
-                // Page Count
-                const pages = getText('pages');
-                if (pages && document.getElementById('pages-group').style.display !== 'none') {
-                    document.getElementById('summary-pages-item').style.display = 'block';
-                    document.getElementById('summary-pages').textContent = pages;
-                } else {
-                    document.getElementById('summary-pages-item').style.display = 'none';
-                }
-
-                // Cover
-                const cover = getText('cover');
-                if (cover && document.getElementById('cover-group').style.display !== 'none') {
-                    document.getElementById('summary-cover-item').style.display = 'block';
-                    document.getElementById('summary-cover').textContent = cover;
-                } else {
-                    document.getElementById('summary-cover-item').style.display = 'none';
-                }
-
-                // Binding
-                const binding = getText('binding');
-                if (binding && document.getElementById('binding-group').style.display !== 'none') {
-                    document.getElementById('summary-binding-item').style.display = 'block';
-                    document.getElementById('summary-binding').textContent = binding;
-                } else {
-                    document.getElementById('summary-binding-item').style.display = 'none';
-                }
-
-                // Additional Brochure Fields
-                const folding = getText('folding');
-                if (folding && document.getElementById('folding-group').style.display !== 'none') {
-                    document.getElementById('summary-folding-item').style.display = 'block';
-                    document.getElementById('summary-folding').textContent = folding;
-                } else {
-                    document.getElementById('summary-folding-item').style.display = 'none';
-                }
-
-                const varnish = mainForm.querySelector('[name="varnish"]');
-                if (varnish && document.getElementById('varnish-group').style.display !== 'none') {
-                    document.getElementById('summary-varnish-item').style.display = 'block';
-                    document.getElementById('summary-varnish').textContent = varnish.checked ? (savedLang === 'mn' ? 'Тийм' : 'Yes') : (savedLang === 'mn' ? 'Үгүй' : 'No');
-                } else {
-                    document.getElementById('summary-varnish-item').style.display = 'none';
-                }
-
-                modal.classList.add('active');
-            });
-
-            // Close Modal
-            closeModal.addEventListener('click', () => {
-                modal.classList.remove('active');
-            });
-
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                }
-            });
-
-            // Final Submit
-            // Final Submit
-            modalForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const btn = modalForm.querySelector('.submit-final-btn');
-                const originalText = btn.textContent;
-
-                btn.textContent = 'Sending...';
-                btn.disabled = true;
-
-                // Gather data
-                const contactData = new FormData(modalForm);
-                const orderDetails = {
-                    Product: document.getElementById('summary-product').textContent,
-                    PrintType: document.getElementById('summary-print-type').textContent,
-                    Format: document.getElementById('summary-format').textContent,
-                    Paper: document.getElementById('summary-paper').textContent,
-                    Coating: document.getElementById('summary-coating').textContent,
-                    Quantity: document.getElementById('summary-quantity').textContent,
-                    Folding: document.getElementById('summary-folding').textContent || 'N/A',
-                    Varnish: document.getElementById('summary-varnish').textContent || 'N/A',
-                    Notes: document.querySelector('[name="notes"]').value
-                };
-
-                // Prepare Data for Google Sheet
-                const sheetData = {
-                    Product: orderDetails.Product,
-                    Name: contactData.get('contact_name'),
-                    Phone: contactData.get('contact_phone'),
-                    Email: contactData.get('contact_email'),
-                    Company: contactData.get('contact_company') || '',
-                    Details: `Format: ${orderDetails.Format}, Qty: ${orderDetails.Quantity}, Paper: ${orderDetails.Paper}, Coating: ${orderDetails.Coating}, Notes: ${orderDetails.Notes}`
-                };
-
-                // Helper to get text from select option
-                const getText = (name) => {
-                    const select = mainForm.querySelector(`[name="${name}"]`);
-                    if (select && select.tagName === 'SELECT') {
-                        return select.options[select.selectedIndex].text;
-                    }
-                    return formData.get(name);
-                };
-
-                // GATHER WHATSAPP DATA (formatted message)
-                const PHONE_NUMBER = '97699906069';
-                let messageText = `*New Order Received!*\n\n*Customer Info:*\nName: ${contactData.get('contact_name')}\nEmail: ${contactData.get('contact_email')}\nPhone: ${contactData.get('contact_phone')}\nCompany: ${contactData.get('contact_company') || 'N/A'}\nDelivery: ${contactData.get('delivery_method') === 'pickup' ? 'Pick up' : 'Delivery'}\n\n*Order Details:*\nProduct: ${orderDetails.Product}\n`;
-
-                if (config.showPrintType !== false) messageText += `Print Type: ${orderDetails.PrintType}\n`;
-                messageText += `Format: ${orderDetails.Format}\n`;
-                if (config.showPages) messageText += `Page Count: ${getText('pages')}\n`;
-                if (config.showCover) messageText += `Cover: ${getText('cover')}\n`;
-                if (config.showBinding) messageText += `Binding: ${getText('binding')}\n`;
-                if (config.papers && config.papers.length > 0) messageText += `Paper: ${orderDetails.Paper}\n`;
-                if (config.showCoating !== false) messageText += `Coating: ${orderDetails.Coating}\n`;
-                if (config.showFolding) messageText += `Folding: ${orderDetails.Folding}\n`;
-                if (config.showVarnish) messageText += `Varnish: ${orderDetails.Varnish}\n`;
-                if (new FormData(mainForm).get('spot_uv')) messageText += `Spot UV: Yes\n`;
-                if (new FormData(mainForm).get('foil')) messageText += `Foil: Yes\n`;
-                messageText += `Quantity: ${orderDetails.Quantity}\n`;
-
-                // Lamination Specifics
-                if (config.showLaminationFields) {
-                    messageText += `--- Lamination Details ---\n`;
-                    messageText += `Finish: ${new FormData(mainForm).get('lamination_finish')}\n`;
-                    messageText += `Micron: ${new FormData(mainForm).get('lamination_micron')}\n`;
-                    messageText += `Width: ${new FormData(mainForm).get('lamination_width')} cm\n`;
-                    messageText += `Core: ${new FormData(mainForm).get('lamination_core')} inch\n`;
-
-                    const deliveryMethod = new FormData(mainForm).get('delivery_method_toggle');
-                    messageText += `Delivery Method: ${deliveryMethod}\n`;
-                    if (deliveryMethod === 'delivery') {
-                        messageText += `District: ${new FormData(mainForm).get('delivery_district')}\n`;
-                        messageText += `Address: ${new FormData(mainForm).get('delivery_address')}\n`;
-                        messageText += `Recipient Phone: ${new FormData(mainForm).get('recipient_phone')}\n`;
-                    }
-
-                    if (new FormData(mainForm).get('vat_enabled')) {
-                        messageText += `VAT Type: ${new FormData(mainForm).get('vat_type')}\n`;
-                        messageText += `VAT TIN: ${new FormData(mainForm).get('vat_tin')}\n`;
-                    }
-                }
-
-                if (config.showPrepress !== false) messageText += `Prepress: ${getText('prepress')}\n`;
-                if (config.showDeliveryDate !== false) messageText += `Delivery Date: ${new FormData(mainForm).get('delivery_date')}\n`;
-                if (config.showTargetPrice) messageText += `Target Price: ${new FormData(mainForm).get('target_price')}\n`;
-                if (new FormData(mainForm).get('notes')) messageText += `\nNotes: ${new FormData(mainForm).get('notes')}\n`;
-
-                // Update sheetData Details with full message for clearer log
-                sheetData.Details = messageText;
-
-                // Send to Google Sheet
-                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwvvVfS0avc0BRCH4Z1EdTNtvNBSZ99u8Vyyha3wTHO0g-dyURfd71m6DDBLGZanoj2zA/exec';
-
-                fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors', // Important for Google Apps Script simple triggers
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(sheetData)
-                })
-                    .then(response => {
-                        // Success handling
-                        alert('Захиалга амжилттай илгээгдлээ! (Order sent successfully!)');
-
-                        // Optional: Still open WhatsApp as a convenience?
-                        // User asked to "collect in google sheet". I will keep WhatsApp as a fallback/secondary contact method but only alert success for now.
-                        // Or I can offer the button "Open WhatsApp" in a success message?
-                        // For now, I'll Open WhatsApp as well, as it's a "Quote Request" often needing discussion.
-                        const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(messageText.trim())}`;
-                        window.open(whatsappUrl, '_blank');
-
-                        modal.classList.remove('active');
-                        btn.textContent = originalText;
-                        btn.disabled = false;
-                        modalForm.reset();
-                    })
-                    .catch(error => {
-                        console.error('Error!', error.message);
-                        alert('Something went wrong. Please call us directly.');
-                        btn.textContent = originalText;
-                        btn.disabled = false;
-                    });
-            });
+            modal.classList.add('active');
         });
+
+        // Close Modal
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Final Submit
+        // Final Submit
+        modalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = modalForm.querySelector('.submit-final-btn');
+            const originalText = btn.textContent;
+
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            // Gather data
+            const contactData = new FormData(modalForm);
+            const orderDetails = {
+                Product: document.getElementById('summary-product').textContent,
+                PrintType: document.getElementById('summary-print-type').textContent,
+                Format: document.getElementById('summary-format').textContent,
+                Paper: document.getElementById('summary-paper').textContent,
+                Coating: document.getElementById('summary-coating').textContent,
+                Quantity: document.getElementById('summary-quantity').textContent,
+                Folding: document.getElementById('summary-folding').textContent || 'N/A',
+                Varnish: document.getElementById('summary-varnish').textContent || 'N/A',
+                Notes: document.querySelector('[name="notes"]').value
+            };
+
+            // Prepare Data for Google Sheet
+            const sheetData = {
+                Product: orderDetails.Product,
+                Name: contactData.get('contact_name'),
+                Phone: contactData.get('contact_phone'),
+                Email: contactData.get('contact_email'),
+                Company: contactData.get('contact_company') || '',
+                Details: `Format: ${orderDetails.Format}, Qty: ${orderDetails.Quantity}, Paper: ${orderDetails.Paper}, Coating: ${orderDetails.Coating}, Notes: ${orderDetails.Notes}`
+            };
+
+            // Helper to get text from select option
+            const getText = (name) => {
+                const select = mainForm.querySelector(`[name="${name}"]`);
+                if (select && select.tagName === 'SELECT') {
+                    return select.options[select.selectedIndex].text;
+                }
+                return formData.get(name);
+            };
+
+            // GATHER WHATSAPP DATA (formatted message)
+            const PHONE_NUMBER = '97699906069';
+            let messageText = `*New Order Received!*\n\n*Customer Info:*\nName: ${contactData.get('contact_name')}\nEmail: ${contactData.get('contact_email')}\nPhone: ${contactData.get('contact_phone')}\nCompany: ${contactData.get('contact_company') || 'N/A'}\nDelivery: ${contactData.get('delivery_method') === 'pickup' ? 'Pick up' : 'Delivery'}\n\n*Order Details:*\nProduct: ${orderDetails.Product}\n`;
+
+            if (config.showPrintType !== false) messageText += `Print Type: ${orderDetails.PrintType}\n`;
+            messageText += `Format: ${orderDetails.Format}\n`;
+            if (config.showPages) messageText += `Page Count: ${getText('pages')}\n`;
+            if (config.showCover) messageText += `Cover: ${getText('cover')}\n`;
+            if (config.showBinding) messageText += `Binding: ${getText('binding')}\n`;
+            if (config.papers && config.papers.length > 0) messageText += `Paper: ${orderDetails.Paper}\n`;
+            if (config.showCoating !== false) messageText += `Coating: ${orderDetails.Coating}\n`;
+            if (config.showFolding) messageText += `Folding: ${orderDetails.Folding}\n`;
+            if (config.showVarnish) messageText += `Varnish: ${orderDetails.Varnish}\n`;
+            if (new FormData(mainForm).get('spot_uv')) messageText += `Spot UV: Yes\n`;
+            if (new FormData(mainForm).get('foil')) messageText += `Foil: Yes\n`;
+            messageText += `Quantity: ${orderDetails.Quantity}\n`;
+
+            // Lamination Specifics
+            if (config.showLaminationFields) {
+                messageText += `--- Lamination Details ---\n`;
+                messageText += `Finish: ${new FormData(mainForm).get('lamination_finish')}\n`;
+                messageText += `Micron: ${new FormData(mainForm).get('lamination_micron')}\n`;
+                messageText += `Width: ${new FormData(mainForm).get('lamination_width')} cm\n`;
+                messageText += `Core: ${new FormData(mainForm).get('lamination_core')} inch\n`;
+
+                const deliveryMethod = new FormData(mainForm).get('delivery_method_toggle');
+                messageText += `Delivery Method: ${deliveryMethod}\n`;
+                if (deliveryMethod === 'delivery') {
+                    messageText += `District: ${new FormData(mainForm).get('delivery_district')}\n`;
+                    messageText += `Address: ${new FormData(mainForm).get('delivery_address')}\n`;
+                    messageText += `Recipient Phone: ${new FormData(mainForm).get('recipient_phone')}\n`;
+                }
+
+                if (new FormData(mainForm).get('vat_enabled')) {
+                    messageText += `VAT Type: ${new FormData(mainForm).get('vat_type')}\n`;
+                    messageText += `VAT TIN: ${new FormData(mainForm).get('vat_tin')}\n`;
+                }
+            }
+
+            if (config.showPrepress !== false) messageText += `Prepress: ${getText('prepress')}\n`;
+            if (config.showDeliveryDate !== false) messageText += `Delivery Date: ${new FormData(mainForm).get('delivery_date')}\n`;
+            if (config.showTargetPrice) messageText += `Target Price: ${new FormData(mainForm).get('target_price')}\n`;
+            if (new FormData(mainForm).get('notes')) messageText += `\nNotes: ${new FormData(mainForm).get('notes')}\n`;
+
+            // Update sheetData Details with full message for clearer log
+            sheetData.Details = messageText;
+
+            // Send to Google Sheet
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwvvVfS0avc0BRCH4Z1EdTNtvNBSZ99u8Vyyha3wTHO0g-dyURfd71m6DDBLGZanoj2zA/exec';
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Important for Google Apps Script simple triggers
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(sheetData)
+            })
+                .then(response => {
+                    // Success handling
+                    alert('Захиалга амжилттай илгээгдлээ! (Order sent successfully!)');
+
+                    // Optional: Still open WhatsApp as a convenience?
+                    // User asked to "collect in google sheet". I will keep WhatsApp as a fallback/secondary contact method but only alert success for now.
+                    // Or I can offer the button "Open WhatsApp" in a success message?
+                    // For now, I'll Open WhatsApp as well, as it's a "Quote Request" often needing discussion.
+                    const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(messageText.trim())}`;
+                    window.open(whatsappUrl, '_blank');
+
+                    modal.classList.remove('active');
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    modalForm.reset();
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('Something went wrong. Please call us directly.');
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                });
+        });
+
 
         // --- Modular Stock Manager ---
         class StockManager {
@@ -1559,14 +947,12 @@
             const lengthSelect = document.getElementById('lamination-length');
             const coreRadios = document.querySelectorAll('input[name="lamination_core"]');
             const stockDisplay = document.getElementById('current-stock');
-            // FIX: Ensure we have a quantity selector for lamination if standard one is hidden
+
+            // FIX: Ensure we have a quantity selector
             let qtySelect = document.getElementById('quantity-select');
 
-            // If standard qty is hidden or missing, we might need to inject one or ensure it's visible. 
-            // In config we set quantities: [...], so standard select should be there. 
-            // But let's make sure we find it.
-
             const priceDisplay = document.getElementById('lamination-price');
+            const priceDisplayContainer = document.getElementById('lamination-price-display');
             const submitBtn = document.querySelector('.submit-order-btn');
 
             // Set Button Text explicitly for Inventory/Order
@@ -1603,88 +989,74 @@
 
             // 2. Price & Stock Interaction
             const updateState = async () => {
-                // Determine Price Element - it might be class .total-price-value or id lamination-price
-                let priceEl = document.querySelector('.total-price-value');
-                if (!priceEl) priceEl = document.getElementById('lamination-price');
+                // FORCE SHOW PRICE DISPLAY
+                if (priceDisplayContainer) {
+                    priceDisplayContainer.style.display = 'flex';
+                    priceDisplayContainer.style.visibility = 'visible';
+                }
 
+                const finish = finishSelect ? finishSelect.value : 'glossy';
+                const micron = micronSelect ? parseInt(micronSelect.value) || 20 : 20;
+                const width = widthSelect ? parseInt(widthSelect.value) || 32 : 32;
+
+                // --- Price Calculation (Moved Before Stock Check) ---
+                let total = 0;
+                const qty = qtySelect ? (parseInt(qtySelect.value) || 1) : 1;
+
+                if (productData && productData.unitPrice) {
+                    // Simple Unit Price Calculation (e.g. Sticker)
+                    total = productData.unitPrice * qty;
+                } else {
+                    // Lamination BOPP Logic
+                    const tempLen = lengthSelect ? (parseInt(lengthSelect.value) || 4000) : 4000;
+
+                    // Base Unit Price for 44cm/4000m
+                    let baseRefPrice = 400000;
+
+                    const widthRatio = width / 44;
+                    const lengthRatio = tempLen / 4000;
+
+                    let unitPrice = baseRefPrice * widthRatio * lengthRatio;
+                    unitPrice = Math.round(unitPrice / 100) * 100;
+
+                    total = unitPrice * qty;
+                }
+
+                if (priceDisplay) {
+                    priceDisplay.textContent = total.toLocaleString() + '₮';
+                }
+
+                // --- Stock Check ---
                 if (stockDisplay) {
                     stockDisplay.textContent = 'Checking...';
                     stockDisplay.style.color = '#e67e22';
                 }
 
-                const finish = finishSelect ? finishSelect.value : 'glossy';
-                const micron = micronSelect ? parseInt(micronSelect.value) : 20;
-                const width = widthSelect ? parseInt(widthSelect.value) : 32;
-
-                // Stock Check
-                const stock = await stockManager.getStock('lamination', { width, micron, finish });
-                if (stockDisplay) {
-                    stockDisplay.textContent = stock;
-                    stockDisplay.style.color = stock > 0 ? '#27ae60' : '#c0392b';
-                }
-
-                // Price Calculation
-                let total = 0;
-
-                if (productData && productData.unitPrice) {
-                    // Simple Unit Price Calculation (e.g. Sticker)
-                    const qty = qtySelect ? (parseInt(qtySelect.value) || 1) : 1;
-                    total = productData.unitPrice * qty;
-
-                    // Ensure price display is visible
-                    const priceDisplayContainer = document.getElementById('lamination-price-display');
-                    if (priceDisplayContainer) priceDisplayContainer.style.display = 'block';
-                } else {
-                    // Ensure price display is visible for Lamination too
-                    const priceDisplayContainer = document.getElementById('lamination-price-display');
-                    if (priceDisplayContainer) priceDisplayContainer.style.display = 'block';
-                    // Lamination BOPP Logic (Updated for Roll Length)
-                    const tempLen = lengthSelect ? parseInt(lengthSelect.value) : 4000;
-
-                    // Base reference: 44cm, 4000m = 400,000 (Matte/Glossy assumed base)
-                    // We interpret the user's request "400,000" as the unit price for that specific config.
-
-                    // Calculate Ratio based on Width (Reference 44cm)
-                    const widthRatio = width / 44;
-
-                    // Calculate Ratio based on Length (Reference 4000m)
-                    const lengthRatio = tempLen / 4000;
-
-                    // Base Unit Price for 44cm/4000m
-                    let baseRefPrice = 400000;
-
-                    // Adjust for Finish? (User didn't specify difference, but matte is usually standard or +fee)
-                    // If we assume 400k is for Matte as requested.
-                    // If user selects Glossy, we can keep it same or slightly less. 
-                    // For now, we'll keep it simple: Same price for Finish unless specified.
-                    // Or reuse old logic (matte +2000)? 2000 is negligible on 400k. 
-
-                    let unitPrice = baseRefPrice * widthRatio * lengthRatio;
-
-                    // Round to nice number (e.g. nearest 100)
-                    unitPrice = Math.round(unitPrice / 100) * 100;
-
-                    const qty = qtySelect ? (parseInt(qtySelect.value) || 1) : 1;
-
-                    total = unitPrice * qty;
-                }
-
-                if (priceEl) {
-                    priceEl.textContent = total.toLocaleString() + '₮';
+                try {
+                    const stock = await stockManager.getStock('lamination', { width, micron, finish });
+                    if (stockDisplay) {
+                        stockDisplay.textContent = stock;
+                        stockDisplay.style.color = stock > 0 ? '#27ae60' : '#c0392b';
+                    }
+                } catch (e) {
+                    console.error("Stock check failed", e);
+                    if (stockDisplay) stockDisplay.textContent = "Error";
                 }
             };
 
             // Re-attach listeners just in case
-            if (finishSelect) finishSelect.onclick = updateState; // Use click/change for select
-            if (finishSelect) finishSelect.onchange = updateState;
+            if (finishSelect) {
+                finishSelect.onclick = updateState;
+                finishSelect.onchange = updateState;
+            }
 
             if (micronSelect) micronSelect.onchange = updateState;
             if (widthSelect) widthSelect.onchange = updateState;
             if (lengthSelect) lengthSelect.onchange = updateState;
             if (qtySelect) qtySelect.onchange = updateState;
 
-            // Initial run with delay to ensure DOM is ready
-            setTimeout(updateState, 500);
+            // Initial run
+            updateState();
         }
     </script>
 
@@ -1870,7 +1242,7 @@
                     const breadcrumbSpan = breadcrumbNav ? breadcrumbNav.querySelector('span:last-child') : null;
 
                     // Fix Breadcrumb for Inventory products
-                    if (breadcrumbNav) {
+                    if (breadcrumbNav && ((data.stock && data.stock !== 'Захиалгаар') || data.isLamination)) {
                         const quoteLink = breadcrumbNav.querySelector('a[href="quote.html"]');
                         if (quoteLink) {
                             quoteLink.href = 'inventory.html';
@@ -1927,34 +1299,126 @@
                         if (galleryGrid) galleryGrid.innerHTML = '';
                     }
 
-                    // Dynamic Options (Formats & Paper Types)
-                    const formatSelect = document.getElementById('format-select');
-                    if (data.formats && data.formats.length > 0 && formatSelect) {
-                        formatSelect.innerHTML = '';
-                        data.formats.forEach(fmt => {
-                            const opt = document.createElement('option');
-                            opt.textContent = fmt;
-                            formatSelect.appendChild(opt);
-                        });
-                    }
+                    // Dynamic Options & Configuration (Standard Products)
+                    if (data.formConfig && !data.isLamination) {
+                        const config = data.formConfig;
 
-                    const paperSelect = document.getElementById('paper-select');
-                    if (data.types && data.types.length > 0 && paperSelect) {
-                        paperSelect.innerHTML = '';
-                        data.types.forEach(type => {
-                            const opt = document.createElement('option');
-                            opt.textContent = type;
-                            paperSelect.appendChild(opt);
-                        });
-                    }
+                        // Helper to populate select
+                        const populate = (id, options) => {
+                            const select = document.getElementById(id);
+                            if (select && options) {
+                                select.innerHTML = '';
+                                options.forEach(opt => {
+                                    const el = document.createElement('option');
+                                    if (opt.key !== undefined) {
+                                        el.textContent = opt.val;
+                                        if (opt.key) el.setAttribute('data-i18n', opt.key);
+                                    } else {
+                                        el.textContent = opt;
+                                        el.value = opt;
+                                    }
+                                    select.appendChild(el);
+                                });
+                            }
+                        };
 
-                    // Hide complex groups for simple products
-                    ['pages-group', 'cover-group', 'binding-group', 'folding-group', 'varnish-group', 'prepress-group'].forEach(id => {
-                        const el = document.getElementById(id);
-                        if (el) el.style.display = 'none';
-                    });
-                    const qtyGroup = document.getElementById('quantity-group');
-                    if (qtyGroup) qtyGroup.style.display = 'block';
+                        if (config.formats) populate('format-select', config.formats);
+                        if (config.quantities) populate('quantity-select', config.quantities);
+                        if (config.papers) populate('paper-select', config.papers);
+                        if (config.pages) populate('pages-select', config.pages);
+                        if (config.covers) populate('cover-select', config.covers);
+
+                        const bindingSelect = document.querySelector('select[name="binding"]');
+                        if (config.bindings && bindingSelect) {
+                            bindingSelect.innerHTML = '';
+                            const ph = document.createElement('option');
+                            ph.setAttribute('data-i18n', 'form-folding-select');
+                            ph.textContent = 'Сонгох';
+                            bindingSelect.appendChild(ph);
+                            config.bindings.forEach(b => {
+                                const el = document.createElement('option');
+                                el.textContent = b.val;
+                                if (b.key) el.setAttribute('data-i18n', b.key);
+                                bindingSelect.appendChild(el);
+                            });
+                        }
+
+                        const coatingSelect = document.querySelector('select[name="coating"]');
+                        if (config.coatings && coatingSelect) {
+                            coatingSelect.innerHTML = '';
+                            config.coatings.forEach(c => {
+                                const el = document.createElement('option');
+                                el.textContent = c.val;
+                                if (c.key) el.setAttribute('data-i18n', c.key);
+                                coatingSelect.appendChild(el);
+                            });
+                        }
+
+                        // Visibility Helper
+                        const setDisplay = (id, show) => {
+                            const el = document.getElementById(id);
+                            if (el) el.style.display = show ? 'block' : 'none';
+                        };
+
+                        setDisplay('pages-group', config.showPages);
+                        setDisplay('cover-group', config.showCover);
+                        setDisplay('binding-group', config.showBinding);
+                        setDisplay('folding-group', config.showFolding);
+                        setDisplay('varnish-group', config.showVarnish);
+                        setDisplay('print-type-group', config.showPrintType !== false);
+                        setDisplay('prepress-group', config.showPrepress !== false);
+                        setDisplay('coating-group', config.showCoating !== false);
+                        setDisplay('cut-select-group', config.showCutSelect);
+                        setDisplay('cut-checkbox-group', config.showCutCheckbox);
+                        setDisplay('numbered-group', config.showNumbered);
+                        setDisplay('target-price-group', config.showTargetPrice);
+                        setDisplay('delivery-date-group', config.showDeliveryDate !== false);
+                        setDisplay('delivery-info-group', config.showDeliveryInfo !== false); // Default true
+
+                        // Foil & Spot UV
+                        const foilGroup = document.getElementById('foil-group');
+                        if (foilGroup) {
+                            foilGroup.style.display = config.showFoil !== false ? 'block' : 'none';
+                            const foilLabel = foilGroup.querySelector('span[data-i18n]');
+                            if (foilLabel) foilLabel.setAttribute('data-i18n', config.labelFoil || 'form-foil');
+                        }
+
+                        const spotGroup = document.getElementById('spot-uv-group');
+                        if (spotGroup) {
+                            spotGroup.style.display = config.showSpotUV !== false ? 'block' : 'none';
+                            const spotLabel = spotGroup.querySelector('span[data-i18n]');
+                            if (spotLabel) spotLabel.setAttribute('data-i18n', config.labelSpotUV || 'form-spot-uv');
+                        }
+
+                        // Labels
+                        if (config.labelFormat) {
+                            const l = document.querySelector('#format-group label');
+                            if (l) l.textContent = config.labelFormat;
+                        }
+                        if (config.labelPaper) {
+                            const l = document.querySelector('#paper-group label');
+                            if (l) l.setAttribute('data-i18n', config.labelPaper);
+                        }
+
+                        // Ensure standard groups are visible if not explicitly hidden
+                        if (config.showFormat !== false) document.getElementById('format-group').style.display = 'block';
+                        if (config.showPaper !== false) document.getElementById('paper-group').style.display = 'block';
+                        document.getElementById('quantity-group').style.display = 'block';
+
+                        // Checkbox groups
+                        if (config.showCutCheckbox) {
+                            document.getElementById('cut-checkbox-group').style.display = 'block';
+                        }
+                    } else if (!data.isLamination) {
+                        // Fallback logic for products without specific config (though now all should have one)
+                        const genericGroups = ['pages-group', 'cover-group', 'binding-group', 'folding-group', 'varnish-group', 'prepress-group'];
+                        genericGroups.forEach(id => {
+                            const el = document.getElementById(id);
+                            if (el) el.style.display = 'none';
+                        });
+                        const qtyGroup = document.getElementById('quantity-group');
+                        if (qtyGroup) qtyGroup.style.display = 'block';
+                    }
 
                     // Apply translations after form setup
                     const savedLang = localStorage.getItem('preferred-lang') || 'mn';

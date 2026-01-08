@@ -217,7 +217,7 @@ const translations = {
         "modal-coating": "Бүрэлт:",
         "modal-quantity": "Тоо ширхэг:",
         "product-name-lamination": "Бүрэлт (Lamination BOPP)",
-        "product-desc-lamination": "Халуун бүрэлтний материал, матт, гялгар, илгэн",
+        "product-desc-lamination": "BOPP бүрэлт нь гадаргууг гялгар, хамгаалалттай болгоно; элэгдэл, чийгнээс хамгаалж өнгөний насыг уртасгана.",
         "form-lamination-size-44": "44 см ( 22 микрон, 4000м )",
         "form-lamination-size-54": "54 см ( 22 микрон, 4000м )",
         "form-lamination-type-matte": "Матт",
@@ -253,8 +253,8 @@ const translations = {
         "form-sticker-size": "Хэмжээ",
         "form-sticker-440x300": "440x300мм (Бэлэн)",
         "form-sticker-440x594-unavail": "440x594мм (Дууссан)",
-        "product-name-blanket": "Булны резин ( blanket )",
-        "product-desc-blanket": "Офсет хэвлэлийн булны резин",
+        "product-name-blanket": "Булны резин ( Blanket )",
+        "product-desc-blanket": "Офсет хэвлэлийн булны резин; бэх дамжуулалт жигд, цэгжилт тод, хэвлэлийн чанарыг сайжруулна.",
         "product-desc-title": "Дэлгэрэнгүй",
         "form-blanket-size-40x60": "40x60 см (Бэлэн)",
 
@@ -287,11 +287,11 @@ const translations = {
 
         /* Sticker Product */
         "product-name-sticker": "Стикер",
-        "product-desc-sticker": "Халуун бүрэлт",
+        "product-desc-sticker": "Офсет хэвлэлд зориулсан наалддаг стикер цаас; өнгө тод гарна, зүсэлт сайн, наалт тогтоц найдвартай.",
         "form-stock": "Нөөц",
         "form-order-btn": "Захиалах",
         "product-name-glue-remover": "Цавуу арилгагч",
-        "product-desc-glue-remover": "Цавууны үлдэгдэл арилгагч",
+        "product-desc-glue-remover": "Их хэмжээний стикер огтлох үед хутганы ирэнд наалдсан цавууг хурдан уусгаж цэвэрлэнэ.",
         "form-glue-size-300gr": "300 гр (Бэлэн)",
 
         /* Invoice Specific */
