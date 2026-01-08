@@ -193,6 +193,15 @@
                             <img src="assets/images/business_card_3.jpg" alt="Thumbnail 3">
                         </div>
                     </div>
+                    <!-- Product Description Section -->
+                    <div class="product-description-container"
+                        style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee;">
+                        <h4 style="margin-bottom: 15px; font-size: 1.1em; color: #333;" data-i18n="product-desc-title">
+                            Дэлгэрэнгүй</h4>
+                        <p id="product-detail-description" style="color: #666; line-height: 1.6; font-size: 0.95em;">
+                            <!-- Description text will be injected here -->
+                        </p>
+                    </div>
                 </div>
 
                 <!-- Right: Product Quote Form -->
@@ -1874,6 +1883,16 @@
                         breadcrumbSpan.textContent = translatedName;
                         if (data.nameKey) {
                             breadcrumbSpan.setAttribute('data-i18n', data.nameKey);
+                        }
+                    }
+
+                    // Update Product Description
+                    const descEl = document.getElementById('product-detail-description');
+                    if (descEl) {
+                        const translatedDesc = data.descKey ? (getTranslation(data.descKey) || data.desc) : data.desc;
+                        descEl.textContent = translatedDesc;
+                        if (data.descKey) {
+                            descEl.setAttribute('data-i18n', data.descKey);
                         }
                     }
 
