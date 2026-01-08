@@ -76,6 +76,36 @@ const PRODUCTS_DATA = [
     }
   },
   {
+    id: "blanket",
+    name: "Булны резин ( blanket )",
+    nameKey: "product-name-blanket",
+    desc: "Офсет хэвлэлийн булны резин",
+    descKey: "product-desc-blanket",
+    unitPrice: 45000,
+    price: "45,000",
+    stock: "Бэлэн",
+    img: "assets/images/Blanket.jpg",
+    images: [
+      "assets/images/Blanket.jpg",
+      "assets/images/Blanket2.jpg",
+      "assets/images/Blanket3.jpg"
+    ],
+    formats: [],
+    types: [],
+    isLamination: true,
+    // Custom form config for Blanket
+    formConfig: {
+      showRollLength: false,
+      quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
+      finishOptions: [], // Remove Type/Kind
+      thicknessOptions: [], // Remove Thickness
+      sizeLabelKey: "form-sticker-size", // Reuse Size label
+      sizeOptions: [
+        { value: "40x60cm", i18nKey: "form-blanket-size-40x60", enabled: true, selected: true }
+      ]
+    }
+  },
+  {
     id: "lamination-bopp",
     name: "Бүралт / lamination Bopp",
     nameKey: "product-name-lamination",

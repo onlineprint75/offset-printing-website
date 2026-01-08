@@ -253,6 +253,9 @@ const translations = {
         "form-sticker-size": "Хэмжээ",
         "form-sticker-440x300": "440x300мм (Бэлэн)",
         "form-sticker-440x594-unavail": "440x594мм (Дууссан)",
+        "product-name-blanket": "Булны резин ( blanket )",
+        "product-desc-blanket": "Офсет хэвлэлийн булны резин",
+        "form-blanket-size-40x60": "40x60 см (Бэлэн)",
 
         /* Lamination Form Translations */
         "form-lam-kind": "Төрөл (Kind)",
@@ -596,9 +599,12 @@ const translations = {
         "product-desc-sticker": "Hot lamination",
         "product-name-glue-remover": "Glue Remover",
         "product-desc-glue-remover": "Removes adhesive residue",
+        "product-name-blanket": "Blanket",
+        "product-desc-blanket": "Offset printing blanket",
         "form-stock": "Stock",
         "form-order-btn": "Order",
-        "form-glue-size-300gr": "300 gr (In Stock)"
+        "form-glue-size-300gr": "300 gr (In Stock)",
+        "form-blanket-size-40x60": "40x60 cm (In Stock)"
     },
     zh: {
         "nav-home": "首页",
@@ -779,9 +785,12 @@ const translations = {
         "product-desc-sticker": "热覆膜",
         "product-name-glue-remover": "除胶剂",
         "product-desc-glue-remover": "去除胶粘剂残留",
+        "product-name-blanket": "橡皮布 (Blanket)",
+        "product-desc-blanket": "胶印橡皮布",
         "form-stock": "库存",
         "form-order-btn": "订购",
         "form-glue-size-300gr": "300 克 (有货)",
+        "form-blanket-size-40x60": "40x60 厘米 (有货)",
 
         /* Sticker Form Translations */
         "form-sticker-kind": "类型",
@@ -1011,9 +1020,12 @@ const translations = {
         "product-desc-sticker": "열 코팅",
         "product-name-glue-remover": "접착제 제거제",
         "product-desc-glue-remover": "접착제 잔여물 제거",
+        "product-name-blanket": "블랭킷 (Blanket)",
+        "product-desc-blanket": "오프셋 인쇄 블랭킷",
         "form-stock": "재고",
         "form-order-btn": "주문하기",
         "form-glue-size-300gr": "300g (재고 있음)",
+        "form-blanket-size-40x60": "40x60 cm (재고 있음)",
 
         /* Sticker Form Translations */
         "form-sticker-kind": "종류",
