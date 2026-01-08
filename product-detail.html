@@ -682,9 +682,11 @@
         // Configuration logic moved to Static Product Loader.
 
         // 6. Run Translations
-        if (typeof setLanguage === 'function') {
-            setLanguage(savedLang);
-        }
+        // Moved to main loader script to ensure savedLang is defined via localStorage checking
+        // if (typeof setLanguage === 'function') {
+        //    const savedLang = localStorage.getItem('preferred-lang') || 'mn';
+        //    setLanguage(savedLang);
+        // }
 
         // Modal Logic
 
@@ -903,6 +905,8 @@
         });
 
 
+        // StockManager moved or kept here?
+        // It is fine here as long as the script doesn't crash above.
         // --- Modular Stock Manager ---
         class StockManager {
             constructor() {
@@ -914,7 +918,7 @@
                     'lamination_32_30_glossy': 5,
                     'lamination_32_20_matte': 12,
                     'lamination_32_25_matte': 8,
-                    'lamination_32_30_matte': 0, // Out of stock example
+                    'lamination_32_30_matte': 0, // Out of stock
                     'lamination_44_20_glossy': 15,
                     'lamination_52_20_glossy': 20
                 };
@@ -924,12 +928,13 @@
                 // Simulate API call with delay
                 return new Promise(resolve => {
                     setTimeout(() => {
+                        // Safe check for properties
+                        if (!specs) { resolve(0); return; }
+
                         const key = `lamination_${specs.width}_${specs.micron}_${specs.finish}`;
-                        // console.log("Checking Stock for:", key); 
                         if (this.stock.hasOwnProperty(key)) {
                             resolve(this.stock[key]);
                         } else {
-                            // random fallback for demo
                             resolve(Math.floor(Math.random() * 20));
                         }
                     }, 400);
