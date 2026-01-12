@@ -621,7 +621,7 @@ footer {
 
 /* Product Detail Page */
 .breadcrumb {
-    padding: 10px 0 8px;
+    padding: 4px 0 8px;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.7);
     display: flex;
