@@ -693,7 +693,7 @@ footer {
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     margin-top: 12px;
-    width: 60%;
+    width: 30%;
     /* Make thumbnails significantly smaller */
 }
 
