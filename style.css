@@ -258,6 +258,8 @@ header {
 .hero-btns {
     display: flex;
     gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
 }
 
 /* Buttons */
@@ -382,7 +384,7 @@ header {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 10%;
-    text-align: left;
+    text-align: center;
 }
 
 .hero-content h1 {
