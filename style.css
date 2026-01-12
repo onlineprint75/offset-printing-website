@@ -240,25 +240,16 @@ header {
     font-weight: 600;
 }
 
-.hero-content .btn-primary {
+.hero-content .btn-primary,
+.hero-content .btn-outline {
     background: rgb(249, 115, 22);
     box-shadow: none;
     border: none;
     backdrop-filter: none;
-}
-
-.hero-content .btn-primary:hover {
-    background: rgb(230, 100, 10);
-    transform: scale(1.05);
-}
-
-.hero-content .btn-outline {
-    background: rgb(249, 115, 22);
-    border: none;
     color: white;
-    backdrop-filter: none;
 }
 
+.hero-content .btn-primary:hover,
 .hero-content .btn-outline:hover {
     background: rgb(230, 100, 10);
     transform: scale(1.05);
@@ -285,18 +276,16 @@ header {
 }
 
 .btn-primary {
-    /* Glassmorphism Button Style from ppm32.mn */
-    background: linear-gradient(135deg, rgba(255, 140, 0, 0.9), rgba(255, 100, 0, 0.8));
+    background: rgb(249, 115, 22);
     color: var(--text-white);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(255, 140, 0, 0.3);
+    border: none;
+    box-shadow: none;
 }
 
 .btn-primary:hover {
     transform: scale(1.05);
-    background: linear-gradient(135deg, rgba(255, 165, 0, 1), rgba(255, 140, 0, 0.9));
-    box-shadow: 0 12px 40px rgba(255, 140, 0, 0.4);
+    background: rgb(230, 100, 10);
+    box-shadow: none;
 }
 
 .btn-secondary,
@@ -480,7 +469,7 @@ header {
 .order-btn-link {
     display: inline-flex;
     align-items: center;
-    background: var(--primary-color);
+    background: rgb(249, 115, 22);
     color: white;
     padding: 10px 24px;
     border-radius: 8px;
@@ -491,7 +480,7 @@ header {
 }
 
 .order-btn-link:hover {
-    background: #ea580c;
+    background: rgb(230, 100, 10);
     transform: translateX(3px);
 }
 
@@ -632,7 +621,7 @@ footer {
 
 /* Product Detail Page */
 .breadcrumb {
-    padding: 20px 0 8px;
+    padding: 10px 0 8px;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.7);
     display: flex;
@@ -1085,7 +1074,8 @@ footer {
 @media (max-width: 992px) {
     .product-detail-container {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 20px;
+        padding: 0 10px;
     }
 
     .product-gallery {
@@ -1362,31 +1352,31 @@ footer {
 
 @media (max-width: 768px) {
     header {
-        padding: 0 15px;
+        padding: 0 10px;
     }
 
     .page-container {
-        padding: 0 15px;
+        padding: 0 10px;
     }
 
     section {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     footer {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding: 24px 10px;
     }
 
     .footer-content {
         padding-left: 0;
         padding-right: 0;
+        margin-bottom: 20px;
     }
 
     .footer-bottom {
-        padding-left: 0;
-        padding-right: 0;
+        padding: 12px 0 0 0;
+        margin-top: 20px;
     }
 
     .menu-toggle {
@@ -1623,6 +1613,7 @@ footer {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
         padding: 0;
+        margin-bottom: 20px;
     }
 
     .footer-col:nth-child(2),
