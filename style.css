@@ -1159,8 +1159,16 @@ footer {
     text-decoration: none;
 }
 
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    padding: 0 10px;
+}
+
 .about-content p {
     margin-bottom: 1.5rem;
+    text-align: justify;
 }
 
 .about-content p:last-child {
