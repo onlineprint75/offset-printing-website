@@ -1437,7 +1437,7 @@ footer {
     }
 
     footer {
-        padding: 24px 10px;
+        padding: 24px 20px;
     }
 
     .footer-content {
@@ -1446,7 +1446,30 @@ footer {
         margin-bottom: 20px;
     }
 
-    .footer-bottom {
+    /* Mobile Footer Text Scaling (x0.8) */
+    .footer-col h4 {
+        font-size: 14px;
+    }
+
+    .footer-col ul li,
+    .footer-col p,
+    .footer-col ul li a {
+        font-size: 11px;
+    }
+
+    .footer-col i {
+        font-size: 13px;
+        width: 16px;
+    }
+
+    .social-links a {
+        font-size: 14px;
+    }
+
+    .footer-bottom,
+    .footer-bottom p,
+    .footer-bottom a {
+        font-size: 10px;
         padding: 12px 0 0 0;
         margin-top: 20px;
     }
