@@ -724,14 +724,23 @@ footer {
         gap: 8px;
         margin-left: 0;
         margin-right: 0;
+        display: flex;
+        /* Using flex for easier fixed sizing */
+        justify-content: flex-start;
     }
 
     .thumb {
-        min-width: 0;
-        /* Help grid columns shrink */
+        width: 100px;
+        height: 100px;
+        flex: 0 0 100px;
+        /* Fixed 100px size */
+        min-width: 100px;
+        aspect-ratio: 1/1;
     }
 
     .thumb img {
+        width: 100%;
+        height: 100%;
         object-fit: contain;
         background: #fdfdfd;
     }
