@@ -730,11 +730,11 @@ footer {
     }
 
     .thumb {
-        width: 100px;
-        height: 100px;
-        flex: 0 0 100px;
-        /* Fixed 100px size */
-        min-width: 100px;
+        width: 50px;
+        height: 50px;
+        flex: 0 0 50px;
+        /* Fixed 50px size */
+        min-width: 50px;
         aspect-ratio: 1/1;
     }
 
