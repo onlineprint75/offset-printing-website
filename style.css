@@ -737,32 +737,33 @@ footer {
     }
 
     .thumb {
-        display: grid !important;
-        place-items: center !important;
+        position: relative !important;
+        /* Important for absolute child */
         width: 50px !important;
         height: 50px !important;
         min-width: 50px !important;
-        /* CRITICAL for Safari */
         min-height: 50px !important;
         padding: 0 !important;
         border: 2px solid red !important;
         /* Temporary Debugging Border */
         box-sizing: border-box !important;
         overflow: hidden !important;
-        flex: none !important;
-        /* Ensure it doesn't try to flex */
         border-radius: 6px;
-        /* Keep the radius specifically */
+        /* Remove grid/flex - using absolute positioning for image */
     }
 
     .thumb img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: auto !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
         display: block;
         background: #fdfdfd;
         border-radius: 4px;
-        /* Keep inner radius */
     }
 }
 
