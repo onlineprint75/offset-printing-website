@@ -705,12 +705,17 @@ footer {
     border-radius: 6px;
     overflow: hidden;
     cursor: pointer;
-    border: 1px solid transparent;
+    border: 1px solid #e5e7eb;
+    /* Visible light grey border */
     transition: all 0.3s ease;
     width: 60px;
     height: 60px;
     flex: 0 0 60px;
     aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    /* Ensure border is included in width/height */
+    padding: 2px;
+    /* Small padding to prevent image touching border */
 }
 
 .thumb img {
