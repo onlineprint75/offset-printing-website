@@ -720,7 +720,15 @@ footer {
 @media (max-width: 768px) {
     .thumbnail-grid {
         width: 100%;
+        max-width: 100%;
         gap: 8px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .thumb {
+        min-width: 0;
+        /* Help grid columns shrink */
     }
 
     .thumb img {
