@@ -33,6 +33,10 @@ body {
     min-height: 100vh;
 }
 
+main {
+    padding-top: var(--header-height);
+}
+
 .page-container {
     width: 100%;
     padding: 0 20%;
@@ -713,6 +717,18 @@ footer {
     object-fit: cover;
 }
 
+@media (max-width: 768px) {
+    .thumbnail-grid {
+        width: 100%;
+        gap: 8px;
+    }
+
+    .thumb img {
+        object-fit: contain;
+        background: #fdfdfd;
+    }
+}
+
 .thumb.active,
 .thumb:hover {
     border-color: var(--primary-color);
@@ -1361,25 +1377,29 @@ footer {
 }
 
 @media (max-width: 768px) {
+    main {
+        padding-top: calc(var(--header-height) - 13px);
+    }
+
     header {
-        padding: 0 20px;
+        padding: 0 10px;
     }
 
     .logo {
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     .page-container {
-        padding: 0 20px;
+        padding: 0 10px;
     }
 
     section {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     footer {
-        padding: 24px 20px;
+        padding: 24px 10px;
     }
 
     .footer-content {
