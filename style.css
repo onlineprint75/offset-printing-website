@@ -737,27 +737,32 @@ footer {
     }
 
     .thumb {
-        width: 50px;
-        height: 50px;
-        flex: 0 0 50px;
-        /* Fixed 50px size */
-        min-width: 50px;
-        max-width: 50px;
-        /* Force strict width */
-        aspect-ratio: 1/1;
-        box-sizing: border-box;
-        /* Ensure padding/border doesn't add to width */
-        padding: 2px;
+        display: grid !important;
+        place-items: center !important;
+        width: 50px !important;
+        height: 50px !important;
+        min-width: 50px !important;
+        /* CRITICAL for Safari */
+        min-height: 50px !important;
+        padding: 0 !important;
+        border: 2px solid red !important;
+        /* Temporary Debugging Border */
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+        flex: none !important;
+        /* Ensure it doesn't try to flex */
+        border-radius: 6px;
+        /* Keep the radius specifically */
     }
 
     .thumb img {
         width: 100%;
         height: 100%;
         object-fit: contain !important;
-        /* Force contain behavior */
+        display: block;
         background: #fdfdfd;
         border-radius: 4px;
-        /* Slight radius for image inside border */
+        /* Keep inner radius */
     }
 }
 
