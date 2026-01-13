@@ -1715,6 +1715,10 @@ footer {
     .footer-col:nth-child(3) {
         left: 0;
     }
+
+    .product-detail-container.page-container {
+        padding: 0 10px;
+    }
 }
 
 /* Radio Button Group Styling */
