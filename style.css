@@ -738,18 +738,17 @@ footer {
 
     .thumb {
         position: relative !important;
-        /* Important for absolute child */
         width: 50px !important;
         height: 50px !important;
         min-width: 50px !important;
         min-height: 50px !important;
         padding: 0 !important;
-        border: 2px solid red !important;
-        /* Temporary Debugging Border */
+        border: 1px solid #e5e7eb !important;
+        /* Light grey border */
         box-sizing: border-box !important;
         overflow: hidden !important;
-        border-radius: 6px;
-        /* Remove grid/flex - using absolute positioning for image */
+        border-radius: 0;
+        /* Square frame */
     }
 
     .thumb img {
@@ -763,7 +762,8 @@ footer {
         max-height: 100% !important;
         display: block;
         background: #fdfdfd;
-        border-radius: 4px;
+        border-radius: 0;
+        /* Square image */
     }
 }
 
