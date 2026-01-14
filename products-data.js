@@ -111,8 +111,8 @@ const PRODUCTS_DATA = [
     nameKey: "product-name-glue-remover",
     desc: "Их хэмжээний стикер огтлох үед хутганы ирэнд наалдсан цавууг хурдан уусгаж цэвэрлэнэ.",
     descKey: "product-desc-glue-remover",
-    unitPrice: 8500,
-    price: "8,500",
+    unitPrice: 7000,
+    price: "7,000",
     stock: "Бэлэн",
     img: "assets/images/Glue remover.jpg",
     images: [
@@ -169,8 +169,8 @@ const PRODUCTS_DATA = [
     nameKey: "product-name-glue-remover",
     desc: "Их хэмжээний стикер огтлох үед хутганы ирэнд наалдсан цавууг хурдан уусгаж цэвэрлэнэ.",
     descKey: "product-desc-glue-remover",
-    unitPrice: 8500,
-    price: "8,500",
+    unitPrice: 7000,
+    price: "7,000",
     stock: "Бэлэн",
     img: "assets/images/Glue remover.jpg",
     images: [
@@ -198,8 +198,8 @@ const PRODUCTS_DATA = [
     nameKey: "product-name-glue-remover",
     desc: "Их хэмжээний стикер огтлох үед хутганы ирэнд наалдсан цавууг хурдан уусгаж цэвэрлэнэ.",
     descKey: "product-desc-glue-remover",
-    unitPrice: 8500,
-    price: "8,500",
+    unitPrice: 7000,
+    price: "7,000",
     stock: "Бэлэн",
     img: "assets/images/Glue remover.jpg",
     images: [
@@ -257,7 +257,7 @@ const PRODUCTS_DATA = [
     nameKey: "product-name-lamination",
     desc: "BOPP бүрэлт нь гадаргууг гялгар, хамгаалалттай болгоно; элэгдэл, чийгнээс хамгаалж өнгөний насыг уртасгана.",
     descKey: "product-desc-lamination",
-    price: "320,000",
+    price: "440,000",
     stock: "15",
     img: "assets/images/Lamination.jpg",
     images: [
