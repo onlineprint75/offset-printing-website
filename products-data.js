@@ -46,6 +46,82 @@ const PRODUCTS_DATA = [
     }
   },
   {
+    id: "lamination-bopp",
+    name: "Бүралт / lamination Bopp",
+    nameKey: "product-name-lamination",
+    desc: "BOPP бүрэлт нь гадаргууг гялгар, хамгаалалттай болгоно; элэгдэл, чийгнээс хамгаалж өнгөний насыг уртасгана.",
+    descKey: "product-desc-lamination",
+    price: "440,000",
+    stock: "15",
+    img: "assets/images/Lamination.jpg",
+    images: [
+      "assets/images/Lamination.jpg",
+      "assets/images/Lamination2.jpg",
+      "assets/images/Lamination3.jpg"
+    ],
+    formats: [],
+    types: [],
+    isLamination: true  // Special flag for lamination-specific UI
+  },
+  {
+    id: "blanket",
+    name: "Булны резин ( Blanket )",
+    nameKey: "product-name-blanket",
+    desc: "Офсет хэвлэлийн булны резин; бэх дамжуулалт жигд, цэгжилт тод, хэвлэлийн чанарыг сайжруулна.",
+    descKey: "product-desc-blanket",
+    unitPrice: 45000,
+    price: "45,000",
+    stock: "Бэлэн",
+    img: "assets/images/Blanket.jpg",
+    images: [
+      "assets/images/Blanket.jpg",
+      "assets/images/Blanket2.jpg",
+      "assets/images/Blanket3.jpg"
+    ],
+    formats: [],
+    types: [],
+    isLamination: true,
+    // Custom form config for Blanket
+    formConfig: {
+      showRollLength: false,
+      quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
+      finishOptions: [], // Remove Type/Kind
+      thicknessOptions: [], // Remove Thickness
+      sizeLabelKey: "form-sticker-size", // Reuse Size label
+      sizeOptions: [
+        { value: "40x60cm", i18nKey: "form-blanket-size-40x60", enabled: true, selected: true }
+      ]
+    }
+  },
+  {
+    id: "printing-oil",
+    name: "Хэвлэлийн машины тос",
+    nameKey: "product-name-printing-oil",
+    desc: "Printing Machine Oil",
+    descKey: "product-desc-printing-oil",
+    // unitPrice removed for custom option pricing
+    price: "180,000",
+    stock: "Бэлэн",
+    img: "assets/images/Tos-heidelberg.jpg",
+    images: [
+      "assets/images/Tos-heidelberg.jpg",
+      "assets/images/Tos-heidelberg2.jpg",
+      "assets/images/Tos-heidelberg3.jpg"
+    ],
+    formats: [],
+    types: [],
+    isLamination: true,
+    formConfig: {
+      showRollLength: false,
+      quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
+      finishOptions: [
+        { value: "glp500", i18nKey: "form-oil-glp500", price: 180000, enabled: true, selected: true }
+      ],
+      thicknessOptions: [],
+      sizeOptions: []
+    }
+  },
+  {
     id: "creasing-matrix",
     name: "Канал",
     nameKey: "product-name-creasing-matrix",
@@ -72,37 +148,6 @@ const PRODUCTS_DATA = [
       ],
       thicknessOptions: [],
       sizeOptions: []
-    }
-  },
-  {
-    id: "tape",
-    name: "Скоч",
-    nameKey: "product-name-tape",
-    desc: "Сайн чанарын наалддаг тууз.",
-    descKey: "product-desc-tape",
-    // unitPrice removed to use option-based pricing
-    price: "2,550",
-    stock: "Бэлэн",
-    img: "assets/images/Skoch.jpg",
-    images: [
-      "assets/images/Skoch.jpg",
-      "assets/images/Skoch2.jpg",
-      "assets/images/Skoch3.jpg"
-    ],
-    formats: [],
-    types: [],
-    isLamination: true,
-    // Custom form config for Tape
-    formConfig: {
-      showRollLength: false,
-      showCore: false,
-      quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
-      finishOptions: [
-        { value: "normal", i18nKey: "form-tape-normal", price: 2550, enabled: true, selected: true },
-        { value: "logo", i18nKey: "form-tape-logo", price: 4888, enabled: true }
-      ],
-      thicknessOptions: [], // Remove Thickness
-      sizeOptions: [] // Remove Size/Width
     }
   },
   {
@@ -133,34 +178,6 @@ const PRODUCTS_DATA = [
       sizeOptions: [
         { value: "300gr", i18nKey: "form-glue-size-300gr", enabled: true, selected: true }
       ]
-    }
-  },
-  {
-    id: "printing-oil",
-    name: "Хэвлэлийн машины тос",
-    nameKey: "product-name-printing-oil",
-    desc: "Printing Machine Oil",
-    descKey: "product-desc-printing-oil",
-    // unitPrice removed for custom option pricing
-    price: "180,000",
-    stock: "Бэлэн",
-    img: "assets/images/Tos-heidelberg.jpg",
-    images: [
-      "assets/images/Tos-heidelberg.jpg",
-      "assets/images/Tos-heidelberg2.jpg",
-      "assets/images/Tos-heidelberg3.jpg"
-    ],
-    formats: [],
-    types: [],
-    isLamination: true,
-    formConfig: {
-      showRollLength: false,
-      quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
-      finishOptions: [
-        { value: "glp500", i18nKey: "form-oil-glp500", price: 180000, enabled: true, selected: true }
-      ],
-      thicknessOptions: [],
-      sizeOptions: []
     }
   },
   {
@@ -195,52 +212,35 @@ const PRODUCTS_DATA = [
     }
   },
   {
-    id: "blanket",
-    name: "Булны резин ( Blanket )",
-    nameKey: "product-name-blanket",
-    desc: "Офсет хэвлэлийн булны резин; бэх дамжуулалт жигд, цэгжилт тод, хэвлэлийн чанарыг сайжруулна.",
-    descKey: "product-desc-blanket",
-    unitPrice: 45000,
-    price: "45,000",
+    id: "tape",
+    name: "Скоч",
+    nameKey: "product-name-tape",
+    desc: "Сайн чанарын наалддаг тууз.",
+    descKey: "product-desc-tape",
+    // unitPrice removed to use option-based pricing
+    price: "2,550",
     stock: "Бэлэн",
-    img: "assets/images/Blanket.jpg",
+    img: "assets/images/Skoch.jpg",
     images: [
-      "assets/images/Blanket.jpg",
-      "assets/images/Blanket2.jpg",
-      "assets/images/Blanket3.jpg"
+      "assets/images/Skoch.jpg",
+      "assets/images/Skoch2.jpg",
+      "assets/images/Skoch3.jpg"
     ],
     formats: [],
     types: [],
     isLamination: true,
-    // Custom form config for Blanket
+    // Custom form config for Tape
     formConfig: {
       showRollLength: false,
+      showCore: false,
       quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
-      finishOptions: [], // Remove Type/Kind
+      finishOptions: [
+        { value: "normal", i18nKey: "form-tape-normal", price: 2550, enabled: true, selected: true },
+        { value: "logo", i18nKey: "form-tape-logo", price: 4888, enabled: true }
+      ],
       thicknessOptions: [], // Remove Thickness
-      sizeLabelKey: "form-sticker-size", // Reuse Size label
-      sizeOptions: [
-        { value: "40x60cm", i18nKey: "form-blanket-size-40x60", enabled: true, selected: true }
-      ]
+      sizeOptions: [] // Remove Size/Width
     }
-  },
-  {
-    id: "lamination-bopp",
-    name: "Бүралт / lamination Bopp",
-    nameKey: "product-name-lamination",
-    desc: "BOPP бүрэлт нь гадаргууг гялгар, хамгаалалттай болгоно; элэгдэл, чийгнээс хамгаалж өнгөний насыг уртасгана.",
-    descKey: "product-desc-lamination",
-    price: "440,000",
-    stock: "15",
-    img: "assets/images/Lamination.jpg",
-    images: [
-      "assets/images/Lamination.jpg",
-      "assets/images/Lamination2.jpg",
-      "assets/images/Lamination3.jpg"
-    ],
-    formats: [],
-    types: [],
-    isLamination: true  // Special flag for lamination-specific UI
   },
   {
     id: "business_card",
