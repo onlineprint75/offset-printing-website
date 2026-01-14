@@ -51,6 +51,7 @@ const PRODUCTS_DATA = [
     nameKey: "product-name-creasing-matrix",
     desc: "Хайрцаг, цаасан бүтээгдэхүүний нугалаас гаргахад зориулагдсан, наалт сайтай, бат бөх нугалаасны суваг (Creasing Matrix). Хайрцагтаа 50ш-тай",
     descKey: "product-desc-creasing-matrix",
+    price: "80,000",
     // unitPrice removed for custom option pricing
     stock: "Бэлэн",
     img: "assets/images/Kanal.jpg",
@@ -80,6 +81,7 @@ const PRODUCTS_DATA = [
     desc: "Сайн чанарын наалддаг тууз.",
     descKey: "product-desc-tape",
     // unitPrice removed to use option-based pricing
+    price: "2,550",
     stock: "Бэлэн",
     img: "assets/images/Skoch.jpg",
     images: [
@@ -140,6 +142,7 @@ const PRODUCTS_DATA = [
     desc: "Printing Machine Oil",
     descKey: "product-desc-printing-oil",
     // unitPrice removed for custom option pricing
+    price: "180,000",
     stock: "Бэлэн",
     img: "assets/images/Tos-heidelberg.jpg",
     images: [
