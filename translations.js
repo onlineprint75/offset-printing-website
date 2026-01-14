@@ -300,6 +300,9 @@ const translations = {
         "product-name-creasing-matrix": "Канал",
         "product-desc-creasing-matrix": "Хайрцаг, цаасан бүтээгдэхүүний нугалаас гаргахад зориулагдсан, наалт сайтай, бат бөх нугалаасны суваг (Creasing Matrix). Хайрцагтаа 50ш-тай",
         "form-kanal-spec": "0.3 x 0.8 , 9мм",
+        "product-name-printing-oil": "Хэвлэлийн машины тос",
+        "product-desc-printing-oil": "Printing Machine Oil",
+        "form-oil-glp500": "GLP500",
 
         /* Invoice Specific */
         "form-paper-selection": "Цаасны сонголт",
@@ -614,6 +617,9 @@ const translations = {
         "product-name-creasing-matrix": "Creasing Matrix",
         "product-desc-creasing-matrix": "Durable creasing matrix with strong adhesion, designed for creating folds in boxes and paper products. 50 pieces per box.",
         "form-kanal-spec": "0.3 x 0.8 , 9mm",
+        "product-name-printing-oil": "Printing Machine Oil",
+        "product-desc-printing-oil": "Printing Machine Oil",
+        "form-oil-glp500": "GLP500",
         "product-name-blanket": "Blanket",
         "product-desc-blanket": "Offset printing blanket",
         "product-name-blanket": "Blanket",
@@ -817,6 +823,9 @@ const translations = {
         "product-name-creasing-matrix": "压痕模",
         "product-desc-creasing-matrix": "专为纸箱和纸制品折痕设计的压痕模，粘性强，耐用。每盒50条。",
         "form-kanal-spec": "0.3 x 0.8 , 9mm",
+        "product-name-printing-oil": "Printing Machine Oil",
+        "product-desc-printing-oil": "Printing Machine Oil",
+        "form-oil-glp500": "GLP500",
         "form-blanket-size-40x60": "40x60 厘米 (有货)",
 
         /* Sticker Form Translations */
@@ -1061,6 +1070,9 @@ const translations = {
         "product-name-creasing-matrix": "주름 매트릭스",
         "product-desc-creasing-matrix": "상자 및 종이 제품의 주름을 만드는 데 사용되는 접착력이 뛰어나고 내구성이 강한 채널(Creasing Matrix)입니다. 박스당 50개입.",
         "form-kanal-spec": "0.3 x 0.8 , 9mm",
+        "product-name-printing-oil": "Printing Machine Oil",
+        "product-desc-printing-oil": "Printing Machine Oil",
+        "form-oil-glp500": "GLP500",
         "form-blanket-size-40x60": "40x60 cm (재고 있음)",
 
         /* Sticker Form Translations */
