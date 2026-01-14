@@ -29,19 +29,15 @@ const PRODUCTS_DATA = [
       showRollLength: false,
       quantities: [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 9000, 10000],
       finishOptions: [
-        { value: "glossy", i18nKey: "form-sticker-glossy", enabled: true },
-        { value: "matte", i18nKey: "form-sticker-matte-unavail", enabled: false }
+        { value: "glossy", i18nKey: "form-sticker-glossy", enabled: true }
       ],
       thicknessLabelKey: "form-sticker-thickness",
       thicknessOptions: [
-        { value: "160", i18nKey: "form-sticker-160-unavail", enabled: false },
-        { value: "180", i18nKey: "form-sticker-180", enabled: true, selected: true },
-        { value: "200", i18nKey: "form-sticker-200-unavail", enabled: false }
+        { value: "180", i18nKey: "form-sticker-180", enabled: true, selected: true }
       ],
       sizeLabelKey: "form-sticker-size",
       sizeOptions: [
-        { value: "440x300", i18nKey: "form-sticker-440x300", enabled: true, selected: true },
-        { value: "440x594", i18nKey: "form-sticker-440x594-unavail", enabled: false }
+        { value: "440x300", i18nKey: "form-sticker-440x300", enabled: true, selected: true }
       ]
     }
   },
