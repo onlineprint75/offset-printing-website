@@ -318,7 +318,8 @@ const translations = {
         "form-degree": "Градус",
         "form-degree-30": "30°",
         "form-degree-45": "45°",
-        "form-degree-60": "60°"
+        "form-degree-60": "60°",
+        "form-plotter-type": "Төрөл"
     },
     en: {
         "nav-home": "Home",
@@ -566,6 +567,7 @@ const translations = {
         "form-degree-30": "30°",
         "form-degree-45": "45°",
         "form-degree-60": "60°",
+        "form-plotter-type": "Type",
 
         /* Sticker Form Translations */
         "form-sticker-kind": "Kind",
@@ -819,6 +821,7 @@ const translations = {
         "form-degree-30": "30°",
         "form-degree-45": "45°",
         "form-degree-60": "60°",
+        "form-plotter-type": "类型",
 
         /* Sticker Product */
         "product-name-sticker": "贴纸",
@@ -1072,6 +1075,7 @@ const translations = {
         "form-degree-30": "30°",
         "form-degree-45": "45°",
         "form-degree-60": "60°",
+        "form-plotter-type": "유형",
 
         /* Sticker Product */
         "product-name-sticker": "스티커",

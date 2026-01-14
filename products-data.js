@@ -178,16 +178,20 @@ const PRODUCTS_DATA = [
       "assets/images/Plotter knife2.jpg",
       "assets/images/Plotter knife3.jpg"
     ],
+    isLamination: true,
     formConfig: {
       showRollLength: false,
+      showCore: false,
       quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
       finishOptions: [
-        { value: "30", label: "30°", i18nKey: "form-degree-30", priceOffset: 0 },
-        { value: "45", label: "45°", i18nKey: "form-degree-45", priceOffset: 0 },
-        { value: "60", label: "60°", i18nKey: "form-degree-60", priceOffset: 0 }
+        { value: "30", label: "30°", i18nKey: "form-degree-30", priceOffset: 0, enabled: true },
+        { value: "45", label: "45°", i18nKey: "form-degree-45", priceOffset: 0, enabled: true },
+        { value: "60", label: "60°", i18nKey: "form-degree-60", priceOffset: 0, enabled: true }
       ],
       showFinish: true,
-      finishLabelKey: "form-degree"
+      finishLabelKey: "form-plotter-type",
+      thicknessOptions: [],
+      sizeOptions: []
     }
   },
   {
