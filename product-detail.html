@@ -1241,33 +1241,35 @@
                             // Custom Size Options (replaces Width)
                             if (cfg.sizeOptions) {
                                 const widthSelect = document.getElementById('lamination-width');
-                                const widthLabel = widthSelect ? widthSelect.parentElement.querySelector('label') : null;
-                                if (widthLabel && cfg.sizeLabelKey) {
-                                    widthLabel.textContent = getTranslation(cfg.sizeLabelKey) || cfg.sizeLabel || 'Size';
-                                    widthLabel.setAttribute('data-i18n', cfg.sizeLabelKey);
-                                } else if (widthLabel && cfg.sizeLabel) {
-                                    widthLabel.textContent = cfg.sizeLabel;
-                                }
-                                if (widthSelect) {
-                                    widthSelect.innerHTML = '';
-                                    cfg.sizeOptions.forEach(opt => {
-                                        const option = document.createElement('option');
-                                        option.value = opt.value;
-                                        option.textContent = opt.i18nKey ? (getTranslation(opt.i18nKey) || opt.label || opt.value) : (opt.label || opt.value);
-                                        option.setAttribute('data-i18n', opt.i18nKey || '');
-                                        if (!opt.enabled) {
-                                            option.disabled = true;
-                                            option.style.color = '#ccc';
-                                        }
-                                        if (opt.selected) option.selected = true;
-                                    });
-                                }
-                            }
-
-                            // Custom Width/Size Visibility
-                            if (cfg.sizeOptions && cfg.sizeOptions.length === 0) {
                                 const widthGroup = document.getElementById('lamination-width-group');
-                                if (widthGroup) widthGroup.style.display = 'none';
+                                const widthLabel = widthSelect ? widthSelect.parentElement.querySelector('label') : null;
+
+                                if (cfg.sizeOptions.length === 0) {
+                                    if (widthGroup) widthGroup.style.display = 'none';
+                                } else {
+                                    if (widthGroup) widthGroup.style.display = 'block';
+                                    if (widthLabel && cfg.sizeLabelKey) {
+                                        widthLabel.textContent = getTranslation(cfg.sizeLabelKey) || cfg.sizeLabel || 'Size';
+                                        widthLabel.setAttribute('data-i18n', cfg.sizeLabelKey);
+                                    } else if (widthLabel && cfg.sizeLabel) {
+                                        widthLabel.textContent = cfg.sizeLabel;
+                                    }
+                                    if (widthSelect) {
+                                        widthSelect.innerHTML = '';
+                                        cfg.sizeOptions.forEach(opt => {
+                                            const option = document.createElement('option');
+                                            option.value = opt.value;
+                                            option.textContent = opt.i18nKey ? (getTranslation(opt.i18nKey) || opt.label || opt.value) : (opt.label || opt.value);
+                                            option.setAttribute('data-i18n', opt.i18nKey || '');
+                                            if (!opt.enabled) {
+                                                option.disabled = true;
+                                                option.style.color = '#ccc';
+                                            }
+                                            if (opt.selected) option.selected = true;
+                                            widthSelect.appendChild(option);
+                                        });
+                                    }
+                                }
                             }
 
                             // Custom Core Visibility
