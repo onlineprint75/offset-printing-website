@@ -164,32 +164,30 @@ const PRODUCTS_DATA = [
     }
   },
   {
-    id: "glue-remover-3",
-    name: "Цавуу арилгагч",
-    nameKey: "product-name-glue-remover",
-    desc: "Их хэмжээний стикер огтлох үед хутганы ирэнд наалдсан цавууг хурдан уусгаж цэвэрлэнэ.",
-    descKey: "product-desc-glue-remover",
-    unitPrice: 7000,
-    price: "7,000",
+    id: "plotter-knife",
+    name: "Плоттерийн хутга",
+    nameKey: "product-name-plotter-knife",
+    desc: "Сайн чанар ган материал, хайрцагтаа 50 ширхэгтэй",
+    descKey: "product-desc-plotter-knife",
+    unitPrice: 60000,
+    price: "60,000",
     stock: "Бэлэн",
-    img: "assets/images/Glue remover.jpg",
+    img: "assets/images/Plotter knife.jpg",
     images: [
-      "assets/images/Glue remover.jpg",
-      "assets/images/Glue remover2.jpg",
-      "assets/images/Glue remover3.jpg"
+      "assets/images/Plotter knife.jpg",
+      "assets/images/Plotter knife2.jpg",
+      "assets/images/Plotter knife3.jpg"
     ],
-    formats: [],
-    types: [],
-    isLamination: true,
     formConfig: {
       showRollLength: false,
       quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
-      finishOptions: [],
-      thicknessOptions: [],
-      sizeLabelKey: "form-sticker-size",
-      sizeOptions: [
-        { value: "300gr", i18nKey: "form-glue-size-300gr", enabled: true, selected: true }
-      ]
+      finishOptions: [
+        { value: "30", label: "30°", i18nKey: "form-degree-30", priceOffset: 0 },
+        { value: "45", label: "45°", i18nKey: "form-degree-45", priceOffset: 0 },
+        { value: "60", label: "60°", i18nKey: "form-degree-60", priceOffset: 0 }
+      ],
+      showFinish: true,
+      finishLabelKey: "form-degree"
     }
   },
   {

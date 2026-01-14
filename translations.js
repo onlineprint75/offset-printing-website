@@ -312,7 +312,13 @@ const translations = {
         "form-target-price": "Үнийн санал (₮)",
         "form-target-price-placeholder": "Таны санал болгож буй үнэ (сонголттой)",
         "form-target-price-hint": "Таны санал болгож буй үнэ. Хоосон орхиж болно.",
-        "form-delivery-3-days": "Хүргэлтийн хугацаа: 3 хоног"
+        "form-delivery-3-days": "Хүргэлтийн хугацаа: 3 хоног",
+        "product-name-plotter-knife": "Плоттерийн хутга",
+        "product-desc-plotter-knife": "Сайн чанар ган материал, хайрцагтаа 50 ширхэгтэй",
+        "form-degree": "Градус",
+        "form-degree-30": "30°",
+        "form-degree-45": "45°",
+        "form-degree-60": "60°"
     },
     en: {
         "nav-home": "Home",
@@ -554,6 +560,12 @@ const translations = {
         "form-target-price-placeholder": "Your estimated price (optional)",
         "form-target-price-hint": "Your estimated price. Can be left blank.",
         "form-delivery-3-days": "Delivery time: 3 days",
+        "product-name-plotter-knife": "Plotter Knife",
+        "product-desc-plotter-knife": "High quality steel material, 50 pieces per box",
+        "form-degree": "Degree",
+        "form-degree-30": "30°",
+        "form-degree-45": "45°",
+        "form-degree-60": "60°",
 
         /* Sticker Form Translations */
         "form-sticker-kind": "Kind",
@@ -801,6 +813,12 @@ const translations = {
         "form-lam-width-44": "44 厘米",
         "form-lam-width-52": "52 厘米",
         "form-delivery-1-2": "1-2 个工作日",
+        "product-name-plotter-knife": "刻字刀",
+        "product-desc-plotter-knife": "优质钢材，每盒50片",
+        "form-degree": "度数",
+        "form-degree-30": "30°",
+        "form-degree-45": "45°",
+        "form-degree-60": "60°",
 
         /* Sticker Product */
         "product-name-sticker": "贴纸",
@@ -1048,6 +1066,12 @@ const translations = {
         "form-lam-width-44": "44 cm",
         "form-lam-width-52": "52 cm",
         "form-delivery-1-2": "영업일 기준 1-2일 이내",
+        "product-name-plotter-knife": "플로터 칼",
+        "product-desc-plotter-knife": "고품질 강철 소재, 박스당 50개",
+        "form-degree": "각도",
+        "form-degree-30": "30°",
+        "form-degree-45": "45°",
+        "form-degree-60": "60°",
 
         /* Sticker Product */
         "product-name-sticker": "스티커",
