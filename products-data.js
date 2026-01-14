@@ -195,35 +195,6 @@ const PRODUCTS_DATA = [
     }
   },
   {
-    id: "glue-remover-4",
-    name: "Цавуу арилгагч",
-    nameKey: "product-name-glue-remover",
-    desc: "Их хэмжээний стикер огтлох үед хутганы ирэнд наалдсан цавууг хурдан уусгаж цэвэрлэнэ.",
-    descKey: "product-desc-glue-remover",
-    unitPrice: 7000,
-    price: "7,000",
-    stock: "Бэлэн",
-    img: "assets/images/Glue remover.jpg",
-    images: [
-      "assets/images/Glue remover.jpg",
-      "assets/images/Glue remover2.jpg",
-      "assets/images/Glue remover3.jpg"
-    ],
-    formats: [],
-    types: [],
-    isLamination: true,
-    formConfig: {
-      showRollLength: false,
-      quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
-      finishOptions: [],
-      thicknessOptions: [],
-      sizeLabelKey: "form-sticker-size",
-      sizeOptions: [
-        { value: "300gr", i18nKey: "form-glue-size-300gr", enabled: true, selected: true }
-      ]
-    }
-  },
-  {
     id: "blanket",
     name: "Булны резин ( Blanket )",
     nameKey: "product-name-blanket",
