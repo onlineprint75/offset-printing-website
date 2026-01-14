@@ -46,6 +46,32 @@ const PRODUCTS_DATA = [
     }
   },
   {
+    id: "creasing-matrix",
+    name: "Канал",
+    nameKey: "product-name-creasing-matrix",
+    desc: "Хайрцаг, цаасан бүтээгдэхүүний нугалаас гаргахад зориулагдсан, наалт сайтай, бат бөх нугалаасны суваг (Creasing Matrix). Хайрцагтаа 50ш-тай",
+    descKey: "product-desc-creasing-matrix",
+    // unitPrice removed for custom option pricing
+    stock: "Бэлэн",
+    img: "assets/images/Kanal.jpg",
+    images: [
+      "assets/images/Kanal.jpg",
+      "assets/images/Kanal2.jpg",
+      "assets/images/Kanal3.jpg"
+    ],
+    formats: [],
+    types: [],
+    isLamination: true,
+    formConfig: {
+      showRollLength: false,
+      showCore: false,
+      quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
+      finishOptions: [
+        { value: "spec1", i18nKey: "form-kanal-spec", price: 80000, enabled: true, selected: true }
+      ],
+      thicknessOptions: [],
+      sizeOptions: []
+    }
   },
   {
     id: "tape",
