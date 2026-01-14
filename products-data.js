@@ -46,6 +46,38 @@ const PRODUCTS_DATA = [
     }
   },
   {
+  },
+  {
+    id: "tape",
+    name: "Скоч",
+    nameKey: "product-name-tape",
+    desc: "Сайн чанарын наалддаг тууз.",
+    descKey: "product-desc-tape",
+    // unitPrice removed to use option-based pricing
+    stock: "Бэлэн",
+    img: "assets/images/Skoch.jpg",
+    images: [
+      "assets/images/Skoch.jpg",
+      "assets/images/Skoch2.jpg",
+      "assets/images/Skoch3.jpg"
+    ],
+    formats: [],
+    types: [],
+    isLamination: true,
+    // Custom form config for Tape
+    formConfig: {
+      showRollLength: false,
+      showCore: false,
+      quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
+      finishOptions: [
+        { value: "normal", i18nKey: "form-tape-normal", price: 2550, enabled: true, selected: true },
+        { value: "logo", i18nKey: "form-tape-logo", price: 4888, enabled: true }
+      ],
+      thicknessOptions: [], // Remove Thickness
+      sizeOptions: [] // Remove Size/Width
+    }
+  },
+  {
     id: "glue-remover",
     name: "Цавуу арилгагч",
     nameKey: "product-name-glue-remover",

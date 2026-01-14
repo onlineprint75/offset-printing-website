@@ -382,7 +382,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" id="lamination-width-group">
                                 <label data-i18n="form-lam-width">Өргөн (Width)</label>
                                 <select name="lamination_width" id="lamination-width">
                                     <option value="32" disabled style="color: #ccc;"
@@ -405,8 +405,8 @@
                                 </select>
                             </div>
 
-                            <!-- Core Size field hidden per user request -->
-                            <div class="form-group" style="display: none;">
+                            <!-- Core Size field -->
+                            <div class="form-group" id="lamination-core-group" style="display: none;">
                                 <label>Голч (Core Size)</label>
                                 <div class="radio-group">
                                     <label class="radio-container">
@@ -547,6 +547,7 @@
                             class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="weixin://" title="+976 8003 8228"><i class="fab fa-weixin"></i></a>
                 </div>
             </div>
             <div class="footer-col" id="footer-contact-info">
@@ -580,7 +581,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p data-i18n="footer-rights">© 2025 Product Printing. Бүх эрх хуулиар хамгаалагдсан.</p>
+            <p data-i18n="footer-rights">© 2025 Product Printing Mongolia. Бүх эрх хуулиар хамгаалагдсан.</p>
             <div class="footer-bottom-links">
                 <a href="#" data-i18n="footer-privacy">Нууцлалын бодлого</a>
             </div>
@@ -1047,16 +1048,33 @@
                     // Lamination BOPP Logic
                     const tempLen = lengthSelect ? (parseInt(lengthSelect.value) || 4000) : 4000;
 
-                    // Base Unit Price for 44cm/4000m
-                    let baseRefPrice = 400000;
+                    // Tape / Custom Option Pricing Logic
+                    const selectedFinishOption = finishSelect ? finishSelect.options[finishSelect.selectedIndex] : null;
+                    // Check if the selected option has a custom price in our config (need to look up from productData)
+                    let customPrice = 0;
+                    if (productData && productData.formConfig && productData.formConfig.finishOptions) {
+                        const val = finishSelect ? finishSelect.value : null;
+                        const opt = productData.formConfig.finishOptions.find(o => o.value === val);
+                        if (opt && opt.price) {
+                            customPrice = opt.price;
+                        }
+                    }
 
-                    const widthRatio = width / 44;
-                    const lengthRatio = tempLen / 4000;
+                    if (customPrice > 0) {
+                        total = customPrice * qty;
+                    } else {
+                        // Lamination BOPP Logic (Standard)
+                        // Base Unit Price for 44cm/4000m
+                        let baseRefPrice = 400000;
 
-                    let unitPrice = baseRefPrice * widthRatio * lengthRatio;
-                    unitPrice = Math.round(unitPrice / 100) * 100;
+                        const widthRatio = width / 44;
+                        const lengthRatio = tempLen / 4000;
 
-                    total = unitPrice * qty;
+                        let unitPrice = baseRefPrice * widthRatio * lengthRatio;
+                        unitPrice = Math.round(unitPrice / 100) * 100;
+
+                        total = unitPrice * qty;
+                    }
                 }
 
                 if (priceDisplay) {
@@ -1248,9 +1266,23 @@
                                             option.style.color = '#ccc';
                                         }
                                         if (opt.selected) option.selected = true;
-                                        widthSelect.appendChild(option);
                                     });
                                 }
+                            }
+
+                            // Custom Width/Size Visibility
+                            if (cfg.sizeOptions && cfg.sizeOptions.length === 0) {
+                                const widthGroup = document.getElementById('lamination-width-group');
+                                if (widthGroup) widthGroup.style.display = 'none';
+                            }
+
+                            // Custom Core Visibility
+                            if (cfg.showCore === true) {
+                                const coreGroup = document.getElementById('lamination-core-group');
+                                if (coreGroup) coreGroup.style.display = 'block';
+                            } else if (cfg.showCore === false) {
+                                const coreGroup = document.getElementById('lamination-core-group');
+                                if (coreGroup) coreGroup.style.display = 'none';
                             }
                         } else {
                             // Default lamination quantities

@@ -1226,7 +1226,7 @@ footer {
 
 .about-content p {
     margin-bottom: 1.5rem;
-    text-align: justify;
+    text-align: left;
 }
 
 .about-content p:last-child {
