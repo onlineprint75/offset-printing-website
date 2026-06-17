@@ -187,14 +187,18 @@
                         { nameKey: "product-name-poster", descKey: "product-desc-poster", img: "assets/images/poster.jpg", link: "product-detail.html?id=poster" },
                         { nameKey: "product-name-notebook", descKey: "product-desc-notebook", img: "assets/images/notebook.jpg", link: "product-detail.html?id=notebook" },
                         { nameKey: "product-name-envelope", descKey: "product-desc-envelope", img: "assets/images/envelope.jpg", link: "product-detail.html?id=envelope" },
-                        { nameKey: "product-name-invoice", descKey: "product-desc-invoice", img: "assets/images/invoice.jpg", link: "product-detail.html?id=invoice" }
+                        { nameKey: "product-name-invoice", descKey: "product-desc-invoice", img: "assets/images/invoice.jpg", link: "product-detail.html?id=invoice" },
+                        { nameKey: "product-name-banner", descKey: "product-desc-banner", img: "assets/images/banner.jpg", link: "product-detail.html?id=banner" },
+                        { nameKey: "product-name-foam-board", descKey: "product-desc-foam-board", img: "assets/images/foam_board.jpg", link: "product-detail.html?id=foam-board" }
                     ];
                     const grid = document.currentScript.parentElement;
                     products.forEach(p => {
                         grid.innerHTML += `
                             <div class="product-card">
                                 <div class="product-img">
-                                    <img src="${p.img}" alt="Product">
+                                    <a href="${p.link}" style="display: block; width: 100%; height: 100%;">
+                                        <img src="${p.img}" alt="Product">
+                                    </a>
                                 </div>
                                 <div class="product-info">
                                     <h3 data-i18n="${p.nameKey}"></h3>
@@ -224,9 +228,10 @@
                     <h5 data-i18n="footer-follow">Биднийг дагаарай</h5>
                     <a href="https://www.facebook.com/productprinting/" target="_blank"><i
                             class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.instagram.com/ppm32.mn?igsh=MWVjNDVsejFuYjdscg==" target="_blank"><i class="fab fa-instagram"></i></a>
                     <a href="weixin://" title="+976 8003 8228"><i class="fab fa-weixin"></i></a>
+                    <a href="https://www.youtube.com/watch?v=nJVA7vUVMbg" target="_blank"><i
+                            class="fab fa-youtube"></i></a>
                 </div>
             </div>
             <div class="footer-col" id="footer-contact-info">
@@ -237,6 +242,7 @@
                     <li><i class="fas fa-phone"></i> 99906069</li>
                     <li><i class="fas fa-phone"></i> 80038228</li>
                     <li><i class="fas fa-envelope"></i> <span data-i18n="footer-email">info@ppm32.mn</span></li>
+                    <li><i class="fas fa-envelope"></i> <span>ppmwork32@gmail.com</span></li>
                 </ul>
             </div>
             <div class="footer-col">

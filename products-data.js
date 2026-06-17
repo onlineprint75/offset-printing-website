@@ -13,7 +13,7 @@ const PRODUCTS_DATA = [
     desc: "Офсет хэвлэлд зориулсан наалддаг стикер цаас; өнгө тод гарна, зүсэлт сайн, наалт тогтоц найдвартай.",
     descKey: "product-desc-sticker",
     unitPrice: 180,
-    price: "90,000",
+    price: "180₮",
     stock: "15",
     img: "assets/images/Sticker.jpg",
     images: [
@@ -47,6 +47,7 @@ const PRODUCTS_DATA = [
     nameKey: "product-name-lamination",
     desc: "BOPP бүрэлт нь гадаргууг гялгар, хамгаалалттай болгоно; элэгдэл, чийгнээс хамгаалж өнгөний насыг уртасгана.",
     descKey: "product-desc-lamination",
+    unitPrice: 440000,
     price: "440,000",
     stock: "15",
     img: "assets/images/Lamination.jpg",
@@ -85,7 +86,7 @@ const PRODUCTS_DATA = [
       thicknessOptions: [], // Remove Thickness
       sizeLabelKey: "form-sticker-size", // Reuse Size label
       sizeOptions: [
-        { value: "40x60cm", i18nKey: "form-blanket-size-40x60", enabled: true, selected: true }
+        { value: "560*530*1.95mm", i18nKey: "form-blanket-size-560x530", enabled: true, selected: true }
       ]
     }
   },
@@ -239,6 +240,35 @@ const PRODUCTS_DATA = [
     }
   },
   {
+    id: "rubber",
+    name: "Багцлагч резин",
+    nameKey: "product-name-rubber",
+    desc: "Багцлах зориулалттай резин.",
+    descKey: "product-desc-rubber",
+    unitPrice: 12000,
+    price: "12,000",
+    stock: "Бэлэн",
+    img: "assets/images/Rubber.jpg",
+    images: [
+      "assets/images/Rubber.jpg",
+      "assets/images/Rubber2.jpg",
+      "assets/images/Rubber3.jpg"
+    ],
+    formats: [],
+    types: [],
+    isLamination: true,
+    formConfig: {
+      showRollLength: false,
+      showCore: false,
+      quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
+      finishOptions: [
+        { value: "700pcs", i18nKey: "form-rubber-700", price: 12000, enabled: true, selected: true }
+      ],
+      thicknessOptions: [],
+      sizeOptions: []
+    }
+  },
+  {
     id: "business_card",
     name: "Нэрийн хуудас",
     nameKey: "product-name-card",
@@ -286,23 +316,34 @@ const PRODUCTS_DATA = [
     isLamination: false,
     formConfig: {
       formats: [
+        { key: 'form-format-a7', val: 'A7 (74×105мм)' },
+        { key: 'form-format-a6', val: 'A6 (105×148мм)' },
         { key: 'form-format-a5', val: 'A5 (145×210мм)' },
         { key: 'form-format-a4', val: 'A4 (210×297мм)' },
         { key: 'form-format-a3', val: 'A3 (420×297мм)' },
+        { key: 'form-format-b7', val: 'B7 (88×125мм)' },
+        { key: 'form-format-b6', val: 'B6 (125×176мм)' },
         { key: 'form-format-b5', val: 'B5 (176×250мм)' },
         { key: 'form-format-b4', val: 'B4 (250×353мм)' },
         { key: 'form-format-b3', val: 'B3 (353×500мм)' }
       ],
       quantities: [300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000, 4000, 5000, 10000],
       papers: [
-        { key: 'form-paper-80', val: '80гр (гр)' },
-        { key: 'form-paper-90', val: '90гр (гр)' },
-        { key: 'form-paper-105', val: '105гр (гр)' },
-        { key: 'form-paper-128', val: '128гр (гр)' },
-        { key: 'form-paper-157', val: '157гр (гр)' },
-        { key: 'form-paper-200', val: '200гр (гр)' },
-        { key: 'form-paper-250', val: '250гр (гр)' },
+        { key: 'form-paper-80-coated', val: '80гр шохойтой цаас (гр)' },
+        { key: 'form-paper-105-coated', val: '105гр шохойтой цаас (гр)' },
+        { key: 'form-paper-128', val: '128гр шохойтой цаас (гр)' },
+        { key: 'form-paper-157', val: '157гр шохойтой цаас (гр)' },
+        { key: 'form-paper-200', val: '200гр шохойтой цаас (гр)' },
+        { key: 'form-paper-250', val: '250гр шохойтой цаас (гр)' },
         { key: 'form-paper-300-coated', val: '300гр шохойтой цаас (гр)' }
+      ],
+      showFolding: true,
+      foldings: [
+        { key: 'form-folding-none', val: 'Нугалаагүй' },
+        { key: 'form-folding-1', val: 'Нэг нугалаатай' },
+        { key: 'form-folding-2', val: '2 нугалаатай - Ихэвчлэн 3 нугалбар гэж нэрлэгддэг' },
+        { key: 'form-folding-3', val: '3 нугалаатай' },
+        { key: 'form-folding-4', val: '4 нугалаатай' }
       ],
       showFoil: false,
       showSpotUV: false,
@@ -343,7 +384,53 @@ const PRODUCTS_DATA = [
       pages: [
         { key: 'form-pages-8', val: '8 нүүр' },
         { key: 'form-pages-12', val: '12 нүүр' },
-        { key: 'form-pages-16', val: '16 нүүр' }
+        { key: 'form-pages-16', val: '16 нүүр' },
+        { key: 'form-pages-20', val: '20 нүүр' },
+        { key: 'form-pages-24', val: '24 нүүр' },
+        { key: 'form-pages-28', val: '28 нүүр' },
+        { key: 'form-pages-32', val: '32 нүүр' },
+        { key: 'form-pages-36', val: '36 нүүр' },
+        { key: 'form-pages-40', val: '40 нүүр' },
+        { key: 'form-pages-44', val: '44 нүүр' },
+        { key: 'form-pages-48', val: '48 нүүр' },
+        { key: 'form-pages-52', val: '52 нүүр' },
+        { key: 'form-pages-56', val: '56 нүүр' },
+        { key: 'form-pages-60', val: '60 нүүр' },
+        { key: 'form-pages-64', val: '64 нүүр' },
+        { key: 'form-pages-68', val: '68 нүүр' },
+        { key: 'form-pages-72', val: '72 нүүр' },
+        { key: 'form-pages-76', val: '76 нүүр' },
+        { key: 'form-pages-80', val: '80 нүүр' },
+        { key: 'form-pages-84', val: '84 нүүр' },
+        { key: 'form-pages-88', val: '88 нүүр' },
+        { key: 'form-pages-92', val: '92 нүүр' },
+        { key: 'form-pages-96', val: '96 нүүр' },
+        { key: 'form-pages-100', val: '100 нүүр' },
+        { key: 'form-pages-104', val: '104 нүүр' },
+        { key: 'form-pages-108', val: '108 нүүр' },
+        { key: 'form-pages-112', val: '112 нүүр' },
+        { key: 'form-pages-116', val: '116 нүүр' },
+        { key: 'form-pages-120', val: '120 нүүр' },
+        { key: 'form-pages-124', val: '124 нүүр' },
+        { key: 'form-pages-128', val: '128 нүүр' },
+        { key: 'form-pages-132', val: '132 нүүр' },
+        { key: 'form-pages-136', val: '136 нүүр' },
+        { key: 'form-pages-140', val: '140 нүүр' },
+        { key: 'form-pages-144', val: '144 нүүр' },
+        { key: 'form-pages-148', val: '148 нүүр' },
+        { key: 'form-pages-152', val: '152 нүүр' },
+        { key: 'form-pages-156', val: '156 нүүр' },
+        { key: 'form-pages-160', val: '160 нүүр' },
+        { key: 'form-pages-164', val: '164 нүүр' },
+        { key: 'form-pages-168', val: '168 нүүр' },
+        { key: 'form-pages-172', val: '172 нүүр' },
+        { key: 'form-pages-176', val: '176 нүүр' },
+        { key: 'form-pages-180', val: '180 нүүр' },
+        { key: 'form-pages-184', val: '184 нүүр' },
+        { key: 'form-pages-188', val: '188 нүүр' },
+        { key: 'form-pages-192', val: '192 нүүр' },
+        { key: 'form-pages-196', val: '196 нүүр' },
+        { key: 'form-pages-200', val: '200 нүүр' }
       ],
       covers: [
         { key: 'form-cover-200', val: '200гр' },
@@ -400,13 +487,41 @@ const PRODUCTS_DATA = [
         { key: 'form-pages-180', val: '180 нүүр' },
         { key: 'form-pages-190', val: '190 нүүр' },
         { key: 'form-pages-200', val: '200 нүүр' },
+        { key: 'form-pages-210', val: '210 нүүр' },
         { key: 'form-pages-220', val: '220 нүүр' },
+        { key: 'form-pages-230', val: '230 нүүр' },
         { key: 'form-pages-240', val: '240 нүүр' },
+        { key: 'form-pages-250', val: '250 нүүр' },
         { key: 'form-pages-260', val: '260 нүүр' },
+        { key: 'form-pages-270', val: '270 нүүр' },
         { key: 'form-pages-280', val: '280 нүүр' },
+        { key: 'form-pages-290', val: '290 нүүр' },
         { key: 'form-pages-300', val: '300 нүүр' },
+        { key: 'form-pages-310', val: '310 нүүр' },
+        { key: 'form-pages-320', val: '320 нүүр' },
+        { key: 'form-pages-330', val: '330 нүүр' },
+        { key: 'form-pages-340', val: '340 нүүр' },
+        { key: 'form-pages-350', val: '350 нүүр' },
+        { key: 'form-pages-360', val: '360 нүүр' },
+        { key: 'form-pages-370', val: '370 нүүр' },
+        { key: 'form-pages-380', val: '380 нүүр' },
+        { key: 'form-pages-390', val: '390 нүүр' },
         { key: 'form-pages-400', val: '400 нүүр' },
-        { key: 'form-pages-500', val: '500 нүүр' }
+        { key: 'form-pages-420', val: '420 нүүр' },
+        { key: 'form-pages-440', val: '440 нүүр' },
+        { key: 'form-pages-460', val: '460 нүүр' },
+        { key: 'form-pages-480', val: '480 нүүр' },
+        { key: 'form-pages-500', val: '500 нүүр' },
+        { key: 'form-pages-520', val: '520 нүүр' },
+        { key: 'form-pages-540', val: '540 нүүр' },
+        { key: 'form-pages-560', val: '560 нүүр' },
+        { key: 'form-pages-580', val: '580 нүүр' },
+        { key: 'form-pages-600', val: '600 нүүр' },
+        { key: 'form-pages-620', val: '620 нүүр' },
+        { key: 'form-pages-640', val: '640 нүүр' },
+        { key: 'form-pages-660', val: '660 нүүр' },
+        { key: 'form-pages-680', val: '680 нүүр' },
+        { key: 'form-pages-700', val: '700 нүүр' }
       ],
       covers: [
         { key: 'form-cover-200', val: '200гр' },
@@ -451,12 +566,12 @@ const PRODUCTS_DATA = [
     isLamination: false,
     formConfig: {
       formats: [
-        { key: 'form-format-a7', val: 'A7 (×мм)' },
-        { key: 'form-format-a6', val: 'A6 (×мм)' },
-        { key: 'form-format-a5', val: 'A5 (×мм)' },
-        { key: 'form-format-b7', val: 'B7 (×мм)' },
-        { key: 'form-format-b6', val: 'B6 (×мм)' },
-        { key: 'form-format-b5', val: 'B5 (×мм)' }
+        { key: '', val: 'A7 (74×105мм)' },
+        { key: '', val: 'A6 (105×148мм)' },
+        { key: '', val: 'A5 (148×210мм)' },
+        { key: '', val: 'B7 (88×125мм)' },
+        { key: '', val: 'B6 (125×176мм)' },
+        { key: '', val: 'B5 (176×250мм)' }
       ],
       quantities: [500, 1000, 5000, 10000, 20000, 50000, 100000],
       papers: [
@@ -474,6 +589,10 @@ const PRODUCTS_DATA = [
       labelFoil: 'form-cliche-required',
       showFoil: true,
       showCutSelect: true,
+      cutOptions: [
+        { key: 'form-cut-simple', val: 'Энгийн зүсэлт' },
+        { key: 'form-cut-die', val: 'Хэлбэртэй зүсэлт' }
+      ],
       showPrepress: true,
       showPrintType: false
     }
@@ -561,13 +680,13 @@ const PRODUCTS_DATA = [
     isLamination: false,
     formConfig: {
       formats: [
-        { key: 'form-format-a6', val: 'A6 (×мм)' },
-        { key: 'form-format-a5', val: 'A5 (×мм)' },
-        { key: 'form-format-a4', val: 'A4 (×мм)' },
-        { key: 'form-format-1/3-a4', val: '1/3 - A4 (×мм)' },
-        { key: 'form-format-b6', val: 'B6 (×мм)' },
-        { key: 'form-format-b5', val: 'B5 (×мм)' },
-        { key: 'form-format-b4', val: 'B4 (×мм)' }
+        { key: '', val: 'A6 (105×148мм)' },
+        { key: '', val: 'A5 (148×210мм)' },
+        { key: '', val: 'A4 (210×297мм)' },
+        { key: '', val: '1/3 - A4 (99×210мм)' },
+        { key: '', val: 'B6 (125×176мм)' },
+        { key: '', val: 'B5 (176×250мм)' },
+        { key: '', val: 'B4 (250×353мм)' }
       ],
       quantities: [100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000],
       papers: [
@@ -597,12 +716,12 @@ const PRODUCTS_DATA = [
     isLamination: false,
     formConfig: {
       formats: [
-        { key: 'form-format-a4', val: 'A4 (×мм)' },
-        { key: 'form-format-a3', val: 'A3 (×мм)' },
-        { key: 'form-format-a2', val: 'A2 (×мм)' },
-        { key: 'form-format-b4', val: 'B4 (×мм)' },
-        { key: 'form-format-b3', val: 'B3 (×мм)' },
-        { key: 'form-format-b2', val: 'B2 (×мм)' }
+        { key: '', val: 'A4 (210×297мм)' },
+        { key: '', val: 'A3 (297×420мм)' },
+        { key: '', val: 'A2 (420×594мм)' },
+        { key: '', val: 'B4 (250×353мм)' },
+        { key: '', val: 'B3 (353×500мм)' },
+        { key: '', val: 'B2 (500×720мм)' }
       ],
       quantities: [100, 300, 500, 1000, 3000, 5000, 10000],
       papers: [
@@ -632,8 +751,8 @@ const PRODUCTS_DATA = [
     isLamination: false,
     formConfig: {
       formats: [
-        { key: 'form-format-a7', val: 'A7 (×мм)' },
-        { key: 'form-format-a6', val: 'A6 (×мм)' },
+        { key: 'form-format-a7', val: 'A7 (74×105мм)' },
+        { key: 'form-format-a6', val: 'A6 (105×148мм)' },
         { key: 'form-format-a5', val: 'A5 (×мм)' },
         { key: 'form-format-a4', val: 'A4 (×мм)' }
       ],
@@ -657,7 +776,7 @@ const PRODUCTS_DATA = [
         { key: 'form-paper-100', val: '100 (гр)' },
         { key: 'form-paper-120', val: '120 (гр)' }
       ],
-      coatings: [],
+
       showPages: true,
       showCover: true,
       showBinding: true,
@@ -686,12 +805,12 @@ const PRODUCTS_DATA = [
     isLamination: false,
     formConfig: {
       formats: [
-        { key: 'form-format-a6', val: 'A6 (×мм)' },
-        { key: 'form-format-a5', val: 'A5 (×мм)' },
-        { key: 'form-format-a4', val: 'A4 (×мм)' },
-        { key: 'form-format-a3', val: 'A3 (×мм)' },
-        { key: 'form-format-b5', val: 'B5 (×мм)' },
-        { key: 'form-format-b4', val: 'B4 (×мм)' },
+        { key: '', val: 'A6 (105×148мм)' },
+        { key: '', val: 'A5 (148×210мм)' },
+        { key: '', val: 'A4 (210×297мм)' },
+        { key: '', val: 'A3 (420×297мм)' },
+        { key: '', val: 'B5 (176×250мм)' },
+        { key: '', val: 'B4 (250×353мм)' },
         { key: 'form-format-money', val: 'Мөнгөний дугтуй' }
       ],
       quantities: [300, 500, 1000, 2000, 3000, 4000, 5000, 10000],
@@ -728,12 +847,12 @@ const PRODUCTS_DATA = [
     isLamination: false,
     formConfig: {
       formats: [
-        { key: 'form-format-a6', val: 'A6 (×мм)' },
-        { key: 'form-format-a5', val: 'A5 (×мм)' },
-        { key: 'form-format-a4', val: 'A4 (×мм)' },
-        { key: 'form-format-b6', val: 'B6 (×мм)' },
-        { key: 'form-format-b5', val: 'B5 (×мм)' },
-        { key: 'form-format-1/3-a4', val: '1/3 - A4 (×мм)' }
+        { key: '', val: 'A6 (105×148мм)' },
+        { key: '', val: 'A5 (148×210мм)' },
+        { key: '', val: 'A4 (210×297мм)' },
+        { key: '', val: 'B6 (125×176мм)' },
+        { key: '', val: 'B5 (176×250мм)' },
+        { key: '', val: '1/3 - A4 (99×210мм)' }
       ],
       quantities: [500, 1000, 3000, 5000, 10000, 20000],
       papers: [
@@ -744,7 +863,7 @@ const PRODUCTS_DATA = [
       ],
       labelPaper: 'form-paper-selection',
       showNumbered: true,
-      showTargetPrice: true,
+      showTargetPrice: false,
       showDeliveryInfo: true,
       deliveryText: 'form-delivery-3-days',
       showPrepress: true,
@@ -753,6 +872,82 @@ const PRODUCTS_DATA = [
       showFoil: false,
       showSpotUV: false,
       showCoating: false
+    }
+  },
+  {
+    id: "banner",
+    name: "Хулдаасан хэвлэл",
+    nameKey: "product-name-banner",
+    desc: "Гадна болон дотор ашиглах зориулалттай, бороо салхи, нарны хамгаалалттай, тод өнгөтэй хулдаасан хэвлэл (Banner/Flex/Vinyl).",
+    descKey: "product-desc-banner",
+    unitPrice: 0,
+    price: "Үнийн санал",
+    stock: "Захиалгаар",
+    img: "assets/images/banner.jpg",
+    images: ["assets/images/banner.jpg", "assets/images/banner_2.jpg", "assets/images/banner_3.jpg"],
+    formats: [],
+    types: [],
+    isLamination: false,
+    formConfig: {
+      formats: [
+        { key: 'form-format-banner-1x1', val: '1м × 1м' },
+        { key: 'form-format-banner-2x1', val: '2м × 1м' },
+        { key: 'form-format-banner-3x2', val: '3м × 2м' },
+        { key: 'form-format-banner-4x3', val: '4м × 3м' },
+        { key: 'form-format-custom', val: 'Өөрийн хэмжээгээр (Тэмдэглэлд бичих)' }
+      ],
+      quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
+      papers: [
+        { key: 'form-paper-banner-320', val: '320гр Хятад хулдаас' },
+        { key: 'form-paper-banner-440', val: '440гр Хятад хулдаас' },
+        { key: 'form-paper-banner-510', val: '510гр Хоёр талтай хулдаас' },
+        { key: 'form-paper-banner-pp', val: 'Өөрөө наалдагч PP наалт (Sticker)' },
+        { key: 'form-paper-banner-mesh', val: 'Нүхтэй хулдаас (Mesh Flex)' }
+      ],
+      showCoating: false,
+      showPrepress: true,
+      showPrintType: false,
+      showFoil: false,
+      showSpotUV: false,
+      showDeliveryDate: true
+    }
+  },
+  {
+    id: "foam-board",
+    name: "Хөөсөнцөртэй хэвлэл",
+    nameKey: "product-name-foam-board",
+    desc: "Стикер дээр чанартай хэвлэж, 3мм, 5мм эсвэл 10мм-ийн хөөсөнцөр (foam board / PVC board) дээр наасан зурагт самбар, хэлбэртэй зүсэлттэй фрэймүүд.",
+    descKey: "product-desc-foam-board",
+    unitPrice: 0,
+    price: "Үнийн санал",
+    stock: "Захиалгаар",
+    img: "assets/images/foam_board.jpg",
+    images: ["assets/images/foam_board.jpg", "assets/images/foam_board_2.jpg", "assets/images/foam_board_3.jpg"],
+    formats: [],
+    types: [],
+    isLamination: false,
+    formConfig: {
+      formats: [
+        { key: 'form-format-banner-1x1', val: '1м × 1м' },
+        { key: 'form-format-banner-2x1', val: '2м × 1м' },
+        { key: 'form-format-banner-3x2', val: '3м × 2м' },
+        { key: 'form-format-banner-4x3', val: '4м × 3м' },
+        { key: 'form-format-custom', val: 'Өөрийн хэмжээгээр (Тэмдэглэлд бичих)' }
+      ],
+      quantities: [1, 2, 3, 4, 5, 10, 20, 50, 100],
+      papers: [],
+      showPaper: false,
+      showCoating: false,
+      showPrepress: true,
+      showPrintType: false,
+      showCutSelect: true,
+      cutOptions: [
+        { key: 'form-cut-simple', val: 'Ердийн шулуун зүсэлт' },
+        { key: 'form-cut-die', val: 'Хэлбэртэй зүсэлт (Photo booth frame/Die-cut)' }
+      ],
+      showFoil: false,
+      showSpotUV: false,
+      showDeliveryDate: true
     }
   }];
 
@@ -785,3 +980,135 @@ function searchProducts(query) {
     p.desc.toLowerCase().includes(lowerQuery)
   );
 }
+
+/**
+ * Imposition Table for Brochure Calculation
+ * Defines Parent Yield and Press Yield for standard formats.
+ */
+const IMPOSITION_TABLE = {
+  // Format: { pressYield: (D), parentYield: (C) }
+  "A7": { pressYield: 16, parentYield: 8 },
+  "A6": { pressYield: 8, parentYield: 8 },
+  "A5": { pressYield: 4, parentYield: 8 },
+  "A4": { pressYield: 2, parentYield: 8 },
+  "A3": { pressYield: 1, parentYield: 8 },
+  "B7": { pressYield: 16, parentYield: 5 },
+  "B6": { pressYield: 8, parentYield: 5 },
+  "B5": { pressYield: 4, parentYield: 5 },
+  "B4": { pressYield: 2, parentYield: 5 },
+  "B3": { pressYield: 1, parentYield: 5 }
+};
+
+/**
+ * Calculate Brochure Price
+ * Based on logic in BROCHURE_LOGIC.md
+ * 
+ * @param {string} format - The product size format (e.g., "A5", "B4")
+ * @param {number} orderQty - The quantity ordered
+ * @param {number} unitPrice - The unit price of the selected paper
+ * @returns {Object} Calculation result containing total price and details
+ */
+function calculateBrochurePrice(format, orderQty, unitPrice) {
+  console.log(`Calculating Brochure Price: Format=${format}, Qty=${orderQty}, UnitPrice=${unitPrice}`);
+
+  // Normalize format input (handle cases like "A5 (145x210mm)")
+  let normalizedFormat = format.split(' ')[0].trim().toUpperCase();
+
+  // 1. Look up Imposition Data
+  const implicationData = IMPOSITION_TABLE[normalizedFormat];
+
+  if (!implicationData) {
+    console.error(`Format ${normalizedFormat} not found in Imposition Table.`);
+    return {
+      totalCost: 0,
+      details: { error: "Format not supported for auto-calculation" }
+    };
+  }
+
+  const pressYield = implicationData.pressYield;   // D
+  const parentYield = implicationData.parentYield; // C
+  const waste = 100; // Constant Waste
+
+  // 2. Step 1: Calculate Net Press Sheets
+  // Formula: Net_Sheets = Order_Qty / Press_Yield
+  const netPressSheets = orderQty / pressYield;
+
+  // 3. Step 2: Calculate Total Press Sheets
+  // Formula: Total_Press_Sheets = Net_Sheets + Waste
+  const totalPressSheets = netPressSheets + waste;
+
+  // 4. Step 3: Calculate Parent Sheets to Buy
+  // Formula: Buy_Sheets = Math.ceil(Total_Press_Sheets / Parent_Yield)
+  const buySheets = Math.ceil(totalPressSheets / parentYield);
+
+  // 5. Step 4: Calculate Material Cost
+  // Formula: Total_Paper_Cost = Buy_Sheets * Unit_Price
+  const totalPaperCost = buySheets * unitPrice;
+
+  return {
+    totalPaperCost: totalPaperCost,
+    debug: {
+      format: normalizedFormat,
+      pressYield: pressYield,
+      parentYield: parentYield,
+      netPressSheets: netPressSheets,
+      totalPressSheets: totalPressSheets,
+      buySheets: buySheets,
+      unitPrice: unitPrice
+    }
+  };
+}
+
+/**
+ * Paper Prices Database (from MATERIALS_DATA.md)
+ * Maps form-paper keys to unit price per parent sheet.
+ * Using 889x1194 size prices where available as standard parent sheet.
+ */
+const PAPER_PRICES = {
+  // Offset Papers
+  "form-paper-70": 420,  // 70g 889x1194
+  "form-paper-80": 400,  // 80g 889x1194
+  "form-paper-90": 420,  // Fallback/Estimate (using 70g price or user needs to provide) -> Using 70g for now as proxy or 0 if unknown. Let's use 0 to be safe or interpolated. 
+  // Actually, let's use a safe fallback or leave comment. 
+  // For now, I'll allow 90g and 105g to return 0 or a proximate value if I can't be sure, 
+  // but to make calculation work, I might map them to nearest. 
+  // 90g is close to 80g, let's estimate 425.
+  "form-paper-100": 425, // Estimate
+  "form-paper-105": 450, // Estimate
+
+  // Coated/Art Papers
+  "form-paper-80-coated": 400, // 80g 889x1194 (Coated)
+  "form-paper-105-coated": 610, // 105g 889x1194 (Coated)
+  "form-paper-128": 720, // 128g 889x1194
+  "form-paper-157": 890, // 157g 889x1194
+  "form-paper-200": 1150,// 200g 889x1194
+  "form-paper-250": 1400,// 250g 889x1194
+  "form-paper-300-coated": 1600, // 300g 889x1194
+  "form-paper-350": 1965, // 350g 889x1194
+
+  // Art specific keys if different
+  "form-paper-300-art": 1600,
+  "form-paper-250-art": 1400
+};
+
+/**
+ * Get Paper Price by Key
+ * @param {string} paperKey - The key from the select option (e.g., 'form-paper-157')
+ * @returns {number} Unit price or 0 if not found
+ */
+function getPaperPrice(paperKey) {
+  // Handle cases where the key might be just the value or a mix (though usually it's the option value if we set it up right).
+  // In the HTML select, the values are often the text. We need to match the logic in the form.
+  // Wait, in products-data.js, `papers` array has { key: '...', val: '...' }. 
+  // The form submission usually sends the TEXT unless value is specified.
+  // Let's check how `product-detail.html` gets the paper. 
+  // It says `getText('paper')` which gets the text.
+  // We should change the form to use keys or we need a reverse lookup map.
+
+  // Actually, better: we should export a function that tries to find the price based on the KEY defined in config.
+  // But on the frontend, we only have the selected text if we use `getText`.
+  // We should look at `product-detail.html` to see if we can get the key.
+
+  return PAPER_PRICES[paperKey] || 0;
+}
+

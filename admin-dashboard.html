@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PPM Admin | Бараа нэмэх</title>
+    <title>PPM Admin | Orders Dashboard</title>
     <link rel="icon" type="image/svg+xml" href="assets/images/Logo--ani-02.svg" />
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .admin-container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 50px auto;
             padding: 30px;
             background: #fff;
@@ -18,125 +18,56 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .form-group {
-            margin-bottom: 20px;
+        h2 {
+            margin-bottom: 30px;
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-        }
-
-        .btn-upload {
-            background: var(--primary-color);
-            color: #fff;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-        }
-
-        .btn-upload:hover {
-            opacity: 0.9;
-        }
-
-        .preview-container {
-            margin-top: 10px;
-            max-width: 200px;
-        }
-
-        .preview-img {
-            width: 100%;
-            display: none;
-            border-radius: 6px;
-        }
-
-        .status-msg {
-            margin-top: 15px;
-            text-align: center;
-        }
-
-        /* Dynamic Input Styles */
-        .dynamic-input-row {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-
-        .btn-small {
-            background: #eee;
-            border: 1px solid #ddd;
-            padding: 2px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            margin-left: 10px;
-        }
-
-        .btn-remove {
-            background: #ff4444;
-            color: white;
-            border: none;
-            width: 30px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        /* Product List Styles */
-        .product-list-section {
-            margin-top: 50px;
-            border-top: 2px solid #eee;
-            padding-top: 30px;
+        /* Table Styles */
+        .table-responsive {
+            overflow-x: auto;
         }
 
         .product-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            min-width: 800px;
         }
 
         .product-table th,
         .product-table td {
             text-align: left;
-            padding: 12px;
+            padding: 15px;
             border-bottom: 1px solid #eee;
+            vertical-align: top;
         }
 
         .product-table th {
-            background-color: #f9f9f9;
+            background-color: #f8f9fa;
             font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
         }
 
-        .product-thumb-small {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 4px;
+        .product-table tr:hover {
+            background-color: #fcfcfc;
         }
 
-        .btn-delete {
-            background: #ff4444;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
+        .scan-link {
+            display: inline-block;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: var(--primary-color);
+            text-decoration: none;
         }
 
-        .btn-delete:hover {
-            background: #cc0000;
+        .scan-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -144,271 +75,142 @@
 <body>
 
     <div class="admin-container">
-        <h2>Шинэ бараа нэмэх</h2>
-        <form id="add-product-form">
-            <div class="form-group">
-                <label>Барааны нэр</label>
-                <input type="text" id="p-name" required placeholder="Жишээ: Шохойтой цаас">
-            </div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h2>PPM Admin | Orders Dashboard</h2>
+            <div id="connection-status" style="font-size: 0.9em; color: gray;">Connecting...</div>
+        </div>
 
-            <div class="form-group">
-                <label>Тайлбар</label>
-                <textarea id="p-desc" rows="3" required placeholder="Товч тайлбар..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Үнэ / Тайлбар (Price / Description)</label>
-                <input type="text" id="p-price" required
-                    placeholder="Жишээ: 15,000₮ - 50,000₮ эсвэл 'Хэмжээнээс хамаарна'">
-            </div>
-
-            <div class="form-group">
-                <label>Хэмжээ (Formats) <button type="button" id="add-format-btn" class="btn-small">+</button></label>
-                <div id="formats-container">
-                    <div class="dynamic-input-row">
-                        <input type="text" name="p-formats[]" placeholder="Жишээ: A4 (210x297mm)">
-                        <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
-                    </div>
-                </div>
-                <small style="color:#666; font-size: 0.85em;">Хэрэглэгч сонгох боломжтой хэмжээнүүдийг оруулна
-                    уу.</small>
-            </div>
-
-            <div class="form-group">
-                <label>Цаасны төрөл (Paper Types) <button type="button" id="add-type-btn"
-                        class="btn-small">+</button></label>
-                <div id="types-container">
-                    <div class="dynamic-input-row">
-                        <input type="text" name="p-types[]" placeholder="Жишээ: 300гр шохойтой">
-                        <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
-                    </div>
-                </div>
-                <small style="color:#666; font-size: 0.85em;">Хэрэглэгч сонгох боломжтой цаас/материалын төрлүүдийг
-                    оруулна уу.</small>
-            </div>
-
-            <div class="form-group">
-                <label>Нөөц</label>
-                <input type="text" id="p-stock" required placeholder="Жишээ: 50 ширхэг / Байгаа">
-            </div>
-
-            <div class="form-group">
-                <label>Зураг 1 (Үндсэн - Заавал)</label>
-                <input type="file" id="p-image-1" accept="image/*" required>
-                <div class="preview-container">
-                    <img id="preview-img-1" class="preview-img" src="" alt="Preview 1">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Зураг 2 (Нэмэлт - Сонгох)</label>
-                <input type="file" id="p-image-2" accept="image/*">
-                <div class="preview-container">
-                    <img id="preview-img-2" class="preview-img" src="" alt="Preview 2">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Зураг 3 (Нэмэлт - Сонгох)</label>
-                <input type="file" id="p-image-3" accept="image/*">
-                <div class="preview-container">
-                    <img id="preview-img-3" class="preview-img" src="" alt="Preview 3">
-                </div>
-            </div>
-
-            <button type="submit" class="btn-upload" id="submit-btn">Бараа нэмэх</button>
-            <div id="status-msg" class="status-msg"></div>
-        </form>
-
-        <!-- Product List Section -->
-        <div class="product-list-section">
-            <h3>Удирдлага (Product List)</h3>
+        <div class="table-responsive">
             <table class="product-table">
                 <thead>
                     <tr>
-                        <th width="80">Зураг</th>
-                        <th>Барааны нэр</th>
-                        <th>Үнэ / Тайлбар</th>
-                        <th width="100">Үйлдэл</th>
+                        <th width="140">Огноо</th>
+                        <th>Захиалагч</th>
+                        <th>Бүтээгдэхүүн</th>
+                        <th>Хэмжээ / Тоо</th>
+                        <th>Цаас</th>
+                        <th width="120">Цаасны нийт үнэ</th>
+                        <th>Төлөв</th>
                     </tr>
                 </thead>
-                <tbody id="product-list-body">
-                    <!-- Data will be loaded here -->
+                <tbody id="orders-list-body">
+                    <tr>
+                        <td colspan="7" style="text-align:center; padding: 40px;">Loading orders...</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
+    <!-- Firebase Logic -->
     <script type="module">
-        import { db, storage } from './firebase-config.js';
-        import { collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, orderBy, query } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-        import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        const form = document.getElementById('add-product-form');
-        const statusMsg = document.getElementById('status-msg');
-        const submitBtn = document.getElementById('submit-btn');
-        const productListBody = document.getElementById('product-list-body');
+        // Firebase Configuration (Inlined for file:// protocol support)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDIg6O2QhRT_9f_izoMfuoHEMOrxSThOjk",
+            authDomain: "printing-admin-4fd08.firebaseapp.com",
+            projectId: "printing-admin-4fd08",
+            storageBucket: "printing-admin-4fd08.firebasestorage.app",
+            messagingSenderId: "1076859337902",
+            appId: "1:1076859337902:web:911c780fc4e6139519013f",
+            measurementId: "G-Q50KVZX7RL"
+        };
 
-        // Dynamic Field Logic
-        window.addInput = (containerId, name, placeholder) => {
-            const container = document.getElementById(containerId);
-            const div = document.createElement('div');
-            div.className = 'dynamic-input-row';
-            div.innerHTML = `
-            <input type="text" name="${name}" placeholder="${placeholder}">
-            <button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button>
-        `;
-            container.appendChild(div);
-        }
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-        document.getElementById('add-format-btn').onclick = () => addInput('formats-container', 'p-formats[]', 'Жишээ: A4 (210x297mm)');
-        document.getElementById('add-type-btn').onclick = () => addInput('types-container', 'p-types[]', 'Жишээ: 300гр шохойтой');
+        const tbody = document.getElementById('orders-list-body');
+        const statusDiv = document.getElementById('connection-status');
 
+        // Create query for orders collection, sorted by newest first
+        const q = query(collection(db, "orders"), orderBy("createdAt", "desc"));
 
-        // Setup previews
-        [1, 2, 3].forEach(num => {
-            const input = document.getElementById(`p-image-${num}`);
-            const img = document.getElementById(`preview-img-${num}`);
-            input.addEventListener('change', function (e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        img.src = e.target.result;
-                        img.style.display = 'block';
-                    }
-                    reader.readAsDataURL(file);
-                } else {
-                    img.style.display = 'none';
-                }
-            });
-        });
+        console.log("Listening for orders...");
 
-        // Fetch and Render Products
-        async function fetchProducts() {
-            productListBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Уншиж байна...</td></tr>';
-            try {
-                const q = query(collection(db, "products"), orderBy("createdAt", "desc"));
-                const querySnapshot = await getDocs(q);
-                productListBody.innerHTML = '';
+        // Real-time listener
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            statusDiv.textContent = `Live: ${snapshot.size} orders`;
+            statusDiv.style.color = 'green';
 
-                if (querySnapshot.empty) {
-                    productListBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Бараа олдсонгүй (No products found).</td></tr>';
-                    return;
-                }
+            tbody.innerHTML = ''; // Clear current
 
-                querySnapshot.forEach((docSnap) => {
-                    const data = docSnap.data();
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                    <td><img src="${data.img}" class="product-thumb-small" alt="img"></td>
-                    <td>${data.name}</td>
-                    <td>${data.price}</td>
-                    <td><button class="btn-delete" data-id="${docSnap.id}">Устгах</button></td>
-                `;
-                    productListBody.appendChild(tr);
-                });
-
-                // Add Delete Listeners
-                document.querySelectorAll('.btn-delete').forEach(btn => {
-                    btn.addEventListener('click', async (e) => {
-                        if (confirm('Та энэ барааг устгахдаа итгэлтэй байна уу? (Are you sure you want to delete this product?)')) {
-                            const id = e.target.getAttribute('data-id');
-                            await deleteProduct(id);
-                        }
-                    });
-                });
-
-            } catch (error) {
-                console.error("Error fetching products:", error);
-                productListBody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:red;">Алдаа гарлаа.</td></tr>';
-            }
-        }
-
-        async function deleteProduct(id) {
-            try {
-                await deleteDoc(doc(db, "products", id));
-                alert('Бараа амжилттай устгагдлаа!');
-                fetchProducts(); // Refresh list
-            } catch (error) {
-                console.error("Error deleting product:", error);
-                alert('Устгахад алдаа гарлаа: ' + error.message);
-            }
-        }
-
-        // Initial Load
-        fetchProducts();
-
-        // Upload Logic
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const file1 = document.getElementById('p-image-1').files[0];
-            const file2 = document.getElementById('p-image-2').files[0];
-            const file3 = document.getElementById('p-image-3').files[0];
-
-            if (!file1) {
-                alert("Үндсэн зураг заавал оруулна уу.");
+            if (snapshot.empty) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 40px; color: #666;">No orders found yet.</td></tr>';
                 return;
             }
 
-            // Gather Dynamic Inputs
-            const formats = Array.from(document.querySelectorAll('input[name="p-formats[]"]')).map(i => i.value).filter(v => v.trim() !== '');
-            const types = Array.from(document.querySelectorAll('input[name="p-types[]"]')).map(i => i.value).filter(v => v.trim() !== '');
+            snapshot.forEach((doc) => {
+                const data = doc.data();
 
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Уншиж байна (Uploading)...';
-            statusMsg.textContent = '';
-            statusMsg.style.color = '#333';
-
-            try {
-                const imageUrls = [];
-                const files = [file1, file2, file3].filter(f => f); // Only existing files
-
-                // Upload all files
-                for (const file of files) {
-                    const storageRef = ref(storage, 'products/' + new Date().getTime() + '_' + file.name);
-                    const snapshot = await uploadBytes(storageRef, file);
-                    const url = await getDownloadURL(snapshot.ref);
-                    imageUrls.push(url);
+                // Format Date
+                let dateDisplay = 'N/A';
+                if (data.createdAt && data.createdAt.seconds) {
+                    dateDisplay = new Date(data.createdAt.seconds * 1000).toLocaleString('mn-MN');
                 }
 
-                // 2. Save Data to Firestore
-                await addDoc(collection(db, "products"), {
-                    name: document.getElementById('p-name').value,
-                    desc: document.getElementById('p-desc').value,
-                    price: document.getElementById('p-price').value,
-                    stock: document.getElementById('p-stock').value,
-                    formats: formats, // Save Formats Array
-                    types: types,     // Save Types Array (Paper/Material)
-                    img: imageUrls[0], // Main image for thumbnail backward compatibility
-                    images: imageUrls, // Array of all images
-                    createdAt: serverTimestamp()
-                });
+                // Format Customer
+                const custName = data.customer?.name || 'Unknown';
+                const custPhone = data.customer?.phone || '';
+                const custCompany = data.customer?.company ? `<br><small style="color:#666">${data.customer.company}</small>` : '';
 
-                statusMsg.textContent = 'Амжилттай нэмэгдлээ!';
-                statusMsg.style.color = 'green';
-                form.reset();
-                // Reset dynamic fields
-                document.getElementById('formats-container').innerHTML = '<div class="dynamic-input-row"><input type="text" name="p-formats[]" placeholder="Жишээ: A4 (210x297mm)"><button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button></div>';
-                document.getElementById('types-container').innerHTML = '<div class="dynamic-input-row"><input type="text" name="p-types[]" placeholder="Жишээ: 300гр шохойтой"><button type="button" class="btn-remove" onclick="this.parentElement.remove()">×</button></div>';
-                [1, 2, 3].forEach(n => document.getElementById(`preview-img-${n}`).style.display = 'none');
+                // Format Product
+                const prodName = data.product?.name || 'Unknown Item';
+                const prodDetails = data.product?.details || {};
 
-                // Refresh List
-                fetchProducts();
+                // Format Qty & Format
+                const format = data.product?.format || prodDetails.Format || '-';
+                const qty = data.product?.quantity || prodDetails.Quantity || 0;
 
-            } catch (error) {
-                console.error("Error: ", error);
-                statusMsg.textContent = 'Алдаа гарлаа: ' + error.message;
-                statusMsg.style.color = 'red';
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Бараа нэмэх';
-            }
+                // Format Format Paper
+                const paper = data.product?.paper || prodDetails.Paper || '-';
+
+                // Format Cost (The Requirement: Bold GREEN)
+                let costDisplay = '-';
+                if (data.estimatedCost) {
+                    // Assuming cost is number or string number
+                    const costNum = parseInt(data.estimatedCost);
+                    if (!isNaN(costNum)) {
+                        costDisplay = `<span style="font-weight: bold; color: #28a745; font-size: 1.1em;">${costNum.toLocaleString()}₮</span>`;
+                    } else {
+                        costDisplay = `<span style="font-weight: bold; color: #28a745;">${data.estimatedCost}</span>`;
+                    }
+                }
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="font-size: 0.9em; color: #666;">${dateDisplay}</td>
+                    <td>
+                        <strong>${custName}</strong><br>
+                        <a href="tel:${custPhone}" style="color: #333; text-decoration:none;">${custPhone}</a>
+                        ${custCompany}
+                    </td>
+                    <td>${prodName}</td>
+                    <td>
+                        <div style="font-weight:500;">${format}</div>
+                        <div style="color: #666; font-size: 0.9em;">Qty: ${qty}</div>
+                    </td>
+                    <td style="font-size: 0.95em;">${paper}</td>
+                    <td>${costDisplay}</td>
+                    <td>
+                        <span style="padding: 4px 8px; border-radius: 4px; background: #eef; color: #336; font-size: 0.85em;">
+                            ${data.status || 'new'}
+                        </span>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+        }, (error) => {
+            console.error("Error getting orders: ", error);
+            statusDiv.textContent = 'Connection Error';
+            statusDiv.style.color = 'red';
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:red; padding: 20px;">Error loading data: ${error.message}<br>Check console for details.</td></tr>`;
         });
-    </script>
 
+    </script>
 </body>
 
 </html>

@@ -255,7 +255,7 @@
                         </div>
 
                         <div class="form-group" id="prepress-group">
-                            <label data-i18n="form-prepress">Эх бэлтгэл байгаа эсэх</label>
+                            <label data-i18n="form-prepress">Эх бэлтгэл бэлэн эсэх</label>
                             <select name="prepress">
                                 <option data-i18n="form-yes">Тийм</option>
                                 <option data-i18n="form-no">Үгүй</option>
@@ -280,10 +280,7 @@
                             </label>
                         </div>
 
-                        <div class="form-group" id="delivery-date-group">
-                            <label data-i18n="form-delivery-date">Хүлээн авах хугацаа</label>
-                            <input type="date" name="delivery_date" required>
-                        </div>
+
 
                         <div class="form-group" id="folding-group" style="display: none;">
                             <label data-i18n="form-folding">Нугалааны сонголт</label>
@@ -307,12 +304,6 @@
                             </select>
                         </div>
 
-                        <div class="form-group" id="print-type-group">
-                            <label data-i18n="form-print-type">Хэвлэлийн төрөл</label>
-                            <select name="print_type">
-                                <option data-i18n="form-print-offset">Оффсет хэвлэл</option>
-                            </select>
-                        </div>
 
                         <div class="form-checkbox-group" id="spot-uv-group">
                             <label class="checkbox-container">
@@ -341,7 +332,7 @@
                             <label class="checkbox-container">
                                 <input type="checkbox" name="cut_checkbox">
                                 <span class="checkmark"></span>
-                                <span data-i18n="form-cut-select">Зүсэлт хийх</span>
+                                <span data-i18n="form-cut-die">Хэлбэртэй зүсэлт</span>
                             </label>
                         </div>
 
@@ -356,10 +347,6 @@
 
 
 
-                        <div class="form-group" id="delivery-info-group" style="display: none;">
-                            <label data-i18n="form-delivery-date">Хүргэлт</label>
-                            <div class="delivery-badge" data-i18n="form-delivery-1-2">Ажлын 1-2 хоногт</div>
-                        </div>
 
                         <!-- Lamination Specific Fields (Hidden by default) -->
                         <div id="lamination-fields" style="display: none;">
@@ -383,10 +370,7 @@
                             <div class="form-group" id="lamination-width-group">
                                 <label data-i18n="form-lam-width">Өргөн (Width)</label>
                                 <select name="lamination_width" id="lamination-width">
-
-
                                     <option value="44" selected data-i18n="form-lam-width-44">44 cm</option>
-                                    <option value="52" data-i18n="form-lam-width-52">52 cm</option>
                                 </select>
                             </div>
 
@@ -506,6 +490,11 @@
                                 placeholder="Тухайлбар, онцгой хүсэлт..."></textarea>
                         </div>
 
+                        <div class="form-group" id="delivery-date-group">
+                            <label data-i18n="form-delivery-date">Хүлээн авах хугацаа</label>
+                            <input type="date" name="delivery_date" required>
+                        </div>
+
                         <div class="quote-display" id="lamination-price-display" style="display: none;">
                             <div class="label" data-i18n="form-quote-amount">Үнийн дүн (₮)</div>
                             <div class="amount" id="lamination-price">0₮</div>
@@ -514,10 +503,10 @@
                         <div class="form-group" id="target-price-group" style="display: none;">
                             <label data-i18n="form-target-price">Үнийн санал (₮)</label>
                             <input type="text" name="target_price" data-i18n-placeholder="form-target-price-placeholder"
-                                placeholder="Таны санал болгож буй үнэ (сонголттой)">
+                                placeholder="Target Price (Optional)">
                             <small data-i18n="form-target-price-hint"
-                                style="display: block; margin-top: 5px; color: #666; font-size: 0.85em;">Таны санал
-                                болгож буй үнэ. Хоосон орхиж болно.</small>
+                                style="display: block; margin-top: 5px; color: #666; font-size: 0.85em;">Your target
+                                price. You can leave this empty.</small>
                         </div>
 
                         <button type="submit" class="btn btn-primary submit-order-btn"
@@ -539,9 +528,10 @@
                     <h5 data-i18n="footer-follow">Биднийг дагаарай</h5>
                     <a href="https://www.facebook.com/productprinting/" target="_blank"><i
                             class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.instagram.com/ppm32.mn?igsh=MWVjNDVsejFuYjdscg==" target="_blank"><i class="fab fa-instagram"></i></a>
                     <a href="weixin://" title="+976 8003 8228"><i class="fab fa-weixin"></i></a>
+                    <a href="https://www.youtube.com/watch?v=nJVA7vUVMbg" target="_blank"><i
+                            class="fab fa-youtube"></i></a>
                 </div>
             </div>
             <div class="footer-col" id="footer-contact-info">
@@ -552,6 +542,7 @@
                     <li><i class="fas fa-phone"></i> 99906069</li>
                     <li><i class="fas fa-phone"></i> 80038228</li>
                     <li><i class="fas fa-envelope"></i> <span data-i18n="footer-email">info@ppm32.mn</span></li>
+                    <li><i class="fas fa-envelope"></i> <span>ppmwork32@gmail.com</span></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -591,24 +582,14 @@
             <div class="modal-body">
                 <form id="contact-form-modal">
                     <div class="form-group">
-                        <label data-i18n="modal-name">Нэр *</label>
-                        <input type="text" name="contact_name" data-i18n-placeholder="modal-name-placeholder"
-                            placeholder="Таны нэр" required>
+                        <label data-i18n="modal-name-company">Нэр / Компани (Сонголттой)</label>
+                        <input type="text" name="contact_name_company" data-i18n-placeholder="modal-name-company-placeholder"
+                            placeholder="Таны нэр эсвэл компанийн нэр">
                     </div>
                     <div class="form-group">
-                        <label data-i18n="modal-email">Имэйл *</label>
-                        <input type="email" name="contact_email" data-i18n-placeholder="modal-email-placeholder"
-                            placeholder="example@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="modal-phone">Утасны дугаар *</label>
-                        <input type="tel" name="contact_phone" data-i18n-placeholder="modal-phone-placeholder"
-                            placeholder="+976 9999 9999" required>
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="modal-company">Компани</label>
-                        <input type="text" name="contact_company" data-i18n-placeholder="modal-company-placeholder"
-                            placeholder="Компанийн нэр (сонголттой)">
+                        <label data-i18n="modal-phone-email">Утас эсвэл Имэйл *</label>
+                        <input type="text" name="contact_phone_email" data-i18n-placeholder="modal-phone-email-placeholder"
+                            placeholder="Утасны дугаар эсвэл имэйл хаяг" required>
                     </div>
                     <div class="form-group">
                         <label data-i18n="modal-delivery">Хүргэлтийн арга</label>
@@ -624,16 +605,12 @@
                             <strong data-i18n="modal-product">Бүтээгдэхүүн:</strong> <span id="summary-product"></span>
                         </div>
                         <div class="summary-item">
-                            <strong data-i18n="modal-print-type">Хэвлэлийн төрөл:</strong> <span
-                                id="summary-print-type"></span>
-                        </div>
-                        <div class="summary-item">
                             <strong data-i18n="modal-format">Хэмжээ:</strong> <span id="summary-format"></span>
                         </div>
-                        <div class="summary-item">
+                        <div class="summary-item" id="summary-paper-item">
                             <strong data-i18n="modal-paper">Цаасны төрөл:</strong> <span id="summary-paper"></span>
                         </div>
-                        <div class="summary-item">
+                        <div class="summary-item" id="summary-coating-item">
                             <strong data-i18n="modal-coating">Бүрэлт:</strong> <span id="summary-coating"></span>
                         </div>
                         <div class="summary-item" id="summary-pages-item" style="display: none;">
@@ -658,6 +635,90 @@
 
                     <button type="submit" class="btn btn-primary submit-final-btn" data-i18n="form-send-order">Захиалга
                         илгээх</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inventory Payment Modal -->
+    <div id="inventory-payment-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-i18n="modal-payment-title">Захиалгын мэдээлэл</h3>
+                <span class="close-modal" onclick="closeInventoryPaymentModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="inventory-payment-form">
+                    <!-- Order Number with Copy -->
+                    <div class="form-group order-number-group">
+                        <label data-i18n="modal-order-number">Захиалгын дугаар</label>
+                        <div class="order-number-display">
+                            <span id="order-number-value">PPM-0000</span>
+                            <div class="copy-container">
+                                <span id="copy-feedback" class="copy-feedback"></span>
+                                <button type="button" class="copy-btn" onclick="copyOrderNumber()" title="Хуулах">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Fields -->
+                    <div class="form-group">
+                        <label data-i18n="modal-name">Нэр: *</label>
+                        <input type="text" name="contact_name" data-i18n-placeholder="modal-name-placeholder"
+                            placeholder="Хэрэглэгч бөглөх" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="modal-email">Имэйл: *</label>
+                        <input type="email" name="contact_email" data-i18n-placeholder="modal-email-placeholder"
+                            placeholder="Хэрэглэгч бөглөх" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="modal-phone">Утасны дугаар: *</label>
+                        <input type="tel" name="contact_phone" data-i18n-placeholder="modal-phone-placeholder"
+                            placeholder="Хэрэглэгч бөглөх" required>
+                    </div>
+
+                    <!-- Bank Info (Static) -->
+                    <div class="form-group bank-info-group">
+                        <label data-i18n="modal-bank-account">Дансны дугаар: <span style="font-weight: normal;">(Хаан
+                                банк)</span></label>
+                        <div class="bank-account-row">
+                            <span class="bank-account-value" id="bank-account-number">iban: 70 000 500 5133563308</span>
+                            <button type="button" class="copy-btn" onclick="copyBankAccount()" title="Хуулах">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <span id="bank-copy-feedback" class="copy-feedback"></span>
+                        </div>
+                    </div>
+
+                    <!-- Transaction Description -->
+                    <div class="form-group transaction-hint-group">
+                        <label data-i18n="modal-transaction-desc">Гүйлгээний утга:</label>
+                        <p class="transaction-hint-text" data-i18n="modal-transaction-hint">
+                            Гүйлгээний утга дээр Захиалгын дугаарыг хуулж тавиарай!
+                        </p>
+                    </div>
+
+                    <!-- Total Amount -->
+                    <div class="form-group total-payment-group">
+                        <label data-i18n="modal-total-payment">Нийт төлбөр:</label>
+                        <span id="total-payment-value" class="total-value">0₮</span>
+                    </div>
+
+                    <!-- Hidden fields for product info -->
+                    <input type="hidden" name="order_number" id="hidden-order-number">
+                    <input type="hidden" name="product_name" id="hidden-product-name">
+                    <input type="hidden" name="quantity" id="hidden-quantity">
+                    <input type="hidden" name="unit_price" id="hidden-unit-price">
+                    <input type="hidden" name="total_amount" id="hidden-total-amount">
+                    <input type="hidden" name="product_options" id="hidden-product-options">
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-success payment-complete-btn"
+                        data-i18n="modal-payment-complete">Төлбөр төлсөн</button>
+                    <p class="payment-hint" data-i18n="modal-payment-hint">Та төлбөрөө төлөөд энэ товчийг дарна уу!</p>
                 </form>
             </div>
         </div>
@@ -707,15 +768,71 @@
                 return formData.get(name);
             };
 
-            // Populate Summary
+            // Helper to get value from select option
+            const getValue = (name) => {
+                const select = mainForm.querySelector(`[name="${name}"]`);
+                if (select && select.tagName === 'SELECT') {
+                    return select.value;
+                }
+                return formData.get(name);
+            };
+
+            // Check if this is an inventory product - show payment modal instead
+            if (window.isInventoryProduct && window.currentProductData) {
+                const quantity = parseInt(getValue('quantity')) || 1;
+
+                // Get unit price from product data or selected option
+                let unitPrice = window.currentProductData.unitPrice || 0;
+
+                // Fallback: parse price from string if unitPrice not set
+                if (!unitPrice && window.currentProductData.price) {
+                    const priceStr = window.currentProductData.price.replace(/[^0-9]/g, '');
+                    unitPrice = parseInt(priceStr) || 0;
+                }
+
+                // Check if there's option-based pricing (e.g., from formConfig.finishOptions)
+                if (window.currentProductData.formConfig && window.currentProductData.formConfig.finishOptions) {
+                    const finishSelect = mainForm.querySelector('[name="finish"]');
+                    if (finishSelect) {
+                        const selectedOption = window.currentProductData.formConfig.finishOptions.find(
+                            opt => opt.value === finishSelect.value
+                        );
+                        if (selectedOption && selectedOption.price) {
+                            unitPrice = selectedOption.price;
+                        }
+                    }
+                }
+
+                // Open inventory payment modal
+                openInventoryPaymentModal(window.currentProductData, quantity, unitPrice);
+                return;
+            }
+
+            // Populate Summary for quote products
             // Update product name in summary dynamically based on current title
             document.getElementById('summary-product').textContent = document.querySelector('.product-form-card h2').textContent;
 
-            document.getElementById('summary-print-type').textContent = getText('print_type');
+
             document.getElementById('summary-format').textContent = getText('format');
-            document.getElementById('summary-paper').textContent = getText('paper');
-            document.getElementById('summary-coating').textContent = getText('coating');
             document.getElementById('summary-quantity').textContent = getText('quantity');
+
+            // Paper type summary handling
+            if (document.getElementById('paper-group') && document.getElementById('paper-group').style.display !== 'none') {
+                document.getElementById('summary-paper-item').style.display = 'block';
+                document.getElementById('summary-paper').textContent = getText('paper');
+            } else {
+                document.getElementById('summary-paper-item').style.display = 'none';
+                document.getElementById('summary-paper').textContent = '';
+            }
+
+            // Coating summary handling
+            if (document.getElementById('coating-group') && document.getElementById('coating-group').style.display !== 'none') {
+                document.getElementById('summary-coating-item').style.display = 'block';
+                document.getElementById('summary-coating').textContent = getText('coating');
+            } else {
+                document.getElementById('summary-coating-item').style.display = 'none';
+                document.getElementById('summary-coating').textContent = '';
+            }
 
             // Page Count
             const pages = getText('pages');
@@ -776,6 +893,240 @@
             }
         });
 
+        // ============================================
+        // INVENTORY PAYMENT MODAL FUNCTIONS
+        // ============================================
+
+        // Store current product data for inventory modal
+        let currentInventoryProduct = null;
+        let currentOrderNumber = '';
+
+        // Generate unique order number (PPM-XXXX format)
+        function generateOrderNumber() {
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            return `PPM-${randomNum}`;
+        }
+
+        // Copy order number to clipboard
+        function copyOrderNumber() {
+            const orderNumber = document.getElementById('order-number-value').textContent;
+            const feedbackEl = document.getElementById('copy-feedback');
+
+            // Try modern clipboard API first, fallback to execCommand
+            const copyToClipboard = (text) => {
+                if (navigator.clipboard && window.isSecureContext) {
+                    return navigator.clipboard.writeText(text);
+                } else {
+                    // Fallback for older browsers or non-HTTPS
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    textArea.style.position = 'fixed';
+                    textArea.style.left = '-999999px';
+                    textArea.style.top = '-999999px';
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    return new Promise((resolve, reject) => {
+                        document.execCommand('copy') ? resolve() : reject();
+                        textArea.remove();
+                    });
+                }
+            };
+
+            copyToClipboard(orderNumber).then(() => {
+                // Show "Хуулагдлаа" feedback text
+                feedbackEl.textContent = 'Хуулагдлаа!';
+                feedbackEl.classList.add('show');
+
+                // Also change button icon to checkmark
+                const copyBtn = document.querySelector('.copy-btn');
+                const originalIcon = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+                copyBtn.style.background = '#28a745';
+
+                setTimeout(() => {
+                    feedbackEl.textContent = '';
+                    feedbackEl.classList.remove('show');
+                    copyBtn.innerHTML = originalIcon;
+                    copyBtn.style.background = '';
+                }, 1000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                feedbackEl.textContent = 'Алдаа!';
+                feedbackEl.classList.add('show');
+                setTimeout(() => {
+                    feedbackEl.textContent = '';
+                    feedbackEl.classList.remove('show');
+                }, 1000);
+            });
+        }
+
+        // Copy bank account number to clipboard
+        function copyBankAccount() {
+            const bankAccountEl = document.getElementById('bank-account-number');
+            const feedbackEl = document.getElementById('bank-copy-feedback');
+            // Extract just the number part
+            const bankNumber = bankAccountEl.textContent.replace('iban: ', '').replace(/\s/g, '');
+
+            const copyToClipboard = (text) => {
+                if (navigator.clipboard && window.isSecureContext) {
+                    return navigator.clipboard.writeText(text);
+                } else {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    textArea.style.position = 'fixed';
+                    textArea.style.left = '-999999px';
+                    textArea.style.top = '-999999px';
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    return new Promise((resolve, reject) => {
+                        document.execCommand('copy') ? resolve() : reject();
+                        textArea.remove();
+                    });
+                }
+            };
+
+            copyToClipboard(bankNumber).then(() => {
+                feedbackEl.textContent = 'Хуулагдлаа!';
+                feedbackEl.classList.add('show');
+
+                const copyBtn = bankAccountEl.parentElement.querySelector('.copy-btn');
+                const originalIcon = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+                copyBtn.style.background = '#28a745';
+
+                setTimeout(() => {
+                    feedbackEl.textContent = '';
+                    feedbackEl.classList.remove('show');
+                    copyBtn.innerHTML = originalIcon;
+                    copyBtn.style.background = '';
+                }, 1000);
+            }).catch(err => {
+                console.error('Failed to copy bank account: ', err);
+            });
+        }
+
+        // Close inventory payment modal
+        function closeInventoryPaymentModal() {
+            const inventoryModal = document.getElementById('inventory-payment-modal');
+            inventoryModal.classList.remove('active');
+        }
+
+        // Open inventory payment modal
+        function openInventoryPaymentModal(productData, quantity, unitPrice) {
+            const inventoryModal = document.getElementById('inventory-payment-modal');
+
+            // Generate and display order number
+            currentOrderNumber = generateOrderNumber();
+            document.getElementById('order-number-value').textContent = currentOrderNumber;
+            document.getElementById('hidden-order-number').value = currentOrderNumber;
+
+            // Calculate and display total
+            const total = quantity * unitPrice;
+            document.getElementById('total-payment-value').textContent = total.toLocaleString('mn-MN') + '₮';
+            document.getElementById('hidden-total-amount').value = total;
+
+            // Store product info in hidden fields
+            document.getElementById('hidden-product-name').value = productData.name || '';
+            document.getElementById('hidden-quantity').value = quantity;
+            document.getElementById('hidden-unit-price').value = unitPrice;
+
+            // Store product options
+            const options = [];
+            const mainFormData = new FormData(mainForm);
+            mainFormData.forEach((value, key) => {
+                if (key !== 'quantity') {
+                    const select = mainForm.querySelector(`[name="${key}"]`);
+                    if (select && select.tagName === 'SELECT') {
+                        options.push(`${key}: ${select.options[select.selectedIndex].text}`);
+                    } else {
+                        options.push(`${key}: ${value}`);
+                    }
+                }
+            });
+            document.getElementById('hidden-product-options').value = options.join(', ');
+
+            // Store current product
+            currentInventoryProduct = productData;
+
+            // Apply translations
+            if (typeof setLanguage === 'function') {
+                const savedLang = localStorage.getItem('preferred-lang') || 'mn';
+                setLanguage(savedLang);
+            }
+
+            // Show modal
+            inventoryModal.classList.add('active');
+        }
+
+        // Close inventory modal on overlay click
+        window.addEventListener('click', (e) => {
+            const inventoryModal = document.getElementById('inventory-payment-modal');
+            if (e.target === inventoryModal) {
+                inventoryModal.classList.remove('active');
+            }
+        });
+
+        // Inventory payment form submission
+        const inventoryPaymentForm = document.getElementById('inventory-payment-form');
+        if (inventoryPaymentForm) {
+            inventoryPaymentForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const btn = inventoryPaymentForm.querySelector('.payment-complete-btn');
+                const originalText = btn.textContent;
+                btn.textContent = 'Илгээж байна...';
+                btn.disabled = true;
+
+                const formData = new FormData(inventoryPaymentForm);
+
+                const orderData = {
+                    OrderNumber: formData.get('order_number'),
+                    CustomerName: formData.get('contact_name'),
+                    CustomerEmail: formData.get('contact_email'),
+                    CustomerPhone: formData.get('contact_phone'),
+                    ProductName: formData.get('product_name'),
+                    Quantity: formData.get('quantity'),
+                    UnitPrice: formData.get('unit_price'),
+                    TotalAmount: formData.get('total_amount'),
+                    ProductOptions: formData.get('product_options'),
+                    PaymentStatus: 'Төлбөр төлсөн гэж мэдэгдсэн'
+                };
+
+                // Use the Google Apps Script URL for inventory orders
+                const INVENTORY_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyneyGmAlN0WKcNzGS1AQ6-IHGugWTtnzJv0uREp3WDZ42CP5qv8rCAlujsJYBg-JE0iA/exec';
+
+                fetch(INVENTORY_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(orderData)
+                })
+                    .then(() => {
+                        btn.textContent = 'Амжилттай!';
+                        btn.style.backgroundColor = '#28a745';
+                        setTimeout(() => {
+                            closeInventoryPaymentModal();
+                            btn.textContent = originalText;
+                            btn.disabled = false;
+                            btn.style.backgroundColor = '';
+                            inventoryPaymentForm.reset();
+                            alert('Таны захиалга амжилттай илгээгдлээ! Бид тантай удахгүй холбогдох болно.');
+                        }, 1500);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                        alert('Алдаа гарлаа. Дахин оролдоно уу.');
+                    });
+            });
+        }
+
+
         // Final Submit
         modalForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -790,9 +1141,21 @@
 
             // Gather data
             const contactData = new FormData(modalForm);
+            const contactNameCompany = contactData.get('contact_name_company') || '';
+            const contactPhoneEmail = contactData.get('contact_phone_email') || '';
+
+            // Detect email or phone number
+            let email = '';
+            let phone = '';
+            if (contactPhoneEmail.includes('@')) {
+                email = contactPhoneEmail;
+            } else {
+                phone = contactPhoneEmail;
+            }
+
             const orderDetails = {
                 Product: document.getElementById('summary-product').textContent,
-                PrintType: document.getElementById('summary-print-type').textContent,
+                PrintType: document.getElementById('summary-print-type') ? document.getElementById('summary-print-type').textContent : 'N/A',
                 Format: document.getElementById('summary-format').textContent,
                 Paper: document.getElementById('summary-paper').textContent,
                 Coating: document.getElementById('summary-coating').textContent,
@@ -805,11 +1168,11 @@
             // Prepare Data for Google Sheet
             const sheetData = {
                 Product: orderDetails.Product,
-                Name: contactData.get('contact_name'),
-                Phone: contactData.get('contact_phone'),
-                Email: contactData.get('contact_email'),
-                Company: contactData.get('contact_company') || '',
-                Details: `Format: ${orderDetails.Format}, Qty: ${orderDetails.Quantity}, Paper: ${orderDetails.Paper}, Coating: ${orderDetails.Coating}, Notes: ${orderDetails.Notes}`
+                Name: contactNameCompany,
+                Phone: phone,
+                Email: email,
+                Company: contactNameCompany,
+                Details: `Contact Info: ${contactPhoneEmail}\n` + `Format: ${orderDetails.Format}, Qty: ${orderDetails.Quantity}, Paper: ${orderDetails.Paper}, Coating: ${orderDetails.Coating}, Notes: ${orderDetails.Notes}`
             };
 
             // Helper to get text from select option
@@ -823,7 +1186,7 @@
 
             // GATHER WHATSAPP DATA (formatted message)
             const PHONE_NUMBER = '97699906069';
-            let messageText = `*New Order Received!*\n\n*Customer Info:*\nName: ${contactData.get('contact_name')}\nEmail: ${contactData.get('contact_email')}\nPhone: ${contactData.get('contact_phone')}\nCompany: ${contactData.get('contact_company') || 'N/A'}\nDelivery: ${contactData.get('delivery_method') === 'pickup' ? 'Pick up' : 'Delivery'}\n\n*Order Details:*\nProduct: ${orderDetails.Product}\n`;
+            let messageText = `*New Order Received!*\n\n*Customer Info:*\nName/Company: ${contactNameCompany || 'N/A'}\nContact Info: ${contactPhoneEmail}\nDelivery: ${contactData.get('delivery_method') === 'pickup' ? 'Pick up' : 'Delivery'}\n\n*Order Details:*\nProduct: ${orderDetails.Product}\n`;
 
             if (config.showPrintType !== false) messageText += `Print Type: ${orderDetails.PrintType}\n`;
             messageText += `Format: ${orderDetails.Format}\n`;
@@ -862,11 +1225,109 @@
 
             if (config.showPrepress !== false) messageText += `Prepress: ${getText('prepress')}\n`;
             if (config.showDeliveryDate !== false) messageText += `Delivery Date: ${new FormData(mainForm).get('delivery_date')}\n`;
+
             if (config.showTargetPrice) messageText += `Target Price: ${new FormData(mainForm).get('target_price')}\n`;
+
+            // --- ADMIN BACKGROUND CALCULATION (Brochure) ---
+            console.log('Checking Brochure Calculation Eligibility...', {
+                currentProductData: window.currentProductData,
+                id: window.currentProductData ? window.currentProductData.id : 'null'
+            });
+
+            if (window.currentProductData && window.currentProductData.id && window.currentProductData.id.toLowerCase().includes('brochure')) {
+                if (typeof calculateBrochurePrice === 'function' && typeof getPaperPrice === 'function') {
+                    const format = getText('format'); // e.g. "A5 (145x210mm)"
+                    const quantity = parseInt(new FormData(mainForm).get('quantity')) || 0;
+                    const paperKey = new FormData(mainForm).get('paper'); // Key from value
+
+                    const unitPrice = getPaperPrice(paperKey);
+                    console.log('Calculating SKU:', { format, quantity, paperKey, unitPrice });
+
+                    const calcResult = calculateBrochurePrice(format, quantity, unitPrice);
+
+                    if (calcResult) {
+                        messageText += `\n-------------------------\n`;
+                        messageText += `[ADMIN SYSTEM CALCULATION]\n`;
+                        if (calcResult.details && calcResult.details.error) {
+                            messageText += `Error: ${calcResult.details.error}\n`;
+                        } else {
+                            messageText += `Paper Unit Price: ${unitPrice}\n`;
+                            messageText += `Est. Paper Cost: ${calcResult.totalPaperCost.toLocaleString()}₮\n`;
+                        }
+                        messageText += `-------------------------\n`;
+                    }
+                } else {
+                    console.warn('Skipping calculation: missing functions', {
+                        calc: typeof calculateBrochurePrice,
+                        price: typeof getPaperPrice
+                    });
+                }
+            } else {
+                console.log('Skipping calculation: Product ID not brochure');
+            }
+
             if (new FormData(mainForm).get('notes')) messageText += `\nNotes: ${new FormData(mainForm).get('notes')}\n`;
 
             // Update sheetData Details with full message for clearer log
             sheetData.Details = messageText;
+
+            // --- FIREBASE SUBMISSION ---
+            // Prepare clean data object for Firestore
+            const firestoreData = {
+                customer: {
+                    name: contactNameCompany,
+                    email: email,
+                    phone: phone,
+                    company: contactNameCompany
+                },
+                product: {
+                    id: orderDetails.Product, // This is actually the Name, but product ID isn't easily avail here without `currentProductData`
+                    name: orderDetails.Product,
+                    type: window.currentProductData ? window.currentProductData.id : 'unknown',
+                    format: orderDetails.Format,
+                    quantity: parseInt(orderDetails.Quantity) || 0,
+                    paper: orderDetails.Paper,
+                    details: orderDetails // Store full raw details map
+                },
+                payment: {
+                    method: contactData.get('delivery_method') === 'pickup' ? 'Pay on Pickup' : 'Delivery',
+                    status: 'pending' // Quote request is pending payment usually or negotiation
+                },
+                // Include Hidden Cost if available (calculated in background)
+                estimatedCost: undefined,
+                estimatedCostDetails: undefined
+            };
+
+            // Retrieve the calculated data from the scope logic above
+            // We need to re-run or capture the logic. 
+            // Better to capture it in variables in the block above.
+            // Let's check the previous block insertion.
+            // I need to update the previous block to store variables that I can access here.
+
+            // Re-running calculation logic for clarity and scope access
+            if (window.currentProductData && window.currentProductData.id === 'brochure') {
+                if (typeof calculateBrochurePrice === 'function' && typeof getPaperPrice === 'function') {
+                    const format = getText('format');
+                    const quantity = parseInt(new FormData(mainForm).get('quantity')) || 0;
+                    const paperKey = new FormData(mainForm).get('paper');
+                    const unitPrice = getPaperPrice(paperKey);
+                    const calcResult = calculateBrochurePrice(format, quantity, unitPrice);
+                    if (calcResult && !calcResult.details?.error) {
+                        firestoreData.estimatedCost = calcResult.totalPaperCost;
+                        firestoreData.estimatedCostDetails = {
+                            unitPrice: unitPrice,
+                            netSheets: calcResult.debug?.netPressSheets,
+                            totalSheets: calcResult.debug?.totalPressSheets,
+                            buySheets: calcResult.debug?.buySheets
+                        };
+                    }
+                }
+            }
+
+            // Save to Firestore (Non-blocking)
+            if (typeof window.saveOrderToFirestore === 'function') {
+                window.saveOrderToFirestore(firestoreData);
+            }
 
             // Send to Google Sheet
             // Send to Google Sheet
@@ -902,7 +1363,7 @@
                     successDiv.innerHTML = `
                         <div style="text-align: center; padding: 40px 20px;">
                             <i class="fas fa-check-circle" style="font-size: 3rem; color: #28a745; margin-bottom: 20px;"></i>
-                            <h3 style="color: #333; margin-bottom: 15px;">Таны хүсэлтийг хүлээн авлаа</h3>
+                            <h3 style="color: #333; margin-bottom: 15px;">Таны хүсэлтийг хүлээн авлаа (v2)</h3>
                             <p style="color: #666; font-size: 1.1rem;">Танд тун удахгүй хариу өгөх болно.</p>
                         </div>
                     `;
@@ -1109,6 +1570,54 @@
         }
     </script>
 
+    <!-- Firebase Helper Module (Inlined for file:// support) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Firebase Configuration (Inlined)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDIg6O2QhRT_9f_izoMfuoHEMOrxSThOjk",
+            authDomain: "printing-admin-4fd08.firebaseapp.com",
+            projectId: "printing-admin-4fd08",
+            storageBucket: "printing-admin-4fd08.firebasestorage.app",
+            messagingSenderId: "1076859337902",
+            appId: "1:1076859337902:web:911c780fc4e6139519013f",
+            measurementId: "G-Q50KVZX7RL"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        /**
+         * Save Order to Firestore
+         * @param {Object} orderData - The structured order data
+         */
+        window.saveOrderToFirestore = async function (orderData) {
+            try {
+                console.log("Saving to Firestore...", orderData);
+                // Add timestamp
+                const finalData = {
+                    ...orderData,
+                    createdAt: serverTimestamp(),
+                    status: 'new', // Default status
+                    source: 'web_quote'
+                };
+
+                const docRef = await addDoc(collection(db, "orders"), finalData);
+                console.log("Document written with ID: ", docRef.id);
+                // alert('Order saved to Database!'); // Optional feedback
+                return docRef.id;
+            } catch (e) {
+                console.error("Error adding document: ", e);
+                alert('Database Error: ' + e.message); // Visual feedback for file connection errors
+                return null;
+            }
+        };
+        console.log("Firebase initialized in product-detail");
+    </script>
+
     <!-- Static Product Loader (Replaced Firebase) -->
     <script src="products-data.js"></script>
     <script>
@@ -1135,6 +1644,8 @@
 
                     // Set global flag for form submission routing
                     window.isInventoryProduct = !!data.isLamination;
+                    // Store product data for inventory payment modal
+                    window.currentProductData = data;
 
                     // Detect Lamination Product by flag or name
                     if (data.isLamination || (data.name && data.name.toLowerCase().includes('lamination'))) {
@@ -1387,6 +1898,9 @@
                                     const el = document.createElement('option');
                                     if (opt.key !== undefined) {
                                         el.textContent = opt.val;
+                                        // Set value to key if available, otherwise fallback to val.
+                                        // This allows backend logic to use the ID/Key (e.g. for price lookup).
+                                        el.value = opt.key || opt.val;
                                         if (opt.key) el.setAttribute('data-i18n', opt.key);
                                     } else {
                                         el.textContent = opt;
@@ -1423,16 +1937,24 @@
                             coatingSelect.innerHTML = '';
                             config.coatings.forEach(c => {
                                 const el = document.createElement('option');
+                                el.value = c.key;
                                 el.textContent = c.val;
                                 if (c.key) el.setAttribute('data-i18n', c.key);
                                 coatingSelect.appendChild(el);
                             });
                         }
 
-                        // Visibility Helper
+                        // Visibility Helper with input disabling
                         const setDisplay = (id, show) => {
                             const el = document.getElementById(id);
-                            if (el) el.style.display = show ? 'block' : 'none';
+                            if (el) {
+                                const shouldShow = !!show;
+                                el.style.display = shouldShow ? 'block' : 'none';
+                                const inputs = el.querySelectorAll('input, select, textarea');
+                                inputs.forEach(input => {
+                                    input.disabled = !shouldShow;
+                                });
+                            }
                         };
 
                         setDisplay('pages-group', config.showPages);
@@ -1445,22 +1967,38 @@
                         setDisplay('coating-group', config.showCoating !== false);
                         setDisplay('cut-select-group', config.showCutSelect);
                         setDisplay('cut-checkbox-group', config.showCutCheckbox);
+
+                        // Populate cut options if available
+                        if (config.cutOptions && config.cutOptions.length > 0) {
+                            const cutSelect = document.querySelector('#cut-select-group select[name="cut_select"]');
+                            if (cutSelect) {
+                                cutSelect.innerHTML = '';
+                                config.cutOptions.forEach(opt => {
+                                    const el = document.createElement('option');
+                                    el.value = opt.key || opt.val;
+                                    el.textContent = opt.val;
+                                    if (opt.key) el.setAttribute('data-i18n', opt.key);
+                                    cutSelect.appendChild(el);
+                                });
+                            }
+                        }
+
                         setDisplay('numbered-group', config.showNumbered);
                         setDisplay('target-price-group', config.showTargetPrice);
                         setDisplay('delivery-date-group', config.showDeliveryDate !== false);
                         setDisplay('delivery-info-group', config.showDeliveryInfo !== false); // Default true
 
                         // Foil & Spot UV
+                        setDisplay('foil-group', config.showFoil !== false);
                         const foilGroup = document.getElementById('foil-group');
-                        if (foilGroup) {
-                            foilGroup.style.display = config.showFoil !== false ? 'block' : 'none';
+                        if (config.showFoil !== false && foilGroup) {
                             const foilLabel = foilGroup.querySelector('span[data-i18n]');
                             if (foilLabel) foilLabel.setAttribute('data-i18n', config.labelFoil || 'form-foil');
                         }
 
+                        setDisplay('spot-uv-group', config.showSpotUV !== false);
                         const spotGroup = document.getElementById('spot-uv-group');
-                        if (spotGroup) {
-                            spotGroup.style.display = config.showSpotUV !== false ? 'block' : 'none';
+                        if (config.showSpotUV !== false && spotGroup) {
                             const spotLabel = spotGroup.querySelector('span[data-i18n]');
                             if (spotLabel) spotLabel.setAttribute('data-i18n', config.labelSpotUV || 'form-spot-uv');
                         }
@@ -1476,13 +2014,13 @@
                         }
 
                         // Ensure standard groups are visible if not explicitly hidden
-                        if (config.showFormat !== false) document.getElementById('format-group').style.display = 'block';
-                        if (config.showPaper !== false) document.getElementById('paper-group').style.display = 'block';
-                        document.getElementById('quantity-group').style.display = 'block';
+                        setDisplay('format-group', config.showFormat !== false);
+                        setDisplay('paper-group', config.showPaper !== false);
+                        setDisplay('quantity-group', true);
 
                         // Checkbox groups
                         if (config.showCutCheckbox) {
-                            document.getElementById('cut-checkbox-group').style.display = 'block';
+                            setDisplay('cut-checkbox-group', true);
                         }
                     } else if (!data.isLamination) {
                         // Fallback logic for products without specific config (though now all should have one)

@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 :root {
-    --primary-color: #FF8C00;
-    --primary-hover: #E67E00;
-    --secondary-color: #FFA500;
+    --primary-color: #ff6000;
+    --primary-hover: #e65600;
+    --secondary-color: #ff6000;
     --bg-dark: #121212;
     --bg-light: rgba(232, 236, 243, 0.4);
     /* Replicated from ppm32.mn */
@@ -248,7 +248,7 @@ header {
 
 .hero-content .btn-primary,
 .hero-content .btn-outline {
-    background: rgb(249, 115, 22);
+    background: #ff6000;
     box-shadow: none;
     border: none;
     backdrop-filter: none;
@@ -257,7 +257,7 @@ header {
 
 .hero-content .btn-primary:hover,
 .hero-content .btn-outline:hover {
-    background: rgb(230, 100, 10);
+    background: #e65600;
     transform: scale(1.05);
 }
 
@@ -284,7 +284,7 @@ header {
 }
 
 .btn-primary {
-    background: rgb(249, 115, 22);
+    background: #ff6000;
     color: var(--text-white);
     border: none;
     box-shadow: none;
@@ -292,7 +292,7 @@ header {
 
 .btn-primary:hover {
     transform: scale(1.05);
-    background: rgb(230, 100, 10);
+    background: #e65600;
     box-shadow: none;
 }
 
@@ -317,6 +317,7 @@ header {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
     margin-top: 40px;
+    margin-bottom: 60px;
 }
 
 .product-card {
@@ -333,7 +334,7 @@ header {
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.1);
+    box-shadow: 0 10px 25px rgba(255, 96, 0, 0.1);
 }
 
 .hero {
@@ -477,7 +478,7 @@ header {
 .order-btn-link {
     display: inline-flex;
     align-items: center;
-    background: rgb(249, 115, 22);
+    background: #ff6000;
     color: white;
     padding: 10px 24px;
     border-radius: 8px;
@@ -488,7 +489,7 @@ header {
 }
 
 .order-btn-link:hover {
-    background: rgb(230, 100, 10);
+    background: #e65600;
     transform: translateX(3px);
 }
 
@@ -550,7 +551,7 @@ section {
 
 /* Footer */
 footer {
-    background: rgb(249, 115, 22);
+    background: #ff6000;
     color: white;
     padding: 48px 24px;
 }
@@ -707,23 +708,28 @@ footer {
     border-radius: 6px;
     overflow: hidden;
     cursor: pointer;
-    border: 1px solid #e5e7eb;
-    /* Visible light grey border */
+    border: none;
+    /* Removed border to eliminate white frame */
     transition: all 0.3s ease;
     width: 60px;
     height: 60px;
     flex: 0 0 60px;
     aspect-ratio: 1 / 1;
     box-sizing: border-box;
-    /* Ensure border is included in width/height */
-    padding: 2px;
-    /* Small padding to prevent image touching border */
+    padding: 0;
+    /* Removed padding so image fills entire space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .thumb img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    /* Changed from contain to cover to fill frame */
+    object-position: center;
+    /* Ensure image is centered */
 }
 
 @media (max-width: 768px) {
@@ -754,18 +760,13 @@ footer {
     }
 
     .thumb img {
-        position: absolute !important;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        width: auto !important;
-        height: auto !important;
-        max-width: 100% !important;
-        max-height: 100% !important;
-        display: block;
-        background: #fdfdfd;
+        position: static !important;
+        transform: none !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        background: transparent;
         border-radius: 0;
-        /* Square image */
     }
 }
 
@@ -829,7 +830,7 @@ footer {
     border-color: var(--primary-color);
     outline: none;
     background-color: #fff;
-    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+    box-shadow: 0 10px 25px rgba(255, 96, 0, 0.1);
 }
 
 /* Make entire date input clickable */
@@ -1282,7 +1283,7 @@ footer {
 .card-icon {
     width: 48px;
     height: 48px;
-    background: rgba(249, 115, 22, 0.1);
+    background: rgba(255, 96, 0, 0.1);
     color: var(--primary-color);
     border-radius: 12px;
     display: flex;
@@ -1373,7 +1374,7 @@ footer {
     outline: none;
     border-color: var(--primary-color);
     background: #fff;
-    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+    box-shadow: 0 0 0 4px rgba(255, 96, 0, 0.1);
 }
 
 .contact-form .btn-primary {
@@ -1910,4 +1911,239 @@ footer {
 .faq-item.active .faq-answer p {
     border-color: rgba(0, 0, 0, 0.05);
     padding-top: 16px;
+}
+
+/* ============================================
+   INVENTORY PAYMENT MODAL STYLES
+   ============================================ */
+
+#inventory-payment-modal .modal-content {
+    max-width: 480px;
+}
+
+#inventory-payment-modal .modal-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* Order Number Display */
+.order-number-group {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.order-number-group label {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.order-number-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+#order-number-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    letter-spacing: 1px;
+}
+
+.copy-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copy-btn:hover {
+    background: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+.copy-btn i {
+    font-size: 1rem;
+}
+
+/* Copy Container and Feedback */
+.copy-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.copy-feedback {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #28a745;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+}
+
+.copy-feedback.show {
+    opacity: 1;
+}
+
+/* Bank Info */
+.bank-info-group {
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.bank-info-group label {
+    font-size: 0.85rem;
+    color: #92400e;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.bank-account-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    word-break: break-all;
+}
+
+.bank-account-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bank-account-row .copy-btn {
+    background: #f59e0b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.bank-account-row .copy-btn:hover {
+    background: #d97706;
+}
+
+.bank-account-row .copy-feedback {
+    font-size: 0.85rem;
+    color: #28a745;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.bank-account-row .copy-feedback.show {
+    opacity: 1;
+}
+
+/* Transaction Hint */
+.transaction-hint-group {
+    margin-bottom: 16px;
+}
+
+.transaction-hint-group label {
+    font-size: 0.9rem;
+    color: #374151;
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.transaction-hint-text {
+    font-size: 0.9rem;
+    color: #dc2626;
+    font-weight: 600;
+    margin: 0;
+    padding: 8px 0 0 0;
+}
+
+/* Total Payment */
+.total-payment-group {
+    background: #ecfdf5;
+    border: 2px solid #10b981;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-payment-group label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #065f46;
+    margin: 0;
+}
+
+.total-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #059669;
+}
+
+/* Green Success Button */
+.btn-success {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-success:hover {
+    background: #059669;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-success:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Payment Hint */
+.payment-hint {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+/* Payment Complete Button Styles */
+.payment-complete-btn {
+    background: #10b981;
+    color: white;
 }
