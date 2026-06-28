@@ -1,0 +1,10 @@
+{
+  "appId": "mn.ppm32.app",
+  "appName": "PPM",
+  "webDir": "www",
+  "server": {
+    "url": "https://ppm32.mn",
+    "androidScheme": "https",
+    "iosScheme": "https"
+  }
+}

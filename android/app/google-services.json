@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1076859337902",
+    "project_id": "printing-admin-4fd08",
+    "storage_bucket": "printing-admin-4fd08.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1076859337902:android:8f793cb2edbf6ded19013f",
+        "android_client_info": {
+          "package_name": "mn.ppm32.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBm_Wmp0ELEcn7l1UwqQ2EhLS8QwAUvlKs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

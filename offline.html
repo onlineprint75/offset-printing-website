@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="mn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Офлайн | PPM</title>
+  <meta name="theme-color" content="#ff6000" />
+  <link rel="icon" type="image/svg+xml" href="/assets/images/Logo--ani-02.svg" />
+  <style>
+    :root { --primary: #ff6000; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 24px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: #1f2937;
+      background: #f8fafc;
+      text-align: center;
+    }
+    img { width: 140px; height: auto; }
+    h1 { font-size: 1.4rem; margin: 0; }
+    p { color: #64748b; max-width: 320px; margin: 0; line-height: 1.6; }
+    button {
+      margin-top: 8px;
+      padding: 12px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--primary);
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    button:active { background: #e65600; }
+  </style>
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#ff6000" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="PPM" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <script src="/pwa.js" defer></script>
+  <script src="/native-app.js" defer></script>
+</head>
+
+<body>
+  <img src="/assets/images/logo.png" alt="PPM" />
+  <h1>Интернэт холболт алга байна</h1>
+  <p>Та офлайн байна. Холболтоо шалгаад дахин оролдоно уу.</p>
+  <button onclick="location.reload()">Дахин ачаалах</button>
+</body>
+
+</html>

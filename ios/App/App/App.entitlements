@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	  Enables Apple Push Notification service. To activate it, open the project in
+	  Xcode → target "App" → Signing & Capabilities → "+ Capability" → Push Notifications
+	  (this requires an Apple Developer account, which also wires this file into the build).
+	  Use "production" instead of "development" for App Store / TestFlight builds.
+	-->
+	<key>aps-environment</key>
+	<string>development</string>
+</dict>
+</plist>
