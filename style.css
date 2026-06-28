@@ -34,7 +34,7 @@ body {
 }
 
 main {
-    padding-top: var(--header-height);
+    padding-top: calc(var(--header-height) + env(safe-area-inset-top, 0px));
 }
 
 .page-container {
@@ -46,13 +46,14 @@ main {
 
 /* Header & Nav */
 header {
-    height: var(--header-height);
+    /* Extend the header up into the status-bar / notch area and keep its content below it. */
+    height: calc(var(--header-height) + env(safe-area-inset-top, 0px));
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20%;
+    padding: env(safe-area-inset-top, 0px) 20% 0;
     position: fixed;
     top: 0;
     width: 100%;
@@ -339,7 +340,7 @@ header {
 
 .hero {
     height: 100vh;
-    margin-top: calc(-1 * var(--header-height));
+    margin-top: calc(-1 * (var(--header-height) + env(safe-area-inset-top, 0px)));
     margin-bottom: 0;
     display: flex;
     align-items: center;
@@ -1419,11 +1420,11 @@ footer {
 
 @media (max-width: 768px) {
     main {
-        padding-top: calc(var(--header-height) - 13px);
+        padding-top: calc(var(--header-height) - 13px + env(safe-area-inset-top, 0px));
     }
 
     header {
-        padding: 0 20px;
+        padding: env(safe-area-inset-top, 0px) 20px 0;
     }
 
     .logo {
@@ -1514,7 +1515,7 @@ footer {
     /* Mobile Menu Top Bar */
     .mobile-menu-header {
         width: 100%;
-        padding: 15px 20px;
+        padding: calc(15px + env(safe-area-inset-top, 0px)) 20px 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="mn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>PPM</title>
+  <meta name="theme-color" content="#ff6000" />
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: #ff6000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #fff;
+    }
+    .wrap { text-align: center; padding: 24px; }
+    .spinner {
+      width: 44px; height: 44px; margin: 0 auto 16px;
+      border: 4px solid rgba(255,255,255,.35);
+      border-top-color: #fff; border-radius: 50%;
+      animation: spin .9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    a { color: #fff; font-weight: 600; }
+    .note { margin-top: 18px; font-size: .8rem; opacity: .85; line-height: 1.6; max-width: 280px; }
+  </style>
+</head>
+
+<body>
+  <!--
+    Capacitor loads the live site from `server.url` (https://ppm32.mn) in
+    capacitor.config.json, so this page is NOT shown inside the native app.
+    It exists only as the required webDir entry. The script below redirects
+    to the live site if this file is ever opened directly (e.g. in a browser).
+    To ship a fully offline/bundled app, remove `server.url` and copy the
+    website's static files into this `www/` folder instead.
+  -->
+  <div class="wrap">
+    <div class="spinner"></div>
+    <div>Ачааллаж байна…</div>
+    <p class="note">
+      Энэ нь аппын ачаалах дэлгэц.<br />
+      Үргэлжлэхгүй бол <a href="https://ppm32.mn">ppm32.mn</a> руу оч.
+    </p>
+  </div>
+
+  <script>
+    // Best-effort redirect to the live site when opened in a normal browser.
+    setTimeout(function () {
+      try { location.replace('https://ppm32.mn'); } catch (e) {}
+    }, 800);
+  </script>
+</body>
+
+</html>
